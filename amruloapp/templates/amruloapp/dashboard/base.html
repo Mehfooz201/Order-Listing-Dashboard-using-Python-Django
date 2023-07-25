@@ -158,8 +158,8 @@
               data-accordion="false">
 
               
-              <li class="nav-item {% if 'my-order' in active_item and 'statistics' not in active_item %}menu-open{% endif %}">
-                <a href="/create-order" class="nav-link {% if 'my-order' in active_item and 'statistics' not in active_item %}active{% endif %}">
+              <li class="nav-item {% if 'my-order' in active_item or 'create-order' in active_item or 'order-list' in active_item or 'return-order' in active_item or 'address-order' in active_item or 'confirm-order' in active_item or 'archive-order' in active_item or 'framemanage-order' in active_item or 'remake-order' in active_item or 'monthly-order' in active_item or 'cad-order' in active_item %}menu-open{% endif %}">
+                <a href="/create-order" class="nav-link {% if 'my-order' in active_item or 'order-list' in active_item or 'return-order' in active_item or 'address-order' in active_item or 'confirm-order' in active_item or 'archive-order' in active_item or 'framemanage-order' in active_item or 'remake-order' in active_item or 'monthly-order' in active_item or 'cad-order' in active_item %}active{% endif %}">
                   <i class="nav-icon fas fa-list-ol"></i>
                   <p>
                     My Order
@@ -169,19 +169,19 @@
 
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="/create-order" class="nav-link {% if active_item == 'create-order' %}active{% endif %}">
+                    <a href="{% url 'create-order' %}" class="nav-link {% if active_item == 'create-order' %}active{% endif %}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Create the order</p>
                     </a>
                   </li>
-
+            
                   <li class="nav-item">
                     <a href="{% url 'order-list' %}" class="nav-link {% if active_item == 'order-list' %}active{% endif %}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>The order list</p>
                     </a>
                   </li>
-
+            
                   <li class="nav-item">
                     <a href="{% url 'returned-order' %}" class="nav-link {% if active_item == 'return-order' %}active{% endif %}">
                       <i class="far fa-circle nav-icon"></i>
