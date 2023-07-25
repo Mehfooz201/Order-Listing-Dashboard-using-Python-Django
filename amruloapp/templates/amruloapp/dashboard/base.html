@@ -264,8 +264,8 @@
                 </ul>
               </li>
 
-              <li class="nav-item {% if 'statistics' in active_item %}menu-open{% endif %}">
-                <a href="#" class="nav-link {% if 'statistics' in active_item %}active{% endif %}">
+              <li class="nav-item {% if 'statistics' in active_item or 'order-docs' in active_item or 'shipp-stats' in active_item %}menu-open{% endif %}">
+                <a href="#" class="nav-link {% if 'statistics' in active_item or 'order-docs' in active_item or 'shipp-stats' in active_item %}active{% endif %}">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dental Statistics
