@@ -5,9 +5,10 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     # path('', TemplateView.as_view(template_name='baseapp/homepage.html')),
-    path('', views.home, name='home'),
+    # path('', views.home, name='home'),
+     path('', views.signin, name='login'),
 
-    path('login/', views.signin, name='login'),
+    # path('login/', views.signin, name='login'),
     path('logout/', views.logoutUser, name="logout"),
 
 
@@ -44,9 +45,6 @@ urlpatterns = [
 
     #Dental statistics
     path('order-documents', views.orderDocuments, name='order-documents'),
-    path('shipping-statistics', views.shippingStatistics, name='shipping-statistics'),
-
-
-    
+   
  
 ]

@@ -97,8 +97,3 @@ def orderDocuments(request):
     context = {'active_item': 'order-docs'}
     return render(request, 'amruloapp/dashboard/order-documents.html', context)
 
-
-def shippingStatistics(request):
-    context = {'active_item': 'shipp-stats'}
-    return render(request, 'amruloapp/dashboard/shipping-statistics.html', context)
-
