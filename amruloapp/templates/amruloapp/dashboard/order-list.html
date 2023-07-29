@@ -25,6 +25,63 @@
                 </div>
             </div>
         </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+
+                    <div class="card-header">
+                        <h3 class="card-title">Order List</h3>
+                    </div>
+
+                    <div class="card-body">
+                     
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Order ID</th>
+                                <th scope="col">Order Number</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Order Data</th>
+                                <th scope="col">Order Type</th>
+                                <th scope="col">Order Status</th>
+                                <th scope="col">Purchaser</th>
+                                <th scope="col">Currency</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Purchaser</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Receiving Address</th>
+                                <th scope="col">Menu</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for data in order_data %}
+                                <tr>
+                                    <th scope="row">{{data.id}}</th>
+                                    <td>Customer Number</td>
+                                    <td>{{data.customer_name}}</td>
+                                    <td>{{data.order_date}}</td>
+                                    <td>{{data.order_type}}</td>
+                                    <td>Active</td>
+                                    <td>{{data.purchaser}}</td>
+                                    <td>{{data.currency}}</td>
+                                    <td>{{data.price}}</td>
+                                    <td>phone</td>
+                                    <td>{{data.receiving_address}}</td>
+                                    <td>Working on it</td>
+                                    
+
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
         
     </div>
 

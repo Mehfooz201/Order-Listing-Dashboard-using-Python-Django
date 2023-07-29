@@ -24,506 +24,547 @@
             </div>
         </div>
         </div>
+
         <section class="content">
-        <div class="container-fluid">
-            <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Create the order</h3>
-                <div class="card-tools">
-                <button
-                    type="button"
-                    class="btn btn-tool"
-                    data-card-widget="collapse"
-                >
-                    <i class="fas fa-minus"></i>
-                </button>
-                </div>
-            </div>
+            <div class="container-fluid">
+                <div class="card">
 
-            <div class="card-body">
-                <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">Order information</h3>
-                    <div class="card-tools">
-                    <button
-                        type="button"
-                        class="btn btn-tool"
-                        data-card-widget="collapse"
-                    >
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="customer_name">Customer name:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="customer_name"
-                            placeholder="Customer name"
-                        />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="manufacturer">Manufacturer</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="manufacturer"
-                            placeholder="Manufacturer"
-                        />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="order_type">Order Type</label>
-                        <select
-                            name="order_type"
-                            id="order_type"
-                            class="form-control"
+                    <div class="card-header">
+                        <h3 class="card-title">Create the order</h3>
+                        <div class="card-tools">
+                        <button
+                            type="button"
+                            class="btn btn-tool"
+                            data-card-widget="collapse"
                         >
-                            <option value="type 1">Regular Order</option>
-                            <option value="type 2">type 2</option>
-                            <option value="type 3">type 3</option>
-                        </select>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="purchaser">Purchaser</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="purchaser"
-                            placeholder="Purchaser"
-                        />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="salesman">Salesman</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="Salesman"
-                            placeholder="salesman"
-                        />
-                        </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group form-group-row">
-                        <label for="prod_req_remarks">
-                            Production <br />
-                            requirements/remarks
-                        </label>
-                        <textarea
-                            class="form-control"
-                            id="prod_req_remarks"
-                            placeholder="Production requirements/remarks"
-                        ></textarea>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-
-                <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title d-flex align-items-center">
-                    <div class="mr-2">Shipping Address</div>
-                    <a href="#" class="badge bg-primary">Change address</a>
-                    </h3>
-                    <div class="card-tools">
-                    <button
-                        type="button"
-                        class="btn btn-tool"
-                        data-card-widget="collapse"
-                    >
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="customer_contacts">Contacts</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="customer_contacts"
-                            placeholder="customer Contact"
-                        />
+                            <i class="fas fa-minus"></i>
+                        </button>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="email">Email</label>
-                        <input
-                            type="email"
-                            class="form-control"
-                            id="email"
-                            placeholder="Email"
-                        />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="country">Country</label>
-                        <select
-                            name="country"
-                            id="country"
-                            class="form-control">
-                            <option value="type 1">India</option>
-                            <option value="type 2">Pakistan</option>
-                            <option value="type 3">United States</option>
-                        </select>
-                        </div>
-                    </div>
-                    </div>
-                    
-                    <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group form-group-row">
-                        <label for="rec_address">
-                            Receiving Address                             
-                        </label>
-                        <textarea
-                            class="form-control"
-                            id="rec_address"
-                            placeholder="Enter Recieving Address"
-                        ></textarea>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-                <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">Product information</h3>
-                    <div class="card-tools">
-                    <button
-                        type="button"
-                        class="btn btn-tool"
-                        data-card-widget="collapse"
-                    >
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="original_data">Original Data</label>
-                        <select id="original_data" class="form-control">
-                            <option value="option-1">option-1</option>
-                            <option value="option-2">option-2</option>
-                            <option value="option-3">option-3</option>
-                            <option value="option-4">option-4</option>
-                            <option value="option-5">option-5</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="typesetting_printing"
-                            >Typesetting Printing</label
-                        >
-                        <select
-                            id="typesetting_printing"
-                            class="form-control"
-                        >
-                            <option value="option-1">option-1</option>
-                            <option value="option-2">option-2</option>
-                            <option value="option-3">option-3</option>
-                            <option value="option-4">option-4</option>
-                            <option value="option-5">option-5</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="product_type">Product Type</label>
-                        <select id="product_type" class="form-control">
-                            <option value="option-1">option-1</option>
-                            <option value="option-2">option-2</option>
-                            <option value="option-3">option-3</option>
-                            <option value="option-4">option-4</option>
-                            <option value="option-5">option-5</option>
-                        </select>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="number_of_pieces">Number of pieces</label>
-                        <div class="input-group inc-dec-button-group">
-                            <span class="input-group-btn">
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Order information</h3>
+                            <div class="card-tools">
                             <button
                                 type="button"
-                                class="quantity-left-minus btn btn-number"
-                                data-type="minus"
-                                data-field=""
+                                class="btn btn-tool"
+                                data-card-widget="collapse"
                             >
                                 <i class="fas fa-minus"></i>
                             </button>
-                            </span>
-                            <input
-                            type="number"
-                            id="number_of_pieces"
-                            class="form-control input-number"
-                            min="0"
-                            value="1"
-                            />
-                            <span class="input-group-btn">
-                            <button
-                                type="button"
-                                class="quantity-right-plus btn btn-number"
-                                data-type="plus"
-                                data-field=""
-                            >
-                                <i class="fas fa-plus"></i>
-                            </button>
-                            </span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="customer_name">Customer name:</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="customer_name"
+                                    name='customer_name'
+                                    placeholder="Customer name"
+                                />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="manufacturer">Manufacturer</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="manufacturer"
+                                    name='manufacturer'
+                                    placeholder="Manufacturer"
+                                />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="order_type">Order Type</label>
+                                <select
+                                    name="order_type"
+                                    id="order_type"
+                                    class="form-control"
+                                    placeholder="Select any choices"
+                                >
+                                {% for value, label in form.order_type.field.choices %}
+                                    <option value="{{ value }}">{{ label }}</option> 
+                                {% endfor %} 
+
+                                </select>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="purchaser">Purchaser</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="purchaser"
+                                    name="purchaser"
+                                    placeholder="Purchaser"
+                                />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="salesman">Salesman</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="Salesman"
+                                    name="salesman"
+                                    placeholder="salesman"
+                                />
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-row">
+                                <label for="prod_req_remarks">
+                                    Production <br />
+                                    requirements/remarks
+                                </label>
+                                <textarea
+                                    class="form-control"
+                                    id="prod_req_remarks"
+                                    name="requirements_remarks"
+                                    placeholder="Production requirements/remarks"
+                                ></textarea>
+                                </div>
+                            </div>
+                            </div>
                         </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="demo">Demo</label>
-                        <div class="input-group inc-dec-button-group">
-                            <span class="input-group-btn">
+
+
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title d-flex align-items-center">
+                            <div class="mr-2">Shipping Address</div>
+                            <a href="{% url 'address-management' %}" class="badge bg-primary">Change address</a>
+                            </h3>
+                            <div class="card-tools">
                             <button
                                 type="button"
-                                class="quantity-left-minus btn btn-number"
-                                data-type="minus"
-                                data-field=""
+                                class="btn btn-tool"
+                                data-card-widget="collapse"
                             >
                                 <i class="fas fa-minus"></i>
                             </button>
-                            </span>
-                            <input
-                            type="number"
-                            id="demo"
-                            name="demo"
-                            class="form-control input-number"
-                            min="0"
-                            value="0"
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="customer_contacts">Contacts</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="customer_contacts"
+                                    placeholder="customer Contact"
+                                    name='contacts'
+                                />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="email">Email</label>
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    placeholder="Email"
+                                    name='email'
+                                />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="country">Country</label>
+                                <select
+                                    name="country"
+                                    id="country"
+                                    class="form-control">
+                                    {% for value, label in form.country.field.choices %}
+                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+                            </div>
                             
-                            />
-                            <span class="input-group-btn">
-                            <button
-                                type="button"
-                                class="quantity-right-plus btn btn-number"
-                                data-type="plus"
-                                data-field=""
-                            >
-                                <i class="fas fa-plus"></i>
-                            </button>
-                            </span>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="product_type">Product type</label>
-                        <select id="product_type" class="form-control">
-                            <option value="option-1">option-1</option>
-                            <option value="option-2">option-2</option>
-                            <option value="option-3">option-3</option>
-                            <option value="option-4">option-4</option>
-                            <option value="option-5">option-5</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="product_material">Product material</label>
-                        <select id="product_material" class="form-control">
-                            <option value="option-1">option-1</option>
-                            <option value="option-2">option-2</option>
-                            <option value="option-3">option-3</option>
-                            <option value="option-4">option-4</option>
-                            <option value="option-5">option-5</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="unit_of_measurment"
-                            >Unit of measurment</label
-                        >
-                        <select id="unit_of_measurment" class="form-control">
-                            <option value="option-1">option-1</option>
-                            <option value="option-2">option-2</option>
-                            <option value="option-3">option-3</option>
-                            <option value="option-4">option-4</option>
-                            <option value="option-5">option-5</option>
-                        </select>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="currency">Currency</label>
-                        <select id="currency" class="form-control">
-                            <option value="option-1">option-1</option>
-                            <option value="option-2">option-2</option>
-                            <option value="option-3">option-3</option>
-                            <option value="option-4">option-4</option>
-                            <option value="option-5">option-5</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="quantity">Quantity</label>
-                        <input
-                            id="quantity"
-                            type="number"
-                            class="form-control"
-                            placeholder="Quantity"
-                            min="0"
-                        />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                        <label for="number_of_files">Number of files</label>
-                        <input
-                            id="number_of_files"
-                            type="number"
-                            class="form-control"
-                            placeholder="Number of files"
-                            min="0"
-                        />
-                        </div>
-                    </div>
-                    </div>
-                    
-                    <div class="row">
-                    <div class="col-md-12">
-                        <div
-                        class="form-group form-group-row align-items-start"
-                        >
-                        <label for="upload_file">Upload file</label>
-                        <div class="file-upload-wrapper">
-                            <input
-                            type="file"
-                            accept=".stl,.dcm,.ply"
-                            id="upload_file"
-                            name="upload_file"
-                            />
-                            <div class="file-upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-row">
+                                <label for="rec_address">
+                                    Receiving Address                             
+                                </label>
+                                <textarea
+                                    class="form-control"
+                                    name='receiving_address'
+                                    id="rec_address"
+                                    placeholder="Enter Recieving Address"
+                                ></textarea>
+                                </div>
                             </div>
-                            <div class="file-upload-info">
-                            Drag files here, or
-                            <span class="ml-1 font-weight-bold text-primary"
-                                >Click upload</span
-                            >
-                            </div>
-                            <div class="file-upload-info text-danger">
-                            Only upload ( .stl )  standard format
                             </div>
                         </div>
                         </div>
+
+
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">Product information</h3>
+                                <div class="card-tools">
+                                <button
+                                    type="button"
+                                    class="btn btn-tool"
+                                    data-card-widget="collapse"
+                                >
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                </div>
+                            </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="original_data">Original Data</label>
+                                <select id="original_data" class="form-control" name='original_data'>
+                                    {% for value, label in form.original_data.field.choices %}
+                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="typesetting_printing"
+                                    >Typesetting Printing</label
+                                >
+                                <select
+                                    id="typesetting_printing"
+                                    class="form-control"
+                                    name='typesetting_printing'>
+                                    {% for value, label in form.typesetting_printing.field.choices %}
+                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="product_type">Product Type</label>
+                                <select id="product_type" class="form-control" name='product_type'>
+                                    {% for value, label in form.product_type.field.choices %}
+                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+                            </div>
+                            {% comment %} <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-row">
+                                    <label for="number_of_pieces">Number of pieces</label>
+                                    <div class="input-group inc-dec-button-group">
+                                        <span class="input-group-btn">
+                                        <button
+                                            type="button"
+                                            class="quantity-left-minus btn btn-number"
+                                            data-type="minus"
+                                            data-field=""
+                                        >
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        </span>
+                                        <input
+                                        type="number"
+                                        id="number_of_pieces"
+                                        class="form-control input-number"
+                                        min="0"
+                                        value="1"
+                                        />
+                                        <span class="input-group-btn">
+                                        <button
+                                            type="button"
+                                            class="quantity-right-plus btn btn-number"
+                                            data-type="plus"
+                                            data-field=""
+                                        >
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        </span>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-row">
+                                    <label for="demo">Demo</label>
+                                    <div class="input-group inc-dec-button-group">
+                                        <span class="input-group-btn">
+                                        <button
+                                            type="button"
+                                            class="quantity-left-minus btn btn-number"
+                                            data-type="minus"
+                                            data-field=""
+                                        >
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        </span>
+                                        <input
+                                        type="number"
+                                        id="demo"
+                                        name="demo"
+                                        class="form-control input-number"
+                                        min="0"
+                                        value="0"
+                                        
+                                        />
+                                        <span class="input-group-btn">
+                                        <button
+                                            type="button"
+                                            class="quantity-right-plus btn btn-number"
+                                            data-type="plus"
+                                            data-field=""
+                                        >
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        </span>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div> {% endcomment %}
+                            <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="product_type">Product Sub-Type</label>
+                                <select id="product_type" class="form-control" name='product_sub_type'>
+                                    {% for value, label in form.product_sub_type.field.choices %}
+                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="product_material">Product Material</label>
+                                <select id="product_material" class="form-control" name='product_material'>
+                                    {% for value, label in form.product_material.field.choices %}
+                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-row">
+                                <label for="unit_of_measurment"
+                                    >Unit of Measurment</label
+                                >
+                                <select id="unit_of_measurment" class="form-control" name='unit_of_measurement'>
+                                    {% for value, label in form.unit_of_measurement.field.choices %}
+                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-row">
+                                    <label for="model_design"
+                                        >Model Design</label
+                                    >
+                                    <select id="model_design" class="form-control" name='model_design'>
+                                        {% for value, label in form.model_design.field.choices %}
+                                            <option value="{{ value }}">{{ label }}</option> 
+                                        {% endfor %}
+                                    </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-row">
+                                    <label for="currency">Currency</label>
+                                    <select id="currency" class="form-control" name='currency'>
+                                        {% for value, label in form.currency.field.choices %}
+                                            <option value="{{ value }}">{{ label }}</option> 
+                                        {% endfor %}
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-row">
+                                    <label for="quantity">Quantity</label>
+                                    <input
+                                        id="quantity"
+                                        type="number"
+                                        name='quantity'
+                                        class="form-control"
+                                        default="01"
+                                        min="1"/>
+                                    </div>
+                                </div>
+
+                               
+                            </div>
+                            
+                            {% comment %} New Adding {% endcomment %}
+                            <div class="row">
+                                
+
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-row">
+                                    <label for="delivery_timing">Delivery Timing</label>
+                                    <select id="delivery_timing" class="form-control" name='delivery_timing'>
+                                        {% for value, label in form.delivery_timing.field.choices %}
+                                            <option value="{{ value }}">{{ label }}</option> 
+                                        {% endfor %}
+                                    </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-row">
+                                        <label for="price">Amount Rs. </label>
+                                        <input id="price" name='price'  type="text" class="form-control" readonly>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div
+                                class="form-group form-group-row align-items-start"
+                                >
+                                <label for="upload_file">Upload file</label>
+                                <div class="file-upload-wrapper">
+                                    <input
+                                    type="file"
+                                    accept=".stl,.pdf"
+                                    id="upload_file"
+                                    name="file_upload_required"
+                                    />
+                                    <div class="file-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="file-upload-info">
+                                    Drag files here, or
+                                    <span class="ml-1 font-weight-bold text-primary"
+                                        >Click upload</span
+                                    >
+                                    </div>
+                                    <div class="file-upload-info text-danger">
+                                    Only upload ( .stl )  standard format
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            {% comment %} <div class="col-md-6">
+                                <div
+                                class="form-group form-group-row align-items-start"
+                                >
+                                <label for="design_requirement"
+                                    >Design <br />
+                                    Requirement
+                                </label>
+                                <div class="file-upload-wrapper">
+                                    <input
+                                    type="file"
+                                    accept=".stl,.dcm,.ply"
+                                    id="design_requirement"
+                                    name="design_requirement"
+                                    />
+                                    <div class="file-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="file-upload-info">
+                                    Drag files here, or
+                                    <span class="ml-1 font-weight-bold text-primary"
+                                        >Click upload</span
+                                    >
+                                    </div>
+                                    <div class="file-upload-info text-danger">
+                                    Only pictures can be uploaded. <br />
+                                    .jpeg, .jpg, .png, .gif stand file format
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div> {% endcomment %}
+                            {% comment %} <div class="row">
+                            <div class="col-md-12">
+                                <div
+                                class="form-group form-group-row align-items-start"
+                                >
+                                <label for="upload_attactments"
+                                    >Upload attactments</label
+                                >
+                                <div class="file-upload-wrapper">
+                                    <input
+                                    type="file"
+                                    accept=".stl,.dcm,.ply"
+                                    id="upload_attactments"
+                                    name="upload_attactments"
+                                    />
+                                    <div class="file-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="file-upload-info">
+                                    Attactments upload: non design jaw model files,
+                                    multiple design description pictures, scanned
+                                    texture pictures can be uploaded here!
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div> {% endcomment %}
+                        </div>
+                        </div>
+
+                        
+
                     </div>
-                    {% comment %} <div class="col-md-6">
-                        <div
-                        class="form-group form-group-row align-items-start"
-                        >
-                        <label for="design_requirement"
-                            >Design <br />
-                            Requirement
-                        </label>
-                        <div class="file-upload-wrapper">
-                            <input
-                            type="file"
-                            accept=".stl,.dcm,.ply"
-                            id="design_requirement"
-                            name="design_requirement"
-                            />
-                            <div class="file-upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            </div>
-                            <div class="file-upload-info">
-                            Drag files here, or
-                            <span class="ml-1 font-weight-bold text-primary"
-                                >Click upload</span
-                            >
-                            </div>
-                            <div class="file-upload-info text-danger">
-                            Only pictures can be uploaded. <br />
-                            .jpeg, .jpg, .png, .gif stand file format
-                            </div>
-                        </div>
-                        </div>
+
+                    {% if messages %}
+                        <ul class="messages text-danger">
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                  
+                    <div class="d-flex align-items-center justify-content-end mt-5 mb-5">
+                        <button class="btn btn-danger has-icon mr-2" onclick="clearForm()" > 
+                            <i class="fas fa-recycle"></i>
+                            <div>Empty</div>
+                        </button>
+                        <button type='submit' class="btn btn-primary has-icon">
+                            <i class="fas fa-check"></i>
+                            <div>Place Order</div>
+                        </button>
                     </div>
-                    </div> {% endcomment %}
-                    {% comment %} <div class="row">
-                    <div class="col-md-12">
-                        <div
-                        class="form-group form-group-row align-items-start"
-                        >
-                        <label for="upload_attactments"
-                            >Upload attactments</label
-                        >
-                        <div class="file-upload-wrapper">
-                            <input
-                            type="file"
-                            accept=".stl,.dcm,.ply"
-                            id="upload_attactments"
-                            name="upload_attactments"
-                            />
-                            <div class="file-upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            </div>
-                            <div class="file-upload-info">
-                            Attactments upload: non design jaw model files,
-                            multiple design description pictures, scanned
-                            texture pictures can be uploaded here!
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div> {% endcomment %}
+
+                    </form>
+
                 </div>
-                </div>
-
-                
-
             </div>
-
-            <div class="d-flex align-items-center justify-content-end mt-5 mb-5">
-                <button class="btn btn-danger has-icon mr-2"> 
-                    <i class="fas fa-recycle"></i>
-                    <div>Empty</div>
-                </button>
-                <button class="btn btn-primary has-icon">
-                    <i class="fas fa-check"></i>
-                    <div>Place Order</div>
-                </button>
-            </div>
-            </div>
-        </div>
         </section>
     </div>
 
@@ -531,6 +572,34 @@
 
 
 {% block scripts %}
+
+<script>
+    // JavaScript function to update the displayed price based on the selected delivery_timing
+    function updatePrice() {
+        var deliveryTimingDropdown = document.getElementById("delivery_timing");
+        var priceInput = document.getElementById("price");
+
+        // Get the selected value from the delivery_timing dropdown
+        var selectedValue = deliveryTimingDropdown.value;
+
+        // Your logic to fetch the price based on the selected value goes here
+        // For example, you can use an object or dictionary to map values to prices
+        var prices = {
+            "value1": 100, // Replace "value1" with the actual value from your models
+            "value2": 150, // Replace "value2" with the actual value from your models
+            // Add more values and prices as needed
+        };
+
+        // Update the price input with the corresponding price based on the selected value
+        priceInput.value = prices[selectedValue] || ""; // If no price found, set the input value to empty
+    }
+
+    // Attach the updatePrice function to the onchange event of the delivery_timing dropdown
+    document.getElementById("delivery_timing").onchange = updatePrice;
+
+    // Call the updatePrice function initially to set the default price based on the initial selected value
+    updatePrice();
+</script>
 
 {% endblock scripts %}
 

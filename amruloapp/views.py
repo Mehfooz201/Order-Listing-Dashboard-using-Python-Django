@@ -3,9 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.db.models import Q
-from .models import  User
+from .models import  User, Order
+from .forms import OrderForm
 
 # Create your views here.
+
 
 
 #--------------------- Home and Login Page ----------------------------
@@ -42,13 +44,28 @@ def logoutUser(request):
 #---------------------------------------------------------------------#
 #                           Dashboard 
 #---------------------------------------------------------------------#
-
 def createOrder(request):
-    context = {'active_item': 'create-order'}
+    if request.method == 'POST':
+        form = OrderForm(request.POST, request.FILES)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.price = order.calculate_price()
+            order.save()
+            return redirect('order-list')
+        else:
+            messages.error(request, "These fields are required")
+            print('Form validation error:', form.errors)
+    else:
+        form = OrderForm()    
+
+    context = {'active_item': 'create-order', 'form': form}
     return render(request, 'amruloapp/dashboard/create-order.html', context)
 
+
 def orderList(request):
-    context = {'active_item': 'order-list'}
+    order_data = Order.objects.all()
+    
+    context = {'active_item': 'order-list', 'order_data':order_data}
     return render(request, 'amruloapp/dashboard/order-list.html', context)
 
 def returnedOrder(request):
@@ -57,7 +74,7 @@ def returnedOrder(request):
 
 def addressManagement(request):
     context = {'active_item': 'address-order'}
-    return render(request, 'amruloapp/dashboard/returned-orders.html', context)
+    return render(request, 'amruloapp/dashboard/add-manage.html', context)
 
 def confirmReceipt(request):
     context = {'active_item': 'confirm-order'}

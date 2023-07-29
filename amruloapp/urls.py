@@ -5,8 +5,8 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     # path('', TemplateView.as_view(template_name='baseapp/homepage.html')),
-    # path('', views.home, name='home'),
-     path('', views.signin, name='login'),
+    path('', views.home, name='home'),
+    path('login/', views.signin, name='login'),
 
     # path('login/', views.signin, name='login'),
     path('logout/', views.logoutUser, name="logout"),

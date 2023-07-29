@@ -13,8 +13,8 @@ admin.site.register(User)
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'customer_name', 'order_type', 'salesman', 'production', 'price', 'order_date')
-    list_filter = ('order_type', 'production', 'price', 'order_date')
+    list_display = ('id', 'customer_name', 'order_type', 'salesman', 'price', 'order_date')
+    list_filter = ('id', 'customer_name', 'order_type',  'price', 'order_date')
     search_fields = ('id', 'customer_name', 'salesman', 'order_date')
 
     # def formatted_price(self, obj):
