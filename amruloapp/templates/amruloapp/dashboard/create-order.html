@@ -408,16 +408,18 @@
                                     </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group form-group-row">
-                                    <label for="quantity">Quantity</label>
-                                    <input
-                                        id="quantity"
-                                        type="number"
-                                        name='quantity'
-                                        class="form-control"
-                                        default="01"
-                                        min="1"/>
+                                        <label for="quantity">Quantity</label>
+                                        <input
+                                            id="quantity"
+                                            type="number"
+                                            name='quantity'
+                                            class="form-control"
+                                            default="01"
+                                            min="1"
+                                        />
                                     </div>
                                 </div>
 
@@ -430,19 +432,23 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group form-group-row">
-                                    <label for="delivery_timing">Delivery Timing</label>
-                                    <select id="delivery_timing" class="form-control" name='delivery_timing'>
-                                        {% for value, label in form.delivery_timing.field.choices %}
-                                            <option value="{{ value }}">{{ label }}</option> 
-                                        {% endfor %}
-                                    </select>
+                                        <label for="delivery_timing">Delivery Timing</label>
+                                        <select id="delivery_timing" class="form-control" name='delivery_timing'>
+                                            {% for value, label in form.delivery_timing.field.choices %}
+                                                <option value="{{ value }}">{{ label }}</option> 
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group form-group-row">
-                                        <label for="price">Amount Rs. </label>
-                                        <input id="price" name='price'  type="text" class="form-control" readonly>
+                                        {% if form.fields.currency.initial == 'INR' %}
+                                        <label for="customer_contacts">Amount Rs. </label>
+                                        {% else %}
+                                        <label for="customer_contacts">Amount $ </label>
+                                        {% endif %}
+                                        <input type="digit" class="form-control" id="price" name="price" value="{{ form.price.initial|default_if_none:'0.00' }}" readonly/>
                                     </div>
                                 </div>
 
@@ -476,65 +482,7 @@
                                 </div>
                                 </div>
                             </div>
-                            {% comment %} <div class="col-md-6">
-                                <div
-                                class="form-group form-group-row align-items-start"
-                                >
-                                <label for="design_requirement"
-                                    >Design <br />
-                                    Requirement
-                                </label>
-                                <div class="file-upload-wrapper">
-                                    <input
-                                    type="file"
-                                    accept=".stl,.dcm,.ply"
-                                    id="design_requirement"
-                                    name="design_requirement"
-                                    />
-                                    <div class="file-upload-icon">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    </div>
-                                    <div class="file-upload-info">
-                                    Drag files here, or
-                                    <span class="ml-1 font-weight-bold text-primary"
-                                        >Click upload</span
-                                    >
-                                    </div>
-                                    <div class="file-upload-info text-danger">
-                                    Only pictures can be uploaded. <br />
-                                    .jpeg, .jpg, .png, .gif stand file format
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            </div> {% endcomment %}
-                            {% comment %} <div class="row">
-                            <div class="col-md-12">
-                                <div
-                                class="form-group form-group-row align-items-start"
-                                >
-                                <label for="upload_attactments"
-                                    >Upload attactments</label
-                                >
-                                <div class="file-upload-wrapper">
-                                    <input
-                                    type="file"
-                                    accept=".stl,.dcm,.ply"
-                                    id="upload_attactments"
-                                    name="upload_attactments"
-                                    />
-                                    <div class="file-upload-icon">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    </div>
-                                    <div class="file-upload-info">
-                                    Attactments upload: non design jaw model files,
-                                    multiple design description pictures, scanned
-                                    texture pictures can be uploaded here!
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            </div> {% endcomment %}
+                            
                         </div>
                         </div>
 
@@ -571,37 +519,10 @@
 {% endblock content %}
 
 
-{% block scripts %}
+{% block js_script %}
 
-<script>
-    // JavaScript function to update the displayed price based on the selected delivery_timing
-    function updatePrice() {
-        var deliveryTimingDropdown = document.getElementById("delivery_timing");
-        var priceInput = document.getElementById("price");
 
-        // Get the selected value from the delivery_timing dropdown
-        var selectedValue = deliveryTimingDropdown.value;
-
-        // Your logic to fetch the price based on the selected value goes here
-        // For example, you can use an object or dictionary to map values to prices
-        var prices = {
-            "value1": 100, // Replace "value1" with the actual value from your models
-            "value2": 150, // Replace "value2" with the actual value from your models
-            // Add more values and prices as needed
-        };
-
-        // Update the price input with the corresponding price based on the selected value
-        priceInput.value = prices[selectedValue] || ""; // If no price found, set the input value to empty
-    }
-
-    // Attach the updatePrice function to the onchange event of the delivery_timing dropdown
-    document.getElementById("delivery_timing").onchange = updatePrice;
-
-    // Call the updatePrice function initially to set the default price based on the initial selected value
-    updatePrice();
-</script>
-
-{% endblock scripts %}
+    {% endblock js_script %}
 
 
 

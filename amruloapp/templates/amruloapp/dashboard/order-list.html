@@ -39,7 +39,7 @@
                         <table class="table">
                             <thead>
                               <tr>
-                                <th scope="col">Order ID</th>
+                                <th scope="col">Sr. No. </th>
                                 <th scope="col">Order Number</th>
                                 <th scope="col">Customer Name</th>
                                 <th scope="col">Order Data</th>
@@ -48,7 +48,7 @@
                                 <th scope="col">Purchaser</th>
                                 <th scope="col">Currency</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Purchaser</th>
+                                
                                 <th scope="col">Phone</th>
                                 <th scope="col">Receiving Address</th>
                                 <th scope="col">Menu</th>
@@ -57,12 +57,12 @@
                             <tbody>
                                 {% for data in order_data %}
                                 <tr>
-                                    <th scope="row">{{data.id}}</th>
-                                    <td>Customer Number</td>
+                                    <th scope="row">{{forloop.counter}}</th>
+                                    <td>{{data.order_number}}</td>
                                     <td>{{data.customer_name}}</td>
                                     <td>{{data.order_date}}</td>
                                     <td>{{data.order_type}}</td>
-                                    <td>Active</td>
+                                    <td>{{data.order_status}}</td>
                                     <td>{{data.purchaser}}</td>
                                     <td>{{data.currency}}</td>
                                     <td>{{data.price}}</td>

@@ -13,15 +13,8 @@ admin.site.register(User)
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'customer_name', 'order_type', 'salesman', 'price', 'order_date')
-    list_filter = ('id', 'customer_name', 'order_type',  'price', 'order_date')
-    search_fields = ('id', 'customer_name', 'salesman', 'order_date')
-
-    # def formatted_price(self, obj):
-    #     currency_indicator = "$" if obj.currency == 'USD' else "Rs."
-    #     return f"{currency_indicator}{obj.price:.2f}"
-
-    # formatted_price.admin_order_field = 'price'
-    # formatted_price.short_description = 'Price'
+    list_display = ('order_number', 'customer_name', 'order_status', 'order_type', 'salesman', 'price', 'order_date')
+    list_filter = ('order_number', 'customer_name', 'order_status', 'order_type',  'price', 'order_date')
+    search_fields = ('order_number', 'customer_name', 'order_status', 'salesman', 'order_date')
 
 admin.site.register(Order, OrderAdmin)

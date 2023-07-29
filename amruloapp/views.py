@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import  User, Order
 from .forms import OrderForm
+from forex_python.converter import CurrencyRates
 
 # Create your views here.
 
@@ -49,14 +50,26 @@ def createOrder(request):
         form = OrderForm(request.POST, request.FILES)
         if form.is_valid():
             order = form.save(commit=False)
-            order.price = order.calculate_price()
+            order.order_status = form.fields['order_status'].initial  # Set the default value
+
+            # Calculate price based on form data
+            base_price = order.DELIVERY_TIMING_PRICES.get(order.delivery_timing, 0)
+            total_price = base_price * order.quantity
+
+            # Convert price to INR if currency is INR
+            if order.currency == 'INR':
+                c = CurrencyRates()
+                inr_rate = c.get_rate('USD', 'INR')
+                total_price *= inr_rate
+
+            order.price = total_price
             order.save()
             return redirect('order-list')
         else:
             messages.error(request, "These fields are required")
             print('Form validation error:', form.errors)
     else:
-        form = OrderForm()    
+        form = OrderForm()      
 
     context = {'active_item': 'create-order', 'form': form}
     return render(request, 'amruloapp/dashboard/create-order.html', context)

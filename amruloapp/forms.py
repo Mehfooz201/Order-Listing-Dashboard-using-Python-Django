@@ -22,6 +22,8 @@ class UserForm(ModelForm):
 class OrderForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(OrderForm, self).__init__(*args, **kwargs)
+        self.fields['order_status'].required = False 
+        self.fields['order_status'].initial = 'active'  # Set a default value for order_status
         self.fields['order_date'].initial = timezone.now  # Set today's date as the default value, you can replace it with your desired default date
     
     class Meta:

@@ -12,12 +12,13 @@ class User(AbstractUser):
     name = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True, null=True)
     avatar = models.ImageField(null=True, default='avatar.svg')
-    USERNAME_FIELD = 'email'
+    # USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
 
 # models.py
 class Order(models.Model):
+    order_number = models.AutoField(primary_key=True)  # Auto-generated order number
     customer_name = models.CharField(max_length=100)
     manufacturer = models.CharField(max_length=100)
     ORDER_TYPE_CHOICES = [
@@ -46,6 +47,16 @@ class Order(models.Model):
     ]
     country = models.CharField(max_length=20, choices=COUNTRY_CHOICES, default='India')
     receiving_address = models.TextField()
+
+    ORDER_STATUS_CHOICES = [
+        ('active', 'Active'),
+        ('complete', 'Complete'),
+        ('cancelled', 'Cancelled'),
+        ('modification', 'Modification'),
+    ]
+
+    order_status = models.CharField(
+        max_length=12, choices=ORDER_STATUS_CHOICES, null=True, blank=True, default='active')
 
     ORIGINAL_DATA_CHOICES = [
         ('Completed Design', 'Completed Design Data'),
@@ -128,7 +139,7 @@ class Order(models.Model):
         # Add more options as needed
     ]
     
-    currency = models.CharField(max_length=10, choices=CURRENCY_CHOICES, default='USD')
+    currency = models.CharField(max_length=10, choices=CURRENCY_CHOICES, default='INR')
     quantity = models.IntegerField()
 
     DELIVERY_TIMING_CHOICES = [
@@ -138,7 +149,7 @@ class Order(models.Model):
     ]
     delivery_timing = models.CharField(max_length=10, choices=DELIVERY_TIMING_CHOICES, default='12HRS')
     file_upload_required = models.FileField(upload_to='uploads/files/')
-    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
 
     DELIVERY_TIMING_PRICES = {
         '12HRS': 10.0,  # Set the hourly rate for 12HRS delivery
@@ -168,7 +179,7 @@ class Order(models.Model):
 
     def __str__(self):
         currency_indicator = "$" if self.currency == 'USD' else "Rs."
-        return f"Order {self.id} - {self.customer_name} ({currency_indicator}{self.price:.2f})"
+        return f"Order {self.order_number} - {self.customer_name} ({currency_indicator}{self.price:.2f})"
 
     class Meta:
         verbose_name_plural = "Orders"

@@ -10,6 +10,8 @@
       {% block title %}  {% endblock title %}
     </title>
     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <!-- Google Font: Source Sans Pro -->
     <link
@@ -326,10 +328,10 @@
     <script src="{% static 'amruloapp/dashboard/dist/js/global.js' %}"></script>
 
     <script>
-        {% block scripts %}
+        {% block js_script %}
 
-        {% endblock scripts %}
-      </script>
+        {% endblock js_script %}
+    </script>
 
   </body>
 </html>
