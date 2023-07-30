@@ -269,7 +269,7 @@
                             <div class="col-md-4">
                                 <div class="form-group form-group-row">
                                 <label for="product_type">Product Type</label>
-                                <select id="id_product_sub_type" class="form-control" name='product_type'>
+                                <select id="id_product_type" class="form-control" name='product_type'>
                                     {% for value, label in form.product_type.field.choices %}
                                         <option value="{{ value }}">{{ label }}</option> 
                                     {% endfor %}
@@ -281,7 +281,7 @@
                             <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group form-group-row">
-                                <label for="product_type">Product Sub-Type</label>
+                                <label for="product_type_type">Product Sub-Type</label>
                                 <select id="id_product_sub_type" class="form-control" name='product_sub_type'>
                                     {% for value, label in form.product_sub_type.field.choices %}
                                         <option value="{{ value }}">{{ label }}</option> 
@@ -452,7 +452,7 @@
 <script>
     // Function to update the amount field
     function updateAmount() {
-        var productType = $('#id_product_sub_type').val();
+        var productType = $('#id_product_type').val();
         var quantity = $('#id_quantity').val();
         var currency = $('#currency').val();
         var deliveryTiming = $('#id_delivery_timing').val();
@@ -509,7 +509,7 @@
     }
 
     // Event listeners for input fields
-    $('#id_product_sub_type, #id_quantity, #currency, #id_delivery_timing').on('change keyup', function () {
+    $('#id_product_type, #id_quantity, #currency, #id_delivery_timing').on('change keyup', function () {
         updateAmount();
     });
 
