@@ -61,43 +61,12 @@ def createOrder(request):
     else:
         form = OrderForm()   
 
-    # Product prices based on delivery timings
-    delivery_timing_prices = {
-        '12HRS': {
-            'Anatomic Full Crown': 6.0,
-            'Veneer ( Emax, Ivoclar)': 6.0,
-            'Inlay/Onlay': 6.0,
-            'Smile Creator': 6.0,
-            'Acrylic Temporary Crowns': 6.0,
-            'Custom Implant Abutment': 7.0,
-            # Add more products and their prices
-        },
-        '6HRS': {
-            'Anatomic Full Crown': 7.0,
-            'Veneer ( Emax, Ivoclar)': 7.0,
-            'Inlay/Onlay': 7.0,
-            'Smile Creator': 7.0,
-            'Acrylic Temporary Crowns': 7.0,
-            'Custom Implant Abutment': 9.0,
-            # Add more products and their prices
-        },
-        '2HRS': {
-            'Anatomic Full Crown': 9.0,
-            'Veneer ( Emax, Ivoclar)': 9.0,
-            'Inlay/Onlay': 9.0,
-            'Smile Creator': 9.0,
-            'Acrylic Temporary Crowns': 9.0,
-            'Custom Implant Abutment': 11.0,
-            # Add more products and their prices
-        },
-    }
-
+    
     # Fetch the actual exchange rate for INR
     c = CurrencyRates()
     inr_rate = c.get_rate('USD', 'INR') 
 
     context = {'active_item': 'create-order', 'form': form, 
-               'delivery_timing_prices': delivery_timing_prices,
                 'inr_rate': inr_rate,}
     
     return render(request, 'amruloapp/dashboard/create-order.html', context)

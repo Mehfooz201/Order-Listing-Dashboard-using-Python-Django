@@ -42,11 +42,11 @@
                                 <th scope="col">Sr. No. </th>
                                 <th scope="col">Order Number</th>
                                 <th scope="col">Customer Name</th>
+                                <th scope="col">Product Name</th>
                                 <th scope="col">Order Data</th>
                                 <th scope="col">Order Type</th>
                                 <th scope="col">Order Status</th>
                                 <th scope="col">Purchaser</th>
-                                <th scope="col">Currency</th>
                                 <th scope="col">Amount</th>
                                 
                                 <th scope="col">Phone</th>
@@ -60,12 +60,20 @@
                                     <th scope="row">{{forloop.counter}}</th>
                                     <td>{{data.order_number}}</td>
                                     <td>{{data.customer_name}}</td>
+                                    <td>{{data.product_type}}</td>
                                     <td>{{data.order_date}}</td>
                                     <td>{{data.order_type}}</td>
                                     <td>{{data.order_status}}</td>
                                     <td>{{data.purchaser}}</td>
-                                    <td>{{data.currency}}</td>
-                                    <td>{{data.price}}</td>
+                                    <td>
+                                        {% if data.currency == 'USA' %}
+                                            ${{ data.price|floatformat:2 }}
+                                        {% elif data.currency == 'INR' %}
+                                            ₹{{ data.price|floatformat:2 }}
+                                        {% else %}
+                                            {{ data.price|floatformat:2 }} <!-- Default case if no currency symbol is available -->
+                                        {% endif %}
+                                    </td>
                                     <td>phone</td>
                                     <td>{{data.receiving_address}}</td>
                                     <td>Working on it</td>

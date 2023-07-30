@@ -134,7 +134,7 @@ class Order(models.Model):
 
     unit_of_measurement = models.CharField(max_length=10, choices=UNIT_CHOICES, default='PCS')
     CURRENCY_CHOICES = [
-        ('USA', 'USA ($)'),
+        ('USA', 'USD (Dollar)'),
         ('INR', 'INR (Indian Rupees)'),
         # Add more options as needed
     ]
