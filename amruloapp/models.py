@@ -12,7 +12,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True, null=True)
     avatar = models.ImageField(null=True, default='avatar.svg')
-    # USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
 
@@ -139,7 +139,7 @@ class Order(models.Model):
         # Add more options as needed
     ]
     
-    currency = models.CharField(max_length=10, choices=CURRENCY_CHOICES, default='INR')
+    currency = models.CharField(max_length=10, choices=CURRENCY_CHOICES, default='USA')
     quantity = models.IntegerField()
 
     DELIVERY_TIMING_CHOICES = [
@@ -151,23 +151,95 @@ class Order(models.Model):
     file_upload_required = models.FileField(upload_to='uploads/files/')
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
-    DELIVERY_TIMING_PRICES = {
-        '12HRS': 10.0,  # Set the hourly rate for 12HRS delivery
-        '6HRS': 15.0,   # Set the hourly rate for 6HRS delivery
-        '2HRS': 20.0,   # Set the hourly rate for 2HRS delivery
+    def calculate_price(self):
+        price_dict  = {
+        '12HRS': {'Anatomic Full Crown': 6, 
+                  'Veneer ( Emax, Ivoclar)': 6, 
+                  'Inlay/Onlay': 6, 
+                  'Smile Creator': 6,
+                  'Acrylic Temporary Crowns': 6, 
+                  'Custom Implant Abutment': 7,
+                  
+                  #Sub-Product Type Data
+                #   'Cast Partial Denture Framework (upto 3 unit single arch)': 18,
+                # 'Cast Partial Denture Framework (upto 6 unit single arch)': 18,
+                # 'Cast Partial Denture Framework (upto 13 unit single arch)': 20,
+                # 'Screw retained crown': 7,
+                # 'All on 4/6 implants': 9,
+                # 'Implant SLM malo bridge': 9,
+                # 'Implant Hybrid Denture': 9,
+                # 'Cast Partial Obturator': 9,
+                # 'Bridge Framework': 7,
+                # 'Bite Splint': 7,
+                # 'Full Mouth Rehabilitation': 9,
+                # 'Wax-up for smile correction': 9,
+
+                  },
+
+        '6HRS': {'Anatomic Full Crown': 7, 
+                 'Veneer ( Emax, Ivoclar)': 7, 
+                 'Inlay/Onlay': 7, 'Smile Creator': 7,
+                 'Acrylic Temporary Crowns': 7, 
+                 'Custom Implant Abutment': 9,
+                 
+                 #Sub-Product Type Data.
+                #  'Cast Partial Denture Framework (upto 3 unit single arch)': 20,
+                # 'Cast Partial Denture Framework (upto 6 unit single arch)': 20,
+                # 'Cast Partial Denture Framework (upto 13 unit single arch)': 25,
+                # 'Screw retained crown': 9,
+                # 'All on 4/6 implants': 11,
+                # 'Implant SLM malo bridge': 11,
+                # 'Implant Hybrid Denture': 11,
+                # 'Cast Partial Obturator': 11,
+                # 'Bridge Framework': 9,
+                # 'Bite Splint': 9,
+                # 'Full Mouth Rehabilitation': 11,
+                # 'Wax-up for smile correction': 11,
+                 
+                 },
+
+        '2HRS': {'Anatomic Full Crown': 9, 
+                 'Veneer ( Emax, Ivoclar)': 9, 
+                 'Inlay/Onlay': 9, 
+                 'Smile Creator': 9,
+                 'Acrylic Temporary Crowns': 9, 
+                 'Custom Implant Abutment': 11,
+
+                #Sub-Product Prices 
+                # 'Cast Partial Denture Framework (upto 3 unit single arch)': 0,
+                # 'Cast Partial Denture Framework (upto 6 unit single arch)': 0,
+                # 'Cast Partial Denture Framework (upto 13 unit single arch)': 0,
+                # 'Screw retained crown': 11,
+                # 'All on 4/6 implants': 15,
+                # 'Implant SLM malo bridge': 15,
+                # 'Implant Hybrid Denture': 15,
+                # 'Cast Partial Obturator': 15,
+                # 'Bridge Framework': 11,
+                # 'Bite Splint': 11,
+                # 'Full Mouth Rehabilitation': 15,
+                # 'Wax-up for smile correction': 15,
+                 }
+    
     }
 
-    def calculate_price(self):
-        base_price = self.DELIVERY_TIMING_PRICES.get(self.delivery_timing, 0)
+    
+        # Get the base price for the selected product type and delivery timing from the price dictionary
+        base_price = price_dict.get(self.delivery_timing, {}).get(self.product_type)
+
+        if base_price is None:
+            # Set a default price (0 in this case) when the combination is not found in the dictionary
+            base_price = 0
+
         total_price = base_price * self.quantity
 
         # Convert price to INR if currency is INR
         if self.currency == 'INR':
             c = CurrencyRates()
             inr_rate = c.get_rate('USD', 'INR')
-            total_price = total_price * inr_rate
+            total_price *= inr_rate
 
         return total_price
+
     
 
     def save(self, *args, **kwargs):

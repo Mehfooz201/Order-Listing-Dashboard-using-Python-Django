@@ -269,7 +269,7 @@
                             <div class="col-md-4">
                                 <div class="form-group form-group-row">
                                 <label for="product_type">Product Type</label>
-                                <select id="product_type" class="form-control" name='product_type'>
+                                <select id="id_product_sub_type" class="form-control" name='product_type'>
                                     {% for value, label in form.product_type.field.choices %}
                                         <option value="{{ value }}">{{ label }}</option> 
                                     {% endfor %}
@@ -277,83 +277,12 @@
                                 </div>
                             </div>
                             </div>
-                            {% comment %} <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group form-group-row">
-                                    <label for="number_of_pieces">Number of pieces</label>
-                                    <div class="input-group inc-dec-button-group">
-                                        <span class="input-group-btn">
-                                        <button
-                                            type="button"
-                                            class="quantity-left-minus btn btn-number"
-                                            data-type="minus"
-                                            data-field=""
-                                        >
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                        </span>
-                                        <input
-                                        type="number"
-                                        id="number_of_pieces"
-                                        class="form-control input-number"
-                                        min="0"
-                                        value="1"
-                                        />
-                                        <span class="input-group-btn">
-                                        <button
-                                            type="button"
-                                            class="quantity-right-plus btn btn-number"
-                                            data-type="plus"
-                                            data-field=""
-                                        >
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                        </span>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-group-row">
-                                    <label for="demo">Demo</label>
-                                    <div class="input-group inc-dec-button-group">
-                                        <span class="input-group-btn">
-                                        <button
-                                            type="button"
-                                            class="quantity-left-minus btn btn-number"
-                                            data-type="minus"
-                                            data-field=""
-                                        >
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                        </span>
-                                        <input
-                                        type="number"
-                                        id="demo"
-                                        name="demo"
-                                        class="form-control input-number"
-                                        min="0"
-                                        value="0"
-                                        
-                                        />
-                                        <span class="input-group-btn">
-                                        <button
-                                            type="button"
-                                            class="quantity-right-plus btn btn-number"
-                                            data-type="plus"
-                                            data-field=""
-                                        >
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                        </span>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div> {% endcomment %}
+                        
                             <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group form-group-row">
                                 <label for="product_type">Product Sub-Type</label>
-                                <select id="product_type" class="form-control" name='product_sub_type'>
+                                <select id="id_product_sub_type" class="form-control" name='product_sub_type'>
                                     {% for value, label in form.product_sub_type.field.choices %}
                                         <option value="{{ value }}">{{ label }}</option> 
                                     {% endfor %}
@@ -413,12 +342,13 @@
                                     <div class="form-group form-group-row">
                                         <label for="quantity">Quantity</label>
                                         <input
-                                            id="quantity"
+                                            id="id_quantity"
                                             type="number"
                                             name='quantity'
                                             class="form-control"
                                             default="01"
                                             min="1"
+                                            value="{{ form.quantity.initial|default_if_none:'1'  }}"
                                         />
                                     </div>
                                 </div>
@@ -433,7 +363,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group form-group-row">
                                         <label for="delivery_timing">Delivery Timing</label>
-                                        <select id="delivery_timing" class="form-control" name='delivery_timing'>
+                                        <select id="id_delivery_timing" class="form-control" name='delivery_timing'>
                                             {% for value, label in form.delivery_timing.field.choices %}
                                                 <option value="{{ value }}">{{ label }}</option> 
                                             {% endfor %}
@@ -443,19 +373,15 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group form-group-row">
-                                        {% if form.fields.currency.initial == 'INR' %}
-                                        <label for="customer_contacts">Amount Rs. </label>
-                                        {% else %}
-                                        <label for="customer_contacts">Amount $ </label>
-                                        {% endif %}
-                                        <input type="digit" class="form-control" id="price" name="price" value="{{ form.price.initial|default_if_none:'0.00' }}" readonly/>
+                                        <label for="customer_contacts">Amount : </label>     
+                                        <input type="text" class="form-control" id="id_price" name='price' value="{{ form.price.initial|default_if_none:'0.00'  }}" readonly />
                                     </div>
                                 </div>
 
                             </div>
 
                             <div class="row">
-                            <div class="col-md-12">
+                             <div class="col-md-12">
                                 <div
                                 class="form-group form-group-row align-items-start"
                                 >
@@ -520,9 +446,9 @@
 
 
 {% block js_script %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-    {% endblock js_script %}
+{% endblock js_script %}
 
 
 
