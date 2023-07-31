@@ -59,34 +59,31 @@ class Order(models.Model):
         max_length=12, choices=ORDER_STATUS_CHOICES, null=True, blank=True, default='active')
 
     ORIGINAL_DATA_CHOICES = [
-        ('Completed Design', 'Completed Design Data'),
-        ('Physical Impression', 'Physical Impression'),
         ('Raw Scanned Data', 'Raw Scanned Data'),
     ]
-    original_data = models.CharField(max_length=20, choices=ORIGINAL_DATA_CHOICES, default='Completed Design')
+    original_data = models.CharField(max_length=20, choices=ORIGINAL_DATA_CHOICES, default='Raw Scanned Data')
     
-    TYPESETTING_CHOICES = [
-        ('Nesting & Slicing & Printing', 'Nesting & Slicing & Printing'),
-        ('Nesting & Slicing', 'Nesting & Slicing'),
+    DESIGN_PRINTING_CHOICES = [
+        ('Design', 'Design'),
     ]
-    typesetting_printing = models.CharField(max_length=50, choices=TYPESETTING_CHOICES, default='Nesting & Slicing & Printing')
+    design_printing = models.CharField(max_length=50, choices=DESIGN_PRINTING_CHOICES, default='Design')
 
     PRODUCT_TYPE_CHOICES = [
+        ('Cobalt-chrome framework - Design Fee', 'Cobalt-chrome framework - Design Fee'),
+    ]
+
+    product_type = models.CharField(max_length=100, choices=PRODUCT_TYPE_CHOICES, default='Cobalt-chrome framework - Design Fee')
+
+
+    PRODUCT_SUB_TYPE_CHOICES = [
         ('Anatomic Full Crown', 'Anatomic Full Crown '),
         ('Veneer ( Emax, Ivoclar)', 'Veneer ( Emax, Ivoclar)'),
         ('Inlay/Onlay', 'Inlay/Onlay'),
         ('Smile Creator', 'Smile Creator'),
         ('Acrylic Temporary Crowns', 'Acrylic Temporary Crowns'),
-        ('Inlay/Onlay', 'Inlay/Onlay'),
         ('Custom Implant Abutment', 'Custom Implant Abutment'),
-        ('Cobalt-chrome framework', 'Cobalt-chrome framework'),
-        ('Titanium Full Contour Crown (TC4)', 'Titanium Full Contour Crown (TC4)'),
-        ('Titanium Framework (TC4)', 'Titanium Framework (TC4)'),
-        # Add more options as needed
-    ]
 
-    product_type = models.CharField(max_length=100, choices=PRODUCT_TYPE_CHOICES, default='Anatomic Full Crown')
-    PRODUCT_SUB_TYPE_CHOICES = [
+        #Product others
         ('Cast Partial Denture Framework (upto 3 unit single arch)', 'Cast Partial Denture Framework (upto 3 unit single arch)'),
         ('Cast Partial Denture Framework (upto 6 unit single arch)', 'Cast Partial Denture Framework (upto 6 unit single arch)'),
         ('Cast Partial Denture Framework (upto 13 unit single arch)', 'Cast Partial Denture Framework (upto 13 unit single arch)'),
@@ -100,10 +97,21 @@ class Order(models.Model):
         ('Bite Splint' ,'Bite Splint'),
         ('Full Mouth Rehabilitation' ,'Full Mouth Rehabilitation'),
         ('Wax-up for smile correction' ,'Wax-up for smile correction '),
+
+        #Product Materials
+        ('Contact Model ( each quadrant )', 'Contact Model ( each quadrant )'),
+        ('Contact Model with extra die  ( each quadrant )', 'Contact Model with extra die  ( each quadrant )'),
+        ('Models with articulation (uppr/lower)', 'Models with articulation (uppr/lower)'),
+        ('Study Model (Full Mouth)', 'Study Model (Full Mouth)'),
+        ('Surgical guide', 'Surgical Guide'),
+        
+        # Add more options as needed
     ]
-    product_sub_type = models.CharField(max_length=100, choices=PRODUCT_SUB_TYPE_CHOICES, default='Cast Partial Denture Framework (upto 3 unit single arch)')
 
+    
+    product_sub_type = models.CharField(max_length=100, choices=PRODUCT_SUB_TYPE_CHOICES, default='Anatomic Full Crown')
 
+  
     PRODUCT_MATERIAL= [
         ('OCOR', 'OCOR'),
         ('Metal ', 'Metal'),
@@ -122,15 +130,7 @@ class Order(models.Model):
         # Add more options as needed
     ]
 
-    MODEL_DESIGN =[
-        ('Contact Model ( each quadrant )', 'Contact Model ( each quadrant )'),
-        ('Contact Model with extra die  ( each quadrant )', 'Contact Model with extra die  ( each quadrant )'),
-        ('Models with articulation (uppr/lower)', 'Models with articulation (uppr/lower)'),
-        ('Study Model (Full Mouth)', 'Study Model (Full Mouth)'),
-        ('Surgical guide ', 'Surgical Guide'),
-    ]
-    model_design = models.CharField(max_length=50, choices=MODEL_DESIGN, default='Contact Model ( each quadrant )')
-
+    
 
     unit_of_measurement = models.CharField(max_length=10, choices=UNIT_CHOICES, default='PCS')
     CURRENCY_CHOICES = [
@@ -153,78 +153,96 @@ class Order(models.Model):
 
     def calculate_price(self):
         price_dict  = {
-        '12HRS': {'Anatomic Full Crown': 6, 
-                  'Veneer ( Emax, Ivoclar)': 6, 
-                  'Inlay/Onlay': 6, 
-                  'Smile Creator': 6,
-                  'Acrylic Temporary Crowns': 6, 
-                  'Custom Implant Abutment': 7,
-                  
-                  #Sub-Product Type Data
-                #   'Cast Partial Denture Framework (upto 3 unit single arch)': 18,
-                # 'Cast Partial Denture Framework (upto 6 unit single arch)': 18,
-                # 'Cast Partial Denture Framework (upto 13 unit single arch)': 20,
-                # 'Screw retained crown': 7,
-                # 'All on 4/6 implants': 9,
-                # 'Implant SLM malo bridge': 9,
-                # 'Implant Hybrid Denture': 9,
-                # 'Cast Partial Obturator': 9,
-                # 'Bridge Framework': 7,
-                # 'Bite Splint': 7,
-                # 'Full Mouth Rehabilitation': 9,
-                # 'Wax-up for smile correction': 9,
+        '12HRS': {
+                    'Anatomic Full Crown': 6.0, 
+                    'Veneer ( Emax, Ivoclar)': 6.0, 
+                    'Inlay/Onlay': 6.0, 
+                    'Smile Creator': 6.0,
+                    'Acrylic Temporary Crowns': 6.0, 
+                    'Custom Implant Abutment': 7.0,
 
+                    'Cast Partial Denture Framework (upto 3 unit single arch)' : 18.0,
+                    'Cast Partial Denture Framework (upto 6 unit single arch)' : 18.0,
+                    'Cast Partial Denture Framework (upto 13 unit single arch)' : 20.0,
+                    'Screw retained crown' : 7.0,
+                    'All on 4/6 implants' : 9.0,
+                    'Implant SLM malo bridge' : 9.0,
+                    'Implant Hybrid Denture' : 9.0,
+                    'Cast Partial Obturator' : 9.0,
+                    'Bridge Framework' : 7.0,
+                    'Bite Splint' : 7.0,
+                    'Full Mouth Rehabilitation' : 9.0,
+                    'Wax-up for smile correction' : 9.0, 
+
+                    'Contact Model ( each quadrant )' : 3.0,
+                    'Contact Model with extra die  ( each quadrant )': 3.0,
+                    'Models with articulation (uppr/lower)': 3.0,
+                    'Study Model (Full Mouth)': 3.0,
+                    'Surgical guide' : 40.0,
+           
                   },
 
-        '6HRS': {'Anatomic Full Crown': 7, 
-                 'Veneer ( Emax, Ivoclar)': 7, 
-                 'Inlay/Onlay': 7, 'Smile Creator': 7,
-                 'Acrylic Temporary Crowns': 7, 
-                 'Custom Implant Abutment': 9,
-                 
-                 #Sub-Product Type Data.
-                #  'Cast Partial Denture Framework (upto 3 unit single arch)': 20,
-                # 'Cast Partial Denture Framework (upto 6 unit single arch)': 20,
-                # 'Cast Partial Denture Framework (upto 13 unit single arch)': 25,
-                # 'Screw retained crown': 9,
-                # 'All on 4/6 implants': 11,
-                # 'Implant SLM malo bridge': 11,
-                # 'Implant Hybrid Denture': 11,
-                # 'Cast Partial Obturator': 11,
-                # 'Bridge Framework': 9,
-                # 'Bite Splint': 9,
-                # 'Full Mouth Rehabilitation': 11,
-                # 'Wax-up for smile correction': 11,
+        '6HRS': {
+                    'Anatomic Full Crown': 7.0,
+                    'Veneer ( Emax, Ivoclar)': 7.0,
+                    'Inlay/Onlay': 7.0,
+                    'Smile Creator': 7.0,
+                    'Acrylic Temporary Crowns': 7.0,
+                    'Custom Implant Abutment': 9.0,
+
+                    'Cast Partial Denture Framework (upto 3 unit single arch)' : 20.0,
+                    'Cast Partial Denture Framework (upto 6 unit single arch)' : 20.0,
+                    'Cast Partial Denture Framework (upto 13 unit single arch)' : 25.0,
+                    'Screw retained crown' : 9.0,
+                    'All on 4/6 implants' : 11.0,
+                    'Implant SLM malo bridge' : 11.0,
+                    'Implant Hybrid Denture' : 11.0,
+                    'Cast Partial Obturator' : 11.0,
+                    'Bridge Framework' : 9.0,
+                    'Bite Splint' : 9.0,
+                    'Full Mouth Rehabilitation' : 11.0,
+                    'Wax-up for smile correction' : 11.0, 
+
+                    'Contact Model ( each quadrant )' : 5.0,
+                    'Contact Model with extra die  ( each quadrant )': 5.0,
+                    'Models with articulation (uppr/lower)': 5.0,
+                    'Study Model (Full Mouth)': 5.0,
+                    'Surgical guide' : 36.0,
                  
                  },
 
-        '2HRS': {'Anatomic Full Crown': 9, 
-                 'Veneer ( Emax, Ivoclar)': 9, 
-                 'Inlay/Onlay': 9, 
-                 'Smile Creator': 9,
-                 'Acrylic Temporary Crowns': 9, 
-                 'Custom Implant Abutment': 11,
+        '2HRS': {
+                    'Anatomic Full Crown': 9.0,
+                    'Veneer ( Emax, Ivoclar)': 9.0,
+                    'Inlay/Onlay': 9.0,
+                    'Smile Creator': 9.0,
+                    'Acrylic Temporary Crowns': 9.0,
+                    'Custom Implant Abutment': 11.0,
 
-                #Sub-Product Prices 
-                # 'Cast Partial Denture Framework (upto 3 unit single arch)': 0,
-                # 'Cast Partial Denture Framework (upto 6 unit single arch)': 0,
-                # 'Cast Partial Denture Framework (upto 13 unit single arch)': 0,
-                # 'Screw retained crown': 11,
-                # 'All on 4/6 implants': 15,
-                # 'Implant SLM malo bridge': 15,
-                # 'Implant Hybrid Denture': 15,
-                # 'Cast Partial Obturator': 15,
-                # 'Bridge Framework': 11,
-                # 'Bite Splint': 11,
-                # 'Full Mouth Rehabilitation': 15,
-                # 'Wax-up for smile correction': 15,
+                    'Cast Partial Denture Framework (upto 3 unit single arch)' : 0.0,
+                    'Cast Partial Denture Framework (upto 6 unit single arch)' : 0.0,
+                    'Cast Partial Denture Framework (upto 13 unit single arch)' : 0.0,
+                    'Screw retained crown' : 11.0,
+                    'All on 4/6 implants' : 15.0,
+                    'Implant SLM malo bridge' : 15.0,
+                    'Implant Hybrid Denture' : 15.0,
+                    'Cast Partial Obturator' : 15.0,
+                    'Bridge Framework' : 11.0,
+                    'Bite Splint' : 11.0,
+                    'Full Mouth Rehabilitation' : 15.0,
+                    'Wax-up for smile correction' : 15.0, 
+
+                    'Contact Model ( each quadrant )' : 7.0,
+                    'Contact Model with extra die  ( each quadrant )': 7.0,
+                    'Models with articulation (uppr/lower)': 7.0,
+                    'Study Model (Full Mouth)': 7.0,
+                    'Surgical guide' : 0.0,
                  }
     
     }
 
-    
         # Get the base price for the selected product type and delivery timing from the price dictionary
-        base_price = price_dict.get(self.delivery_timing, {}).get(self.product_type)
+        base_price = price_dict.get(self.delivery_timing, {}).get(self.product_sub_type)
 
         if base_price is None:
             # Set a default price (0 in this case) when the combination is not found in the dictionary

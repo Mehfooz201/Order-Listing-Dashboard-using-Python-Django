@@ -254,13 +254,13 @@
                             <div class="col-md-4">
                                 <div class="form-group form-group-row">
                                 <label for="typesetting_printing"
-                                    >Typesetting Printing</label
+                                    >Design Printing</label
                                 >
                                 <select
-                                    id="typesetting_printing"
+                                    id="design_printing"
                                     class="form-control"
-                                    name='typesetting_printing'>
-                                    {% for value, label in form.typesetting_printing.field.choices %}
+                                    name='design_printing'>
+                                    {% for value, label in form.design_printing.field.choices %}
                                         <option value="{{ value }}">{{ label }}</option> 
                                     {% endfor %}
                                 </select>
@@ -316,16 +316,15 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group form-group-row">
-                                    <label for="model_design"
-                                        >Model Design</label
-                                    >
-                                    <select id="model_design" class="form-control" name='model_design'>
-                                        {% for value, label in form.model_design.field.choices %}
-                                            <option value="{{ value }}">{{ label }}</option> 
-                                        {% endfor %}
-                                    </select>
+                                        <label for="delivery_timing">Delivery Timing</label>
+                                        <select id="id_delivery_timing" class="form-control" name='delivery_timing'>
+                                            {% for value, label in form.delivery_timing.field.choices %}
+                                                <option value="{{ value }}">{{ label }}</option> 
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
+
                                 
                                 <div class="col-md-4">
                                     <div class="form-group form-group-row">
@@ -360,17 +359,7 @@
                             <div class="row">
                                 
 
-                                <div class="col-md-4">
-                                    <div class="form-group form-group-row">
-                                        <label for="delivery_timing">Delivery Timing</label>
-                                        <select id="id_delivery_timing" class="form-control" name='delivery_timing'>
-                                            {% for value, label in form.delivery_timing.field.choices %}
-                                                <option value="{{ value }}">{{ label }}</option> 
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                </div>
-
+                                
                                 <div class="col-md-4">
                                     <div class="form-group form-group-row">
                                         <label for="customer_contacts">Amount (<span id="currency-symbol"></span>) : </label>   
@@ -453,7 +442,7 @@
 <script>
     // Function to update the amount field
     function updateAmount() {
-        var productType = $('#id_product_type').val();
+        var subProductType = $('#id_product_sub_type').val();
         var quantity = $('#id_quantity').val();
         var currency = $('#currency').val();
         var deliveryTiming = $('#id_delivery_timing').val();
@@ -469,8 +458,29 @@
                 'Smile Creator': 6.0,
                 'Acrylic Temporary Crowns': 6.0,
                 'Custom Implant Abutment': 7.0,
+
+                'Cast Partial Denture Framework (upto 3 unit single arch)' : 18.0,
+                'Cast Partial Denture Framework (upto 6 unit single arch)' : 18.0,
+                'Cast Partial Denture Framework (upto 13 unit single arch)' : 20.0,
+                'Screw retained crown' : 7.0,
+                'All on 4/6 implants' : 9.0,
+                'Implant SLM malo bridge' : 9.0,
+                'Implant Hybrid Denture' : 9.0,
+                'Cast Partial Obturator' : 9.0,
+                'Bridge Framework' : 7.0,
+                'Bite Splint' : 7.0,
+                'Full Mouth Rehabilitation' : 9.0,
+                'Wax-up for smile correction' : 9.0, 
+
+                'Contact Model ( each quadrant )' : 3.0,
+                'Contact Model with extra die  ( each quadrant )': 3.0,
+                'Models with articulation (uppr/lower)': 3.0,
+                'Study Model (Full Mouth)': 3.0,
+                'Surgical guide' : 40.0,
+
                 // Add more products and their prices for 12HRS delivery
             },
+
             '6HRS': {
                 'Anatomic Full Crown': 7.0,
                 'Veneer ( Emax, Ivoclar)': 7.0,
@@ -478,6 +488,26 @@
                 'Smile Creator': 7.0,
                 'Acrylic Temporary Crowns': 7.0,
                 'Custom Implant Abutment': 9.0,
+
+                'Cast Partial Denture Framework (upto 3 unit single arch)' : 20.0,
+                'Cast Partial Denture Framework (upto 6 unit single arch)' : 20.0,
+                'Cast Partial Denture Framework (upto 13 unit single arch)' : 25.0,
+                'Screw retained crown' : 9.0,
+                'All on 4/6 implants' : 11.0,
+                'Implant SLM malo bridge' : 11.0,
+                'Implant Hybrid Denture' : 11.0,
+                'Cast Partial Obturator' : 11.0,
+                'Bridge Framework' : 9.0,
+                'Bite Splint' : 9.0,
+                'Full Mouth Rehabilitation' : 11.0,
+                'Wax-up for smile correction' : 11.0, 
+
+                'Contact Model ( each quadrant )' : 5.0,
+                'Contact Model with extra die  ( each quadrant )': 5.0,
+                'Models with articulation (uppr/lower)': 5.0,
+                'Study Model (Full Mouth)': 5.0,
+                'Surgical guide' : 36.0,
+
                     // Add more products and their prices for 6HRS delivery
             },
             '2HRS': {
@@ -487,12 +517,31 @@
                 'Smile Creator': 9.0,
                 'Acrylic Temporary Crowns': 9.0,
                 'Custom Implant Abutment': 11.0,
+
+                'Cast Partial Denture Framework (upto 3 unit single arch)' : 0.0,
+                'Cast Partial Denture Framework (upto 6 unit single arch)' : 0.0,
+                'Cast Partial Denture Framework (upto 13 unit single arch)' : 0.0,
+                'Screw retained crown' : 11.0,
+                'All on 4/6 implants' : 15.0,
+                'Implant SLM malo bridge' : 15.0,
+                'Implant Hybrid Denture' : 15.0,
+                'Cast Partial Obturator' : 15.0,
+                'Bridge Framework' : 11.0,
+                'Bite Splint' : 11.0,
+                'Full Mouth Rehabilitation' : 15.0,
+                'Wax-up for smile correction' : 15.0, 
+
+                'Contact Model ( each quadrant )' : 7.0,
+                'Contact Model with extra die  ( each quadrant )': 7.0,
+                'Models with articulation (uppr/lower)': 7.0,
+                'Study Model (Full Mouth)': 7.0,
+                'Surgical guide' : 0.0,
                 // Add more products and their prices for 2HRS delivery
             },
         };
 
         // Get the base price for the selected product and delivery timing
-        var basePrice = deliveryTimingPrices[deliveryTiming][productType];
+        var basePrice = deliveryTimingPrices[deliveryTiming][subProductType];
 
         if (basePrice !== undefined) {
             // Calculate the total price
@@ -517,7 +566,7 @@
     }
 
     // Event listeners for input fields
-    $('#id_product_type, #id_quantity, #currency, #id_delivery_timing').on('change keyup', function () {
+    $('#id_product_sub_type, #id_quantity, #currency, #id_delivery_timing').on('change keyup', function () {
         updateAmount();
     });
 
