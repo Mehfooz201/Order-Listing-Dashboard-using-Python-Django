@@ -81,21 +81,22 @@
                     />
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="form-group form-group-row">
-                    <label for="order_number">Order number</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="order_number"
-                      placeholder="Order number"
-                    />
-                  </div>
-                </div>
 
-                <div class="col-md-3 text-right">
-                  <button class="btn btn-primary">Search</button>
-                </div>
+                  <div class="col-md-4">
+                    <div class="form-group form-group-row">
+                      <label for="order_number">Order number</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="order_number"
+                        placeholder="Order number"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 text-right">
+                    <button class="btn btn-primary">Search</button>
+                  </div>
               
             </div>
             </div>
@@ -111,13 +112,12 @@
                     <th>Customer Name</th>
                     <th>Order Data</th>
                     <th>Order Type</th>
-                    <th>Order Status</th>
                     <th>Purchaser</th>
                     <th>Currency</th>
                     <th>Amount</th>
                     <th>Phone</th>
                     <th>Receiving Address</th>
-                    <th>Menu</th>
+                    <th>Order Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -129,20 +129,7 @@
                         <td>{{data.customer_name}}</td>
                         <td>{{data.order_date}}</td>
                         <td>{{data.order_type}}</td>
-                        <td>
-                            {% if data.order_status == 'active' %}
-                                <span class="badge badge-primary">{{ data.order_status }}</span>
-                            {% elif data.order_status == 'complete' %}
-                                <span class="badge badge-success">{{ data.order_status }}</span>
-                            {% elif data.order_status == 'modification' %}
-                                <span class="badge badge-warning">{{ data.order_status }}</span>
-                            {% elif data.order_status == 'cancelled' %}
-                                <span class="badge badge-danger">{{ data.order_status }}</span>
-                            {% else %}
-                                <span class="badge badge-secondary">{{ data.order_status }}</span> <!-- Default case if the status is not matched -->
-                            {% endif %}
-                        </td>
-                        
+
                         <td>{{data.purchaser}}</td>
                         <td>{{data.currency}}</td>
                         <td>
@@ -156,7 +143,21 @@
                         </td>
                         <td>Phone</td>
                         <td>{{data.receiving_address}}</td>
-                        <td>Working on it</td>
+
+                        <td class='text-center'>
+                          {% if data.order_status == 'active' %}
+                              <span class="badge badge-primary">{{ data.order_status }}</span>
+                          {% elif data.order_status == 'complete' %}
+                              <span class="badge badge-success">{{ data.order_status }}</span>
+                          {% elif data.order_status == 'modification' %}
+                              <span class="badge badge-warning">{{ data.order_status }}</span>
+                          {% elif data.order_status == 'cancelled' %}
+                              <span class="badge badge-danger">{{ data.order_status }}</span>
+                          {% else %}
+                              <span class="badge badge-secondary">{{ data.order_status }}</span> <!-- Default case if the status is not matched -->
+                          {% endif %}
+                      </td>
+
                     </tr>
                   {% endfor %}
 
