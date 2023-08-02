@@ -78,9 +78,16 @@ def createOrder(request):
 
 
 def orderList(request):
-    order_data = Order.objects.all()
-    
-    context = {'active_item': 'order-list', 'order_data':order_data}
+    order_number = request.GET.get('order_number')
+
+    if order_number:
+        # Filter orders based on the order_number if it's provided in the search form
+        order_data = Order.objects.filter(order_number__icontains=order_number)
+    else:
+        # If no order_number is provided in the search form, display all orders
+        order_data = Order.objects.all()
+
+    context = {'active_item': 'order-list', 'order_data': order_data}
     return render(request, 'amruloapp/dashboard/order-list.html', context)
 
 

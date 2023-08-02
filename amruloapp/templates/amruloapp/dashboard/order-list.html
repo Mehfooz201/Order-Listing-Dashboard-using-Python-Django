@@ -71,6 +71,7 @@
           <div class="card-body">
             <div class="order-list-filter-area">
               <div class="row">
+                
                 <div class="col-md-5">
                   <div class="form-group form-group-row">
                     <label for="order_daterange_input">Order time</label>
@@ -81,22 +82,28 @@
                     />
                   </div>
                 </div>
+                
+                <form method="GET" action="{% url 'order-list' %}">
+                    <div class="col-md-12">
+                      <div class="form-group form-group-row">
+                        <label for="order_number">Order number</label>
+                        <input type="number" class="form-control" id="order_number" name='order_number' placeholder="Order number"/>
 
-                  <div class="col-md-4">
-                    <div class="form-group form-group-row">
-                      <label for="order_number">Order number</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="order_number"
-                        placeholder="Order number"
-                      />
+                        <div class="col-md-3 text-right">
+                          <button class="btn btn-primary">Search</button>
+                        </div>
+                      </div>
+
+                      
                     </div>
-                  </div>
+                  
 
-                  <div class="col-md-3 text-right">
-                    <button class="btn btn-primary">Search</button>
-                  </div>
+                    {% comment %} <div class="col-md-3 text-right">
+                      <button class="btn btn-primary">Search</button>
+                    </div> {% endcomment %}
+                  </form>
+              
+
               
             </div>
             </div>
