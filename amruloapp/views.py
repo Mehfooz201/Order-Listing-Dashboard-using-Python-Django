@@ -13,12 +13,12 @@ from forex_python.converter import CurrencyRates, RatesNotAvailableError
 
 
 #--------------------- Home and Login Page ----------------------------
-def home(request):
-    return render(request, 'amruloapp/index.html')
+# def home(request):
+#     return render(request, 'amruloapp/index.html')
 
 def signin(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('create-order')
     if request.method=='POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
