@@ -20,16 +20,16 @@ class User(AbstractUser):
 class Order(models.Model):
     order_number = models.AutoField(primary_key=True)  # Auto-generated order number
     customer_name = models.CharField(max_length=100)
-    manufacturer = models.CharField(max_length=100)
+    manufacturer = models.CharField(max_length=100, blank=True, null=True)
     ORDER_TYPE_CHOICES = [
         ('Regular', 'Regular Order'),
         ('Simple', 'Sample Order'),
         ('Urgent', 'Urgent order'),
     ]
     order_type = models.CharField(max_length=10, choices=ORDER_TYPE_CHOICES, default='Regular')
-    purchaser = models.CharField(max_length=100)
-    salesman = models.CharField(max_length=100)
-    requirements_remarks = models.TextField()
+    purchaser = models.CharField(max_length=100, blank=True, null=True)
+    salesman = models.CharField(max_length=100, blank=True, null=True)
+    requirements_remarks = models.TextField(blank=True, null=True)
 
     # ... (other fields)
     order_date = models.DateField(default=timezone.now, null=True, blank=True)
@@ -148,7 +148,11 @@ class Order(models.Model):
         ('2HRS', '2 HRS'),
     ]
     delivery_timing = models.CharField(max_length=10, choices=DELIVERY_TIMING_CHOICES, default='12HRS')
-    file_upload_required = models.FileField(upload_to='uploads/files/')
+
+
+    file_upload_required = models.FileField(upload_to='uploads/files/stl-dcm')
+    design_requirement = models.FileField(upload_to='uploads/files/otherfiles', default='')
+    
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def calculate_price(self):

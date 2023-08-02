@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import  User, Order
 from .forms import OrderForm
-from forex_python.converter import CurrencyRates
+from forex_python.converter import CurrencyRates, RatesNotAvailableError
 
 
 # Create your views here.
@@ -63,8 +63,13 @@ def createOrder(request):
 
     
     # Fetch the actual exchange rate for INR
-    c = CurrencyRates()
-    inr_rate = c.get_rate('USD', 'INR') 
+    try:
+        c = CurrencyRates()
+        inr_rate = c.get_rate('USD', 'INR')
+    except RatesNotAvailableError:
+        # Handle the error gracefully, e.g., use a default exchange rate
+        inr_rate = 82.0  # You can use a default value here or handle the error as per your requirement
+ 
 
     context = {'active_item': 'create-order', 'form': form, 
                 'inr_rate': inr_rate,}

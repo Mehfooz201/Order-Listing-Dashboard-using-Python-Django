@@ -9,8 +9,6 @@
     <title>
       {% block title %}  {% endblock title %}
     </title>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
     <!-- Google Font: Source Sans Pro -->
@@ -48,10 +46,11 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{% static 'amruloapp/dashboard/plugins/summernote/summernote-bs4.min.css' %}" />
 
-    <style>
-      {% block custom_style %}
-      {% endblock custom_style %}
-    </style>
+    
+    {% block custom_style %}
+    
+    {% endblock custom_style %}
+    
 
   </head>
 
@@ -146,7 +145,7 @@
             style="opacity: 0.8"
           /> {% endcomment %}
           <div class='text-center'>
-            <h3 class="brand-text font-weight-medium">cmplaborder</h3>
+            <h3 class="brand-text font-weight-medium">CDL Lab</h3>
           </div>
 
           
@@ -295,7 +294,7 @@
       {% endblock content %}
 
       <footer class="main-footer">
-        <strong>Copyright &copy; 2023 <a href="#">cmplaborder</a>.</strong>
+        <strong>Copyright &copy; 2023 <a href="#">CDL Lab</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
           <b>Version</b> 4.2.0
@@ -331,11 +330,11 @@
     <script src="{% static 'amruloapp/dashboard/dist/js/demo.js' %}"></script>
     <script src="{% static 'amruloapp/dashboard/dist/js/global.js' %}"></script>
 
-    <script>
-        {% block js_script %}
+    
+    {% block scripts  %}
 
-        {% endblock js_script %}
-    </script>
+    {% endblock scripts  %}
+    
 
   </body>
 </html>
