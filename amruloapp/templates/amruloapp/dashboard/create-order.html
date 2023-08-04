@@ -149,86 +149,86 @@
                         </div>
 
 
-                        <div class="card card-default">
-                        <div class="card-header">
-                            <h3 class="card-title d-flex align-items-center">
-                            <div class="mr-2">Shipping Address</div>
-                            <a href="{% url 'address-management' %}" class="badge bg-primary">Change address</a>
-                            </h3>
-                            <div class="card-tools">
-                            <button
-                                type="button"
-                                class="btn btn-tool"
-                                data-card-widget="collapse"
-                            >
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
-                                <label for="customer_contacts">Contacts</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="customer_contacts"
-                                    placeholder="customer Contact"
-                                    name='contacts'
-                                    required
-                                />
+                        {% comment %} <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title d-flex align-items-center">
+                                <div class="mr-2">Shipping Address</div>
+                                <a href="{% url 'address-management' %}" class="badge bg-primary">Change address</a>
+                                </h3>
+                                <div class="card-tools">
+                                <button
+                                    type="button"
+                                    class="btn btn-tool"
+                                    data-card-widget="collapse"
+                                >
+                                    <i class="fas fa-minus"></i>
+                                </button>
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
-                                <label for="email">Email</label>
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    id="email"
-                                    placeholder="Email"
-                                    name='email'
-                                    required
-                                />
+                            <div class="card-body">
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
+                                    <label for="customer_contacts">Contacts</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="customer_contacts"
+                                        placeholder="customer Contact"
+                                        name='contacts'
+                                        required
+                                    />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
+                                    <label for="email">Email</label>
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        id="email"
+                                        placeholder="Email"
+                                        name='email'
+                                        required
+                                    />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
+                                    <label for="country">Country</label>
+                                    <select
+                                        name="country"
+                                        id="country"
+                                        class="form-control"
+                                        required>
+                                        {% for value, label in form.country.field.choices %}
+                                            <option value="{{ value }}">{{ label }}</option> 
+                                        {% endfor %}
+                                    </select>
+                                    </div>
+                                </div>
+                                </div>
+                                
+                                <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
+                                    <label for="rec_address">
+                                        Receiving Address                             
+                                    </label>
+                                    <textarea
+                                        class="form-control"
+                                        name='receiving_address'
+                                        id="rec_address"
+                                        placeholder="Enter Recieving Address"
+                                        required
+                                    ></textarea>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
-                                <label for="country">Country</label>
-                                <select
-                                    name="country"
-                                    id="country"
-                                    class="form-control"
-                                    required>
-                                    {% for value, label in form.country.field.choices %}
-                                        <option value="{{ value }}">{{ label }}</option> 
-                                    {% endfor %}
-                                </select>
-                                </div>
-                            </div>
-                            </div>
-                            
-                            <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
-                                <label for="rec_address">
-                                    Receiving Address                             
-                                </label>
-                                <textarea
-                                    class="form-control"
-                                    name='receiving_address'
-                                    id="rec_address"
-                                    placeholder="Enter Recieving Address"
-                                    required
-                                ></textarea>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
+                        </div> {% endcomment %}
 
 
                         <div class="card card-default">
@@ -415,7 +415,7 @@
                                     <div class="file-upload-wrapper">
                                         <input
                                         type="file"
-                                        accept=".stl,.dcm"
+                                        accept=".stl,.dcm,.html"
                                         id="upload_file"
                                         name="file_upload_required"
                                         />
@@ -429,7 +429,7 @@
                                         >
                                         </div>
                                         <div class="file-upload-info text-danger">
-                                            Only upload ( .stl, .dcm )  standard format
+                                            Only upload ( .stl, .dcm, .html )  standard format
                                         </div>
                                     </div>
                                     </div>
@@ -509,6 +509,9 @@
                 'Full Mouth Rehabilitation' : 9.0,
                 'Wax-up for smile correction' : 9.0, 
 
+                'CO-CR framework' : 9.0,
+                'Zirconia Framework' : 9.0, 
+
                 'Contact Model ( each quadrant )' : 3.0,
                 'Contact Model with extra die  ( each quadrant )': 3.0,
                 'Models with articulation (uppr/lower)': 3.0,
@@ -539,6 +542,9 @@
                 'Full Mouth Rehabilitation' : 11.0,
                 'Wax-up for smile correction' : 11.0, 
 
+                'CO-CR framework' : 11.0,
+                'Zirconia Framework' : 11.0, 
+
                 'Contact Model ( each quadrant )' : 5.0,
                 'Contact Model with extra die  ( each quadrant )': 5.0,
                 'Models with articulation (uppr/lower)': 5.0,
@@ -567,6 +573,10 @@
                 'Bite Splint' : 11.0,
                 'Full Mouth Rehabilitation' : 15.0,
                 'Wax-up for smile correction' : 15.0, 
+
+                
+                'CO-CR framework' : 15.0,
+                'Zirconia Framework' : 15.0, 
 
                 'Contact Model ( each quadrant )' : 7.0,
                 'Contact Model with extra die  ( each quadrant )': 7.0,

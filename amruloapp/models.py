@@ -12,12 +12,27 @@ class User(AbstractUser):
     name = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True, null=True)
     avatar = models.ImageField(null=True, default='avatar.svg')
+    phone = models.IntegerField(null=True, blank=True)
+    # phone = models.CharField(max_length=15, blank=True, null=True, default='')
+
+    COUNTRY_CHOICES = [
+        ('India', 'India'),
+        ('USA', 'USA'),
+        ('Pakistan', 'Pakistan'),
+        ('Bangladesh', 'Bangladesh'),
+        ('Russia', 'Russia'),
+        ('China', 'China'),
+    ]
+    country = models.CharField(max_length=20, choices=COUNTRY_CHOICES, default='India')
+    user_address = models.TextField(default='')
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
 
 # models.py
 class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey to link the order with the user
     order_number = models.AutoField(primary_key=True)  # Auto-generated order number
     customer_name = models.CharField(max_length=100)
     manufacturer = models.CharField(max_length=100, blank=True, null=True)
@@ -33,28 +48,12 @@ class Order(models.Model):
 
     # ... (other fields)
     order_date = models.DateField(default=timezone.now, null=True, blank=True)
-
-    #Section 02
-    contacts = models.CharField(max_length=100)
-    email = models.EmailField()
-    COUNTRY_CHOICES = [
-        ('India', 'India'),
-        ('USA', 'USA'),
-        ('Pakistan', 'Pakistan'),
-        ('Bangladesh', 'Bangladesh'),
-        ('Russia', 'Russia'),
-        ('China', 'China'),
-    ]
-    country = models.CharField(max_length=20, choices=COUNTRY_CHOICES, default='India')
-    receiving_address = models.TextField()
-
     ORDER_STATUS_CHOICES = [
         ('active', 'Active'),
         ('complete', 'Complete'),
         ('cancelled', 'Cancelled'),
         ('modification', 'Modification'),
     ]
-
     order_status = models.CharField(
         max_length=12, choices=ORDER_STATUS_CHOICES, null=True, blank=True, default='active')
 
@@ -89,6 +88,8 @@ class Order(models.Model):
         ('Cast Partial Denture Framework (upto 13 unit single arch)', 'Cast Partial Denture Framework (upto 13 unit single arch)'),
 
         ('Screw retained crown', 'Screw Retained Crown'),
+        ('CO-CR framework', 'CO-CR framework'),
+        ('Zirconia Framework', 'Zirconia Framework'),
         ('All on 4/6 implants', 'All on 4/6 implants'),
         ('Implant SLM malo bridge' ,'Implant SLM Malo Bridge '),
         ('Implant Hybrid Denture' ,'Implant Hybrid Denture'),
@@ -150,7 +151,7 @@ class Order(models.Model):
     delivery_timing = models.CharField(max_length=10, choices=DELIVERY_TIMING_CHOICES, default='12HRS')
 
 
-    file_upload_required = models.FileField(upload_to='uploads/files/stl-dcm')
+    file_upload_required = models.FileField(upload_to='uploads/files/stl-dcm-html')
     design_requirement = models.FileField(upload_to='uploads/files/otherfiles', default='')
     
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -177,6 +178,9 @@ class Order(models.Model):
                     'Bite Splint' : 7.0,
                     'Full Mouth Rehabilitation' : 9.0,
                     'Wax-up for smile correction' : 9.0, 
+
+                    'CO-CR framework' : 9.0,
+                    'Zirconia Framework' : 9.0, 
 
                     'Contact Model ( each quadrant )' : 3.0,
                     'Contact Model with extra die  ( each quadrant )': 3.0,
@@ -207,6 +211,9 @@ class Order(models.Model):
                     'Full Mouth Rehabilitation' : 11.0,
                     'Wax-up for smile correction' : 11.0, 
 
+                    'CO-CR framework' : 11.0,
+                    'Zirconia Framework' : 11.0, 
+
                     'Contact Model ( each quadrant )' : 5.0,
                     'Contact Model with extra die  ( each quadrant )': 5.0,
                     'Models with articulation (uppr/lower)': 5.0,
@@ -235,6 +242,9 @@ class Order(models.Model):
                     'Bite Splint' : 11.0,
                     'Full Mouth Rehabilitation' : 15.0,
                     'Wax-up for smile correction' : 15.0, 
+
+                    'CO-CR framework' : 15.0,
+                    'Zirconia Framework' : 15.0, 
 
                     'Contact Model ( each quadrant )' : 7.0,
                     'Contact Model with extra die  ( each quadrant )': 7.0,

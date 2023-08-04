@@ -52,6 +52,7 @@ def createOrder(request):
         if form.is_valid():
             order = form.save(commit=False)
             order.order_status = form.fields['order_status'].initial  # Set the default value
+            order.user = request.user  # Set the user field to the currently logged-in user
             order.price = order.calculate_price()
             order.save()
             return redirect('order-list')
@@ -87,9 +88,7 @@ def orderList(request):
     else:
         # If no order_number is provided in the search form, display all orders
         order_data = Order.objects.all()
-    
-
-
+        
     context = {'active_item': 'order-list', 'order_data': order_data}
     return render(request, 'amruloapp/dashboard/order-list.html', context)
 

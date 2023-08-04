@@ -1,6 +1,6 @@
 #Admin
-#=> admin (admin)
-#=> amrulo (password)
+#=> admin (lab)
+#=> project12 (password)
 #=> amrulo@gmail.com (email)
 
 
