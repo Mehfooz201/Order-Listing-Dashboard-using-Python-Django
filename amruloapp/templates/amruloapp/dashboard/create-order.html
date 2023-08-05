@@ -321,11 +321,14 @@
 
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
+                                    <div class="form-group form-group-row">
+                                        <span class="text-danger pr-1">* </span>
                                         <label for="delivery_timing">Delivery Timing</label>
-                                        <select id="id_delivery_timing" class="form-control" name='delivery_timing'>
+                                        <select id="id_delivery_timing" class="form-control" name="delivery_timing">
                                             {% for value, label in form.delivery_timing.field.choices %}
-                                                <option value="{{ value }}">{{ label }}</option> 
+                                                {% if value != '2HRS' or form.price.value != 0 %}
+                                                    <option value="{{ value }}">{{ label }}</option>
+                                                {% endif %}
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -476,7 +479,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Your new JavaScript code -->
+
 <script>
+    
     // Function to update the amount field
     function updateAmount() {
         var subProductType = $('#id_product_sub_type').val();
@@ -588,38 +593,56 @@
         };
 
         // Get the base price for the selected product and delivery timing
-        var basePrice = deliveryTimingPrices[deliveryTiming][subProductType];
+    // Get the base price for the selected product and delivery timing
+    var basePrice = deliveryTimingPrices[deliveryTiming][subProductType];
 
-        if (basePrice !== undefined) {
-            // Calculate the total price
-            price = basePrice * quantity;
+    if (basePrice !== undefined) {
+        // Calculate the total price
+        price = basePrice * quantity;
 
-            // Get the currency symbol based on the selected currency
-            if (currency === 'USA') {
-                currencySymbol = '$'; // Dollar symbol
-            } else if (currency === 'INR') {
-                currencySymbol = '₹'; // Indian Rupee symbol
-                // Fetch the actual exchange rate for INR from your Django code
-                var inrRate = {{ inr_rate }}; // Replace this with the actual exchange rate
-                price *= inrRate;
-            }
+        // Get the currency symbol based on the selected currency
+        if (currency === 'USA') {
+            currencySymbol = '$'; // Dollar symbol
+        } else if (currency === 'INR') {
+            currencySymbol = '₹'; // Indian Rupee symbol
+            // Fetch the actual exchange rate for INR from your Django code
+            var inrRate = {{ inr_rate }}; // Replace this with the actual exchange rate
+            price *= inrRate;
         }
-
-        // Update the amount field with the calculated price and currency symbol
-        $('#id_price').val(price.toFixed(2));
-
-        // Update the display of the currency symbol in the amount field
-        $('#currency-symbol').text(currencySymbol);
     }
 
-    // Event listeners for input fields
-    $('#id_product_sub_type, #id_quantity, #currency, #id_delivery_timing').on('change keyup', function () {
-        updateAmount();
-    });
+    // Update the amount field with the calculated price and currency symbol
+    $('#id_price').val(price.toFixed(2));
 
-    // Call the updateAmount function on page load
+    // Update the display of the currency symbol in the amount field
+    $('#currency-symbol').text(currencySymbol);
+
+    // Update delivery timing options based on the selected product type and its price for '2HRS'
+    $('#id_delivery_timing option').each(function () {
+        var optionValue = $(this).val();
+
+        if (optionValue === '2HRS') {
+            if (basePrice === undefined || deliveryTimingPrices['2HRS'][subProductType] === 0) {
+                // Hide the '2HRS' option if it has a zero price for the selected product type
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        }
+    });
+}
+
+// Event listeners for input fields
+$('#id_product_sub_type, #id_quantity, #currency, #id_delivery_timing').on('change keyup', function () {
     updateAmount();
+});
+
+// Call the updateAmount function on page load
+updateAmount();
+
+
 </script>
+
 {% endblock scripts  %}
 
 
