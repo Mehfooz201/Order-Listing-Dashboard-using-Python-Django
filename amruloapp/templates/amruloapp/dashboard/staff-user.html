@@ -26,8 +26,110 @@
             </div>
         </div>
         
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Add Staff User -->
+                        <div class="card">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">
+                                    Add User
+                                </button>
+                            </div>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Serial No.</th>
+                                        <th>Email</th>
+                                        <th>Username</th>
+                                        <th>Name</th>
+                                        <th>Affiliated with</th>
+                                        <th>Phone Number</th>
+                                        <th>Approval Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Loop through staff users -->
+                                    {% for staff_user in staff_users %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ staff_user.user.email }}</td>
+                                            <td>{{ staff_user.user.username }}</td>
+                                            <td>{{ staff_user.user.first_name }} {{ staff_user.user.last_name }}</td>
+                                            <td>{{ staff_user.affiliated_with }}</td>
+                                            <td>{{ staff_user.user.profile.phone }}</td>
+                                            {% comment %} <td>{{ "Approved" if staff_user.approval_status else "Not Approved" }}</td> {% endcomment %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+        </section>
+
+        
     </div>
 
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'staff-user' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ staff_user_form.username.id_for_label }}">Username</label>
+                            {{ staff_user_form.username }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ staff_user_form.first_name.id_for_label }}">First Name</label>
+                            {{ staff_user_form.first_name }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ staff_user_form.last_name.id_for_label }}">Last Name</label>
+                            {{ staff_user_form.last_name }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ staff_user_form.email.id_for_label }}">Email</label>
+                            {{ staff_user_form.email }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ staff_user_form.profile.phone.id_for_label }}">Phone</label>
+                            {{ staff_user_form.profile.phone }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ staff_user_form.affiliated_with.id_for_label }}">Affiliated With</label>
+                            {{ staff_user_form.affiliated_with }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ staff_user_form.password1.id_for_label }}">Password</label>
+                            {{ staff_user_form.password1 }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ staff_user_form.password2.id_for_label }}">Confirm Password</label>
+                            {{ staff_user_form.password2 }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add User</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
 {% endblock content %}
 
 

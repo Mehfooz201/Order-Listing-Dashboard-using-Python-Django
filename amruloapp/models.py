@@ -29,6 +29,12 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
 
+class StaffUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    affiliated_with = models.CharField(max_length=100, null=True, blank=True)
+    approval_status = models.BooleanField(default=False)
+
+
 # models.py
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey to link the order with the user

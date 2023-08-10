@@ -3,16 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.db.models import Q
-from .models import  User, Order
-from .forms import OrderForm, UserProfileUpdateForm
+from .models import  User, Order, StaffUser
+from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
 
 
 
 # Create your views here.
-
-
 
 #--------------------- Home and Login Page ----------------------------
 # def home(request):
@@ -166,7 +164,18 @@ def cadResult(request):
 #----------------------- Staff Manege----------------------------------------#
 
 def addStaffUser(request):
-    context = {'active_item': 'staff-user'}
+    if request.method == 'POST':
+        staff_user_form = StaffUserCreationForm(request.POST)
+        if staff_user_form.is_valid():
+            user = staff_user_form.save()
+            staff_user = StaffUser(user=user, affiliated_with=staff_user_form.cleaned_data['affiliated_with'])
+            staff_user.approval_status = staff_user_form.cleaned_data['approval_status']
+            staff_user.save()
+            return redirect('dashboard')  # Redirect to the dashboard or appropriate page
+    else:
+        staff_user_form = StaffUserCreationForm()
+
+    context = {'active_item': 'staff-user', 'staff_user_form': staff_user_form}
     return render(request, 'amruloapp/dashboard/staff-user.html', context)
 
 
