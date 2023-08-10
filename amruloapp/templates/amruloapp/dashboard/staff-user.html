@@ -53,15 +53,15 @@
                                 </thead>
                                 <tbody>
                                     <!-- Loop through staff users -->
-                                    {% for staff_user in staff_users %}
+                                    {% for user, staff_user in staff_user_form %}
                                         <tr>
                                             <td>{{ forloop.counter }}</td>
                                             <td>{{ staff_user.user.email }}</td>
                                             <td>{{ staff_user.user.username }}</td>
-                                            <td>{{ staff_user.user.first_name }} {{ staff_user.user.last_name }}</td>
+                                            <td>{{ staff_user.user.name }}</td>
                                             <td>{{ staff_user.affiliated_with }}</td>
                                             <td>{{ staff_user.user.profile.phone }}</td>
-                                            {% comment %} <td>{{ "Approved" if staff_user.approval_status else "Not Approved" }}</td> {% endcomment %}
+                                            <td>{{ staff_user.approval_status}}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
