@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Address Management
+    Profile
 {% endblock title %}
 
 {% block custom_style %}
@@ -13,19 +13,191 @@
 {% block content %}
 
 
-    <div class="content-wrapper">
+<div class="content-wrapper">
 
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">User Profile</h1>
-                        
-                    </div> 
+    <div class="content-header">
+        <div class="container-fluid">
+
+            <!-- Success Message (Top of the Page) -->
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert alert-success">{{ message }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">User Profile "{{request.user.name}}"</h1>
                 </div>
             </div>
         </div>
-        
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Personal Information Menu -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Personal Information</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-left">
+                                <div class="image">
+                                    <img src="{{request.user.avatar.url}}"
+                                      class="img-circle elevation-2 "
+                                      style="max-width: 200px; max-height: 200px;"
+                                      alt="User Image"/>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="username" class="col-form-label">Username</label>
+                                        <input type="text" class="form-control" id="username" value="{{ request.user.username }}" disabled>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name" class="col-form-label">Name</label>
+                                        <input type="text" class="form-control" id="name" value="{{ request.user.name }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="phone" class="col-form-label">Phone</label>
+                                        <input type="text" class="form-control" id="phone" value="{{ request.user.phone }}" disabled>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="email" class="col-form-label">Email</label>
+                                        <input type="text" class="form-control" id="email" value="{{ request.user.email }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country" class="col-form-label">Country</label>
+                                    <input type="text" class="form-control" id="country" value="{{ request.user.country }}" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_address" class="col-form-label">Address</label>
+                                    <textarea class="form-control" id="user_address" disabled>{{ request.user.user_address }}</textarea>
+                                </div>
+                                
+                                
+                            </div>
+
+                            <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#updateProfileModal">Update Profile</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <!-- Change Password Menu -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Change Password</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" action="{% url 'change_password' %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="old_password">Old Password</label>
+                                    <input type="password" class="form-control" id="old_password" name="old_password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new_password1">New Password</label>
+                                    <input type="password" class="form-control" id="new_password1" name="new_password1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new_password2">Confirm Password</label>
+                                    <input type="password" class="form-control" id="new_password2" name="new_password2">
+                                </div>
+
+
+                                <!-- Error Message (Password Area) -->
+                                {% if messages %}
+                                    <div class="messages my-2">
+                                        {% for message in messages %}
+                                            {% if message.tags == 'error' %}
+                                                <div class="alert alert-danger">{{ message }}</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                                <button type="submit" class="btn btn-primary my-2">Change Password</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+
+
+    <!-- Update Profile Modal -->
+    <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateProfileModalLabel">Update Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Update Profile Form -->
+                    <form method="post" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="avatar">Avatar</label>
+                            <input type="file" class="form-control-file" id="avatar" name="avatar">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ request.user.name }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ request.user.phone }}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <select name="country" id="country" class="form-control">
+                                    {% for value, label in form.country.field.choices %}
+                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% endfor %} 
+                            </select> 
+                        </div>
+
+           
+                        
+                        <div class="form-group">
+                            <label for="user_address">Address</label>
+                            <textarea class="form-control" id="user_address" name="user_address">{{ request.user.user_address }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock content %}

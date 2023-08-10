@@ -7,10 +7,16 @@ from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 
 
+class UserProfileUpdateForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['avatar', 'name', 'phone', 'country',  'user_address']
+
+
 class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['name', 'username', 'email', 'password1', 'password2']
+        fields = ['name', 'username', 'email',  'password1', 'password2']
 
 
 class UserForm(ModelForm):

@@ -4,8 +4,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.db.models import Q
 from .models import  User, Order
-from .forms import OrderForm
+from .forms import OrderForm, UserProfileUpdateForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
+from django.contrib.auth import update_session_auth_hash
+
 
 
 # Create your views here.
@@ -38,6 +40,29 @@ def signin(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+
+@login_required
+def changePassword(request):
+    if request.method == 'POST':
+        old_password = request.POST.get('old_password')
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
+
+        if not request.user.check_password(old_password):
+            messages.error(request, 'Old password is incorrect.')
+            return redirect('user-profile', id=request.user.id)
+        elif new_password1 != new_password2:
+            messages.error(request, 'New passwords do not match.')
+            return redirect('user-profile', id=request.user.id)
+        else:
+            request.user.set_password(new_password1)
+            request.user.save()
+            update_session_auth_hash(request, request.user)
+            messages.success(request, 'Password changed successfully.')
+            return redirect('user-profile', id=request.user.id)  # Redirect to profile page
+
+    return render(request, 'amruloapp/dashboard/user_profile.html')
 
 
 
@@ -93,10 +118,20 @@ def orderList(request):
     return render(request, 'amruloapp/dashboard/order-list.html', context)
 
 
+
 @login_required
 def userProfile(request, id):
-    user = request.user
-    context = {}
+    user = get_object_or_404(User, id=id)
+    form = UserProfileUpdateForm(instance=user)
+
+    if request.method == 'POST':
+        form = UserProfileUpdateForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully.')
+            return redirect('user-profile', id=id)
+
+    context = {'user': user, 'form': form}
     return render(request, 'amruloapp/dashboard/user_profile.html', context)
 
 

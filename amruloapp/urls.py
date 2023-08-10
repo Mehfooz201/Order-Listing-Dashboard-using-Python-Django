@@ -37,6 +37,9 @@ urlpatterns = [
     #UserProfile Details
     path('user-profile/<int:id>/', views.userProfile, name='user-profile'),
 
+    path('change-password/', views.changePassword, name='change_password'),
+
+
 
     #Staff User
     path('staff-user', views.addStaffUser, name='staff-user'),
