@@ -93,22 +93,23 @@ def orderList(request):
     return render(request, 'amruloapp/dashboard/order-list.html', context)
 
 
+@login_required
+def userProfile(request, id):
+    user = request.user
+    context = {}
+    return render(request, 'amruloapp/dashboard/user_profile.html', context)
+
+
+
 
 def returnedOrder(request):
     context = {'active_item': 'return-order'}
     return render(request, 'amruloapp/dashboard/returned-orders.html', context)
 
-def addressManagement(request):
-    context = {'active_item': 'address-order'}
-    return render(request, 'amruloapp/dashboard/add-manage.html', context)
 
 def confirmReceipt(request):
     context = {'active_item': 'confirm-order'}
     return render(request, 'amruloapp/dashboard/confirm-reciept.html' ,context)
-
-def archiveOrders(request):
-    context = {'active_item': 'archive-order'}
-    return render(request, 'amruloapp/dashboard/archieved-orders.html', context)
 
 def frameworkManagement(request):
     context = {'active_item': 'framemanage-order'}

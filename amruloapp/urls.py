@@ -23,11 +23,7 @@ urlpatterns = [
 
     path('returned-order/', views.returnedOrder, name='returned-order'),
 
-    path('address-management/', views.addressManagement, name='address-management'),
-
     path('confirm-receipt/', views.confirmReceipt, name='confirm-receipt'),
-
-    path('archieve-orders/', views.archiveOrders, name='archieved-orders'),
 
     path('framework-manage/', views.frameworkManagement, name='framework-manage'),
 
@@ -37,6 +33,9 @@ urlpatterns = [
 
     path('cad-design/', views.cadResult, name='cad-result'),
 
+
+    #UserProfile Details
+    path('user-profile/<int:id>/', views.userProfile, name='user-profile'),
 
 
     #Staff User
