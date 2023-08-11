@@ -5,7 +5,7 @@
 
 
 from django.contrib import admin
-from .models import User, Order, StaffUser
+from .models import User, Order
 
 #Registered here
 
@@ -19,6 +19,3 @@ class OrderAdmin(admin.ModelAdmin):
 
 admin.site.register(Order, OrderAdmin)
 
-class StaffUserAdmin(admin.ModelAdmin):
-    list_display = ('approval_status',)
-admin.site.register(StaffUser, StaffUserAdmin)

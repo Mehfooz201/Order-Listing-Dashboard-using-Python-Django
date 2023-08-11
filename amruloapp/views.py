@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.db.models import Q
-from .models import  User, Order, StaffUser
+from .models import  User, Order
 from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
@@ -164,19 +164,28 @@ def cadResult(request):
 #----------------------- Staff Manege----------------------------------------#
 
 def addStaffUser(request):
+    users = User.objects.all()
+
     if request.method == 'POST':
         staff_user_form = StaffUserCreationForm(request.POST)
         if staff_user_form.is_valid():
-            user = staff_user_form.save()
-            staff_user = StaffUser(user=user, affiliated_with=staff_user_form.cleaned_data['affiliated_with'])
-            staff_user.approval_status = staff_user_form.cleaned_data['approval_status']
-            staff_user.save()
-            return redirect('dashboard')  # Redirect to the dashboard or appropriate page
+            email = staff_user_form.cleaned_data['email']
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'Email address is already in use.')
+            elif staff_user_form.cleaned_data['password1'] != staff_user_form.cleaned_data['password2']:
+                messages.error(request, 'Passwords do not match.')
+            else:
+                user = staff_user_form.save(commit=False)
+                user.is_staff = True  # Set user as staff
+                user.save()
+                messages.success(request, 'Staff User added successfully.')
+                return redirect('staff-user')  # Redirect to the dashboard or appropriate page
     else:
         staff_user_form = StaffUserCreationForm()
 
-    context = {'active_item': 'staff-user', 'staff_user_form': staff_user_form}
+    context = {'active_item': 'staff-user', 'staff_user_form': staff_user_form, 'users': users}
     return render(request, 'amruloapp/dashboard/staff-user.html', context)
+
 
 
 #----------------------- Dental Statistics ------------------------------------#

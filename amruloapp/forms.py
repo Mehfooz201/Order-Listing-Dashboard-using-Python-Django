@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import User, Order, StaffUser
+from .models import User, Order
 from django import forms
 from datetime import datetime
 from django.utils import timezone
@@ -8,12 +8,9 @@ from django.contrib.auth.forms import UserCreationForm
 
 #Staff User
 class StaffUserCreationForm(UserCreationForm):
-    affiliated_with = forms.CharField(max_length=200, required=False)
-    approval_status = forms.BooleanField(required=False)
     class Meta:
         model = User
-        fields = ['username', 'name', 'email', 'phone', 'affiliated_with', 'approval_status', 'password1', 'password2']
-
+        fields = ['username', 'name', 'email', 'phone', 'affiliated_with', 'password1', 'password2',   ]
 
 #User Form
 class UserProfileUpdateForm(ModelForm):

@@ -14,6 +14,10 @@ class User(AbstractUser):
     avatar = models.ImageField(null=True, default='avatar.svg')
     phone = models.CharField(max_length=15, blank=True, null=True, default='')
 
+    affiliated_with = models.CharField(max_length=100, null=True, blank=True)
+    approval_status = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
     COUNTRY_CHOICES = [
         ('India', 'India'),
         ('USA', 'USA'),
@@ -28,11 +32,6 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-
-class StaffUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    affiliated_with = models.CharField(max_length=100, null=True, blank=True)
-    approval_status = models.BooleanField(default=False)
 
 
 # models.py
