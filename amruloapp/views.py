@@ -165,21 +165,28 @@ def cadResult(request):
 
 def addStaffUser(request):
     users = User.objects.all()
-
     if request.method == 'POST':
         staff_user_form = StaffUserCreationForm(request.POST)
         if staff_user_form.is_valid():
             email = staff_user_form.cleaned_data['email']
+            password1 = staff_user_form.cleaned_data['password1']
+            password2 = staff_user_form.cleaned_data['password2']
+            
+            # Check if the email already exists in User model
             if User.objects.filter(email=email).exists():
-                messages.error(request, 'Email address is already in use.')
-            elif staff_user_form.cleaned_data['password1'] != staff_user_form.cleaned_data['password2']:
-                messages.error(request, 'Passwords do not match.')
+                messages.error(request, 'Email already exists. Please use a different email.')
+            # Check if passwords match
+            elif password1 != password2:
+                messages.error(request, 'Passwords do not match. Please re-enter your password.')
             else:
                 user = staff_user_form.save(commit=False)
-                user.is_staff = True  # Set user as staff
+                user.is_staff = True
                 user.save()
                 messages.success(request, 'Staff User added successfully.')
-                return redirect('staff-user')  # Redirect to the dashboard or appropriate page
+                return redirect('staff-user')
+        else:
+            # If there are errors, display them
+            messages.error(request, 'There are errors in the form. Please correct them.')
     else:
         staff_user_form = StaffUserCreationForm()
 
