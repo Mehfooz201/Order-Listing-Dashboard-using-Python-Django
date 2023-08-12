@@ -69,24 +69,36 @@
               </button>
             </div>
           </div>
+
           <div class="card-body">
             <div class="order-list-filter-area">
               <div class="row">
 
-                <div class="col-md-5">
-                  <div class="form-group form-group-row">
-                    <label for="order_daterange_input">Order time</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="order_daterange_input"
-                    />
+                <form method="GET" >
+                  <div class="col-md-5">
+                    <div class="form-group form-group-row">
+                      <label for="fromdate" class="col-sm-2 col-form-label">From:</label>
+                      <div class="col-sm-8">
+                          <input type="date" class="form-control" id="fromdate" name="fromdate">
+                      </div>
+
+                      <label for="todate" class="col-sm-2 col-form-label">To:</label>
+                      <div class="col-sm-8">
+                          <input type="date" class="form-control" id="todate" name="todate">
+                      </div>
+
+                      <div class="col-md-3 text-left">
+                        <input class="btn btn-primary" type='submit' Value='Search Date'/>
+                      </div>
+                      
+                    </div>
                   </div>
-                </div>
-                
+                </form>
+
+          
                 <form method="GET" action="{% url 'order-list' %}">
-                    <div class="col-md-12">
-                      <div class="form-group form-group-row">
+                    <div class="col-md-12 ">
+                      <div class="form-group form-group-row ">
                         <label for="order_number">Order number</label>
                         <input type="number" class="form-control" id="order_number" name='order_number' placeholder="Order number"/>
 
@@ -97,18 +109,14 @@
 
                       
                     </div>
-                  
-
-                    {% comment %} <div class="col-md-3 text-right">
-                      <button class="btn btn-primary">Search</button>
-                    </div> {% endcomment %}
-                  </form>
+                </form>
               
-
+              
+              
+              </div>
               
             </div>
-            </div>
-            <div class="table-responsive">
+            <div class="table-responsive" id="filtered-data">
               <table
                 class="table nowrap table-bordered"
                 id="orderListTable"
@@ -118,7 +126,7 @@
                     <th>Sr. No</th>
                     <th>Order Number</th>
                     <th>Customer Name</th>
-                    <th>Order Data</th>
+                    <th>Order Date</th>
                     <th>Order Type</th>
                     <th>Purchaser</th>
                     <th>Currency</th>
@@ -128,14 +136,16 @@
                     <th>Order Status</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody >
                 
                 {% for data in order_data %}
                     {% comment %} <tr class="odd"> {% endcomment %}
                         <td>{{forloop.counter}}</td>
                         <td>{{data.order_number}}</td>
                         <td>{{data.customer_name}}</td>
-                        <td>{{data.order_date}}</td>
+                        {% comment %} <td>{{ data.order_date|date:"Y-m-d" }}</td> {% endcomment %}
+                        <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
+
                         <td>{{data.order_type}}</td>
 
                         <td>{{data.purchaser}}</td>
@@ -202,10 +212,10 @@
     <script src="{% static 'amruloapp/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
     <script src="{% static 'amruloapp/dashboard/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
     <script src="{% static 'amruloapp/dashboard/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
-
+    <script src="{% static 'amruloapp/dashboard/plugins/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/daterangepicker/daterangepicker.js' %}"></script>
 
     <script src="{% static 'amruloapp/dashboard/dist/js/order-list.js' %}"></script>
-
 
 
 {% endblock scripts %}

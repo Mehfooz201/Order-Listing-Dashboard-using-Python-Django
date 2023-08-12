@@ -7,6 +7,8 @@ from .models import  User, Order
 from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
+from django.utils import timezone
+from datetime import datetime
 
 
 
@@ -101,16 +103,25 @@ def createOrder(request):
     return render(request, 'amruloapp/dashboard/create-order.html', context)
 
 
+
 def orderList(request):
     order_number = request.GET.get('order_number')
+    from_date = request.GET.get('fromdate')
+    to_date = request.GET.get('todate')
 
+    order_data = Order.objects.all()
 
     if order_number:
         # Filter orders based on the order_number if it's provided in the search form
-        order_data = Order.objects.filter(order_number__icontains=order_number)
-    else:
-        # If no order_number is provided in the search form, display all orders
-        order_data = Order.objects.all()
+        order_data = order_data.filter(order_number__icontains=order_number)
+    
+    if from_date and to_date:
+        # Convert the date strings to datetime objects
+        from_date = datetime.strptime(from_date, '%Y-%m-%d').date()
+        to_date = datetime.strptime(to_date, '%Y-%m-%d').date()
+
+        # Filter orders based on the date range
+        order_data = order_data.filter(order_date__range=[from_date, to_date])
         
     context = {'active_item': 'order-list', 'order_data': order_data}
     return render(request, 'amruloapp/dashboard/order-list.html', context)

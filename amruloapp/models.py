@@ -52,6 +52,9 @@ class Order(models.Model):
 
     # ... (other fields)
     order_date = models.DateField(default=timezone.now, null=True, blank=True)
+    def formatted_order_date(self):
+        return self.order_date.strftime('%Y-%m-%d 00:00')
+    
     ORDER_STATUS_CHOICES = [
         ('active', 'Active'),
         ('complete', 'Complete'),
