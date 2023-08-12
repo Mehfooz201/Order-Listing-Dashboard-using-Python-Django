@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.db.models import Q
-from .models import  User, Order
+from .models import  User, Order, FrameworkAgreement, CompanyInformation
 from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
@@ -86,7 +86,6 @@ def createOrder(request):
             print('Form validation error:', form.errors)
     else:
         form = OrderForm()   
-
     
     # Fetch the actual exchange rate for INR
     try:
@@ -95,20 +94,23 @@ def createOrder(request):
     except RatesNotAvailableError:
         # Handle the error gracefully, e.g., use a default exchange rate
         inr_rate = 82.0  # You can use a default value here or handle the error as per your requirement
- 
+    
+    company = CompanyInformation.objects.all()
 
     context = {'active_item': 'create-order', 'form': form, 
-                'inr_rate': inr_rate,}
+                'inr_rate': inr_rate, 'company': company}
     
     return render(request, 'amruloapp/dashboard/create-order.html', context)
 
 
 
 def orderList(request):
+    user = request.user
     order_number = request.GET.get('order_number')
     from_date = request.GET.get('fromdate')
     to_date = request.GET.get('todate')
 
+    # order_data = Order.objects.filter(user=user)
     order_data = Order.objects.all()
 
     if order_number:
@@ -155,9 +157,21 @@ def confirmReceipt(request):
     context = {'active_item': 'confirm-order'}
     return render(request, 'amruloapp/dashboard/confirm-reciept.html' ,context)
 
+
+
+
 def frameworkManagement(request):
-    context = {'active_item': 'framemanage-order'}
+    user = request.user
+    agreements = FrameworkAgreement.objects.filter(customer=user)
+    orders = Order.objects.filter(user=user, framework_agreement__in=agreements)
+    company = CompanyInformation.objects.all()
+    context = {'active_item': 'framemanage-order', 'agreements': agreements, 'orders': orders, 'company':company}
     return render(request, 'amruloapp/dashboard/framework-manage.html', context)
+
+
+
+
+
 
 def remakeOrder(request):
     context = {'active_item': 'remake-order'}

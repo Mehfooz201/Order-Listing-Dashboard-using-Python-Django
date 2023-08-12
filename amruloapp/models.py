@@ -3,10 +3,22 @@ from django.contrib.auth.models import AbstractUser
 from datetime import datetime
 from django.utils import timezone
 from forex_python.converter import CurrencyRates
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 
 #Models here
+class CompanyInformation(models.Model):
+    company_name = models.CharField(max_length=200)
+    company_phone = models.CharField(max_length=15)
+    company_address = models.TextField()
+    company_bank_name = models.CharField(max_length=200, blank=True, null=True)
+    company_bank_account_number = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return self.company_name
+    
 
 class User(AbstractUser):
     name = models.CharField(max_length=200, null=True)
@@ -17,6 +29,9 @@ class User(AbstractUser):
     affiliated_with = models.CharField(max_length=100, null=True, blank=True)
     approval_status = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+
+    company_information = models.ForeignKey(CompanyInformation, on_delete=models.SET_NULL, null=True, blank=True)
+
 
     COUNTRY_CHOICES = [
         ('India', 'India'),
@@ -34,9 +49,42 @@ class User(AbstractUser):
 
 
 
+
+    
+
+
+class FrameworkAgreement(models.Model):
+
+    agreement_number = models.CharField(max_length=3, unique=True, editable=False)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def save(self, *args, **kwargs):
+        if not self.agreement_number:
+            self.agreement_number = self.generate_agreement_number()
+        super(FrameworkAgreement, self).save(*args, **kwargs)
+
+    def generate_agreement_number(self):
+        last_agreement = FrameworkAgreement.objects.order_by('agreement_number').last()
+        if last_agreement:
+            last_number = int(last_agreement.agreement_number)
+            new_number = f"{last_number + 1:03}"
+        else:
+            new_number = "001"
+        return new_number
+    
+    def __str__(self):
+        return self.agreement_number
+    
+    class Meta:
+        verbose_name_plural = "Framework Agreements"
+
+
 # models.py
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey to link the order with the user
+    company_information = models.ForeignKey(CompanyInformation, on_delete=models.SET_NULL, null=True, blank=True)
+    framework_agreement = models.ForeignKey(FrameworkAgreement, on_delete=models.SET_NULL, null=True, blank=True)
+    
     order_number = models.AutoField(primary_key=True)  # Auto-generated order number
     customer_name = models.CharField(max_length=100)
     manufacturer = models.CharField(max_length=100, blank=True, null=True)
@@ -163,6 +211,15 @@ class Order(models.Model):
     
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
+    
+
+    def save(self, *args, **kwargs):
+        if not self.framework_agreement_id:
+            recent_agreement = FrameworkAgreement.objects.filter(customer=self.user).order_by('-id').first()
+            if recent_agreement:
+                self.framework_agreement = recent_agreement
+        super(Order, self).save(*args, **kwargs)
+
     def calculate_price(self):
         price_dict  = {
         '12HRS': {
@@ -282,6 +339,11 @@ class Order(models.Model):
     
 
     def save(self, *args, **kwargs):
+        if not self.framework_agreement_id:
+            recent_agreement = FrameworkAgreement.objects.filter(customer=self.user).order_by('-id').first()
+            if recent_agreement:
+                self.framework_agreement = recent_agreement
+
         if not self.price:
             self.price = self.calculate_price()
         super(Order, self).save(*args, **kwargs)
@@ -294,3 +356,18 @@ class Order(models.Model):
 
     class Meta:
         verbose_name_plural = "Orders"
+
+
+
+
+# Signal handler for creating related records when a new user is added
+@receiver(post_save, sender=User)
+def create_user_related_records(sender, instance, created, **kwargs):
+    if created:
+        agreement = FrameworkAgreement.objects.create(customer=instance)
+        instance.framework_agreement = agreement
+        instance.save()
+
+post_save.connect(create_user_related_records, sender=User)
+
+

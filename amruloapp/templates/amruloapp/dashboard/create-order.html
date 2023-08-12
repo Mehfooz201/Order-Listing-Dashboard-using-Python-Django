@@ -77,14 +77,18 @@
                                 <div class="col-md-4">
                                     <div class="form-group form-group-row">
                                     <label for="manufacturer">Manufacturer</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="manufacturer"
-                                        name='manufacturer'
-                                        value="CDL LAB"
-                                        placeholder="Manufacturer"
-                                    />
+                                    {% for data in company %}
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="manufacturer"
+                                            name='manufacturer'
+                                            
+                                            value="{{ data.company_name }}"
+
+                                            placeholder="Manufacturer"
+                                        />
+                                    {% endfor %}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
