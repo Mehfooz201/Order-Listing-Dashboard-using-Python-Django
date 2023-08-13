@@ -8,6 +8,36 @@
 
 {% block custom_style %}
 {% comment %} Custom css here {% endcomment %}
+
+    <!-- DataTables -->
+    <link
+      rel="stylesheet"
+      href="{% static 'amruloapp/dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'amruloapp/dashboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'amruloapp/dashboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'amruloapp/dashboard/plugins/datatables-fixedcolumns/css/fixedColumns.bootstrap4.min.css' %}"
+    />
+    <!-- overlayScrollbars -->
+    <link
+      rel="stylesheet"
+      href="{% static 'amruloapp/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}"
+    />
+
+    <!-- summernote -->
+    <link rel="stylesheet" href="{% static 'amruloapp/dashboard/plugins/summernote/summernote-bs4.min.css' %}" />
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'amruloapp/dashboard/dist/css/confirmation-of-receipt.css' %}" />
+
 {% endblock custom_style %}
 
 
@@ -26,12 +56,425 @@
             </div>
         </div>
         
+        <section class="content">
+            <div class="container-fluid">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Confirmation of receipt</h3>
+                  <div class="card-tools">
+                    <button
+                      type="button"
+                      class="btn btn-tool"
+                      data-card-widget="collapse"
+                    >
+                      <i class="fas fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="order-list-filter-area">
+                    <div class="row">
+         
+                    
+                          <form method="GET" action="">
+                              <div class="col-md-12 ">
+                                <div class="form-group form-group-row ">
+                                  <label for="order_number">Order number</label>
+                                  <input type="number" class="form-control" id="order_number" name='order_number' placeholder="Order number"/>
+          
+                                  <div class="col-md-3 text-right">
+                                    <button class="btn btn-primary">Search</button>
+                                  </div>
+                                </div>
+          
+                                
+                              </div>
+                          </form>
+
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table
+                      class="table nowrap table-bordered"
+                      id="orderListTable"
+                    >
+                      <thead>
+                        <tr>
+                          <th>Sr. No</th>
+                          <th>Order Number</th>
+                          <th>Customer Name</th>
+                          <th>Order Data</th>
+                          <th>Order Type</th>
+                          <th>Order Status</th>
+                          <th>Purchaser</th>
+                          <th>Currency</th>
+                          <th>Amount</th>
+                          <th>Phone</th>
+                          <th>Receiving Address</th>
+                          <th>Menu</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="odd">
+                          <td>1</td>
+                          <td>1</td>
+                          <td>Wajahat</td>
+                          <td>July 29, 2023</td>
+                          <td>Simple</td>
+                          <td>
+                            <span class="badge badge-success">Complete</span>
+                          </td>
+                          <td>Random Guy</td>
+                          <td>USA</td>
+                          <td>50.00</td>
+                          <td>N/A</td>
+                          <td>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Tempora molestias repellat molestiae
+                          </td>
+                          <td></td>
+                        </tr>
+                        <tr class="even">
+                          <td>2</td>
+                          <td>2</td>
+                          <td>Wajahat</td>
+                          <td>July 29, 2023</td>
+                          <td>Simple</td>
+                          <td>
+                            <span class="badge badge-warning">Modification</span>
+                          </td>
+                          <td>Random Guy</td>
+                          <td>USA</td>
+                          <td>50.00</td>
+                          <td>N/A</td>
+                          <td>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Tempora molestias repellat molestiae
+                          </td>
+                          <td></td>
+                        </tr>
+                        <tr class="odd">
+                          <td>3</td>
+                          <td>3</td>
+                          <td>Wajahat</td>
+                          <td>July 29, 2023</td>
+                          <td>Simple</td>
+                          <td>
+                            <span class="badge badge-primary">Active</span>
+                          </td>
+                          <td>Random Guy</td>
+                          <td>USA</td>
+                          <td>50.00</td>
+                          <td>N/A</td>
+                          <td>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Tempora molestias repellat molestiae
+                          </td>
+                          <td></td>
+                        </tr>
+                        <tr class="even">
+                          <td>4</td>
+                          <td>4</td>
+                          <td>John Doe</td>
+                          <td>Mar 31, 2021</td>
+                          <td>Urgent</td>
+                          <td>
+                            <span class="badge badge-success">Complete</span>
+                          </td>
+                          <td>NOVA</td>
+                          <td>USA</td>
+                          <td>50.00</td>
+                          <td>N/A</td>
+                          <td>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Tempora molestias repellat molestiae
+                          </td>
+                          <td></td>
+                        </tr>
+                        <tr class="odd">
+                          <td>5</td>
+                          <td>5</td>
+                          <td>John Doe</td>
+                          <td>Mar 31, 2021</td>
+                          <td>Urgent</td>
+                          <td>
+                            <span class="badge badge-primary">Active</span>
+                          </td>
+                          <td>NOVA</td>
+                          <td>USA</td>
+                          <td>50.00</td>
+                          <td>N/A</td>
+                          <td>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Tempora molestias repellat molestiae
+                          </td>
+                          <td></td>
+                        </tr>
+                        <tr class="even">
+                          <td>6</td>
+                          <td>6</td>
+                          <td>John Doe</td>
+                          <td>Mar 31, 2021</td>
+                          <td>Urgent</td>
+                          <td>
+                            <span class="badge badge-success">Complete</span>
+                          </td>
+                          <td>NOVA</td>
+                          <td>USA</td>
+                          <td>50.00</td>
+                          <td>N/A</td>
+                          <td>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Tempora molestias repellat molestiae
+                          </td>
+                          <td></td>
+                        </tr>
+                        <tr class="odd">
+                          <td>7</td>
+                          <td>7</td>
+                          <td>Wajahat Rana</td>
+                          <td>May 02, 2022</td>
+                          <td>Simple</td>
+                          <td>
+                            <span class="badge badge-danger">Cancelled</span>
+                          </td>
+                          <td>UN-BOM</td>
+                          <td>USA</td>
+                          <td>50.00</td>
+                          <td>N/A</td>
+                          <td>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Tempora molestias repellat molestiae
+                          </td>
+                          <td></td>
+                        </tr>
+                        <tr class="even">
+                          <td>8</td>
+                          <td>8</td>
+                          <td>Wajahat Rana</td>
+                          <td>May 02, 2022</td>
+                          <td>Simple</td>
+                          <td>
+                            <span class="badge badge-warning">Modification</span>
+                          </td>
+                          <td>REON</td>
+                          <td>USA</td>
+                          <td>50.00</td>
+                          <td>N/A</td>
+                          <td>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Tempora molestias repellat molestiae
+                          </td>
+                          <td></td>
+                        </tr>
+                        <tr class="odd">
+                          <td>9</td>
+                          <td>9</td>
+                          <td>Wajahat Rana</td>
+                          <td>May 02, 2022</td>
+                          <td>Simple</td>
+                          <td>
+                            <span class="badge badge-danger">Cancelled</span>
+                          </td>
+                          <td>UN-BOM</td>
+                          <td>USA</td>
+                          <td>50.00</td>
+                          <td>N/A</td>
+                          <td>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Tempora molestias repellat molestiae
+                          </td>
+                          <td></td>
+                        </tr>
+                        <tr class="even">
+                          <td>10</td>
+                          <td>10</td>
+                          <td>Wajahat Rana</td>
+                          <td>May 02, 2022</td>
+                          <td>Simple</td>
+                          <td>
+                            <span class="badge badge-warning">Modification</span>
+                          </td>
+                          <td>REON</td>
+                          <td>USA</td>
+                          <td>50.00</td>
+                          <td>N/A</td>
+                          <td>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Tempora molestias repellat molestiae
+                          </td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+
     </div>
+
+
+    <!-- View Order Modal -->
+    <div
+      class="modal fade"
+      id="viewOrderModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="viewOrderModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewOrderModalLabel">View Order</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Order Information</h3>
+                <div class="card-tools">
+                  <button
+                    type="button"
+                    class="btn btn-tool"
+                    data-card-widget="collapse"
+                  >
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <tr>
+                    <th class="bg-light">Customer name</th>
+                    <td>CDE</td>
+                    <th class="bg-light">Processing center</th>
+                    <td>Lorem ipsum dolor sit amet consectetur</td>
+                    <th class="bg-light">Order type</th>
+                    <td>Regular order</td>
+                  </tr>
+                  <tr>
+                    <th class="bg-light">Purchaser</th>
+                    <td>Lorem Ipsum</td>
+                    <th class="bg-light">Order time</th>
+                    <td>2023-02-11 10:44</td>
+                    <th class="bg-light">Salesman</th>
+                    <td>John Doe</td>
+                  </tr>
+                  <tr>
+                    <th class="bg-light">Remarks</th>
+                    <td colspan="5"></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Product Information</h3>
+                <div class="card-tools">
+                  <button
+                    type="button"
+                    class="btn btn-tool"
+                    data-card-widget="collapse"
+                  >
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <tr>
+                    <th class="bg-light">Product type</th>
+                    <td>Colbat-chrom framework</td>
+                    <th class="bg-light">Process</th>
+                    <td>CAD design</td>
+                    <th class="bg-light">Unit of measurment</th>
+                    <td>Pcs</td>
+                  </tr>
+                  <tr>
+                    <th class="bg-light">Product type</th>
+                    <td>Frameworks</td>
+                    <th class="bg-light">Number of files</th>
+                    <td colspan="3">2</td>
+                  </tr>
+                  <tr>
+                    <th class="bg-light">Product material</th>
+                    <td>COCR</td>
+                    <th class="bg-light">Quantity</th>
+                    <td colspan="3">1</td>
+                  </tr>
+                  <tr>
+                    <th class="bg-light">Production requirements</th>
+                    <td colspan="5"></td>
+                  </tr>
+                </table>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th class="text-center bg-light">Sr.No</th>
+                      <th class="text-center bg-light">Patient name</th>
+                      <th class="text-center bg-light">Design requirements</th>
+                      <th class="text-center bg-light">Design file size</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>-</td>
+                      <td>whatsapp image 2023-03-21 at 19.31.11.12.jpeg</td>
+                      <td>134.93 KB</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- View Order Modal -->
 
 {% endblock content %}
 
 
 {% block scripts %}
+
+    <!-- DataTables  & Plugins -->
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables-fixedcolumns/js/dataTables.fixedColumns.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables-fixedcolumns/js/fixedColumns.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/jszip/jszip.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/pdfmake/pdfmake.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/pdfmake/vfs_fonts.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+    <script src="{% static 'amruloapp/dashboard/dist/js/confirmation-of-receipt.js' %}"></script>
+
 
 {% endblock scripts %}
 
