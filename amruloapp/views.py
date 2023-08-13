@@ -9,6 +9,8 @@ from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
 from django.utils import timezone
 from datetime import datetime
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 
 
 
@@ -71,6 +73,7 @@ def changePassword(request):
 #---------------------------------------------------------------------#
 #                           Dashboard 
 #---------------------------------------------------------------------#
+@login_required 
 def createOrder(request):
     if request.method == 'POST':
         form = OrderForm(request.POST, request.FILES)
@@ -103,7 +106,7 @@ def createOrder(request):
     return render(request, 'amruloapp/dashboard/create-order.html', context)
 
 
-
+@login_required 
 def orderList(request):
     user = request.user
     order_number = request.GET.get('order_number')
@@ -128,6 +131,23 @@ def orderList(request):
     context = {'active_item': 'order-list', 'order_data': order_data}
     return render(request, 'amruloapp/dashboard/order-list.html', context)
 
+@login_required 
+def confirmReceipt(request):
+    user = request.user  # Get the logged-in user
+    order_number = request.GET.get('order_number')
+    order_data = Order.objects.filter(user=user, order_status='complete')
+
+    if order_number:
+        try:
+            order_data = order_data.filter(order_number=int(order_number))
+        except ValueError:
+            # Handle invalid order number input
+            pass
+
+    context = {'active_item': 'confirm-order', 'order_data':order_data}
+    return render(request, 'amruloapp/dashboard/confirm-reciept.html' ,context)
+
+
 
 
 @login_required
@@ -147,19 +167,17 @@ def userProfile(request, id):
 
 
 
-
+@login_required 
 def returnedOrder(request):
     context = {'active_item': 'return-order'}
     return render(request, 'amruloapp/dashboard/returned-orders.html', context)
 
 
-def confirmReceipt(request):
-    context = {'active_item': 'confirm-order'}
-    return render(request, 'amruloapp/dashboard/confirm-reciept.html' ,context)
 
 
 
 
+@login_required 
 def frameworkManagement(request):
     user = request.user
     agreements = FrameworkAgreement.objects.filter(customer=user)
@@ -172,7 +190,7 @@ def frameworkManagement(request):
 
 
 
-
+@login_required 
 def remakeOrder(request):
     context = {'active_item': 'remake-order'}
     return render(request, 'amruloapp/dashboard/remake-order.html', context)
@@ -225,4 +243,7 @@ def addStaffUser(request):
 def orderDocuments(request):
     context = {'active_item': 'order-docs'}
     return render(request, 'amruloapp/dashboard/order-documents.html', context)
+
+
+
 

@@ -47,6 +47,7 @@ urlpatterns = [
 
     #Dental statistics
     path('order-documents', views.orderDocuments, name='order-documents'),
-   
- 
+
+
+
 ]
