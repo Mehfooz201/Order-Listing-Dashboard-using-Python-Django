@@ -7,13 +7,57 @@ from .models import  User, Order, FrameworkAgreement, CompanyInformation
 from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
-from django.utils import timezone
-from datetime import datetime
+from datetime import datetime, date
+
+
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from io import BytesIO
 
 
 
+@login_required 
+def frameworkManagement(request):
+    user = request.user
+    agreements = FrameworkAgreement.objects.filter(customer=user)
+    orders = Order.objects.filter(user=user, framework_agreement__in=agreements)
+    company = CompanyInformation.objects.all()
+    context = {'active_item': 'framemanage-order', 'agreements': agreements, 'orders': orders, 'company':company, 'current_date': date.today(),}
+
+    return render(request, 'amruloapp/dashboard/framework-manage.html', context)
+
+
+@login_required
+def generate_pdf(request):
+    user = request.user
+    agreements = FrameworkAgreement.objects.filter(customer=user)
+    orders = Order.objects.filter(user=user, framework_agreement__in=agreements)
+    company = CompanyInformation.objects.all()
+    current_date = date.today()
+    context = {
+        'agreements': agreements,
+        'orders': orders,
+        'company': company,
+        'current_date': current_date,
+    }
+
+    template = get_template('amruloapp/dashboard/framework-agreement-pdf.html')
+    html = template.render(context)
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="framework_agreement.pdf"'
+
+    buffer = BytesIO()
+    pisa.CreatePDF(html, dest=buffer, encoding='utf-8')
+
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+
+    return response
+    
+    
 # Create your views here.
 
 #--------------------- Home and Login Page ----------------------------
@@ -217,6 +261,9 @@ def remakeOrder(request):
 
 
 
+
+
+
 @login_required
 def userProfile(request, id):
     user = get_object_or_404(User, id=id)
@@ -236,15 +283,6 @@ def userProfile(request, id):
 
 
 
-
-@login_required 
-def frameworkManagement(request):
-    user = request.user
-    agreements = FrameworkAgreement.objects.filter(customer=user)
-    orders = Order.objects.filter(user=user, framework_agreement__in=agreements)
-    company = CompanyInformation.objects.all()
-    context = {'active_item': 'framemanage-order', 'agreements': agreements, 'orders': orders, 'company':company}
-    return render(request, 'amruloapp/dashboard/framework-manage.html', context)
 
 
 

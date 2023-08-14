@@ -1,0 +1,229 @@
+
+    <div class="content-wrapper">
+        
+        <section class="content">
+            <div class="container-fluid">
+                
+                <div class="card" id="framework-agreement-card">
+                    <div class="card-body pb-0">
+                        <div class="agreement-title">
+                            <h5>Annual Framework Agreement for Processing Services</h5>
+                        </div>
+                    {% for agreement in agreements %}
+                            <div class="agreement-detail-container">
+                                <div class="agreement-detail">
+                                    <div class="agreement-detail-title">Agreement No: </div>
+                                    <div class="agreement-detail-value">{{agreement.agreement_number}}</div>
+                                </div>
+                                <div class="agreement-detail ml-5">
+                                    <div class="agreement-detail-title">ID</div>
+                                    <div class="agreement-detail-value">{{agreement.customer.email}}</div>
+                                </div>
+                            </div>
+
+                            <div class='row mt-4'>
+                                <div class="text-left col-6">
+                                    <h6>Party-A: {{agreement.customer.name}} ({{agreement.customer.affiliated_with}})</h6>
+                                </div>
+                                {% endfor %}
+
+                                {% for data in company %}
+                                    <div class="text-right col-6">
+                                        <h6 class=''>Party-B: <span>{{data.company_name}}</span> </h6> 
+                                    </div>
+                                {% endfor %} 
+
+                            </div>
+                    </div>
+
+                    
+
+                    
+                    
+                    
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th class="text-center bg-light">
+                                    <span class="text-muted">Cooperation Mode</span>
+                                </th>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, libero molestias laborum non ut temporibus ea debitis ex quisquam saepe, blanditiis accusamus fugiat eius quidem ad error, aut earum minus?
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center bg-light">
+                                    <span class="text-muted">Settlement Method(s)</span>
+                                </th>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, libero molestias laborum non ut temporibus ea debitis ex quisquam saepe, blanditiis accusamus fugiat eius quidem ad error, aut earum minus?
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center bg-light">
+                                    <span class="text-muted">Processing Quantity</span>
+                                </th>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, libero molestias laborum non ut temporibus ea debitis ex quisquam saepe, blanditiis accusamus fugiat eius quidem ad error, aut earum minus?
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center bg-light">
+                                    <span class="text-muted">Change of price</span>
+                                </th>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, libero molestias laborum non ut temporibus ea debitis ex quisquam saepe, blanditiis accusamus fugiat eius quidem ad error, aut earum minus?
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center bg-light">
+                                    <span class="text-muted">Signature Confirmation</span>
+                                </th>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, libero molestias laborum non ut temporibus ea debitis ex quisquam saepe, blanditiis accusamus fugiat eius quidem ad error, aut earum minus?
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center bg-light" colspan="2">
+                                    <span class="text-muted">Product List</span>
+                                </th>
+                            </tr>
+                        </table>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">Order No.</span>
+                                    </th>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">Product Type</span>
+                                    </th>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">Product Sub-Type</span>
+                                    </th>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">Product Material</span>
+                                    </th>
+
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">Unit of Measurement</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                {% for order in orders %} 
+                                    <tr>
+                                        <td>{{ order.order_number }}</td>
+                                        <td>{{ order.product_type }}</td>
+                                        <td>{{ order.product_sub_type }}</td>
+                                        <td>{{ order.product_material }}</td>   
+                                        <td>{{ order.unit_of_measurement }}</td>  
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <table class="table table-bordered">
+
+                            <tr>
+                                <th class="text-left bg-light">
+                                    <span class="text-muted">
+                                        <div>Signature of</div>
+                                        <div>authorized representative:</div>
+                                        <div>Party A</div>
+                                        <div>(signature and seal)</div>
+                                    </span>
+                                </th>
+                                {% for agreement in agreements %}
+                                    <td>{{agreement.customer.name}}</td>
+                                {% endfor %}
+                                <th class="text-left bg-light">
+                                    <span class="text-muted">
+                                        <div>Signature of</div>
+                                        <div>authorized representative:</div>
+                                        <div>Party B</div>
+                                        <div>(signature and seal)</div>
+                                    </span>
+                                </th>
+                                {% for data in company %}
+                                <td>{{data.company_name}}</td>
+                            {% endfor %}
+                            </tr>
+                            <tr>
+                                <th class="text-left bg-light">
+                                    <span class="text-muted">Address</span>
+                                </th>
+                                {% for agreement in agreements %}
+                                    <td>{{agreement.customer.user_address}}</td>
+                                {% endfor %}
+                                <th class="text-left bg-light">
+                                    <span class="text-muted">Address</span>
+                                </th>
+
+                                {% for data in company %}
+                                    <td>{{data.company_address}}</td>
+                                {% endfor %}
+                                
+                                
+                            </tr>
+                            <tr>
+                                <th class="text-left bg-light">
+                                    <span class="text-muted">
+                                        Bank of <br />
+                                        deposit
+                                    </span>
+                                </th>
+                                <td></td>
+                                <th class="text-left bg-light">
+                                    <span class="text-muted">
+                                        Bank of <br />
+                                        deposit
+                                    </span>
+                                </th>
+                                {% for data in company %}
+                                    <td></td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th class="text-left bg-light">
+                                    <span class="text-muted">
+                                        Account <br />
+                                        number
+                                    </span>
+                                </th>
+                                <td></td>
+                                <th class="text-left bg-light">
+                                    <span class="text-muted">
+                                        Account <br />
+                                        number
+                                    </span>
+                                </th>
+                                {% for data in company %}
+                                    <td></td>
+                                {% endfor %}
+                            </tr>
+
+                            {% comment %} Date {% endcomment %}
+                            <tr>
+                                <th class="text-left bg-light">
+                                    <span class="text-muted">
+                                        Date
+                                    </span>
+                                </th>
+                                <td>{{ current_date }}</td>
+                                <th class="text-left bg-light">
+                                    <span class="text-muted">
+                                        Date
+                                    </span>
+                                </th>
+                                <td>{{ current_date }}</td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>

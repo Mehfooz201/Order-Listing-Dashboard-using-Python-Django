@@ -127,7 +127,7 @@
                 </div>
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'user-profile' user.id %}">Profile</a>
+                {% comment %} <a class="dropdown-item" href="{% url 'user-profile' user.id %}">Profile</a> {% endcomment %}
                 <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
               </div>
             </div>

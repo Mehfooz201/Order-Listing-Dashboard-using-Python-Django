@@ -25,7 +25,12 @@ urlpatterns = [
 
     path('confirm-receipt/', views.confirmReceipt, name='confirm-receipt'),
 
+
+
     path('framework-manage/', views.frameworkManagement, name='framework-manage'),
+    path('generate-pdf/', views.generate_pdf, name='generate-pdf'),
+
+
 
     path('remake-order/', views.remakeOrder, name='remake-order'),
 

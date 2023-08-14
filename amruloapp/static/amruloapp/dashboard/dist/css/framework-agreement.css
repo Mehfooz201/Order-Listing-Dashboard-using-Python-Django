@@ -3,10 +3,12 @@
     text-align: center;
     margin-bottom: 1rem;
 }
+
 .agreement-title h5 {
     position: relative;
     font-weight: bold;
 }
+
 .agreement-detail-container {
     position: relative;
     display: flex;
@@ -14,11 +16,13 @@
     justify-content: center;
     text-align: center;
 }
+
 .agreement-detail-container .agreement-detail {
     position: relative;
     display: flex;
     align-items: center;
 }
+
 .agreement-detail-value {
     position: relative;
     font-weight: bold;
