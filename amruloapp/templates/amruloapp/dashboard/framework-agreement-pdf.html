@@ -208,31 +208,36 @@
                         <div class="agreement-title">
                             <h5>Annual Framework Agreement for Processing Services</h5>
                         </div>
-                    {% for agreement in agreements %}
+                        
+                        {% for agreement in agreements %}
                             <div class="agreement-detail-container">
                                 <div class="agreement-detail">
-                                    <div class="agreement-detail-title">Agreement No: </div>
-                                    <div class="agreement-detail-value">{{agreement.agreement_number}}</div>
-                                </div>
-                                <div class="agreement-detail ml-5">
-                                    <div class="agreement-detail-title">ID</div>
-                                    <div class="agreement-detail-value">{{agreement.customer.email}}</div>
+                                    <h6 class="agreement-detail-title">Agreement No: <span>{{agreement.agreement_number}}</span> </h6>
+
+                                    <h6 class="agreement-detail-title">ID : <span>{{agreement.customer.email}}</span></h6>
                                 </div>
                             </div>
+                        {% endfor %}
 
-                            <div class='row mt-4'>
-                                <div class="text-left col-6">
-                                    <h6>Party-A: {{agreement.customer.name}} ({{agreement.customer.affiliated_with}})</h6>
+                        <div class="mt-4">
+                            <div class="row">
+                                <div class="col-6 text-left">
+                                    {% for agreement in agreements %}
+                                        <p>Party-A: {{ agreement.customer.name }} ({{ agreement.customer.affiliated_with }})</p>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
-
-                                {% for data in company %}
-                                    <div class="text-right col-6">
-                                        <h6 class=''>Party-B: <span>{{data.company_name}}</span> </h6> 
-                                    </div>
-                                {% endfor %} 
-
+                        
+                                <div class="col-6 text-right">
+                                    {% for data in company %}
+                                        <p>Party-B: <span>{{ data.company_name }}</span></p>
+                                    {% endfor %}
+                                </div>
                             </div>
+                        </div>
+                        
+                        
+                        
+
                     </div>
 
                     
@@ -389,103 +394,131 @@
                             </tbody>
                         </table>
 
+                        
+                        {% comment %} <div class="row">
+                            <div class='col-md-12'>
+
+                                <div class="col-md-6">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            {% for agreement in agreements %}
+                                                <tr>
+                                                    <th class="text-center bg-light" colspan="2">Signature of (signature and seal)</th>
+                                                    <td>{{ agreement.customer.name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center bg-light" colspan="2">Address</th>
+                                                    <td>{{ agreement.customer.user_address }}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center bg-light" colspan="2">Bank of<br />deposit</th>
+                                                    <td>-</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center bg-light" colspan="2">Account<br />number</th>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center bg-light" colspan="2">Date</th>
+                                                    <td>{{ current_date }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            {% for data in company %}
+                                            <tr>
+                                                <th class="text-center bg-light" colspan="2">Signature of (signature and seal)</th>
+                                                    <td>{{ data.company_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center bg-light" colspan="2">Address</th>
+                                                <td>{{ data.company_address }}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center bg-light" colspan="2">Bank of<br />deposit</th>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center bg-light" colspan="2">Account<br />number</th>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center bg-light" colspan="2">Date</th>
+                                                <td>{{ current_date }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div> {% endcomment %}
+
+                        
+                            
                         <table class="table table-bordered">
-
-                            <tr>
-                                <th class="text-left bg-light">
-                                    <span class="text-muted">
-                                        <div>Signature of</div>
-                                        <div>authorized representative:</div>
-                                        <div>Party A</div>
-                                        <div>(signature and seal)</div>
-                                    </span>
-                                </th>
-                                {% for agreement in agreements %}
-                                    <td class=''>{{agreement.customer.name}}</td>
-                                {% endfor %}
-                                <th class="text-left bg-light">
-                                    <span class="text-muted">
-                                        <div>Signature of</div>
-                                        <div>authorized representative:</div>
-                                        <div>Party B</div>
-                                        <div>(signature and seal)</div>
-                                    </span>
-                                </th>
-                                {% for data in company %}
-                                <td>{{data.company_name}}</td>
-                            {% endfor %}
-                            </tr>
-                            <tr>
-                                <th class="text-left bg-light">
-                                    <span class="text-muted">Address</span>
-                                </th>
-                                {% for agreement in agreements %}
-                                    <td>{{agreement.customer.user_address}}</td>
-                                {% endfor %}
-                                <th class="text-left bg-light">
-                                    <span class="text-muted">Address</span>
-                                </th>
-
-                                {% for data in company %}
-                                    <td>{{data.company_address}}</td>
-                                {% endfor %}
-                                
-                                
-                            </tr>
-                            <tr>
-                                <th class="text-left bg-light">
-                                    <span class="text-muted">
-                                        Bank of <br />
-                                        deposit
-                                    </span>
-                                </th>
-                                <td></td>
-                                <th class="text-left bg-light">
-                                    <span class="text-muted">
-                                        Bank of <br />
-                                        deposit
-                                    </span>
-                                </th>
-                                {% for data in company %}
-                                    <td></td>
-                                {% endfor %}
-                            </tr>
-                            <tr>
-                                <th class="text-left bg-light">
-                                    <span class="text-muted">
-                                        Account <br />
-                                        number
-                                    </span>
-                                </th>
-                                <td></td>
-                                <th class="text-left bg-light">
-                                    <span class="text-muted">
-                                        Account <br />
-                                        number
-                                    </span>
-                                </th>
-                                {% for data in company %}
-                                    <td></td>
-                                {% endfor %}
-                            </tr>
-
-                            {% comment %} Date {% endcomment %}
-                            <tr>
-                                <th class="text-left bg-light">
-                                    <span class="text-muted">
-                                        Date
-                                    </span>
-                                </th>
-                                <td>{{ current_date }}</td>
-                                <th class="text-left bg-light">
-                                    <span class="text-muted">
-                                        Date
-                                    </span>
-                                </th>
-                                <td>{{ current_date }}</td>
-                            </tr>
-
+                            <tbody>
+                                <tr>
+                                    <td class="col-6">
+                                        {% for agreement in agreements %}
+                                            <div>
+                                                <h6 class="text-left bg-light">Signature of
+                                                    authorized representative:
+                                                    Party A
+                                                    (signature and seal)</h6>
+                                                <p>{{ agreement.customer.name }}</p>
+                                                <h6 class="text-left bg-light">Address</h6>
+                                                <p>{{ agreement.customer.user_address }}</p>
+                                                <h6 class="text-left bg-light">Bank of deposit</h6>
+                                                <p>-</p>
+                                                <h6 class="text-left bg-light">Account number</h6>
+                                                <p>-</p>
+                                                <h6 class="text-left bg-light">Date</h6>
+                                                <p>{{ current_date }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </td>
+                                    
+                                    <td class="col-6">
+                                        {% for data in company %}
+                                            <div>
+                                                <h6 class="text-left bg-light">Signature of
+                                                    authorized representative:
+                                                    Party B
+                                                    (signature and seal)</h6>
+                                                <p>{{ data.company_name }}</p>
+                                                <h6 class="text-left bg-light">Address</h6>
+                                                <p>{{ data.company_address }}</p>
+                                                <h6 class="text-left bg-light">Bank of deposit</h6>
+                                                <p>-</p>
+                                                <h6 class="text-left bg-light">Account number</h6>
+                                                <p>-</p>
+                                                <h6 class="text-left bg-light">Date</h6>
+                                                <p>{{ current_date }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
+                        
+                            
+                        
+                          
+                        
+                        
+                        
+                        
+                        
+                        
 
                     </div>
                 </div>
