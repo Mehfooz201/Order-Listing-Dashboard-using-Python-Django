@@ -228,7 +228,7 @@ def returnedOrder(request):
             except Order.DoesNotExist:
                 pass
 
-    context = {'active_item': 'confirm-order', 'order_data':order_data}
+    context = {'active_item': 'return-order', 'order_data':order_data}
     return render(request, 'amruloapp/dashboard/returned-orders.html', context)
 
 
@@ -256,7 +256,7 @@ def remakeOrder(request):
             except Order.DoesNotExist:
                 pass
 
-    context = {'active_item': 'confirm-order', 'order_data':order_data}
+    context = {'active_item': 'remake-order', 'order_data':order_data}
     return render(request, 'amruloapp/dashboard/remake-order.html', context)
 
 
