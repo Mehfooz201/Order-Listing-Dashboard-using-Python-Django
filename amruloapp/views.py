@@ -131,6 +131,7 @@ def orderList(request):
     context = {'active_item': 'order-list', 'order_data': order_data}
     return render(request, 'amruloapp/dashboard/order-list.html', context)
 
+
 @login_required 
 def confirmReceipt(request):
     user = request.user  # Get the logged-in user
@@ -144,9 +145,75 @@ def confirmReceipt(request):
             # Handle invalid order number input
             pass
 
+    if request.method == 'POST':
+        revoke_order_number = request.POST.get('revoke_order_number')
+        if revoke_order_number:
+            try:
+                order_to_revoke = Order.objects.get(order_number=int(revoke_order_number))
+                order_to_revoke.delete()
+                messages.success(request, 'Order Record has been deleted successfully.')
+                return redirect('confirm-receipt')
+            except Order.DoesNotExist:
+                pass
+
     context = {'active_item': 'confirm-order', 'order_data':order_data}
     return render(request, 'amruloapp/dashboard/confirm-reciept.html' ,context)
 
+
+@login_required 
+def returnedOrder(request):
+    user = request.user  # Get the logged-in user
+    order_number = request.GET.get('order_number')
+    order_data = Order.objects.filter(user=user, order_status='cancelled')
+
+    if order_number:
+        try:
+            order_data = order_data.filter(order_number=int(order_number))
+        except ValueError:
+            # Handle invalid order number input
+            pass
+
+    if request.method == 'POST':
+        revoke_order_number = request.POST.get('revoke_order_number')
+        if revoke_order_number:
+            try:
+                order_to_revoke = Order.objects.get(order_number=int(revoke_order_number))
+                order_to_revoke.delete()
+                messages.success(request, 'Order Record has been deleted successfully.')
+                return redirect('confirm-receipt')
+            except Order.DoesNotExist:
+                pass
+
+    context = {'active_item': 'confirm-order', 'order_data':order_data}
+    return render(request, 'amruloapp/dashboard/returned-orders.html', context)
+
+
+@login_required 
+def remakeOrder(request):
+    user = request.user  # Get the logged-in user
+    order_number = request.GET.get('order_number')
+    order_data = Order.objects.filter(user=user, order_status='modification')
+
+    if order_number:
+        try:
+            order_data = order_data.filter(order_number=int(order_number))
+        except ValueError:
+            # Handle invalid order number input
+            pass
+
+    if request.method == 'POST':
+        revoke_order_number = request.POST.get('revoke_order_number')
+        if revoke_order_number:
+            try:
+                order_to_revoke = Order.objects.get(order_number=int(revoke_order_number))
+                order_to_revoke.delete()
+                messages.success(request, 'Order Record has been deleted successfully.')
+                return redirect('confirm-receipt')
+            except Order.DoesNotExist:
+                pass
+
+    context = {'active_item': 'confirm-order', 'order_data':order_data}
+    return render(request, 'amruloapp/dashboard/remake-order.html', context)
 
 
 
@@ -167,13 +234,6 @@ def userProfile(request, id):
 
 
 
-@login_required 
-def returnedOrder(request):
-    context = {'active_item': 'return-order'}
-    return render(request, 'amruloapp/dashboard/returned-orders.html', context)
-
-
-
 
 
 
@@ -190,10 +250,6 @@ def frameworkManagement(request):
 
 
 
-@login_required 
-def remakeOrder(request):
-    context = {'active_item': 'remake-order'}
-    return render(request, 'amruloapp/dashboard/remake-order.html', context)
 
 def monthlyStatement(request):
     context = {'active_item': 'monthly-order'}

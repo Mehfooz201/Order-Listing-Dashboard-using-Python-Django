@@ -60,6 +60,17 @@
 
         <section class="content">
             <div class="container-fluid">
+              <!-- Success Message (Top of the Page) -->
+              {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert alert-success">{{ message }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+              {% endif %}
+
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Confirmation of receipt</h3>
@@ -105,208 +116,71 @@
                           <th>Sr. No</th>
                           <th>Order Number</th>
                           <th>Customer Name</th>
-                          <th>Order Data</th>
-                          <th>Order Type</th>
+                          <th>Order Date</th>
                           <th>Order Status</th>
+                          <th>Order Type</th>
                           <th>Purchaser</th>
                           <th>Currency</th>
                           <th>Amount</th>
                           <th>Phone</th>
                           <th>Receiving Address</th>
+                          <th>Menu 1</th>
                           <th>Menu</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr class="odd">
-                          <td>1</td>
-                          <td>1</td>
-                          <td>Wajahat</td>
-                          <td>July 29, 2023</td>
-                          <td>Simple</td>
-                          <td>
-                            <span class="badge badge-success">Complete</span>
-                          </td>
-                          <td>Random Guy</td>
-                          <td>USA</td>
-                          <td>50.00</td>
-                          <td>N/A</td>
-                          <td>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Tempora molestias repellat molestiae
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr class="even">
-                          <td>2</td>
-                          <td>2</td>
-                          <td>Wajahat</td>
-                          <td>July 29, 2023</td>
-                          <td>Simple</td>
-                          <td>
-                            <span class="badge badge-warning">Modification</span>
-                          </td>
-                          <td>Random Guy</td>
-                          <td>USA</td>
-                          <td>50.00</td>
-                          <td>N/A</td>
-                          <td>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Tempora molestias repellat molestiae
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr class="odd">
-                          <td>3</td>
-                          <td>3</td>
-                          <td>Wajahat</td>
-                          <td>July 29, 2023</td>
-                          <td>Simple</td>
-                          <td>
-                            <span class="badge badge-primary">Active</span>
-                          </td>
-                          <td>Random Guy</td>
-                          <td>USA</td>
-                          <td>50.00</td>
-                          <td>N/A</td>
-                          <td>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Tempora molestias repellat molestiae
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr class="even">
-                          <td>4</td>
-                          <td>4</td>
-                          <td>John Doe</td>
-                          <td>Mar 31, 2021</td>
-                          <td>Urgent</td>
-                          <td>
-                            <span class="badge badge-success">Complete</span>
-                          </td>
-                          <td>NOVA</td>
-                          <td>USA</td>
-                          <td>50.00</td>
-                          <td>N/A</td>
-                          <td>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Tempora molestias repellat molestiae
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr class="odd">
-                          <td>5</td>
-                          <td>5</td>
-                          <td>John Doe</td>
-                          <td>Mar 31, 2021</td>
-                          <td>Urgent</td>
-                          <td>
-                            <span class="badge badge-primary">Active</span>
-                          </td>
-                          <td>NOVA</td>
-                          <td>USA</td>
-                          <td>50.00</td>
-                          <td>N/A</td>
-                          <td>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Tempora molestias repellat molestiae
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr class="even">
-                          <td>6</td>
-                          <td>6</td>
-                          <td>John Doe</td>
-                          <td>Mar 31, 2021</td>
-                          <td>Urgent</td>
-                          <td>
-                            <span class="badge badge-success">Complete</span>
-                          </td>
-                          <td>NOVA</td>
-                          <td>USA</td>
-                          <td>50.00</td>
-                          <td>N/A</td>
-                          <td>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Tempora molestias repellat molestiae
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr class="odd">
-                          <td>7</td>
-                          <td>7</td>
-                          <td>Wajahat Rana</td>
-                          <td>May 02, 2022</td>
-                          <td>Simple</td>
-                          <td>
-                            <span class="badge badge-danger">Cancelled</span>
-                          </td>
-                          <td>UN-BOM</td>
-                          <td>USA</td>
-                          <td>50.00</td>
-                          <td>N/A</td>
-                          <td>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Tempora molestias repellat molestiae
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr class="even">
-                          <td>8</td>
-                          <td>8</td>
-                          <td>Wajahat Rana</td>
-                          <td>May 02, 2022</td>
-                          <td>Simple</td>
-                          <td>
-                            <span class="badge badge-warning">Modification</span>
-                          </td>
-                          <td>REON</td>
-                          <td>USA</td>
-                          <td>50.00</td>
-                          <td>N/A</td>
-                          <td>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Tempora molestias repellat molestiae
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr class="odd">
-                          <td>9</td>
-                          <td>9</td>
-                          <td>Wajahat Rana</td>
-                          <td>May 02, 2022</td>
-                          <td>Simple</td>
-                          <td>
-                            <span class="badge badge-danger">Cancelled</span>
-                          </td>
-                          <td>UN-BOM</td>
-                          <td>USA</td>
-                          <td>50.00</td>
-                          <td>N/A</td>
-                          <td>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Tempora molestias repellat molestiae
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr class="even">
-                          <td>10</td>
-                          <td>10</td>
-                          <td>Wajahat Rana</td>
-                          <td>May 02, 2022</td>
-                          <td>Simple</td>
-                          <td>
-                            <span class="badge badge-warning">Modification</span>
-                          </td>
-                          <td>REON</td>
-                          <td>USA</td>
-                          <td>50.00</td>
-                          <td>N/A</td>
-                          <td>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Tempora molestias repellat molestiae
-                          </td>
-                          <td></td>
-                        </tr>
+                      <tbody >
+                
+                        {% for data in order_data %}
+                            {% comment %} <tr class="odd"> {% endcomment %}
+                                <td>{{forloop.counter}}</td>
+                                <td>{{data.order_number}}</td>
+                                <td>{{data.customer_name}}</td>
+                                <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
+                                <td class='text-center'>
+                                  {% if data.order_status == 'modification' %}
+                                      <span class="badge badge-warning">{{ data.order_status }}</span>
+                                  {% endif %}
+                                </td>
+                                <td>{{data.order_type}}</td>
+        
+                                <td>{{data.purchaser}}</td>
+                                <td>{{data.currency}}</td>
+                                <td>
+                                    {% if data.currency == 'USA' %}
+                                        ${{ data.price|floatformat:2 }}
+                                    {% elif data.currency == 'INR' %}
+                                        ₹{{ data.price|floatformat:2 }}
+                                    {% else %}
+                                        {{ data.price|floatformat:2 }} <!-- Default case if no currency symbol is available -->
+                                    {% endif %}
+                                </td>
+                                <td>{{data.user.phone}}</td>
+                                <td>{{data.user.user_address}}</td>
+
+                                <td class="text-center bg-light">
+                                  <div class="datatable-actions-container">
+                                      <button class="btn-action" data-toggle="modal" data-target="#viewOrderModal{{ data.order_number }}">
+                                          <i class="fas fa-eye pr-2"></i> View
+                                      </button>
+                              
+                                      <form method="post">
+                                          {% csrf_token %}
+                                          <input type="hidden" name="revoke_order_number" value="{{ data.order_number }}">
+                                          <button type="submit" class="btn-action">
+                                              <i class="fas fa-trash-alt pr-2"></i> Revoke
+                                          </button>
+                                      </form>
+                                  </div>
+                              </td>
+                              
+
+                              <td></td>
+        
+                            </tr>
+                          {% endfor %}
+        
+        
+        
                       </tbody>
                     </table>
                   </div>
@@ -319,134 +193,165 @@
 
 </div>
 
-  <!-- View Order Modal -->
-  <div class="modal fade" id="viewOrderModal" tabindex="-1" role="dialog" aria-labelledby="viewOrderModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="viewOrderModalLabel">View Order</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-            </div>
-            <div class="modal-body">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Order Information</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th class="bg-light">Customer name</th>
-                                <td>CDE</td>
-                                <th class="bg-light">Processing center</th>
-                                <td>Lorem ipsum dolor sit amet consectetur</td>
-                                <th class="bg-light">Order type</th>
-                                <td>Regular order</td>
-                            </tr>
-                            <tr>
-                                <th class="bg-light">Purchaser</th>
-                                <td>Lorem Ipsum</td>
-                                <th class="bg-light">Order time</th>
-                                <td>2023-02-11 10:44</td>
-                                <th class="bg-light">Salesman</th>
-                                <td>John Doe</td>
-                            </tr>
-                            <tr>
-                                <th class="bg-light">Remarks</th>
-                                <td colspan="5"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Product Information</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th class="bg-light">Product type</th>
-                                <td>Colbat-chrom framework</td>
-                                <th class="bg-light">Process</th>
-                                <td>CAD design</td>
-                                <th class="bg-light">Unit of measurment</th>
-                                <td>Pcs</td>
-                            </tr>
-                            <tr>
-                                <th class="bg-light">Product type</th>
-                                <td>Frameworks</td>
-                                <th class="bg-light">Number of files</th>
-                                <td colspan="3">2</td>
-                            </tr>
-                            <tr>
-                                <th class="bg-light">Product material</th>
-                                <td>COCR</td>
-                                <th class="bg-light">Quantity</th>
-                                <td colspan="3">1</td>
-                            </tr>
-                            <tr>
-                                <th class="bg-light">Production requirements</th>
-                                <td colspan="5"></td>
-                            </tr>
-                        </table>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th class="text-center bg-light">Sr.No</th>
-                                    <th class="text-center bg-light">Patient name</th>
-                                    <th class="text-center bg-light">Design requirements</th>
-                                    <th class="text-center bg-light">View & Downloaded</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>
-                                        <div class="file-container">
-                                            <div class="file-name">
-                                                whatsapp image 2023-03-21 at 19.31.11.12.jpeg
-                                            </div>
-                                            
-                                            
-                                        </div>
-                                    </td>
-                                    <td>
-                                      <div class="file-action">
-                                        <div class="btn-file-action btn-file-view">
-                                            <i class="fas fa-eye"></i>
-                                        </div>
-                                        <div class="btn-file-action btn-file-download">
-                                            <i class="fas fa-download"></i>
+{% for data in order_data %}
+<!-- View Order Modal -->
+<div class="modal fade" id="viewOrderModal{{ data.order_number }}" tabindex="-1" role="dialog" aria-labelledby="viewOrderModalLabel{{ data.order_number }}" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="viewOrderModalLabel{{ data.order_number }}">View Order</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+          </div>
+          <div class="modal-body">
+              <div class="card">
+                  <div class="card-header">
+                      <h3 class="card-title">Order Information</h3>
+                      <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <table class="table table-bordered">
+                          <tr>
+                              <th class="bg-light">Customer name</th>
+                              <td>{{data.customer_name}}</td>
+                              <th class="bg-light">Manufactur</th>
+                              <td>{{data.manufacturer}}</td>
+                              <th class="bg-light">Order type</th>
+                              <td>{{data.order_type}}</td>
+                          </tr>
+                          <tr>
+                              <th class="bg-light">Purchaser</th>
+                              <td>{{data.purchaser}}</td>
+                              <th class="bg-light">Order time</th>
+                              <td>{{data.order_date}}</td>
+                              <th class="bg-light">Salesman</th>
+                              <td>{{data.salesman}}</td>
+                          </tr>
+                          <tr>
+                              <th class="bg-light">Remarks</th>
+                              <td colspan="5">{{data.requirements_remarks}}</td>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
+              <div class="card">
+                  <div class="card-header">
+                      <h3 class="card-title">Product Information</h3>
+                      <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <table class="table table-bordered">
+                          <tr>
+                              <th class="bg-light">Product Type</th>
+                              <td>{{data.product_type}}</td>
+                              <th class="bg-light">Process</th>
+                              <td>{{data.product_type}}</td>
+                              <th class="bg-light">Unit of measurment</th>
+                              <td>{{data.unit_of_measurement}}</td>
+                          </tr>
+                          <tr>
+                              <th class="bg-light">Product Sub-Type</th>
+                              <td>{{data.product_sub_type}}</td>
+                              <th class="bg-light">Product material</th>
+                              <td colspan="3">{{data.product_material}}</td>
+                          </tr>
+                          <tr>
+                              <th class="bg-light">Quantity</th>
+                              <td colspan="3">{{data.quantity}}</td>
+                              <th class="bg-light">Delivery Time</th>
+                              <td colspan="5">{{data.delivery_timing}}</td>
+                              
+                          </tr>
+                          <tr>
+                            <th class="bg-light">Currency </th>
+                            <td>{{data.currency}}</td>
+                            <th class="bg-light">Amount</th>
+                            <td colspan="3">{{data.price}}</td>
+                          </tr>
+                      </table>
+                      <table class="table table-bordered">
+                          <thead>
+                              <tr>
+                                  <th class="text-center bg-light">Order No.</th>
+                                  <th class="text-center bg-light">Customer Name</th>
+                                  <th class="text-center bg-light">Design requirements</th>
+                                  <th class="text-center bg-light">Uploaded Files</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td class="text-center bg-light">{{data.order_number}}</td>
+                                  <td class="text-center bg-light">{{data.customer_name}}</td>
+                                  <td class="text-center bg-light">
+                                      <div class="file-container">
+                                          <div class="file-name">
+                                            {{data.design_requirement.name }}
+                                          </div>
+
+                                      </div>
+                                  </td>
+
+                                  <td class="text-center bg-light">
+                                    <div class="file-action">
+                                        <div class="btn-group">
+                                            <a href="#" class="btn btn-link btn-file-view" onclick="openImageModal('{{ data.design_requirement.url }}'); return false;">
+                                              <i class="fas fa-eye"></i> View
+                                            </a>
+                                
+                                            <a href="{{ data.design_requirement.url }}" class="btn btn-link btn-file-download" download>
+                                              <i class="fas fa-download"></i> Download
+                                            </a>
                                         </div>
                                     </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-            </div>
-        </div>
-    </div>
+                                </td>
+                                
+
+                                
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        Close
+      </button>
+          </div>
+      </div>
   </div>
-  <!-- View Order Modal -->
+</div>
+{% endfor %}
+
+
+{% comment %} Image Modal {% endcomment %}
+<!-- View Image Modal -->
+<div class="modal fade" id="viewImageModal" tabindex="-1" role="dialog" aria-labelledby="viewImageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body text-center">
+              <img id="viewImage" src="" alt="Image" class="img-fluid">
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- View Order Modal -->
 
 
 
@@ -473,6 +378,16 @@
     <script src="{% static 'amruloapp/dashboard/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
 
     <script src="{% static 'amruloapp/dashboard/dist/js/remake-orders.js' %}"></script>
+
+    <script>
+      function openImageModal(imageUrl) {
+          const viewImageModal = $('#viewImageModal');
+          const viewImage = viewImageModal.find('.modal-body img');
+  
+          viewImage.attr('src', imageUrl);
+          viewImageModal.modal('show');
+      }
+    </script>
 
 
 {% endblock scripts %}
