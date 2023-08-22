@@ -10,6 +10,8 @@
       {% block title %}  {% endblock title %}
     </title>
 
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'amruloapp/dashboard/dist/img/cdl-web.png' %}" />
 
     <!-- Google Font: Source Sans Pro -->
     <link
@@ -158,8 +160,8 @@
               data-accordion="false">
 
               
-              <li class="nav-item {% if 'my-order' in active_item or 'create-order' in active_item or 'order-list' in active_item or 'return-order' in active_item or 'confirm-order' in active_item  or 'framemanage-order' in active_item or 'remake-order' in active_item or 'monthly-order' in active_item or 'cad-order' in active_item %}menu-open{% endif %}">
-                <a href="/create-order" class="nav-link {% if 'my-order' in active_item or 'order-list' in active_item or 'return-order' in active_item or 'address-order' in active_item or 'confirm-order' in active_item or 'framemanage-order' in active_item or 'remake-order' in active_item or 'monthly-order' in active_item or 'cad-order' in active_item %}active{% endif %}">
+              <li class="nav-item {% if 'my-order' in active_item or 'create-order' in active_item or 'order-list' in active_item or 'framemanage-order' in active_item or 'remake-order' in active_item or 'monthly-order' in active_item or 'cad-order' in active_item %}menu-open{% endif %}">
+                <a href="/create-order" class="nav-link {% if 'my-order' in active_item or 'create-order' in active_item  or 'order-list' in active_item or 'address-order' in active_item or 'framemanage-order' in active_item or 'remake-order' in active_item or 'monthly-order' in active_item or 'cad-order' in active_item %}active{% endif %}">
                   <i class="nav-icon fas fa-list-ol"></i>
                   <p>
                     My Order
@@ -182,19 +184,6 @@
                     </a>
                   </li>
             
-                  <li class="nav-item">
-                    <a href="{% url 'returned-order' %}" class="nav-link {% if active_item == 'return-order' %}active{% endif %}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Returned orders</p>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="{% url 'confirm-receipt' %}" class="nav-link {% if active_item == 'confirm-order' %}active{% endif %}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Confirmation of receipt</p>
-                    </a>
-                  </li>
 
 
                   <li class="nav-item">

@@ -21,11 +21,6 @@ urlpatterns = [
 
     path('order-list/', views.orderList, name='order-list'),
 
-    path('returned-order/', views.returnedOrder, name='returned-order'),
-
-    path('confirm-receipt/', views.confirmReceipt, name='confirm-receipt'),
-
-
 
     path('framework-manage/', views.frameworkManagement, name='framework-manage'),
     path('generate-pdf/', views.generate_pdf, name='generate-pdf'),
