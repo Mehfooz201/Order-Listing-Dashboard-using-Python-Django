@@ -21,6 +21,7 @@ class CompanyInformation(models.Model):
     
 
 class User(AbstractUser):
+    
     name = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True, null=True)
     avatar = models.ImageField(null=True, default='avatar.svg')
@@ -28,26 +29,14 @@ class User(AbstractUser):
 
     affiliated_with = models.CharField(max_length=100, null=True, blank=True)
     approval_status = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-
+    
     company_information = models.ForeignKey(CompanyInformation, on_delete=models.SET_NULL, null=True, blank=True)
 
-
-    COUNTRY_CHOICES = [
-        ('India', 'India'),
-        ('USA', 'USA'),
-        ('Pakistan', 'Pakistan'),
-        ('Bangladesh', 'Bangladesh'),
-        ('Russia', 'Russia'),
-        ('China', 'China'),
-    ]
-    country = models.CharField(max_length=20, choices=COUNTRY_CHOICES, default='India')
+    country = models.CharField(max_length=50, null=True, blank=True)
     user_address = models.TextField(default='')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
-
 
 
     

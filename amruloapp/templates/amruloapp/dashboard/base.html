@@ -1,4 +1,6 @@
 {% load static %}
+{% load custom_tags %}
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -68,38 +70,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            {% comment %} <a
-              class="nav-link"
-              data-widget="navbar-search"
-              href="#"
-              role="button"
-            >
-            <i class="fas fa-search"></i>
-            </a> {% endcomment %}
-            {% comment %} <div class="navbar-search-block">
-              <form class="form-inline">
-                <div class="input-group input-group-sm">
-                  <input
-                    class="form-control form-control-navbar"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                  <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                      <i class="fas fa-search"></i>
-                    </button>
-                    <button
-                      class="btn btn-navbar"
-                      type="button"
-                      data-widget="navbar-search"
-                    >
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div> {% endcomment %}
+
           </li>
           <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -139,18 +110,14 @@
       
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="/create-order" class="brand-link">
-          {% comment %} <img
-            src="{% static 'amruloapp/dashboard/dist/img/amrulologo.png' %}"
-            alt="Brand Logo"
-            class="brand-image img-circle elevation-3"
-            style="opacity: 0.8"
-          /> {% endcomment %}
+
           <div class='text-center'>
             <h3 class="brand-text font-weight-medium">CDL Lab</h3>
           </div>
 
           
         </a>
+        
         <div class="sidebar">
           <nav class="mt-2">
             <ul
@@ -218,24 +185,27 @@
                 </ul>
               </li>
 
+              {% if user|has_group:'Vendor/Staff User' or user|has_group:'SuperUser' %}
 
-              <li class="nav-item {% if 'staff' in active_item %}menu-open{% endif %}">
-                <a href="" class="nav-link {% if 'staff' in active_item %}active{% endif %}">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                    Staff Manage
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{% url 'staff-user' %}" class="nav-link {% if active_item == 'staff-user' %}active{% endif %}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Add staff user</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+                    <li class="nav-item {% if 'staff' in active_item %}menu-open{% endif %}">
+                      <a href="" class="nav-link {% if 'staff' in active_item %}active{% endif %}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                          Staff Manage
+                          <i class="right fas fa-angle-left"></i>
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="{% url 'staff-user' %}" class="nav-link {% if active_item == 'staff-user' %}active{% endif %}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add staff user</p>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                
+                {% endif %}
 
               <li class="nav-item {% if 'statistics' in active_item or 'order-docs' in active_item %}menu-open{% endif %}">
                 <a href="#" class="nav-link {% if 'statistics' in active_item or 'order-docs' in active_item %}active{% endif %}">
@@ -259,6 +229,7 @@
             </ul>
           </nav>
         </div>
+
       </aside>
 
       {% block content %}

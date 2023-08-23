@@ -5,12 +5,15 @@ from datetime import datetime
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 
-
 #Staff User
 class StaffUserCreationForm(UserCreationForm):
+
+
     class Meta:
         model = User
-        fields = ['username', 'name', 'email', 'phone', 'affiliated_with', 'password1', 'password2',   ]
+        fields = ['username', 'name', 'email', 'phone', 'affiliated_with', 'password1', 'password2']
+
+   
 
 #User Form
 class UserProfileUpdateForm(ModelForm):

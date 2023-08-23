@@ -9,15 +9,69 @@ from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
 from datetime import datetime, date
 
+from .decorators import allowed_users
+
 
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from io import BytesIO
 
+from django.contrib.auth.models import Group
 
 
-@login_required 
+
+#----------------------- Staff Manege----------------------------------------#
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['SuperUser', 'Vendor/Staff User'])
+def addStaffUser(request):
+    users = User.objects.all()
+    groups = Group.objects.filter(name__in=['Vendor/Staff User', 'User'])
+    
+    if request.method == 'POST':
+        staff_user_form = StaffUserCreationForm(request.POST)
+        if staff_user_form.is_valid():
+            email = staff_user_form.cleaned_data['email']
+            password1 = staff_user_form.cleaned_data['password1']
+            password2 = staff_user_form.cleaned_data['password2']
+            
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'Email already exists. Please use a different email.')
+            elif password1 != password2:
+                messages.error(request, 'Passwords do not match. Please re-enter your password.')
+            else:
+                user = staff_user_form.save(commit=False)
+                user.is_staff = True
+                user.save()
+                
+                # Get the selected group ID from the form data
+                group_id = request.POST.get('groups')
+                group = Group.objects.get(id=group_id)
+                user.groups.add(group)  # Add user to the selected group
+                
+                messages.success(request, 'Staff User added successfully.')
+                return redirect('staff-user')
+            print(staff_user_form.errors)
+
+            print('errors', user)
+        else:
+            print("Direct jumping here !")
+            print(staff_user_form.errors)
+            messages.error(request, 'There are errors in the form. Please correct them.')
+    else:
+        staff_user_form = StaffUserCreationForm()
+        print(staff_user_form.errors)
+
+    context = {'active_item': 'staff-user', 'staff_user_form': staff_user_form, 'users': users, 'groups': groups}
+    return render(request, 'amruloapp/dashboard/staff-user.html', context)
+
+
+
+
+
+login_required(login_url='login') 
 def frameworkManagement(request):
     user = request.user
     agreements = FrameworkAgreement.objects.filter(customer=user)
@@ -28,7 +82,7 @@ def frameworkManagement(request):
     return render(request, 'amruloapp/dashboard/framework-manage.html', context)
 
 
-@login_required
+login_required(login_url='login')
 def generate_pdf(request):
     user = request.user
     agreements = FrameworkAgreement.objects.filter(customer=user)
@@ -88,7 +142,7 @@ def logoutUser(request):
     return redirect('login')
 
 
-@login_required
+login_required(login_url='login')
 def changePassword(request):
     if request.method == 'POST':
         old_password = request.POST.get('old_password')
@@ -117,7 +171,7 @@ def changePassword(request):
 #---------------------------------------------------------------------#
 #                           Dashboard 
 #---------------------------------------------------------------------#
-@login_required 
+login_required(login_url='login')
 def createOrder(request):
     if request.method == 'POST':
         form = OrderForm(request.POST, request.FILES)
@@ -150,7 +204,7 @@ def createOrder(request):
     return render(request, 'amruloapp/dashboard/create-order.html', context)
 
 
-@login_required 
+login_required(login_url='login')
 def orderList(request):
     user = request.user
     order_number = request.GET.get('order_number')
@@ -177,7 +231,7 @@ def orderList(request):
 
 
 
-@login_required 
+login_required(login_url='login')
 def remakeOrder(request):
     user = request.user  # Get the logged-in user
     order_number = request.GET.get('order_number')
@@ -209,7 +263,7 @@ def remakeOrder(request):
 
 
 
-@login_required
+@login_required(login_url='login')
 def userProfile(request, id):
     user = get_object_or_404(User, id=id)
     form = UserProfileUpdateForm(instance=user)
@@ -233,52 +287,20 @@ def userProfile(request, id):
 
 
 
-
+login_required(login_url='login')
 def monthlyStatement(request):
     context = {'active_item': 'monthly-order'}
     return render(request, 'amruloapp/dashboard/monthly-statement.html', context)
 
+
+login_required(login_url='login')
 def cadResult(request):
     context = {'active_item': 'cad-order'}
     return render(request, 'amruloapp/dashboard/cad-result.html', context)
 
 
-#----------------------- Staff Manege----------------------------------------#
-
-def addStaffUser(request):
-    users = User.objects.all()
-    if request.method == 'POST':
-        staff_user_form = StaffUserCreationForm(request.POST)
-        if staff_user_form.is_valid():
-            email = staff_user_form.cleaned_data['email']
-            password1 = staff_user_form.cleaned_data['password1']
-            password2 = staff_user_form.cleaned_data['password2']
-            
-            # Check if the email already exists in User model
-            if User.objects.filter(email=email).exists():
-                messages.error(request, 'Email already exists. Please use a different email.')
-            # Check if passwords match
-            elif password1 != password2:
-                messages.error(request, 'Passwords do not match. Please re-enter your password.')
-            else:
-                user = staff_user_form.save(commit=False)
-                user.is_staff = True
-                user.save()
-                messages.success(request, 'Staff User added successfully.')
-                return redirect('staff-user')
-        else:
-            # If there are errors, display them
-            messages.error(request, 'There are errors in the form. Please correct them.')
-    else:
-        staff_user_form = StaffUserCreationForm()
-
-    context = {'active_item': 'staff-user', 'staff_user_form': staff_user_form, 'users': users}
-    return render(request, 'amruloapp/dashboard/staff-user.html', context)
-
-
-
 #----------------------- Dental Statistics ------------------------------------#
-
+login_required(login_url='login')
 def orderDocuments(request):
     context = {'active_item': 'order-docs'}
     return render(request, 'amruloapp/dashboard/order-documents.html', context)
