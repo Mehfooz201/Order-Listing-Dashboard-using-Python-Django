@@ -34,7 +34,8 @@
     <link rel="stylesheet" href="{% static 'amruloapp/dashboard/plugins/summernote/summernote-bs4.min.css' %}" />
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static 'amruloapp/dashboard/dist/css//order-list.css' %}" />    
+    <link rel="stylesheet" href="{% static 'amruloapp/dashboard/dist/css/order-list.css' %}" /> 
+    <link rel="stylesheet" href="{% static 'amruloapp/dashboard/dist/css/remake-orders.css' %}" />   
     
 
 {% endblock custom_style %}
@@ -55,6 +56,17 @@
     </div>
     <section class="content">
       <div class="container-fluid">
+        <!-- Success Message (Top of the Page) -->
+        {% if messages %}
+          <div class="messages">
+              {% for message in messages %}
+                  {% if message.tags == 'success' %}
+                      <div class="alert alert-success">{{ message }}</div>
+                  {% endif %}
+              {% endfor %}
+          </div>
+        {% endif %}
+
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">The order list</h3>
@@ -126,54 +138,70 @@
                     <th>Order Number</th>
                     <th>Customer Name</th>
                     <th>Order Date</th>
+                    <th>Order Status</th>
                     <th>Order Type</th>
                     <th>Purchaser</th>
                     <th>Currency</th>
                     <th>Amount</th>
                     <th>Phone</th>
                     <th>Receiving Address</th>
-                    <th>Order Status</th>
+                    <th>Menu</th>
                   </tr>
                 </thead>
                 <tbody >
                 
                 {% for data in order_data %}
-                    {% comment %} <tr class="odd"> {% endcomment %}
-                        <td>{{forloop.counter}}</td>
-                        <td>{{data.order_number}}</td>
-                        <td>{{data.customer_name}}</td>
-                        {% comment %} <td>{{ data.order_date|date:"Y-m-d" }}</td> {% endcomment %}
-                        <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
+                <td>{{forloop.counter}}</td>
+                                <td>{{data.order_number}}</td>
+                                <td>{{data.customer_name}}</td>
+                                <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
+                                <td class='text-center'>
+                                  {% if data.order_status == 'active' %}
+                                      <span class="badge badge-primary">{{ data.order_status }}</span>
+                                  {% elif data.order_status == 'complete' %}
+                                      <span class="badge badge-success">{{ data.order_status }}</span>
+                                  {% elif data.order_status == 'modification' %}
+                                      <span class="badge badge-warning">{{ data.order_status }}</span>
+                                  {% elif data.order_status == 'cancelled' %}
+                                      <span class="badge badge-danger">{{ data.order_status }}</span>
+                                  {% else %}
+                                      <span class="badge badge-secondary">{{ data.order_status }}</span> <!-- Default case if the status is not matched -->
+                                  {% endif %}
+                                </td>
+                                <td>{{data.order_type}}</td>
+        
+                                <td>{{data.purchaser}}</td>
+                                <td>{{data.currency}}</td>
+                                <td>
+                                    {% if data.currency == 'USA' %}
+                                        ${{ data.price|floatformat:2 }}
+                                    {% elif data.currency == 'INR' %}
+                                        ₹{{ data.price|floatformat:2 }}
+                                    {% else %}
+                                        {{ data.price|floatformat:2 }} <!-- Default case if no currency symbol is available -->
+                                    {% endif %}
+                                </td>
+                                <td>{{data.user.phone}}</td>
+                                <td>{{data.user.user_address}}</td>
 
-                        <td>{{data.order_type}}</td>
-
-                        <td>{{data.purchaser}}</td>
-                        <td>{{data.currency}}</td>
-                        <td>
-                            {% if data.currency == 'USA' %}
-                                ${{ data.price|floatformat:2 }}
-                            {% elif data.currency == 'INR' %}
-                                ₹{{ data.price|floatformat:2 }}
-                            {% else %}
-                                {{ data.price|floatformat:2 }} <!-- Default case if no currency symbol is available -->
-                            {% endif %}
-                        </td>
-                        <td>{{data.user.phone}}</td>
-                        <td>{{data.user.user_address}}</td>
-
-                        <td class='text-center'>
-                          {% if data.order_status == 'active' %}
-                              <span class="badge badge-primary">{{ data.order_status }}</span>
-                          {% elif data.order_status == 'complete' %}
-                              <span class="badge badge-success">{{ data.order_status }}</span>
-                          {% elif data.order_status == 'modification' %}
-                              <span class="badge badge-warning">{{ data.order_status }}</span>
-                          {% elif data.order_status == 'cancelled' %}
-                              <span class="badge badge-danger">{{ data.order_status }}</span>
-                          {% else %}
-                              <span class="badge badge-secondary">{{ data.order_status }}</span> <!-- Default case if the status is not matched -->
-                          {% endif %}
-                      </td>
+                                <td class="text-center bg-light">
+                                  <div class="datatable-actions-container">
+                                      <button class="btn-action" data-toggle="modal" data-target="#viewOrderModal{{ data.order_number }}">
+                                          <i class="fas fa-eye pr-2"></i> View
+                                      </button>
+                              
+                                      {% if request.user.groups.all.0.name == "Vendor/Staff User" or request.user.groups.all.0.name == "SuperUser" %}
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="revoke_order_number" value="{{ data.order_number }}">
+                                            <button type="submit" class="btn-action">
+                                                <i class="fas fa-trash-alt pr-2"></i> Revoke
+                                            </button>
+                                        </form>
+                                      {% endif %}
+                                  </div>
+                                </td>
+                        
 
                     </tr>
                   {% endfor %}
@@ -188,6 +216,166 @@
       </div>
     </section>
   </div>
+
+  {% for data in order_data %}
+    <!-- View Order Modal -->
+    <div class="modal fade" id="viewOrderModal{{ data.order_number }}" tabindex="-1" role="dialog" aria-labelledby="viewOrderModalLabel{{ data.order_number }}" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="viewOrderModalLabel{{ data.order_number }}">View Order</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+              </div>
+              <div class="modal-body">
+                  <div class="card">
+                      <div class="card-header">
+                          <h3 class="card-title">Order Information</h3>
+                          <div class="card-tools">
+                              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <table class="table table-bordered">
+                              <tr>
+                                  <th class="bg-light">Customer name</th>
+                                  <td>{{data.customer_name}}</td>
+                                  <th class="bg-light">Manufactur</th>
+                                  <td>{{data.manufacturer}}</td>
+                                  <th class="bg-light">Order type</th>
+                                  <td>{{data.order_type}}</td>
+                              </tr>
+                              <tr>
+                                  <th class="bg-light">Purchaser</th>
+                                  <td>{{data.purchaser}}</td>
+                                  <th class="bg-light">Order time</th>
+                                  <td>{{data.order_date}}</td>
+                                  <th class="bg-light">Salesman</th>
+                                  <td>{{data.salesman}}</td>
+                              </tr>
+                              <tr>
+                                  <th class="bg-light">Remarks</th>
+                                  <td colspan="5">{{data.requirements_remarks}}</td>
+                              </tr>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="card">
+                      <div class="card-header">
+                          <h3 class="card-title">Product Information</h3>
+                          <div class="card-tools">
+                              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <table class="table table-bordered">
+                              <tr>
+                                  <th class="bg-light">Product Type</th>
+                                  <td>{{data.product_type}}</td>
+                                  <th class="bg-light">Process</th>
+                                  <td>{{data.product_type}}</td>
+                                  <th class="bg-light">Unit of measurment</th>
+                                  <td>{{data.unit_of_measurement}}</td>
+                              </tr>
+                              <tr>
+                                  <th class="bg-light">Product Sub-Type</th>
+                                  <td>{{data.product_sub_type}}</td>
+                                  <th class="bg-light">Product material</th>
+                                  <td colspan="3">{{data.product_material}}</td>
+                              </tr>
+                              <tr>
+                                  <th class="bg-light">Quantity</th>
+                                  <td colspan="3">{{data.quantity}}</td>
+                                  <th class="bg-light">Delivery Time</th>
+                                  <td colspan="5">{{data.delivery_timing}}</td>
+                                  
+                              </tr>
+                              <tr>
+                                <th class="bg-light">Currency </th>
+                                <td>{{data.currency}}</td>
+                                <th class="bg-light">Amount</th>
+                                <td colspan="3">{{data.price}}</td>
+                              </tr>
+                          </table>
+                          <table class="table table-bordered">
+                              <thead>
+                                  <tr>
+                                      <th class="text-center bg-light">Order No.</th>
+                                      <th class="text-center bg-light">Customer Name</th>
+                                      <th class="text-center bg-light">Design requirements</th>
+                                      <th class="text-center bg-light">Uploaded Files</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td class="text-center bg-light">{{data.order_number}}</td>
+                                      <td class="text-center bg-light">{{data.customer_name}}</td>
+                                      <td class="text-center bg-light">
+                                          <div class="file-container">
+                                              <div class="file-name">
+                                                {{data.design_requirement.name }}
+                                              </div>
+
+                                          </div>
+                                      </td>
+
+                                      <td class="text-center bg-light">
+                                        <div class="file-action">
+                                            <div class="btn-group">
+                                                <a href="#" class="btn btn-link btn-file-view" onclick="openImageModal('{{ data.design_requirement.url }}'); return false;">
+                                                  <i class="fas fa-eye"></i> View
+                                                </a>
+                                    
+                                                <a href="{{ data.design_requirement.url }}" class="btn btn-link btn-file-download" download>
+                                                  <i class="fas fa-download"></i> Download
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+
+                                    
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+              </div>
+          </div>
+      </div>
+    </div>
+  {% endfor %}
+
+
+  {% comment %} Image Modal {% endcomment %}
+  <!-- View Image Modal -->
+  <div class="modal fade" id="viewImageModal" tabindex="-1" role="dialog" aria-labelledby="viewImageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="viewImage" src="" alt="Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+<!-- View Order Modal -->
 
 
 {% endblock content %}
@@ -214,6 +402,16 @@
 
 
     <script src="{% static 'amruloapp/dashboard/dist/js/order-list.js' %}"></script>
+
+    <script>
+      function openImageModal(imageUrl) {
+          const viewImageModal = $('#viewImageModal');
+          const viewImage = viewImageModal.find('.modal-body img');
+  
+          viewImage.attr('src', imageUrl);
+          viewImageModal.modal('show');
+      }
+    </script>
 
 
 {% endblock scripts %}

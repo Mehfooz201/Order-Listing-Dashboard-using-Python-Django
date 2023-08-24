@@ -114,9 +114,9 @@ def generate_pdf(request):
     
 # Create your views here.
 
-#--------------------- Home and Login Page ----------------------------
-# def home(request):
-#     return render(request, 'amruloapp/index.html')
+# --------------------- Home and Login Page ----------------------------
+def home(request):
+    return render(request, 'amruloapp/index.html')
 
 def signin(request):
     if request.user.is_authenticated:
@@ -214,10 +214,6 @@ def orderList(request):
     # order_data = Order.objects.filter(user=user)
     order_data = Order.objects.all()
 
-    if order_number:
-        # Filter orders based on the order_number if it's provided in the search form
-        order_data = order_data.filter(order_number__icontains=order_number)
-    
     if from_date and to_date:
         # Convert the date strings to datetime objects
         from_date = datetime.strptime(from_date, '%Y-%m-%d').date()
@@ -225,7 +221,26 @@ def orderList(request):
 
         # Filter orders based on the date range
         order_data = order_data.filter(order_date__range=[from_date, to_date])
-        
+
+    if order_number:
+        try:
+            order_data = order_data.filter(order_number=int(order_number))
+        except ValueError:
+            # Handle invalid order number input
+            pass
+
+    if request.method == 'POST':
+        revoke_order_number = request.POST.get('revoke_order_number')
+        if revoke_order_number:
+            try:
+                order_to_revoke = Order.objects.get(order_number=int(revoke_order_number))
+                order_to_revoke.delete()
+                messages.success(request, 'Order Record has been deleted successfully.')
+                return redirect('order-list')
+            except Order.DoesNotExist:
+                pass
+
+    
     context = {'active_item': 'order-list', 'order_data': order_data}
     return render(request, 'amruloapp/dashboard/order-list.html', context)
 
@@ -251,7 +266,7 @@ def remakeOrder(request):
                 order_to_revoke = Order.objects.get(order_number=int(revoke_order_number))
                 order_to_revoke.delete()
                 messages.success(request, 'Order Record has been deleted successfully.')
-                return redirect('confirm-receipt')
+                return redirect('remake-order')
             except Order.DoesNotExist:
                 pass
 

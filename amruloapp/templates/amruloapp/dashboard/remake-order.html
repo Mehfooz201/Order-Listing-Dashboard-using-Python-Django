@@ -73,7 +73,7 @@
 
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Confirmation of receipt</h3>
+                  <h3 class="card-title">Apply for Remake</h3>
                   <div class="card-tools">
                     <button
                       type="button"
@@ -162,13 +162,15 @@
                                           <i class="fas fa-eye pr-2"></i> View
                                       </button>
                               
-                                      <form method="post">
-                                          {% csrf_token %}
-                                          <input type="hidden" name="revoke_order_number" value="{{ data.order_number }}">
-                                          <button type="submit" class="btn-action">
-                                              <i class="fas fa-trash-alt pr-2"></i> Revoke
-                                          </button>
-                                      </form>
+                                      {% if request.user.groups.all.0.name == "Vendor/Staff User" or request.user.groups.all.0.name == "SuperUser" %}
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="revoke_order_number" value="{{ data.order_number }}">
+                                            <button type="submit" class="btn-action">
+                                                <i class="fas fa-trash-alt pr-2"></i> Revoke
+                                            </button>
+                                        </form>
+                                      {% endif %}
                                   </div>
                               </td>
                               
