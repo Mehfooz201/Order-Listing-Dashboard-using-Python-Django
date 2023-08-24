@@ -1,5 +1,4 @@
 {% load static %}
-{% load custom_tags %}
 
 <!DOCTYPE html>
 
@@ -185,27 +184,28 @@
                 </ul>
               </li>
 
-              {% if user|has_group:'Vendor/Staff User' or user|has_group:'SuperUser' %}
+              {% if request.user.groups.all.0.name == "Vendor/Staff User" or request.user.groups.all.0.name == "SuperUser" %}
 
-                    <li class="nav-item {% if 'staff' in active_item %}menu-open{% endif %}">
-                      <a href="" class="nav-link {% if 'staff' in active_item %}active{% endif %}">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                          Staff Manage
-                          <i class="right fas fa-angle-left"></i>
-                        </p>
+                  <li class="nav-item {% if 'staff' in active_item %}menu-open{% endif %}">
+                      <a href="#" class="nav-link {% if 'staff' in active_item %}active{% endif %}">
+                          <i class="nav-icon fas fa-users"></i>
+                          <p>
+                              Staff Manage
+                              <i class="right fas fa-angle-left"></i>
+                          </p>
                       </a>
                       <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                          <a href="{% url 'staff-user' %}" class="nav-link {% if active_item == 'staff-user' %}active{% endif %}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Add staff user</p>
-                          </a>
-                        </li>
+                          <li class="nav-item">
+                              <a href="{% url 'staff-user' %}" class="nav-link {% if active_item == 'staff-user' %}active{% endif %}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>Add staff user</p>
+                              </a>
+                          </li>
                       </ul>
-                    </li>
-                
-                {% endif %}
+                  </li>
+              
+              {% endif %}
+
 
               <li class="nav-item {% if 'statistics' in active_item or 'order-docs' in active_item %}menu-open{% endif %}">
                 <a href="#" class="nav-link {% if 'statistics' in active_item or 'order-docs' in active_item %}active{% endif %}">

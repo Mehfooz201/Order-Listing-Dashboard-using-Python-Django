@@ -180,11 +180,7 @@
                         
                         <div class="form-group">
                             <label for="country">Country</label>
-                            <select name="country" id="country" class="form-control">
-                                    {% for value, label in form.country.field.choices %}
-                                        <option value="{{ value }}">{{ label }}</option> 
-                                    {% endfor %} 
-                            </select> 
+                            <input type="text" class="form-control" name="country" value="{{ request.user.country }}"> 
                         </div>
 
            

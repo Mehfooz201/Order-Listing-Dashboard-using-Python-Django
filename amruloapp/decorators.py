@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.core.exceptions import PermissionDenied
 
 def allowed_users(allowed_roles=[]):
     def decorator(view_func):
