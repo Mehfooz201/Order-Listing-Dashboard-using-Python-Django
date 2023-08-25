@@ -323,7 +323,7 @@ login_required(login_url='login')
 def cadResult(request):
     user = request.user  # Get the logged-in user
     order_number = request.GET.get('order_number')
-    order_data = Order.objects.filter(user=user)
+    order_data = Order.objects.filter(user=user, order_status='complete')
 
     if order_number:
         try:

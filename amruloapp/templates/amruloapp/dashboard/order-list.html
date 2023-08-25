@@ -146,6 +146,7 @@
                     <th>Phone</th>
                     <th>Receiving Address</th>
                     <th>Menu</th>
+                    <th>Apply for Remake</th>
                   </tr>
                 </thead>
                 <tbody >
@@ -200,6 +201,16 @@
                                         </form>
                                       {% endif %}
                                   </div>
+                                </td>
+
+                                <td>
+                                  {% if data.order_status == 'modification' %}
+                                    <p class='text-center'>-</p>
+                                  {% else %}
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#remakeModal">
+                                      Request for Remake
+                                    </button>
+                                  {% endif %}
                                 </td>
                         
 
@@ -376,6 +387,40 @@
 
 
 <!-- View Order Modal -->
+
+
+<div class="modal fade" id="remakeModal" tabindex="-1" role="dialog" aria-labelledby="remakeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="remakeModalLabel">Request Remake</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="remakeForm">
+          <div class="form-group">
+            <label for="crownsInput">Number of Crowns</label>
+            <input type="number" class="form-control" id="crownsInput" name="crowns" required>
+          </div>
+          <div class="form-group">
+            <label for="bracketsInput">Number of Brackets</label>
+            <input type="number" class="form-control" id="bracketsInput" name="brackets" required>
+          </div>
+          <div class="form-group">
+            <label for="notesInput">Notes</label>
+            <textarea class="form-control" id="notesInput" name="notes" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="submitRemakeBtn">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 {% endblock content %}
