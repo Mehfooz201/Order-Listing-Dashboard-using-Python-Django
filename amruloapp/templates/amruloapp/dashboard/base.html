@@ -150,20 +150,17 @@
                     </a>
                   </li>
             
-
+                  <li class="nav-item">
+                    <a href="{% url 'remake-order' %}" class="nav-link {% if active_item == 'remake-order' %}active{% endif %}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Apply for remake</p>
+                    </a>
+                  </li>
 
                   <li class="nav-item">
                     <a href="{% url 'framework-manage' %}" class="nav-link {% if active_item == 'framemanage-order' %}active{% endif %}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>The framework management</p>
-                    </a>
-                  </li>
-
-
-                  <li class="nav-item">
-                    <a href="{% url 'remake-order' %}" class="nav-link {% if active_item == 'remake-order' %}active{% endif %}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Apply for remake</p>
                     </a>
                   </li>
 
@@ -237,7 +234,7 @@
       {% endblock content %}
 
       <footer class="main-footer">
-        <strong>Copyright &copy; 2023 <a href="#">CDL Lab</a>.</strong>
+        <strong>Copyright &copy; 2023 <a href="/">CDL Lab</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
           <b>Version</b> 4.2.0
@@ -260,6 +257,8 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src="{% static 'amruloapp/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    
     <!-- daterangepicker -->
     <script src="{% static 'amruloapp/dashboard/plugins/moment/moment.min.js' %}"></script>
     <script src="{% static 'amruloapp/dashboard/plugins/daterangepicker/daterangepicker.js' %}"></script>

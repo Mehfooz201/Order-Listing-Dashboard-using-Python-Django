@@ -304,20 +304,53 @@ def userProfile(request, id):
 
 login_required(login_url='login')
 def monthlyStatement(request):
-    context = {'active_item': 'monthly-order'}
+    user = request.user  # Get the logged-in user
+    order_number = request.GET.get('order_number')
+    order_data = Order.objects.filter(user=user)
+
+    if order_number:
+        try:
+            order_data = order_data.filter(order_number=int(order_number))
+        except ValueError:
+            # Handle invalid order number input
+            pass
+
+    context = {'active_item': 'monthly-order', 'order_data':order_data}
     return render(request, 'amruloapp/dashboard/monthly-statement.html', context)
 
 
 login_required(login_url='login')
 def cadResult(request):
-    context = {'active_item': 'cad-order'}
+    user = request.user  # Get the logged-in user
+    order_number = request.GET.get('order_number')
+    order_data = Order.objects.filter(user=user)
+
+    if order_number:
+        try:
+            order_data = order_data.filter(order_number=int(order_number))
+        except ValueError:
+            # Handle invalid order number input
+            pass
+
+    context = {'active_item': 'cad-order', 'order_data':order_data}
     return render(request, 'amruloapp/dashboard/cad-result.html', context)
 
 
 #----------------------- Dental Statistics ------------------------------------#
 login_required(login_url='login')
 def orderDocuments(request):
-    context = {'active_item': 'order-docs'}
+    user = request.user  # Get the logged-in user
+    order_number = request.GET.get('order_number')
+    order_data = Order.objects.filter(user=user)
+
+    if order_number:
+        try:
+            order_data = order_data.filter(order_number=int(order_number))
+        except ValueError:
+            # Handle invalid order number input
+            pass
+
+    context = {'active_item': 'order-docs', 'order_data':order_data}
     return render(request, 'amruloapp/dashboard/order-documents.html', context)
 
 
