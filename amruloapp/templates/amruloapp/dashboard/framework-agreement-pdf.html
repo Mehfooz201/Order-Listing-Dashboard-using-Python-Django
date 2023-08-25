@@ -364,105 +364,242 @@
                             <thead>
                                 <tr>
                                     <th class="text-left bg-light">
-                                        <span class="text-muted">Order No.</span>
+                                        <span class="text-muted">Sr No.</span>
                                     </th>
                                     <th class="text-left bg-light">
-                                        <span class="text-muted">Product Type</span>
+                                        <span class="text-muted">Product Name</span>
                                     </th>
                                     <th class="text-left bg-light">
-                                        <span class="text-muted">Product Sub-Type</span>
+                                        <span class="text-muted">12 Hours</span>
+                                    </th>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">06 Hours</span>
+                                    </th>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">02 Hours</span>
                                     </th>
                                     <th class="text-left bg-light">
                                         <span class="text-muted">Product Material</span>
                                     </th>
-
-                                    <th class="text-left bg-light">
-                                        <span class="text-muted">Unit of Measurement</span>
-                                    </th>
+                                    
                                 </tr>
                             </thead>
                             <tbody> 
-                                {% for order in orders %} 
-                                    <tr>
-                                        <td>{{ order.order_number }}</td>
-                                        <td>{{ order.product_type }}</td>
-                                        <td>{{ order.product_sub_type }}</td>
-                                        <td>{{ order.product_material }}</td>   
-                                        <td>{{ order.unit_of_measurement }}</td>  
-                                    </tr>
-                                {% endfor %}
+                                
+                                <tr>
+                                    <td>01</td>
+                                    <td>Anatomic Full Crown</td>
+                                    <td>6$</td>
+                                    <td>7$</td>   
+                                    <td>9$</td>  
+                                    <td>Zirconia / Metal / PMMA </td>
+                                </tr>
+
+                                <tr>
+                                    <td>02</td>
+                                    <td>Veneer ( Emax, Ivoclar)</td>
+                                    <td>6$</td>
+                                    <td>7$</td>   
+                                    <td>9$</td>  
+                                    <td>Zirconia / Emax</td>
+                                </tr>
+
+                                <tr>
+                                    <td>03</td>
+                                    <td>Inlay/Onlay</td>
+                                    <td>6$</td>
+                                    <td>7$</td>   
+                                    <td>9$</td>  
+                                    <td>Zirconia / Emax</td>
+                                </tr>
+
+                                <tr>
+                                    <td>04</td>
+                                    <td>Smile Creator</td>
+                                    <td>6$</td>
+                                    <td>7$</td>   
+                                    <td>9$</td>  
+                                    <td>Wax </td>
+                                </tr>
+
+                                <tr>
+                                    <td>05</td>
+                                    <td>Acrylic Temporary Crowns </td>
+                                    <td>6$</td>
+                                    <td>7$</td>   
+                                    <td>9$</td>  
+                                    <td>PMMA </td>
+                                </tr>
+
+                                <tr>
+                                    <td>06</td>
+                                    <td>Custom Implant Abutment</td>
+                                    <td>7$</td>
+                                    <td>9$</td>   
+                                    <td>11$</td>  
+                                    <td>Zirconia / Metal </td>
+                                </tr>
+
+                                
+                                <th class="text-center bg-light" colspan="2">
+                                    <span class="text-muted">Clinics with Lab Support for Milling and Printing Facility </span>
+                                </th>
+                                
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>Cast Partial Denture Framework (upto 3 unit single arch)</td>
+                                    <td>18$</td>
+                                    <td>20$</td>   
+                                    <td>-</td>  
+                                    <td>Metal</td>
+                                </tr>
+
+                                <tr>
+                                    <td>02</td>
+                                    <td>Cast Partial Denture Framework (upto 6 unit single arch)</td>
+                                    <td>18$</td>
+                                    <td>20$</td>   
+                                    <td>-</td>  
+                                    <td>Metal</td>
+                                </tr>
+
+                                <tr>
+                                    <td>04</td>
+                                    <td>Screw retained crown </td>
+                                    <td>7$</td>
+                                    <td>9$</td>   
+                                    <td>11$</td>  
+                                    <td>Metal</td>
+                                </tr>
+
+                                <tr>
+                                    <td>05</td>
+                                    <td>All on 4/6 implants</td>
+                                    <td>9$</td>
+                                    <td>11$</td>   
+                                    <td>15$</td>  
+                                    <td>Metal</td>
+                                </tr>
+
+                                <tr>
+                                    <td>06</td>
+                                    <td>Implant SLM malo bridge </td>
+                                    <td>9$</td>
+                                    <td>11$</td>   
+                                    <td>15$</td>  
+                                    <td>Metal</td>
+                                </tr>
+
+                                <tr>
+                                    <td>07</td>
+                                    <td>Implant Hybrid Denture</td>
+                                    <td>9$</td>
+                                    <td>11$</td>   
+                                    <td>15$</td>  
+                                    <td>Metal</td>
+                                </tr>
+
+                                <tr>
+                                    <td>08</td>
+                                    <td>Cast Partial Obturatofa-rotate-90</td>
+                                    <td>9$</td>
+                                    <td>11$</td>   
+                                    <td>15$</td>  
+                                    <td>Resin</td>
+                                </tr>
+
+                                <tr>
+                                    <td>09</td>
+                                    <td>Bridge Framework</td>
+                                    <td>7$</td>
+                                    <td>9$</td>   
+                                    <td>11$</td>  
+                                    <td>Metal</td>
+                                </tr>
+
+                                <tr>
+                                    <td>10</td>
+                                    <td>Bite Splint </td>
+                                    <td>7$</td>
+                                    <td>9$</td>   
+                                    <td>11$</td>  
+                                    <td>Resin</td>
+                                </tr>
+
+                                <tr>
+                                    <td>11</td>
+                                    <td>Full Mouth Rehabilitation </td>
+                                    <td>9$</td>
+                                    <td>11$</td>   
+                                    <td>15$</td>  
+                                    <td>Resin</td>
+                                </tr>
+
+                                <tr>
+                                    <td>12</td>
+                                    <td>Wax-up for smile correction</td>
+                                    <td>9$</td>
+                                    <td>11$</td>   
+                                    <td>15$</td>  
+                                    <td>Resin</td>
+                                </tr>
+
+                                <th class="text-center bg-light" colspan="2">
+                                    <span class="text-muted">MODEL DESIGN</span>
+                                </th>
+                                
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>Contact Model ( each quadrant )</td>
+                                    <td>3$</td>
+                                    <td>5$</td>   
+                                    <td>7$</td>  
+                                    <td>Resin</td>
+                                </tr>
+
+                                <tr>
+                                    <td>02</td>
+                                    <td>Contact Model with extra die  ( each quadrant )</td>
+                                    <td>3$</td>
+                                    <td>5$</td>   
+                                    <td>7$</td>  
+                                    <td>Resin</td>
+                                </tr>
+
+                                <tr>
+                                    <td>03</td>
+                                    <td>Models with articulation (uppr/lower)</td>
+                                    <td>3$</td>
+                                    <td>5$</td>   
+                                    <td>7$</td>  
+                                    <td>Resin</td>
+                                </tr>
+
+                                <tr>
+                                    <td>04</td>
+                                    <td>Study Model (Full Mouth)</td>
+                                    <td>3$</td>
+                                    <td>5$</td>   
+                                    <td>7$</td>  
+                                    <td>Resin</td>
+                                </tr>
+
+                                <tr>
+                                    <td>05</td>
+                                    <td>Surgical guide </td>
+                                    <td>40$</td>
+                                    <td>36$</td>   
+                                    <td>-</td>  
+                                    <td>Resin</td>
+                                </tr>
+
+
                             </tbody>
                         </table>
 
-                        
-                        {% comment %} <div class="row">
-                            <div class='col-md-12'>
-
-                                <div class="col-md-6">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            {% for agreement in agreements %}
-                                                <tr>
-                                                    <th class="text-center bg-light" colspan="2">Signature of (signature and seal)</th>
-                                                    <td>{{ agreement.customer.name }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center bg-light" colspan="2">Address</th>
-                                                    <td>{{ agreement.customer.user_address }}</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center bg-light" colspan="2">Bank of<br />deposit</th>
-                                                    <td>-</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center bg-light" colspan="2">Account<br />number</th>
-                                                    <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center bg-light" colspan="2">Date</th>
-                                                    <td>{{ current_date }}</td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            {% for data in company %}
-                                            <tr>
-                                                <th class="text-center bg-light" colspan="2">Signature of (signature and seal)</th>
-                                                    <td>{{ data.company_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center bg-light" colspan="2">Address</th>
-                                                <td>{{ data.company_address }}</td>
-
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center bg-light" colspan="2">Bank of<br />deposit</th>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center bg-light" colspan="2">Account<br />number</th>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center bg-light" colspan="2">Date</th>
-                                                <td>{{ current_date }}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div> {% endcomment %}
-
-                        
+            
                             
                         <table class="table table-bordered">
                             <tbody>
@@ -477,10 +614,7 @@
                                                 <p>{{ agreement.customer.name }}</p>
                                                 <h6 class="text-left bg-light">Address</h6>
                                                 <p>{{ agreement.customer.user_address }}</p>
-                                                <h6 class="text-left bg-light">Bank of deposit</h6>
-                                                <p>-</p>
-                                                <h6 class="text-left bg-light">Account number</h6>
-                                                <p>-</p>
+                                                
                                                 <h6 class="text-left bg-light">Date</h6>
                                                 <p>{{ current_date }}</p>
                                             </div>
@@ -497,10 +631,7 @@
                                                 <p>{{ data.company_name }}</p>
                                                 <h6 class="text-left bg-light">Address</h6>
                                                 <p>{{ data.company_address }}</p>
-                                                <h6 class="text-left bg-light">Bank of deposit</h6>
-                                                <p>-</p>
-                                                <h6 class="text-left bg-light">Account number</h6>
-                                                <p>-</p>
+                                                
                                                 <h6 class="text-left bg-light">Date</h6>
                                                 <p>{{ current_date }}</p>
                                             </div>
