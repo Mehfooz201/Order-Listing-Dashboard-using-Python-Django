@@ -7,10 +7,9 @@ from .models import  User, Order, FrameworkAgreement, CompanyInformation
 from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 from .decorators import allowed_users
-
 
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -18,6 +17,8 @@ from xhtml2pdf import pisa
 from io import BytesIO
 
 from django.contrib.auth.models import Group
+from datetime import datetime
+from dateutil.parser import parse
 
 
 
@@ -208,19 +209,12 @@ login_required(login_url='login')
 def orderList(request):
     user = request.user
     order_number = request.GET.get('order_number')
-    from_date = request.GET.get('fromdate')
-    to_date = request.GET.get('todate')
+    date_range = request.GET.get('date_range')
 
     # order_data = Order.objects.filter(user=user)
     order_data = Order.objects.all()
 
-    if from_date and to_date:
-        # Convert the date strings to datetime objects
-        from_date = datetime.strptime(from_date, '%Y-%m-%d').date()
-        to_date = datetime.strptime(to_date, '%Y-%m-%d').date()
-
-        # Filter orders based on the date range
-        order_data = order_data.filter(order_date__range=[from_date, to_date])
+    
 
     if order_number:
         try:
@@ -239,6 +233,12 @@ def orderList(request):
                 return redirect('order-list')
             except Order.DoesNotExist:
                 pass
+                
+    if date_range:
+        start_date, end_date = date_range.split(' - ')
+        start_date = parse(start_date).date()
+        end_date = parse(end_date).date() + timedelta(days=1)  # Include the end date itself
+        order_data = order_data.filter(order_date__range=(start_date, end_date))
 
     
     context = {'active_item': 'order-list', 'order_data': order_data}
@@ -302,21 +302,46 @@ def userProfile(request, id):
 
 
 
-login_required(login_url='login')
+
+@login_required(login_url='login')
 def monthlyStatement(request):
-    user = request.user  # Get the logged-in user
+    user = request.user
     order_number = request.GET.get('order_number')
+    date_range = request.GET.get('date_range')
+
     order_data = Order.objects.filter(user=user)
 
     if order_number:
         try:
             order_data = order_data.filter(order_number=int(order_number))
         except ValueError:
-            # Handle invalid order number input
             pass
 
-    context = {'active_item': 'monthly-order', 'order_data':order_data}
+    if date_range:
+        start_date, end_date = date_range.split(' - ')
+        start_date = parse(start_date).date()
+        end_date = parse(end_date).date() + timedelta(days=1)  # Include the end date itself
+        order_data = order_data.filter(order_date__range=(start_date, end_date))
+
+    context = {'active_item': 'monthly-order', 'order_data': order_data}
     return render(request, 'amruloapp/dashboard/monthly-statement.html', context)
+
+# login_required(login_url='login')
+# def monthlyStatement(request):
+#     user = request.user  # Get the logged-in user
+#     order_number = request.GET.get('order_number')
+#     order_data = Order.objects.filter(user=user)
+
+
+#     if order_number:
+#         try:
+#             order_data = order_data.filter(order_number=int(order_number))
+#         except ValueError:
+#             # Handle invalid order number input
+#             pass
+
+#     context = {'active_item': 'monthly-order', 'order_data':order_data}
+#     return render(request, 'amruloapp/dashboard/monthly-statement.html', context)
 
 
 login_required(login_url='login')
@@ -342,6 +367,7 @@ def orderDocuments(request):
     user = request.user  # Get the logged-in user
     order_number = request.GET.get('order_number')
     order_data = Order.objects.filter(user=user)
+    date_range = request.GET.get('date_range')
 
     if order_number:
         try:
@@ -349,6 +375,12 @@ def orderDocuments(request):
         except ValueError:
             # Handle invalid order number input
             pass
+    
+    if date_range:
+        start_date, end_date = date_range.split(' - ')
+        start_date = parse(start_date).date()
+        end_date = parse(end_date).date() + timedelta(days=1)  # Include the end date itself
+        order_data = order_data.filter(order_date__range=(start_date, end_date))
 
     context = {'active_item': 'order-docs', 'order_data':order_data}
     return render(request, 'amruloapp/dashboard/order-documents.html', context)

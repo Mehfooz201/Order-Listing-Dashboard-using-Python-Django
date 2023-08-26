@@ -5,13 +5,13 @@ $(function() {
                 format: "YYYY-MM-DD HH:mm",
             },
         },
-        function(start, end, label) {
-            let msg = "start " + start.format("YYYY-MM-DD HH:mm");
-            msg += "\n";
-            msg += "end " + end.format("YYYY-MM-DD HH:mm");
+        // function(start, end, label) {
+        //     let msg = "start " + start.format("YYYY-MM-DD HH:mm");
+        //     msg += "\n";
+        //     msg += "end " + end.format("YYYY-MM-DD HH:mm");
 
-            alert(msg);
-        }
+        //     alert(msg);
+        // }
     );
 
     const dataTable = $("#orderListTable").DataTable({
