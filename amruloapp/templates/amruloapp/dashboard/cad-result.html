@@ -148,13 +148,13 @@
                             <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
 
                             <td class='text-center'>
-                              {% if data.order_status == 'complete' %}
+                              {% if data.order_status == 'completed' %}
                                 <span class="badge badge-success">{{ data.order_status }}</span>
                               {% endif %}
                             </td>
 
                             <td>
-                              {% if data.order_status == 'modification' %}
+                              {% if data.order_status == 'pending' %}
                                 <p class='text-center'>-</p>
                               {% else %}
                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#remakeModal">

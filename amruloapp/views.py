@@ -250,7 +250,7 @@ login_required(login_url='login')
 def remakeOrder(request):
     user = request.user  # Get the logged-in user
     order_number = request.GET.get('order_number')
-    order_data = Order.objects.filter(user=user, order_status='modification')
+    order_data = Order.objects.filter(user=user, order_status='pending')
 
     if order_number:
         try:
@@ -348,7 +348,7 @@ login_required(login_url='login')
 def cadResult(request):
     user = request.user  # Get the logged-in user
     order_number = request.GET.get('order_number')
-    order_data = Order.objects.filter(user=user, order_status='complete')
+    order_data = Order.objects.filter(user=user, order_status='completed')
 
     if order_number:
         try:

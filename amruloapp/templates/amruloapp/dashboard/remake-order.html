@@ -118,10 +118,12 @@
                           <th>Order Status</th>
                           <th>Notes on Remaking order</th>
                           <th>Product Sub-Type</th>
+                          <th>Remake Notes </th>
                           <th>Number of Crowns </th>
                           <th>Number of Brackets</th>
                           <th>Currency</th>
-                          <th>Amount</th>
+                          <th>Total Amount</th>
+                          <th>Additional Price</th>
                           <th>Menu</th>
                         </tr>
                       </thead>
@@ -134,15 +136,21 @@
                                 <td>{{data.customer_name}}</td>
                                 <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
                                 <td class='text-center'>
-                                  {% if data.order_status == 'modification' %}
+
+                                  {% if data.order_status == 'pending' %}
                                       <span class="badge badge-warning">{{ data.order_status }}</span>
+                                      
                                   {% endif %}
+
                                 </td>
                                 <td>Some Description</td>
         
                                 <td>{{data.product_sub_type}}</td>
-                                <td>-</td>
-                                <td>-</td>
+
+                                <td>{{data.remake_notes}}</td>
+                                <td>{{data.num_crowns}}</td>
+                                <td>{{data.num_brackets}}</td>
+                                
                                 <td>{{data.currency}}</td>
                                 <td>
                                     {% if data.currency == 'USA' %}
@@ -154,13 +162,23 @@
                                     {% endif %}
                                 </td>
 
+                                <td>
+                                  {% if data.currency == 'USA' %}
+                                      ${{ data.remake_price|floatformat:2 }}
+                                  {% elif data.currency == 'INR' %}
+                                      ₹{{ data.remake_price|floatformat:2 }}
+                                  {% else %}
+                                      {{ data.remake_price|floatformat:2 }} <!-- Default case if no currency symbol is available -->
+                                  {% endif %}
+                              </td>
+
                                 <td class="text-center bg-light">
                                   <div class="datatable-actions-container">
                                       {% comment %} <button class="btn-action" data-toggle="modal" data-target="#viewOrderModal{{ data.order_number }}">
                                           <i class="fas fa-eye pr-2"></i> View
                                       </button> {% endcomment %}
                               
-                                      <button type="button" class="btn-action" data-toggle="modal" data-target="#paymentModal">
+                                      <button type="button" class="btn-action" data-toggle="modal" data-target="#paymentModal{{ data.order_number }}">
                                         <i class="fas fa-dollar-sign pr-2"></i> Pay Now
                                       </button>
 
@@ -355,27 +373,45 @@
 
 <!-- View Order Modal -->
 
+
 <!-- Modal for payment confirmation -->
-<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="paymentModalLabel">Confirm Payment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Confirm your payment for the order:</p>
-        <p><strong>Amount: $100</strong></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" id="confirmPaymentBtn">Confirm Payment</button>
+{% for data in order_data %}
+  <div class="modal fade" id="paymentModal{{ data.order_number }}" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel{{ data.order_number }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="paymentModalLabel{{ data.order_number }}">Confirm Payment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+
+            <p>Confirm your payment for the Order No : <strong>{{data.order_number}}</strong> </p>
+
+            <p>Currency: {{data.currency}}</p>
+            {% comment %} <p> $100</strong></p> {% endcomment %}
+              <p><strong>Additional Amount: </strong>
+                  {% if data.currency == 'USA' %}
+                      ${{ data.remake_price|floatformat:2 }}
+                  {% elif data.currency == 'INR' %}
+                      ₹{{ data.remake_price|floatformat:2 }}
+                  {% else %}
+                      {{ data.remake_price|floatformat:2 }} <!-- Default case if no currency symbol is available -->
+                  {% endif %}
+              </p>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirmPaymentBtn">Confirm Payment</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+{% endfor %}
 
 {% endblock content %}
 

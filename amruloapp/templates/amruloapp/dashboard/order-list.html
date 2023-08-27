@@ -139,13 +139,20 @@
                                 <td>{{data.order_number}}</td>
                                 <td>{{data.customer_name}}</td>
                                 <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
+                                
                                 <td class='text-center'>
-                                  {% if data.order_status == 'active' %}
+                                  {% if data.order_status == 'review' %}
                                       <span class="badge badge-primary">{{ data.order_status }}</span>
-                                  {% elif data.order_status == 'complete' %}
-                                      <span class="badge badge-success">{{ data.order_status }}</span>
-                                  {% elif data.order_status == 'modification' %}
+
+                                  {% elif data.order_status == 'pending' %}
                                       <span class="badge badge-warning">{{ data.order_status }}</span>
+                                  
+                                  {% elif data.order_status == 'approved' %}
+                                      <span class="badge badge-info">{{ data.order_status }}</span>
+                                      
+                                  {% elif data.order_status == 'completed' %}
+                                      <span class="badge badge-success">{{ data.order_status }}</span>
+                                  
                                   {% elif data.order_status == 'cancelled' %}
                                       <span class="badge badge-danger">{{ data.order_status }}</span>
                                   {% else %}
@@ -187,7 +194,7 @@
                                 </td>
 
                                 <td>
-                                  {% if data.order_status == 'modification' %}
+                                  {% if data.order_status == 'pending' %}
                                     <p class='text-center'>-</p>
                                   {% else %}
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#remakeModal">

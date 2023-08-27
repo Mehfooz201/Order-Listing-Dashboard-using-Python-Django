@@ -93,13 +93,15 @@ class Order(models.Model):
         return self.order_date.strftime('%Y-%m-%d 00:00')
     
     ORDER_STATUS_CHOICES = [
-        ('active', 'Active'),
-        ('complete', 'Complete'),
+        ('review', 'Review'),
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('completed', 'Completed'),
         ('cancelled', 'Cancelled'),
-        ('modification', 'Modification'),
+        
     ]
     order_status = models.CharField(
-        max_length=12, choices=ORDER_STATUS_CHOICES, null=True, blank=True, default='active')
+        max_length=12, choices=ORDER_STATUS_CHOICES, null=True, blank=True, default='review')
 
     ORIGINAL_DATA_CHOICES = [
         ('Raw Scanned Data', 'Raw Scanned Data'),
@@ -200,6 +202,16 @@ class Order(models.Model):
     
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
+
+
+    #Remake Order Field
+    # New fields for remaking
+    remake_notes = models.TextField(blank=True)
+    num_crowns = models.PositiveIntegerField(default=0)
+    num_brackets = models.PositiveIntegerField(default=0)
+
+    remake_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+
     
 
     def save(self, *args, **kwargs):
@@ -207,7 +219,15 @@ class Order(models.Model):
             recent_agreement = FrameworkAgreement.objects.filter(customer=self.user).order_by('-id').first()
             if recent_agreement:
                 self.framework_agreement = recent_agreement
+            
+        if not self.price:
+            self.price = self.calculate_price()
+
+        # Calculate total amount including original price and remake charges
+        self.price = self.price + self.remake_price
+
         super(Order, self).save(*args, **kwargs)
+
 
     def calculate_price(self):
         price_dict  = {

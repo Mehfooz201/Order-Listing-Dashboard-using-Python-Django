@@ -119,8 +119,8 @@
                             <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
                             <td>{{data.product_sub_type}}</td>
                             <td>{{data.delivery_timing}}</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>{{data.num_crowns}}</td>
+                            <td>{{data.num_brackets}}</td>
 
                             <td>{{data.currency}}</td>
                                 <td>
@@ -133,19 +133,25 @@
                                     {% endif %}
                                 </td>
 
-                            <td class='text-center'>
-                              {% if data.order_status == 'active' %}
-                                  <span class="badge badge-primary">{{ data.order_status }}</span>
-                              {% elif data.order_status == 'complete' %}
-                                  <span class="badge badge-success">{{ data.order_status }}</span>
-                              {% elif data.order_status == 'modification' %}
-                                  <span class="badge badge-warning">{{ data.order_status }}</span>
-                              {% elif data.order_status == 'cancelled' %}
-                                  <span class="badge badge-danger">{{ data.order_status }}</span>
-                              {% else %}
-                                  <span class="badge badge-secondary">{{ data.order_status }}</span> <!-- Default case if the status is not matched -->
-                              {% endif %}
-                            </td>
+                                <td class='text-center'>
+                                  {% if data.order_status == 'review' %}
+                                      <span class="badge badge-primary">{{ data.order_status }}</span>
+
+                                  {% elif data.order_status == 'pending' %}
+                                      <span class="badge badge-warning">{{ data.order_status }}</span>
+                                  
+                                  {% elif data.order_status == 'approved' %}
+                                      <span class="badge badge-info">{{ data.order_status }}</span>
+                                      
+                                  {% elif data.order_status == 'completed' %}
+                                      <span class="badge badge-success">{{ data.order_status }}</span>
+                                  
+                                  {% elif data.order_status == 'cancelled' %}
+                                      <span class="badge badge-danger">{{ data.order_status }}</span>
+                                  {% else %}
+                                      <span class="badge badge-secondary">{{ data.order_status }}</span> <!-- Default case if the status is not matched -->
+                                  {% endif %}
+                                </td>
                           </tr>
                         {% endfor %}
                         
