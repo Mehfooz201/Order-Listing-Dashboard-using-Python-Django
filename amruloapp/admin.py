@@ -18,6 +18,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ('order_number', 'customer_name', 'order_status', 'order_type', 'salesman', 'price', 'order_date')
     list_filter = ('customer_name', 'order_status', 'order_date')
     search_fields = ('order_number', 'customer_name', 'order_status', 'order_date')
+    
 
 admin.site.register(Order, OrderAdmin)
 

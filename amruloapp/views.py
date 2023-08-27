@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.db.models import Q
 from .models import  User, Order, FrameworkAgreement, CompanyInformation
-from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm
+from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm, RemakeRequestForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
 from datetime import datetime, date, timedelta
@@ -233,7 +233,27 @@ def orderList(request):
                 return redirect('order-list')
             except Order.DoesNotExist:
                 pass
-                
+
+
+    if request.method == 'POST':
+        order_number = request.POST.get('order_number')  # Get the order number from the submitted form
+        order = get_object_or_404(Order, order_number=order_number)  # Get the order
+        remake_form = RemakeRequestForm(request.POST, instance=order)
+
+        if remake_form.is_valid():
+            order_number = remake_form.instance.order_number  # Get the order number
+            order = Order.objects.get(order_number=order_number)  # Get the order
+
+            # Update the fields from the form
+            order.remake_notes = remake_form.cleaned_data['remake_notes']
+            order.num_crowns = remake_form.cleaned_data['num_crowns']
+            order.num_brackets = remake_form.cleaned_data['num_brackets']
+            order.order_status = 'pending'  # Set the order status to pending
+
+            order.save()  # Save the order with updated fields
+            messages.success(request, 'Remake request submitted successfully.')
+            return redirect('remake-order')
+                    
     if date_range:
         start_date, end_date = date_range.split(' - ')
         start_date = parse(start_date).date()
