@@ -346,22 +346,6 @@ def monthlyStatement(request):
     context = {'active_item': 'monthly-order', 'order_data': order_data}
     return render(request, 'amruloapp/dashboard/monthly-statement.html', context)
 
-# login_required(login_url='login')
-# def monthlyStatement(request):
-#     user = request.user  # Get the logged-in user
-#     order_number = request.GET.get('order_number')
-#     order_data = Order.objects.filter(user=user)
-
-
-#     if order_number:
-#         try:
-#             order_data = order_data.filter(order_number=int(order_number))
-#         except ValueError:
-#             # Handle invalid order number input
-#             pass
-
-#     context = {'active_item': 'monthly-order', 'order_data':order_data}
-#     return render(request, 'amruloapp/dashboard/monthly-statement.html', context)
 
 
 login_required(login_url='login')
@@ -376,6 +360,25 @@ def cadResult(request):
         except ValueError:
             # Handle invalid order number input
             pass
+    
+    if request.method == 'POST':
+        order_number = request.POST.get('order_number')  # Get the order number from the submitted form
+        order = get_object_or_404(Order, order_number=order_number)  # Get the order
+        remake_form = RemakeRequestForm(request.POST, instance=order)
+
+        if remake_form.is_valid():
+            order_number = remake_form.instance.order_number  # Get the order number
+            order = Order.objects.get(order_number=order_number)  # Get the order
+
+            # Update the fields from the form
+            order.remake_notes = remake_form.cleaned_data['remake_notes']
+            order.num_crowns = remake_form.cleaned_data['num_crowns']
+            order.num_brackets = remake_form.cleaned_data['num_brackets']
+            order.order_status = 'pending'  # Set the order status to pending
+
+            order.save()  # Save the order with updated fields
+            messages.success(request, 'Remake request submitted successfully.')
+            return redirect('remake-order')
 
     context = {'active_item': 'cad-order', 'order_data':order_data}
     return render(request, 'amruloapp/dashboard/cad-result.html', context)
