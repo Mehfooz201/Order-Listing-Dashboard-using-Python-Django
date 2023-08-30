@@ -85,7 +85,7 @@ h6,
   font-family: 'Lora', serif;
 }
 .bg-primary {
-  background-color: #65b144 !important;
+  background-color: #EB272C !important;
 }
 .bg-success {
   background-color: #90a878 !important;
@@ -100,8 +100,8 @@ h6,
   background-color: #f28281 !important;
 }
 .btn-primary {
-  background-color: #65b144;
-  border-color: #65b144;
+  background-color: #EB272C;
+  border-color: #EB272C;
   color: #ffffff;
 }
 .btn-primary:hover,
@@ -120,8 +120,8 @@ h6,
   border-color: #457a2f !important;
 }
 .btn-secondary {
-  background-color: #65b144;
-  border-color: #65b144;
+  background-color: #EB272C;
+  border-color: #EB272C;
   color: #ffffff;
 }
 .btn-secondary:hover,
@@ -230,14 +230,14 @@ h6,
 .btn-primary-outline:active,
 .btn-primary-outline.active {
   color: #ffffff;
-  background-color: #65b144;
-  border-color: #65b144;
+  background-color: #EB272C;
+  border-color: #EB272C;
 }
 .btn-primary-outline.disabled,
 .btn-primary-outline:disabled {
   color: #ffffff !important;
-  background-color: #65b144 !important;
-  border-color: #65b144 !important;
+  background-color: #EB272C !important;
+  border-color: #EB272C !important;
 }
 .btn-secondary-outline {
   background: none;
@@ -250,14 +250,14 @@ h6,
 .btn-secondary-outline:active,
 .btn-secondary-outline.active {
   color: #ffffff;
-  background-color: #65b144;
-  border-color: #65b144;
+  background-color: #EB272C;
+  border-color: #EB272C;
 }
 .btn-secondary-outline.disabled,
 .btn-secondary-outline:disabled {
   color: #ffffff !important;
-  background-color: #65b144 !important;
-  border-color: #65b144 !important;
+  background-color: #EB272C !important;
+  border-color: #EB272C !important;
 }
 .btn-info-outline {
   background: none;
@@ -340,7 +340,7 @@ h6,
   border-color: #f28281 !important;
 }
 .text-primary {
-  color: #65b144 !important;
+  color: #EB272C !important;
 }
 .text-success {
   color: #90a878 !important;
@@ -367,32 +367,32 @@ h6,
   background-color: #f28281;
 }
 .btn-social {
-  border-color: #65b144;
+  border-color: #EB272C;
 }
 .btn-social:hover {
-  background: #65b144;
+  background: #EB272C;
 }
 .mbr-company .list-group-item.active .list-group-text {
-  color: #65b144;
+  color: #EB272C;
 }
 .mbr-footer p a,
 .mbr-footer ul a {
-  color: #65b144;
+  color: #EB272C;
 }
 .mbr-footer-content li::before,
 .mbr-footer .mbr-contacts li::before {
-  background: #65b144;
+  background: #EB272C;
 }
 .mbr-footer-content li a:hover,
 .mbr-footer .mbr-contacts li a:hover {
-  color: #65b144;
+  color: #EB272C;
 }
 .lead a,
 .lead a:hover {
-  color: #65b144;
+  color: #EB272C;
 }
 .lead blockquote {
-  border-color: #65b144;
+  border-color: #EB272C;
 }
 .mbr-plan-header.bg-primary .mbr-plan-subtitle,
 .mbr-plan-header.bg-primary .mbr-plan-price-desc {
@@ -416,7 +416,7 @@ h6,
 }
 .mbr-small-footer a,
 .mbr-gallery-filter li:hover {
-  color: #65b144;
+  color: #EB272C;
 }
 .scrollToTop_wraper {
   display: none;
@@ -493,7 +493,7 @@ section.form .container {
   font-family: 'Lora', serif;
 }
 .mbr-iconfont-counters1 {
-  color: #65b144;
+  color: #EB272C;
 }
 .extHeader1 .container h3,
 .extHeader2 .container h3,
@@ -571,7 +571,7 @@ section.form .container {
   font-family: 'Montserrat', sans-serif;
 }
 .extFeatures3 .border-wrap {
-  border-color: #65b144;
+  border-color: #EB272C;
 }
 .extFeatures4 h4,
 .extFeatures6 h4,
@@ -602,13 +602,13 @@ section.form .container {
   font-family: 'Lora', serif;
 }
 .extPricingTable1 .bottom_line {
-  border-bottom-color: #65b144;
+  border-bottom-color: #EB272C;
 }
 .extPricingTable1 .mbr-price small {
   font-family: 'Lora', serif;
 }
 .extPricingTable1 .mbr-plan-label {
-  background: #65b144;
+  background: #EB272C;
 }
 .extCounters2 h4 {
   font-family: 'Montserrat', sans-serif;
@@ -626,14 +626,14 @@ section.form .container {
   font-family: 'Lora', serif;
 }
 .extProgressBar .progress-primary[value]::-webkit-progress-value {
-  background-color: #65b144;
+  background-color: #EB272C;
 }
 .extProgressBar .progress-primary[value]::-moz-progress-bar {
-  background-color: #65b144;
+  background-color: #EB272C;
 }
 @media screen and (min-width: 0\0) {
   .extProgressBar .progress-primary .progress-bar {
-    background-color: #65b144;
+    background-color: #EB272C;
   }
 }
 .extProgressBar .title-wrap {
@@ -650,7 +650,7 @@ section.form .container {
 }
 .extTabs1 ul.nav-tabs li a:hover,
 .extTabs2 ul.nav-tabs li a:hover {
-  color: #65b144;
+  color: #EB272C;
 }
 .extAccordion1 .panel-heading a {
   font-family: 'Raleway', sans-serif;
@@ -664,7 +664,7 @@ section.form .container {
 .extAccordion1 .pseudoMinus,
 .extAccordion2 .pseudoMinus,
 .extToggle1 .pseudoMinus {
-  background-color: #65b144;
+  background-color: #EB272C;
 }
 .extAccordion2 .panel-heading a,
 .extAccordion3 .panel-heading a,
@@ -672,14 +672,14 @@ section.form .container {
   font-family: 'Raleway', sans-serif;
 }
 .extProgressBar5 .progress-primary[value]::-webkit-progress-value {
-  background-color: #65b144;
+  background-color: #EB272C;
 }
 .extProgressBar5 .progress-primary[value]::-moz-progress-bar {
-  background-color: #65b144;
+  background-color: #EB272C;
 }
 @media screen and (min-width: 0\0) {
   .extProgressBar5 .progress-primary .progress-bar {
-    background-color: #65b144;
+    background-color: #EB272C;
   }
 }
 .extProgressBar5 .title-wrap {
@@ -711,16 +711,16 @@ section.form .container {
   font-family: 'Montserrat', sans-serif;
 }
 .extMenu1 span.icon a:hover {
-  color: #65b144 !important;
+  color: #EB272C !important;
 }
 .extProgressBar .progress-primary[value]::-ms-fill {
-  color: #65b144;
+  color: #EB272C;
 }
 .extProgressBar5 .progress-primary[value]::-ms-fill {
-  color: #65b144;
+  color: #EB272C;
 }
 .theme-border {
-  border: 1px solid #65b144;
+  border: 1px solid #EB272C;
 }
 #extHeader11-v P {
   font-size: 25px;
@@ -759,7 +759,7 @@ section.form .container {
 #menu-0 .dropdown-item:hover,
 #menu-0 .link:focus,
 #menu-0 .dropdown-item:focus {
-  color: #65b144;
+  color: #EB272C;
 }
 #menu-0 .link[aria-expanded="true"],
 #menu-0 .dropdown-menu {
@@ -786,11 +786,11 @@ section.form .container {
 }
 #menu-0 .bg-color.transparent.opened .link:hover,
 #menu-0 .bg-color.transparent.opened .link:focus {
-  color: #65b144;
+  color: #EB272C;
 }
 #menu-0 .link[aria-expanded="true"],
 #menu-0 .dropdown-item[aria-expanded="true"] {
-  color: #65b144!important;
+  color: #EB272C!important;
 }
 #content5-j .mbr-section-title,
 #content5-j .lead {

@@ -1,166 +1,72 @@
-<!DOCTYPE html>
+{% extends 'amruloapp/baselogin.html' %}
 {% load static %}
 
-<html class="no-js" lang="zxx">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-   
-    <title>
-        {% block title %}
-          
-        {% endblock title %}
-    </title>
+{% block title %}
+    Login
+{% endblock title %}
 
-    
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
-    <!-- Place favicon.ico in the root directory -->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{% block custom_css %}
+  
+{% endblock custom_css %}
 
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="{% static 'amruloapp/css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'amruloapp/css/animate.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'amruloapp/css/aos.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'amruloapp/css/magnific-popup.css' %}" />
-    <link rel="stylesheet" href="{% static 'amruloapp/css/icofont.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'amruloapp/css/slick.css' %}" />
+{% block content %}
 
- 
-
-    <link
-      rel="stylesheet"
-      href="{% static 'amruloapp/cdn.jsdelivr.net/npm/swiper%409/swiper-bundle.min.css' %}"
-    />
-    <link rel="stylesheet" href="{% static 'amruloapp/css/style.css' %}" />
-
-    <style>
-      .divider:after,
-      .divider:before {
-        content: "";
-        flex: 1;
-        height: 2px;
-        background: #eee;
-        }
-        .h-custom {
-        height: calc(110%);
-        }
-        
-        @media (max-width: 450px) {
-        .h-custom {
-        height: 100%;
-        }
-        }
-    </style>
-
-
-
-   
-  </head>
-
-  <body class="body__wrapper">
-
-    <main class="main_wrapper">
-
-
-
-      <section class="vh-100">
-        <div class="container-fluid h-custom">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-9 col-lg-6 col-xl-5">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                class="img-fluid" alt="Sample image">
-            </div>
-            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-              
-                  
-                <form class="form" action="" method="POST">
-                  {% csrf_token %}
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                      <label class="form-label" for="form3Example3">Email address</label>
-                      <input type="email" name="email" id="form3Example3" class="form-control form-control"
-                        placeholder="Enter a valid email address" />
-                      
-                    </div>
-          
-                    <!-- Password input -->
-                    <div class="form-outline mb-3">
-                      <label class="form-label" for="form3Example4">Password</label>
-                      <input type="password" name="password" id="form3Example4" class="form-control form-control"
-                        placeholder="Enter password" />
-                    </div>
-      
-                    <div class="d-flex justify-content-between align-items-center">
-                      <a href="#!" class=" text-primary">Forgot password?</a>
-                    </div>
-      
-                    {% if messages %}
-                        <ul class="messages text-danger">
-                            {% for message in messages %}
-                            <li>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                      {% endif %}
-    
-    
-                    <div class="text-center text-lg-start mt-4 pt-2">
-    
-                      <button type="submit" class="btn btn-primary btn"
-                        style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-    
-    
-                    </div>
-      
-                </form>
-    
-            </div>
+      <div class="login-container">
+        <div class="login-card">
+            
+          <div class="login-card-header">
+            <div class="login-card-title">Welcome back</div>
+            <div class="login-card-subtitle">Login to your account</div>
           </div>
+
+          <form class="form" action="" method="POST">
+            {% csrf_token %}
+
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Enter your email address"
+                />
+              </div>
+
+              
+
+              <div class="form-group">
+                <label for="email">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  placeholder="Enter your password"
+                />
+
+                
+
+                <a href="{% url 'password_reset' %}" class="forgot-pass-link">Forgot password?</a>
+
+                {% if messages %}
+                  <ul class="messages text-danger">
+                      {% for message in messages %}
+                      <li>{{ message }}</li>
+                      {% endfor %}
+                  </ul>
+                {% endif %}
+
+              </div>
+              
+
+              
+
+              <button class="btn btn-primary btn-block login-button">Login</button>
+
+            </form>
+          
         </div>
-       
-      </section>
-        
-    
-    
-    
-    </main>
+      </div>
 
+    {% endblock content %}
 
-
-    <!-- JS here -->
-    <script src="{% static 'base/js/vendor/modernizr-3.5.0.min.js' %}"></script>
-    <script src="{% static 'base/js/vendor/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'base/js/popper.min.js' %}"></script>
-    <script src="{% static 'base/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'base/js/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static 'base/js/slick.min.js' %}"></script>
-    <script src="{% static 'base/js/jquery.meanmenu.min.js' %}"></script>
-    <script src="{% static 'base/js/ajax-form.js' %}"></script>
-    <script src="{% static 'base/js/wow.min.js' %}"></script>
-    <script src="{% static 'base/js/jquery.scrollUp.min.js' %}"></script>
-    <script src="{% static 'base/js/imagesloaded.pkgd.min.js' %}"></script>
-    <script src="{% static 'base/js/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'base/js/waypoints.min.js' %}"></script>
-    <script src="{% static 'base/js/jquery.counterup.min.js' %}"></script>
-    <script src="{% static 'base/js/plugins.js' %}"></script>
-    <script src="{% static 'base/cdn.jsdelivr.net/npm/swiper%409/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'base/js/main.js' %}"></script>
-
-
-
-
-
-    <script>
-        {% block custom_script %}
-            
-        
-        {% endblock custom_script %}
-    </script>
-            
-  </body>
-
-</html>
