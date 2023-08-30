@@ -27,7 +27,6 @@ class User(AbstractUser):
     avatar = models.ImageField(null=True, default='avatar.svg')
     phone = models.CharField(max_length=15, blank=True, null=True, default='')
 
-    affiliated_with = models.CharField(max_length=100, null=True, blank=True)
     approval_status = models.BooleanField(default=True)
     
     company_information = models.ForeignKey(CompanyInformation, on_delete=models.SET_NULL, null=True, blank=True)
