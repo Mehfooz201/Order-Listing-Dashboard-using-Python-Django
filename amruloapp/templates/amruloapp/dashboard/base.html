@@ -181,7 +181,9 @@
                 </ul>
               </li>
 
-              {% if request.user.groups.all.0.name == "Vendor/Staff User" or request.user.groups.all.0.name == "SuperUser" %}
+              {% comment %} {% if request.user.groups.all.0.name == "Vendor" or request.user.groups.all.0.name == "Admin" %} {% endcomment %}
+
+              {% if request.user.groups.all.0.name == "Admin" %}
 
                   <li class="nav-item {% if 'staff' in active_item %}menu-open{% endif %}">
                       <a href="#" class="nav-link {% if 'staff' in active_item %}active{% endif %}">

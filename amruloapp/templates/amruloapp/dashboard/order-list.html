@@ -180,8 +180,9 @@
                                       <button class="btn-action" data-toggle="modal" data-target="#viewOrderModal{{ data.order_number }}">
                                           <i class="fas fa-eye pr-2"></i> View
                                       </button>
-                              
-                                      {% if request.user.groups.all.0.name == "Vendor/Staff User" or request.user.groups.all.0.name == "SuperUser" %}
+                                      
+                                      {% comment %} {% if request.user.groups.all.0.name == "Vendor" or request.user.groups.all.0.name == "Admin" %} {% endcomment %}
+                                      {% if request.user.groups.all.0.name == "Admin" %}
                                         <form method="post">
                                             {% csrf_token %}
                                             <input type="hidden" name="revoke_order_number" value="{{ data.order_number }}">

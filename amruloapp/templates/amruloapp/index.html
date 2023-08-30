@@ -371,13 +371,16 @@
                 id="exCollapsingNavbar"
               >
                 
+
+              {% if not request.user.is_authenticated %}
+              
                 <li class="nav-item nav-btn">
-                  <a
-                    class="nav-link btn btn-white btn-white-outline"
-                    href="{% url 'login' %}"
-                    >LOGIN</a
-                  >
+                  <a class="nav-link btn btn-white btn-white-outline"
+                    href="{% url 'login' %}">LOGIN</a>
                 </li>
+                
+              {% endif %}
+
                 <li class="nav-item nav-btn">
                   <a
                     class="nav-link btn btn-danger-outline btn-danger"

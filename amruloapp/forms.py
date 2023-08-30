@@ -16,7 +16,7 @@ class StaffUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'name', 'email', 'phone', 'affiliated_with', 'password1', 'password2']
+        fields = ['username', 'name', 'email', 'phone', 'password1', 'password2']
 
    
 

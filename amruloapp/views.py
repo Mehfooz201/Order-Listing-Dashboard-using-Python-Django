@@ -26,10 +26,10 @@ from dateutil.parser import parse
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['SuperUser', 'Vendor/Staff User'])
+@allowed_users(allowed_roles=['Admin'])
 def addStaffUser(request):
     users = User.objects.all()
-    groups = Group.objects.filter(name__in=['Vendor/Staff User', 'User'])
+    groups = Group.objects.filter(name__in=['Vendor', 'User'])
     
     if request.method == 'POST':
         staff_user_form = StaffUserCreationForm(request.POST)
@@ -121,7 +121,7 @@ def home(request):
 
 def signin(request):
     if request.user.is_authenticated:
-        return redirect('create-order')
+        return redirect('user-profile', id=request.user.id)
     if request.method=='POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -132,7 +132,7 @@ def signin(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('create-order')
+            return redirect('user-profile', id=request.user.id)
         else:
             messages.error(request, "Email & Password doest not exist.")
     return render(request, 'amruloapp/login.html', )

@@ -72,7 +72,6 @@
                                             <th>Email</th>
                                             <th>Username</th>
                                             <th>Name</th>
-                                            <th>Affiliated with</th>
                                             <th>Phone Number</th>
                                             <th>Approval Status</th>
                                         </tr>
@@ -85,7 +84,6 @@
                                             <td>{{ user.email }}</td>
                                             <td>{{ user.username }}</td>
                                             <td>{{ user.name }}</td>
-                                            <td>{{ user.affiliated_with }}</td>
                                             <td>{{ user.phone }}</td>
                                             <td>{% if user.approval_status %}Approved{% else %}Not Approved{% endif %}</td>
                                         </tr>
@@ -119,21 +117,22 @@
 
 
                             <div class='row'>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control" id="email" name="email">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-control" id="username" name="username">
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -141,24 +140,15 @@
                                         <input type="text" class="form-control" id="name" name="name">
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="row">
-                                
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="phone">Phone</label>
                                         <input type="text" class="form-control" id="phone" name="phone">
                                     </div>
                                 </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="affiliated_with">Affiliated With</label>
-                                        <input type="text" class="form-control" id="affiliated_with" name="affiliated_with">
-                                    </div>
-                                </div>
                             </div>
+                            
                             
                             <div class="row">
                                 
