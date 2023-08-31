@@ -352,8 +352,16 @@ login_required(login_url='login')
 def cadResult(request):
     user = request.user  # Get the logged-in user
     order_number = request.GET.get('order_number')
-    order_data = Order.objects.filter(user=user, order_status='completed')
 
+    #Single Status of Order
+    # order_data = Order.objects.filter(user=user, order_status='completed')
+
+    #Multi order Status query
+    # Get orders with 'completed' or 'approved' status
+    order_data = Order.objects.filter(
+        Q(user=user, order_status='completed') | Q(user=user, order_status='approved')
+    )
+    
     if order_number:
         try:
             order_data = order_data.filter(order_number=int(order_number))

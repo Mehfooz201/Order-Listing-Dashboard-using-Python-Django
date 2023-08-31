@@ -84,30 +84,7 @@
                           </div>
                         </div>
                       </form>
-                      {% comment %} <div class="col-md-5">
-                        <div class="form-group form-group-row">
-                          <label for="order_daterange_input">Order time</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="order_daterange_input"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group form-group-row">
-                          <label for="order_number">Order number</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="order_number"
-                            placeholder="Order number"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-3 text-right">
-                        <button class="btn btn-primary">Search</button>
-                      </div> {% endcomment %}
+
                     </div>
                   </div>
                   <div class="table-responsive">
@@ -136,21 +113,28 @@
                             <td>{{forloop.counter}}</td>
                             <td>{{data.order_number}}</td>
                             <td>{{data.user.name}}</td>
-                            <td>{{data.file_upload_required.name }}</td>
+                            <td>{{data.att_file_name }}</td>
+
                             <td>
-                              <a href="{{ data.design_requirement.url }}" class="btn btn-link btn-file-download" download>
+                              <a href="{{ data.attachment_zip_rar.url}}" class="btn btn-link btn-file-download" download>
                                 <i class="fas fa-download"></i> Download
                               </a>
                             </td>
+                            
                             <td>{{data.product_sub_type}}</td>
                             <td>{{data.user.email}}</td>
                             <td>notes</td>
                             <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
 
                             <td class='text-center'>
+
                               {% if data.order_status == 'completed' %}
                                 <span class="badge badge-success">{{ data.order_status }}</span>
+
+                              {% elif data.order_status == 'approved' %}
+                                <span class="badge badge-info">{{ data.order_status }}</span>
                               {% endif %}
+
                             </td>
 
                             <td>

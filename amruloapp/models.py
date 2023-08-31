@@ -69,6 +69,17 @@ class FrameworkAgreement(models.Model):
 
 # models.py
 class Order(models.Model):
+    ORDER_STATUS_CHOICES = [
+        ('review', 'Review'),
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('completed', 'Completed'),
+        ('cancelled', 'Cancelled'),
+        
+    ]
+    order_status = models.CharField(
+        max_length=12, choices=ORDER_STATUS_CHOICES, null=True, blank=True, default='review')
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey to link the order with the user
     company_information = models.ForeignKey(CompanyInformation, on_delete=models.SET_NULL, null=True, blank=True)
     framework_agreement = models.ForeignKey(FrameworkAgreement, on_delete=models.SET_NULL, null=True, blank=True)
@@ -91,17 +102,7 @@ class Order(models.Model):
     def formatted_order_date(self):
         return self.order_date.strftime('%Y-%m-%d 00:00')
     
-    ORDER_STATUS_CHOICES = [
-        ('review', 'Review'),
-        ('pending', 'Pending'),
-        ('approved', 'Approved'),
-        ('completed', 'Completed'),
-        ('cancelled', 'Cancelled'),
-        
-    ]
-    order_status = models.CharField(
-        max_length=12, choices=ORDER_STATUS_CHOICES, null=True, blank=True, default='review')
-
+    
     ORIGINAL_DATA_CHOICES = [
         ('Raw Scanned Data', 'Raw Scanned Data'),
     ]
@@ -208,8 +209,14 @@ class Order(models.Model):
     remake_notes = models.TextField(blank=True)
     num_crowns = models.PositiveIntegerField(default=0)
     num_brackets = models.PositiveIntegerField(default=0)
-
     remake_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+
+
+    #CAD Design Result
+    attachment_zip_rar = models.FileField(upload_to='uploads/files/zip-rar-attch/', null=True, blank=True)
+    att_file_name = models.CharField(max_length=100, null=True, blank=True)
+    
+
 
     
 
