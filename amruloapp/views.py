@@ -11,6 +11,8 @@ from datetime import datetime, date, timedelta
 
 from .decorators import allowed_users
 
+from django.core.mail import send_mail
+
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
@@ -19,6 +21,35 @@ from io import BytesIO
 from django.contrib.auth.models import Group
 from datetime import datetime
 from dateutil.parser import parse
+
+
+# Create your views here.
+
+# --------------------- Home and Login Page ----------------------------
+def home(request):
+    if request.method == 'POST':
+        # Get form data
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+
+        # Compose and send the email
+        subject = f"New Contact Form Submission from {name}"
+        from_email = 'cdllabs38@gmail.com'  # Replace with your email
+        recipient_list = ['cdllabs38@gmail.com']  # Replace with recipient email(s)
+        message = f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}"
+
+        send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+
+        # Optionally, you can add a success message here
+        return render(request, 'amruloapp/index.html')
+    
+    return render(request, 'amruloapp/index.html')
+
+
+
+
 
 
 
@@ -113,11 +144,6 @@ def generate_pdf(request):
     return response
     
     
-# Create your views here.
-
-# --------------------- Home and Login Page ----------------------------
-def home(request):
-    return render(request, 'amruloapp/index.html')
 
 def signin(request):
     if request.user.is_authenticated:

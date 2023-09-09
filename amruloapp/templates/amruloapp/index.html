@@ -924,89 +924,90 @@
           <div class="form-block col-sm-12 col-md-5 col-lg-4">
             <h3 class="form-title pb-3 mbr-fonts-style">Contact Us</h3>
             <div class="form-1" data-form-type="formoid">
+
               <!---Formbuilder Form--->
-              <form
-                action=""
-                method="POST"
-                class="mbr-form form-with-styler"
-                data-form-title="My Mobirise Form"
-              >
-                <input
-                  type="hidden"
-                  name="email"
-                  data-form-email="true"
-                  value="JrTOaz9lSBwmG9RsEHN8Q73b8hfHnatO5pTYFN4nK4+4AgBgW8yJz6qLl3/ldjNHIQxJV88+drQet3XDUeg872tnq3612HEJTQuE8wzJJljOkchzttIR1x0JaFqBa25C.tT+He9PzBGw4R6Ze1uuiNUA9hK4S5Wwq510WNIKGt5drUUYEv0W8UkkOpDvrupvppWK6tWALqitPRD9W5X7dNfY2AtTlY7pZqSTb9C9MFaR/cxODBvEaj7ohpjVDyuX9"
-                />
-                <div class="row">
-                  <div
-                    hidden="hidden"
-                    data-form-alert=""
-                    class="alert alert-success col-12"
-                  >
-                    Thanks for contacting Amrulo, we will answer shortly.
-                  </div>
-                  <div
-                    hidden="hidden"
-                    data-form-alert-danger=""
-                    class="alert alert-danger col-12"
-                  ></div>
-                </div>
-                <div class="dragArea row">
-                  <div class="col-md-12 form-group" data-for="name">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Name"
-                      data-form-field="Name"
-                      required="required"
-                      class="form-control"
-                      id="name-extContacts3-c"
-                    />
-                  </div>
-                  <div class="col-md-12 form-group" data-for="email">
-                    <input
-                      type="text"
-                      name="email"
-                      placeholder="E-mail"
-                      data-form-field="E-mail"
-                      required="required"
-                      class="form-control"
-                      id="email-extContacts3-c"
-                    />
-                  </div>
-                  <div data-for="phone" class="col-md-12 form-group">
-                    <input
-                      type="text"
-                      name="phone"
-                      placeholder="Phone"
-                      data-form-field="Phone"
-                      class="form-control"
-                      id="phone-extContacts3-c"
-                    />
-                  </div>
-                  <div data-for="message" class="col-md-12 form-group">
-                    <textarea
-                      name="message"
-                      placeholder="Message"
-                      data-form-field="Message"
-                      class="form-control"
-                      id="message-extContacts3-c"
-                    ></textarea>
-                  </div>
-                  <div class="col-md-12 input-group-btn">
-                    <button
-                      type="submit"
-                      class="btn btn-form btn-primary-outline btn-primary"
-                      href="mailto:graphicx.mehfooz201@gmail.com"
+              <form  action=""  method="POST" class="mbr-form form-with-styler"
+                  data-form-title="My Mobirise Form" >
+              {% csrf_token %}
+                  <input
+                    type="hidden"
+                    name="email"
+                    data-form-email="true"
+                    value=""
+                  />
+                  <div class="row">
+                    <div
+                      hidden="hidden"
+                      data-form-alert=""
+                      class="alert alert-success col-12"
                     >
-                      <span
-                        class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"
-                      ></span
-                      >Send
-                    </button>
+                      Thanks for contacting Amrulo, we will answer shortly.
+                    </div>
+                    <div
+                      hidden="hidden"
+                      data-form-alert-danger=""
+                      class="alert alert-danger col-12"
+                    ></div>
                   </div>
-                </div>
+
+                  <div class="dragArea row">
+                    <div class="col-md-12 form-group" data-for="name">
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        data-form-field="Name"
+                        required="required"
+                        class="form-control"
+                        id="name-extContacts3-c"
+                      />
+                    </div>
+                    <div class="col-md-12 form-group" data-for="email">
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="E-mail"
+                        data-form-field="E-mail"
+                        required="required"
+                        class="form-control"
+                        id="email-extContacts3-c"
+                      />
+                    </div>
+                    <div data-for="phone" class="col-md-12 form-group">
+                      <input
+                        type="text"
+                        name="phone"
+                        placeholder="Phone"
+                        data-form-field="Phone"
+                        class="form-control"
+                        id="phone-extContacts3-c"
+                      />
+                    </div>
+                    <div data-for="message" class="col-md-12 form-group">
+                      <textarea
+                        name="message"
+                        placeholder="Message"
+                        data-form-field="Message"
+                        class="form-control"
+                        id="message-extContacts3-c"
+                      ></textarea>
+                    </div>
+                    
+                    <div class="col-md-12 input-group-btn">
+                      <button
+                        type="submit"
+                        class="btn btn-form btn-primary-outline btn-primary"
+                        
+                      >
+                        <span
+                          class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"
+                        ></span
+                        >Send
+                      </button>
+                    </div>
+                  </div>
               </form>
+
               <!---Formbuilder Form--->
             </div>
           </div>
