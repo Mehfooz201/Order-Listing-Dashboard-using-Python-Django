@@ -447,6 +447,7 @@
                             
                             </div>
 
+                            
                         </div>
 
                         
@@ -637,18 +638,21 @@
             }
         }
     });
-}
+    }
 
-// Event listeners for input fields
-$('#id_product_sub_type, #id_quantity, #currency, #id_delivery_timing').on('change keyup', function () {
+    // Event listeners for input fields
+    $('#id_product_sub_type, #id_quantity, #currency, #id_delivery_timing').on('change keyup', function () {
+        updateAmount();
+    });
+
+    // Call the updateAmount function on page load
     updateAmount();
-});
-
-// Call the updateAmount function on page load
-updateAmount();
 
 
 </script>
+
+
+
 
 {% endblock scripts  %}
 

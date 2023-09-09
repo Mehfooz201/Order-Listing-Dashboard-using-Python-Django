@@ -147,7 +147,7 @@ def generate_pdf(request):
 
 def signin(request):
     if request.user.is_authenticated:
-        return redirect('user-profile', id=request.user.id)
+        return redirect('create-order')
     if request.method=='POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -158,7 +158,7 @@ def signin(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('user-profile', id=request.user.id)
+            return redirect('create-order')
         else:
             messages.error(request, "Email & Password doest not exist.")
     return render(request, 'amruloapp/login.html', )
@@ -238,7 +238,7 @@ def orderList(request):
     date_range = request.GET.get('date_range')
 
     # order_data = Order.objects.filter(user=user)
-    order_data = Order.objects.all()
+    order_data = Order.objects.all().order_by('-order_number')
 
     
 

@@ -197,8 +197,8 @@ class Order(models.Model):
     delivery_timing = models.CharField(max_length=10, choices=DELIVERY_TIMING_CHOICES, default='12HRS')
 
 
-    file_upload_required = models.FileField(upload_to='uploads/files/stl-dcm-html')
     design_requirement = models.FileField(upload_to='uploads/files/otherfiles', default='')
+    file_upload_required = models.FileField(upload_to='uploads/files/stl-dcm-html')
     
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
