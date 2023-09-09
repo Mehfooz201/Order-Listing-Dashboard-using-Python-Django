@@ -375,7 +375,18 @@
               
                 <li class="nav-item nav-btn">
                   <a class="nav-link btn btn-white btn-white-outline"
-                    href="{% url 'login' %}">LOGIN</a>
+                    href="{% url 'login' %}">Login</a>
+                </li>
+              
+              {% else %}
+                <li class="nav-item nav-btn">
+                  <a class="nav-link btn btn-white btn-white-outline"
+                    href="{% url 'create-order' %}">Dashboard</a>
+                </li>
+                
+                <li class="nav-item nav-btn">
+                  <a class="nav-link btn btn-white btn-white-outline"
+                    href="{% url 'logout' %}">Logout</a>
                 </li>
                 
               {% endif %}
@@ -458,7 +469,7 @@
       id="extFeatures7-9"
       data-rv-view="14"
       style="
-        background-color: rgb(234, 245, 232);
+        background-color: rgb(239, 237, 237);
         padding-top: 80px;
         padding-bottom: 80px;
       "
@@ -897,15 +908,16 @@
             <div class="address">
               <h3 class="address-title mbr-fonts-style pb-2">Address</h3>
               <p class="address-block mbr-fonts-style pb-3">
-                Hashomer 4, Hod Hasharon<br />
-                Israel
+                #15, Magadi Main Rd, Govindaraja Nagar Ward, <br/>
+                Pete Channappa Industrial Estate, Kamakshipalya, <br/>
+                Bengaluru, Karnataka 560079
               </p>
             </div>
             <div class="contacts">
               <h3 class="contacts-title mbr-fonts-style pb-2">Contacts</h3>
               <p class="contacts-block mbr-fonts-style pb-3">
-                Email: info@cdl.com<br />
-                Phone: +972 77 5664199<br /><br />
+                Email: cmpsbangalore@gmail.com<br />
+                Phone: 8431250492<br /><br />
               </p>
             </div>
           </div>
@@ -985,7 +997,7 @@
                     <button
                       type="submit"
                       class="btn btn-form btn-primary-outline btn-primary"
-                      href="mailto:oferk@amrulo.com"
+                      href="mailto:graphicx.mehfooz201@gmail.com"
                     >
                       <span
                         class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"
