@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.db.models import Q
-from .models import  User, Order, FrameworkAgreement, CompanyInformation
+from .models import  User, Order, FrameworkAgreement, CompanyInformation, FrameworkInformation
 from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm, RemakeRequestForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
@@ -107,9 +107,11 @@ login_required(login_url='login')
 def frameworkManagement(request):
     user = request.user
     agreements = FrameworkAgreement.objects.filter(customer=user)
+    frameinfo = FrameworkInformation.objects.all()
+
     orders = Order.objects.filter(user=user, framework_agreement__in=agreements)
     company = CompanyInformation.objects.all()
-    context = {'active_item': 'framemanage-order', 'agreements': agreements, 'orders': orders, 'company':company, 'current_date': date.today(),}
+    context = {'active_item': 'framemanage-order', 'agreements': agreements, 'orders': orders, 'company':company, 'frameinfo':frameinfo, 'current_date': date.today(),}
 
     return render(request, 'amruloapp/dashboard/framework-manage.html', context)
 

@@ -38,14 +38,28 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
 
-    
+class FrameworkInformation(models.Model):
+    cooperation_mode_content = models.TextField(blank=True, null=True)
+    payment_method_content = models.TextField(blank=True, null=True)
+    processing_quantity_content = models.TextField(blank=True, null=True)
+    price_adjustment_content = models.TextField(blank=True, null=True)
+    shipping_method_content = models.TextField(blank=True, null=True)
+    product_acceptance_content = models.TextField(blank=True, null=True)
+    number_management_content = models.TextField(blank=True, null=True)
+    breach_contract_content = models.TextField(blank=True, null=True)
+    force_majeure_content = models.TextField(blank=True, null=True)
+    order_effect_content = models.TextField(blank=True, null=True)
+    sign_confirmation_content = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f'Framework Agreement Information'
 
 
 class FrameworkAgreement(models.Model):
-
     agreement_number = models.CharField(max_length=3, unique=True, editable=False)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+    # frameinfo = models.ForeignKey(FrameworkInformation, on_delete=models.CASCADE)
+
     def save(self, *args, **kwargs):
         if not self.agreement_number:
             self.agreement_number = self.generate_agreement_number()

@@ -5,14 +5,16 @@
 
 
 from django.contrib import admin
-from .models import User, Order, CompanyInformation, FrameworkAgreement
+from .models import User, Order, CompanyInformation, FrameworkAgreement, FrameworkInformation
+from django.utils.html import format_html
 
 #Registered here
 
+
 admin.site.register(User)
 
-admin.site.register(FrameworkAgreement)
-
+# admin.site.register(FrameworkAgreement)
+admin.site.register(FrameworkInformation)
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('order_number', 'customer_name', 'order_status', 'order_type', 'salesman', 'price', 'order_date')
