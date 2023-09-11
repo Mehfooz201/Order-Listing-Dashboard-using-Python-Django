@@ -365,8 +365,6 @@ class Order(models.Model):
 
         return total_price
 
-    
-
     def save(self, *args, **kwargs):
         if not self.framework_agreement_id:
             recent_agreement = FrameworkAgreement.objects.filter(customer=self.user).order_by('-id').first()
