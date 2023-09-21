@@ -1,0 +1,1552 @@
+[
+    {
+        "model": "products.originaldata",
+        "pk": 1,
+        "fields": {
+            "name": "Raw Scanned Data"
+        }
+    },
+    {
+        "model": "products.designprinting",
+        "pk": 1,
+        "fields": {
+            "name": "Design"
+        }
+    },
+    {
+        "model": "products.deliverytiming",
+        "pk": 1,
+        "fields": {
+            "name": "12HRS"
+        }
+    },
+    {
+        "model": "products.deliverytiming",
+        "pk": 2,
+        "fields": {
+            "name": "6HRS"
+        }
+    },
+    {
+        "model": "products.deliverytiming",
+        "pk": 3,
+        "fields": {
+            "name": "2HRS"
+        }
+    },
+    {
+        "model": "products.unitofmeasurement",
+        "pk": 1,
+        "fields": {
+            "name": "PCS"
+        }
+    },
+    {
+        "model": "products.producttype",
+        "pk": 1,
+        "fields": {
+            "name": "Cobalt-chrome framework - Design Fee"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 1,
+        "fields": {
+            "product_sub_type": 1,
+            "name": "Zirconia / Metal / PMMA"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 2,
+        "fields": {
+            "product_sub_type": 2,
+            "name": "Zirconia / Emax"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 3,
+        "fields": {
+            "product_sub_type": 3,
+            "name": "Zirconia / Emax"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 4,
+        "fields": {
+            "product_sub_type": 4,
+            "name": "Wax"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 5,
+        "fields": {
+            "product_sub_type": 5,
+            "name": "PMMA"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 6,
+        "fields": {
+            "product_sub_type": 6,
+            "name": "Zirconia / Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 7,
+        "fields": {
+            "product_sub_type": 7,
+            "name": "Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 8,
+        "fields": {
+            "product_sub_type": 8,
+            "name": "Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 9,
+        "fields": {
+            "product_sub_type": 9,
+            "name": "Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 10,
+        "fields": {
+            "product_sub_type": 10,
+            "name": "Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 11,
+        "fields": {
+            "product_sub_type": 11,
+            "name": "Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 12,
+        "fields": {
+            "product_sub_type": 12,
+            "name": "Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 13,
+        "fields": {
+            "product_sub_type": 13,
+            "name": "Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 14,
+        "fields": {
+            "product_sub_type": 14,
+            "name": "Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 15,
+        "fields": {
+            "product_sub_type": 15,
+            "name": "Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 16,
+        "fields": {
+            "product_sub_type": 16,
+            "name": "Resin"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 17,
+        "fields": {
+            "product_sub_type": 17,
+            "name": "Metal"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 18,
+        "fields": {
+            "product_sub_type": 18,
+            "name": "Resin"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 19,
+        "fields": {
+            "product_sub_type": 19,
+            "name": "Resin"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 20,
+        "fields": {
+            "product_sub_type": 20,
+            "name": "Resin"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 21,
+        "fields": {
+            "product_sub_type": 21,
+            "name": "Resin"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 22,
+        "fields": {
+            "product_sub_type": 22,
+            "name": "Resin"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 23,
+        "fields": {
+            "product_sub_type": 23,
+            "name": "Resin"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 24,
+        "fields": {
+            "product_sub_type": 24,
+            "name": "Resin"
+        }
+    },
+    {
+        "model": "products.productmaterial",
+        "pk": 25,
+        "fields": {
+            "product_sub_type": 25,
+            "name": "Resin"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 1,
+        "fields": {
+            "name": "Anatomic Full Crown"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 2,
+        "fields": {
+            "name": "Veneer ( Emax, Ivoclar)"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 3,
+        "fields": {
+            "name": "Inlay/Onlay"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 4,
+        "fields": {
+            "name": "Smile Creator"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 5,
+        "fields": {
+            "name": "Acrylic Temporary Crowns"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 6,
+        "fields": {
+            "name": "Custom Implant Abutment"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 7,
+        "fields": {
+            "name": "Cast Partial Denture Framework (upto 3 unit single arch)"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 8,
+        "fields": {
+            "name": "Cast Partial Denture Framework (upto 6 unit single arch)"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 9,
+        "fields": {
+            "name": "Cast Partial Denture Framework (upto 13 unit single arch)"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 10,
+        "fields": {
+            "name": "Screw retained crown"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 11,
+        "fields": {
+            "name": "CO-CR framework"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 12,
+        "fields": {
+            "name": "Zirconia Framework"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 13,
+        "fields": {
+            "name": "All on 4/6 implants"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 14,
+        "fields": {
+            "name": "Implant SLM malo bridge"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 15,
+        "fields": {
+            "name": "Implant Hybrid Denture"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 16,
+        "fields": {
+            "name": "Cast Partial Obturator"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 17,
+        "fields": {
+            "name": "Bridge Framework"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 18,
+        "fields": {
+            "name": "Bite Splint"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 19,
+        "fields": {
+            "name": "Full Mouth Rehabilitation"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 20,
+        "fields": {
+            "name": "Wax-up for smile correction"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 21,
+        "fields": {
+            "name": "Contact Model ( each quadrant )"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 22,
+        "fields": {
+            "name": "Contact Model with extra die  ( each quadrant )"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 23,
+        "fields": {
+            "name": "Models with articulation (uppr/lower)"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 24,
+        "fields": {
+            "name": "Study Model (Full Mouth)"
+        }
+    },
+    {
+        "model": "products.productsubtype",
+        "pk": 25,
+        "fields": {
+            "name": "Surgical guide"
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 1,
+        "fields": {
+            "product_sub_type": 1,
+            "delivery_timing": 1,
+            "price": 6.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 2,
+        "fields": {
+            "product_sub_type": 2,
+            "delivery_timing": 1,
+            "price": 6.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 3,
+        "fields": {
+            "product_sub_type": 3,
+            "delivery_timing": 1,
+            "price": 6.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 4,
+        "fields": {
+            "product_sub_type": 4,
+            "delivery_timing": 1,
+            "price": 6.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 5,
+        "fields": {
+            "product_sub_type": 5,
+            "delivery_timing": 1,
+            "price": 6.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 6,
+        "fields": {
+            "product_sub_type": 6,
+            "delivery_timing": 1,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 7,
+        "fields": {
+            "product_sub_type": 7,
+            "delivery_timing": 1,
+            "price": 18.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 8,
+        "fields": {
+            "product_sub_type": 8,
+            "delivery_timing": 1,
+            "price": 18.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 9,
+        "fields": {
+            "product_sub_type": 9,
+            "delivery_timing": 1,
+            "price": 20.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 10,
+        "fields": {
+            "product_sub_type": 10,
+            "delivery_timing": 1,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 11,
+        "fields": {
+            "product_sub_type": 11,
+            "delivery_timing": 1,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 12,
+        "fields": {
+            "product_sub_type": 12,
+            "delivery_timing": 1,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 13,
+        "fields": {
+            "product_sub_type": 13,
+            "delivery_timing": 1,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 14,
+        "fields": {
+            "product_sub_type": 14,
+            "delivery_timing": 1,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 15,
+        "fields": {
+            "product_sub_type": 15,
+            "delivery_timing": 1,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 16,
+        "fields": {
+            "product_sub_type": 16,
+            "delivery_timing": 1,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 17,
+        "fields": {
+            "product_sub_type": 17,
+            "delivery_timing": 1,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 18,
+        "fields": {
+            "product_sub_type": 18,
+            "delivery_timing": 1,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 19,
+        "fields": {
+            "product_sub_type": 19,
+            "delivery_timing": 1,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 20,
+        "fields": {
+            "product_sub_type": 20,
+            "delivery_timing": 1,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 21,
+        "fields": {
+            "product_sub_type": 21,
+            "delivery_timing": 1,
+            "price": 3.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 22,
+        "fields": {
+            "product_sub_type": 22,
+            "delivery_timing": 1,
+            "price": 3.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 23,
+        "fields": {
+            "product_sub_type": 23,
+            "delivery_timing": 1,
+            "price": 3.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 24,
+        "fields": {
+            "product_sub_type": 24,
+            "delivery_timing": 1,
+            "price": 3.00
+        }
+    },
+    {
+        "model": "products.product12hrsprice",
+        "pk": 25,
+        "fields": {
+            "product_sub_type": 25,
+            "delivery_timing": 1,
+            "price": 40.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 1,
+        "fields": {
+            "product_sub_type": 1,
+            "delivery_timing": 2,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 2,
+        "fields": {
+            "product_sub_type": 2,
+            "delivery_timing": 2,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 3,
+        "fields": {
+            "product_sub_type": 3,
+            "delivery_timing": 2,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 4,
+        "fields": {
+            "product_sub_type": 4,
+            "delivery_timing": 2,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 5,
+        "fields": {
+            "product_sub_type": 5,
+            "delivery_timing": 2,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 6,
+        "fields": {
+            "product_sub_type": 6,
+            "delivery_timing": 2,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 7,
+        "fields": {
+            "product_sub_type": 7,
+            "delivery_timing": 2,
+            "price": 20.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 8,
+        "fields": {
+            "product_sub_type": 8,
+            "delivery_timing": 2,
+            "price": 20.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 9,
+        "fields": {
+            "product_sub_type": 9,
+            "delivery_timing": 2,
+            "price": 25.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 10,
+        "fields": {
+            "product_sub_type": 10,
+            "delivery_timing": 2,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 11,
+        "fields": {
+            "product_sub_type": 11,
+            "delivery_timing": 2,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 12,
+        "fields": {
+            "product_sub_type": 12,
+            "delivery_timing": 2,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 13,
+        "fields": {
+            "product_sub_type": 13,
+            "delivery_timing": 2,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 14,
+        "fields": {
+            "product_sub_type": 14,
+            "delivery_timing": 2,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 15,
+        "fields": {
+            "product_sub_type": 15,
+            "delivery_timing": 2,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 16,
+        "fields": {
+            "product_sub_type": 16,
+            "delivery_timing": 2,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 17,
+        "fields": {
+            "product_sub_type": 17,
+            "delivery_timing": 2,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 18,
+        "fields": {
+            "product_sub_type": 18,
+            "delivery_timing": 2,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 19,
+        "fields": {
+            "product_sub_type": 19,
+            "delivery_timing": 2,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 20,
+        "fields": {
+            "product_sub_type": 20,
+            "delivery_timing": 2,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 21,
+        "fields": {
+            "product_sub_type": 21,
+            "delivery_timing": 2,
+            "price": 5.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 22,
+        "fields": {
+            "product_sub_type": 22,
+            "delivery_timing": 2,
+            "price": 5.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 23,
+        "fields": {
+            "product_sub_type": 23,
+            "delivery_timing": 2,
+            "price": 5.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 24,
+        "fields": {
+            "product_sub_type": 24,
+            "delivery_timing": 2,
+            "price": 5.00
+        }
+    },
+    {
+        "model": "products.product6hrsprice",
+        "pk": 25,
+        "fields": {
+            "product_sub_type": 25,
+            "delivery_timing": 2,
+            "price": 36.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 1,
+        "fields": {
+            "product_sub_type": 1,
+            "delivery_timing": 3,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 2,
+        "fields": {
+            "product_sub_type": 2,
+            "delivery_timing": 3,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 3,
+        "fields": {
+            "product_sub_type": 3,
+            "delivery_timing": 3,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 4,
+        "fields": {
+            "product_sub_type": 4,
+            "delivery_timing": 3,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 5,
+        "fields": {
+            "product_sub_type": 5,
+            "delivery_timing": 3,
+            "price": 9.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 6,
+        "fields": {
+            "product_sub_type": 6,
+            "delivery_timing": 3,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 7,
+        "fields": {
+            "product_sub_type": 7,
+            "delivery_timing": 3,
+            "price": 0.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 8,
+        "fields": {
+            "product_sub_type": 8,
+            "delivery_timing": 3,
+            "price": 0.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 9,
+        "fields": {
+            "product_sub_type": 9,
+            "delivery_timing": 3,
+            "price": 0.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 10,
+        "fields": {
+            "product_sub_type": 10,
+            "delivery_timing": 3,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk":  11,
+        "fields": {
+            "product_sub_type": 11,
+            "delivery_timing": 3,
+            "price": 15.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 12,
+        "fields": {
+            "product_sub_type": 12,
+            "delivery_timing": 3,
+            "price": 15.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 13,
+        "fields": {
+            "product_sub_type": 13,
+            "delivery_timing": 3,
+            "price": 15.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 14,
+        "fields": {
+            "product_sub_type": 14,
+            "delivery_timing": 3,
+            "price": 15.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 15,
+        "fields": {
+            "product_sub_type": 15,
+            "delivery_timing": 3,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 16,
+        "fields": {
+            "product_sub_type": 16,
+            "delivery_timing": 3,
+            "price": 11.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 17,
+        "fields": {
+            "product_sub_type": 17,
+            "delivery_timing": 3,
+            "price": 15.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 18,
+        "fields": {
+            "product_sub_type": 18,
+            "delivery_timing": 3,
+            "price": 15.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 19,
+        "fields": {
+            "product_sub_type": 19,
+            "delivery_timing": 3,
+            "price": 15.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 20,
+        "fields": {
+            "product_sub_type": 20,
+            "delivery_timing": 3,
+            "price": 15.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 21,
+        "fields": {
+            "product_sub_type": 21,
+            "delivery_timing": 3,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 22,
+        "fields": {
+            "product_sub_type": 22,
+            "delivery_timing": 3,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 23,
+        "fields": {
+            "product_sub_type": 23,
+            "delivery_timing": 3,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 24,
+        "fields": {
+            "product_sub_type": 24,
+            "delivery_timing": 3,
+            "price": 7.00
+        }
+    },
+    {
+        "model": "products.product2hrsprice",
+        "pk": 25,
+        "fields": {
+            "product_sub_type": 25,
+            "delivery_timing": 3,
+            "price": 0.00
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 1,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 1,
+            "product_material" : 1,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 1,
+            "product_6hrs_price" : 1,
+            "product_2hrs_price" : 1,
+            "group1" : true,
+            "group2" : false,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 2,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 2,
+            "product_material" : 2,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 2,
+            "product_6hrs_price" : 2,
+            "product_2hrs_price" : 2,
+            "group1" : true,
+            "group2" : false,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 3,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 3,
+            "product_material" : 3,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 3,
+            "product_6hrs_price" : 3,
+            "product_2hrs_price" : 3,
+            "group1" : true,
+            "group2" : false,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 4,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 4,
+            "product_material" : 4,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 4,
+            "product_6hrs_price" : 4,
+            "product_2hrs_price" : 4,
+            "group1" : true,
+            "group2" : false,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 5,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 5,
+            "product_material" : 5,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 5,
+            "product_6hrs_price" : 5,
+            "product_2hrs_price" : 5,
+            "group1" : true,
+            "group2" : false,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 6,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 6,
+            "product_material" : 6,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 6,
+            "product_6hrs_price" : 6,
+            "product_2hrs_price" : 6,
+            "group1" : true,
+            "group2" : false,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 7,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 7,
+            "product_material" : 7,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 7,
+            "product_6hrs_price" : 7,
+            "product_2hrs_price" : 7,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 8,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 8,
+            "product_material" : 8,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 8,
+            "product_6hrs_price" : 8,
+            "product_2hrs_price" : 8,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 9,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 9,
+            "product_material" : 9,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 9,
+            "product_6hrs_price" : 9,
+            "product_2hrs_price" : 9,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 10,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 10,
+            "product_material" : 10,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 10,
+            "product_6hrs_price" : 10,
+            "product_2hrs_price" : 10,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 11,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 11,
+            "product_material" : 11,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 11,
+            "product_6hrs_price" : 11,
+            "product_2hrs_price" : 11,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 12,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 12,
+            "product_material" : 12,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 12,
+            "product_6hrs_price" : 12,
+            "product_2hrs_price" : 12,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 13,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 13,
+            "product_material" : 13,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 13,
+            "product_6hrs_price" : 13,
+            "product_2hrs_price" : 13,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 14,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 14,
+            "product_material" : 14,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 14,
+            "product_6hrs_price" : 14,
+            "product_2hrs_price" : 14,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 15,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 15,
+            "product_material" : 15,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 15,
+            "product_6hrs_price" : 15,
+            "product_2hrs_price" : 15,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 16,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 16,
+            "product_material" : 16,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 16,
+            "product_6hrs_price" : 16,
+            "product_2hrs_price" : 16,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 17,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 17,
+            "product_material" : 17,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 17,
+            "product_6hrs_price" : 17,
+            "product_2hrs_price" : 17,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 18,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 18,
+            "product_material" : 18,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 18,
+            "product_6hrs_price" : 18,
+            "product_2hrs_price" : 18,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 19,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 19,
+            "product_material" : 19,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 19,
+            "product_6hrs_price" : 19,
+            "product_2hrs_price" : 19,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 20,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 20,
+            "product_material" : 20,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 20,
+            "product_6hrs_price" : 20,
+            "product_2hrs_price" : 20,
+            "group1" : false,
+            "group2" : true,
+            "group3" : false
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 21,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 21,
+            "product_material" : 21,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 21,
+            "product_6hrs_price" : 21,
+            "product_2hrs_price" : 21,
+            "group1" : false,
+            "group2" : false,
+            "group3" : true
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 22,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 22,
+            "product_material" : 22,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 22,
+            "product_6hrs_price" : 22,
+            "product_2hrs_price" : 22,
+            "group1" : false,
+            "group2" : false,
+            "group3" : true
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 23,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 23,
+            "product_material" : 23,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 23,
+            "product_6hrs_price" : 23,
+            "product_2hrs_price" : 23,
+            "group1" : false,
+            "group2" : false,
+            "group3" : true
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 24,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 24,
+            "product_material" : 24,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 24,
+            "product_6hrs_price" : 24,
+            "product_2hrs_price" : 24,
+            "group1" : false,
+            "group2" : false,
+            "group3" : true
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 25,
+        "fields": {
+            "original_data" : 1,
+            "design_printing" : 1,
+            "product_type" : 1,
+            "product_sub_type" : 25,
+            "product_material" : 25,
+            "unit_of_measurement" : 1,
+            "product_12hrs_price" : 25,
+            "product_6hrs_price" : 25,
+            "product_2hrs_price" : 25,
+            "group1" : false,
+            "group2" : false,
+            "group3" : true
+        }
+    }
+    
+]

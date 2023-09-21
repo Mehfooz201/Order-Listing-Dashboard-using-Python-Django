@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load notifications_tags %}
 <!DOCTYPE html>
 
 <html lang="en">
@@ -68,6 +68,82 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+        <li style="list-style-type:none" class="nav-item">
+            <div class="btn-group">
+              <button
+                  type="button"
+                  class="btn dropdown-toggle user-profile-dropdown"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+              >
+                  <div class="user-panel d-flex">
+                  <div class="image">
+                  <i class="fas fa-bell">
+                      <span style="position:absolute;left:0;top:0;font-size:12px" class="badge badge-danger">
+                        {% notifications_unread %}
+                      </span>
+                  </i>
+                  </div>
+                  <div class="info">
+                      <a href="#" class="d-block"></a>
+                  </div>
+                  </div>
+              </button>
+              {% notifications_unread as unread_count %}
+              {% if unread_count %}
+              <div class="dropdown-menu">
+                  <div class="info bg-danger" style="font-size:13px">
+                      {% if unread_count == 1 %}
+                        You have <strong>{{ unread_count }}</strong> unread notification.
+                      {% else %}
+                        You have <strong>{{ unread_count }}</strong> unread notifications.
+                      {% endif %}
+                  </div>
+                  
+                  {% for notification in  user.notifications.unread %}
+                  {% if notification.recipient.username == user.username %}
+                  <div>
+                        <a href="{% url 'notif' notification.id %}" class="dropdown-item text-center">
+                          {{ notification.verb }}
+                          <span style="font-size:12px" class="badge badge-light text-danger">
+                            *unread
+                            </span>	
+                          </a>	
+                        
+                    </div>
+                  <div class="dropdown-divider"></div>
+                  {% endif %}
+                  {% endfor %}
+                  {% for notification in  user.notifications.read %}
+                  {% if notification.recipient.username == user.username %}
+                  <div>
+                        <button class="dropdown-item text-center" type="button">{{ notification.verb }}</button>	
+                    </div>
+                  <div class="dropdown-divider"></div>
+                  {% endif %}
+                  {% endfor %}
+              </div>
+              {% else %}
+              <div class="dropdown-menu">
+                <div class="info bg-danger text-center" style="font-size:12px">
+                    You have <strong>0</strong> unread notification.
+                </div>
+                {% for notification in  user.notifications.read %}
+                {% if notification.recipient.username == user.username %}
+                  <div>
+                        <button class="dropdown-item text-center" type="button">{{ notification.verb }}</button>	
+                      </div>
+                  <div class="dropdown-divider"></div>
+                {% endif %}
+                {% endfor %}
+            </div>
+              {% endif %}
+            </div>
+        </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          
           <li class="nav-item">
 
           </li>

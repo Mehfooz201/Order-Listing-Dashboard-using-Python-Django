@@ -402,7 +402,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="confirmPaymentBtn">Confirm Payment</button>
+          <a href="{% url 'order_payments' data.order_number %}" class="btn btn-primary" id="confirmPaymentBtn">Confirm Payment</a>
         </div>
       </div>
     </div>

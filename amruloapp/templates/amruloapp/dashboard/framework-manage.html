@@ -209,60 +209,18 @@
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                    
+                                        {% for product in products %}
+                                        {% if product.group1 == True %}
                                         <tr>
-                                            <td>01</td>
-                                            <td>Anatomic Full Crown</td>
-                                            <td>6$</td>
-                                            <td>7$</td>   
-                                            <td>9$</td>  
-                                            <td>Zirconia / Metal / PMMA </td>
+                                            <td>{{product.id}}</td>
+                                            <td>{{product.product_sub_type}}</td>
+                                            <td>{% if product.product_12hrs_price.price > 0 %}{{product.product_12hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_6hrs_price.price > 0 %}{{product.product_6hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_2hrs_price.price > 0 %}{{product.product_2hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{{product.product_material}}</td>
                                         </tr>
-
-                                        <tr>
-                                            <td>02</td>
-                                            <td>Veneer ( Emax, Ivoclar)</td>
-                                            <td>6$</td>
-                                            <td>7$</td>   
-                                            <td>9$</td>  
-                                            <td>Zirconia / Emax</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>03</td>
-                                            <td>Inlay/Onlay</td>
-                                            <td>6$</td>
-                                            <td>7$</td>   
-                                            <td>9$</td>  
-                                            <td>Zirconia / Emax</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>04</td>
-                                            <td>Smile Creator</td>
-                                            <td>6$</td>
-                                            <td>7$</td>   
-                                            <td>9$</td>  
-                                            <td>Wax </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>05</td>
-                                            <td>Acrylic Temporary Crowns </td>
-                                            <td>6$</td>
-                                            <td>7$</td>   
-                                            <td>9$</td>  
-                                            <td>PMMA </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>06</td>
-                                            <td>Custom Implant Abutment</td>
-                                            <td>7$</td>
-                                            <td>9$</td>   
-                                            <td>11$</td>  
-                                            <td>Zirconia / Metal </td>
-                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
 
                                         
                                         <th class="text-center bg-light" colspan="2">
@@ -270,158 +228,36 @@
                                         </th>
                                         
 
+                                        {% for product in products %}
+                                        {% if product.group2 == True %}
                                         <tr>
-                                            <td>01</td>
-                                            <td>Cast Partial Denture Framework (upto 3 unit single arch)</td>
-                                            <td>18$</td>
-                                            <td>20$</td>   
-                                            <td>-</td>  
-                                            <td>Metal</td>
+                                            <td>{{product.id}}</td>
+                                            <td>{{product.product_sub_type}}</td>
+                                            <td>{% if product.product_12hrs_price.price > 0 %}{{product.product_12hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_6hrs_price.price > 0 %}{{product.product_6hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_2hrs_price.price > 0 %}{{product.product_2hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{{product.product_material}}</td>
                                         </tr>
-
-                                        <tr>
-                                            <td>02</td>
-                                            <td>Cast Partial Denture Framework (upto 6 unit single arch)</td>
-                                            <td>18$</td>
-                                            <td>20$</td>   
-                                            <td>-</td>  
-                                            <td>Metal</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>04</td>
-                                            <td>Screw retained crown </td>
-                                            <td>7$</td>
-                                            <td>9$</td>   
-                                            <td>11$</td>  
-                                            <td>Metal</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>05</td>
-                                            <td>All on 4/6 implants</td>
-                                            <td>9$</td>
-                                            <td>11$</td>   
-                                            <td>15$</td>  
-                                            <td>Metal</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>06</td>
-                                            <td>Implant SLM malo bridge </td>
-                                            <td>9$</td>
-                                            <td>11$</td>   
-                                            <td>15$</td>  
-                                            <td>Metal</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>07</td>
-                                            <td>Implant Hybrid Denture</td>
-                                            <td>9$</td>
-                                            <td>11$</td>   
-                                            <td>15$</td>  
-                                            <td>Metal</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>08</td>
-                                            <td>Cast Partial Obturatofa-rotate-90</td>
-                                            <td>9$</td>
-                                            <td>11$</td>   
-                                            <td>15$</td>  
-                                            <td>Resin</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>09</td>
-                                            <td>Bridge Framework</td>
-                                            <td>7$</td>
-                                            <td>9$</td>   
-                                            <td>11$</td>  
-                                            <td>Metal</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>10</td>
-                                            <td>Bite Splint </td>
-                                            <td>7$</td>
-                                            <td>9$</td>   
-                                            <td>11$</td>  
-                                            <td>Resin</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>11</td>
-                                            <td>Full Mouth Rehabilitation </td>
-                                            <td>9$</td>
-                                            <td>11$</td>   
-                                            <td>15$</td>  
-                                            <td>Resin</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>12</td>
-                                            <td>Wax-up for smile correction</td>
-                                            <td>9$</td>
-                                            <td>11$</td>   
-                                            <td>15$</td>  
-                                            <td>Resin</td>
-                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
 
                                         <th class="text-center bg-light" colspan="2">
                                             <span class="text-muted">MODEL DESIGN</span>
                                         </th>
                                         
 
+                                        {% for product in products %}
+                                        {% if product.group3 == True %}
                                         <tr>
-                                            <td>01</td>
-                                            <td>Contact Model ( each quadrant )</td>
-                                            <td>3$</td>
-                                            <td>5$</td>   
-                                            <td>7$</td>  
-                                            <td>Resin</td>
+                                            <td>{{product.id}}</td>
+                                            <td>{{product.product_sub_type}}</td>
+                                            <td>{% if product.product_12hrs_price.price > 0 %}{{product.product_12hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_6hrs_price.price > 0 %}{{product.product_6hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_2hrs_price.price > 0 %}{{product.product_2hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{{product.product_material}}</td>
                                         </tr>
-
-                                        <tr>
-                                            <td>02</td>
-                                            <td>Contact Model with extra die  ( each quadrant )</td>
-                                            <td>3$</td>
-                                            <td>5$</td>   
-                                            <td>7$</td>  
-                                            <td>Resin</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>03</td>
-                                            <td>Models with articulation (uppr/lower)</td>
-                                            <td>3$</td>
-                                            <td>5$</td>   
-                                            <td>7$</td>  
-                                            <td>Resin</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>04</td>
-                                            <td>Study Model (Full Mouth)</td>
-                                            <td>3$</td>
-                                            <td>5$</td>   
-                                            <td>7$</td>  
-                                            <td>Resin</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>05</td>
-                                            <td>Surgical guide </td>
-                                            <td>40$</td>
-                                            <td>36$</td>   
-                                            <td>-</td>  
-                                            <td>Resin</td>
-                                        </tr>
-
-
-
-
+                                        {% endif %}
+                                        {% endfor %}
 
 
                                         <tr>

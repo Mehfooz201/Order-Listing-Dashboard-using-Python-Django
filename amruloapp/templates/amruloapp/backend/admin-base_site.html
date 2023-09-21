@@ -1,0 +1,46 @@
+{% extends "amruloapp/backend/admin-base.html" %}
+{% load i18n static %}
+
+{% block custom_style %}
+<style>
+    
+    .submit-row{
+        background-color:#333;
+        margin:20px;
+    }
+
+    .submit-row .deletelink{
+        padding:18px !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+    }
+    
+    </style>
+{% endblock custom_style %}
+
+{% block title %}Dashboard | Admin{% endblock %}
+
+{% block header-title %}
+<h6 class="page-title"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django Admin') }}</a></h6>
+{% endblock %}
+
+{% block nav-sidebar %}
+    {% include "amruloapp/backend/includes/admin-nav_sidebar.html" %}
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs bg-danger" aria-label="{% translate 'Breadcrumbs' %}">
+    <a href="{% url 'admin:index' %}"><u>{% translate 'Home' %}</u></a>
+    {% if title %} &rsaquo; {{ title }}{% endif %}
+</div>
+{% endblock %}
+
+{% block welcome-msg %} 
+    {% translate 'Welcome,' %} <strong>{% firstof user.get_short_name user.get_username %}</strong>
+{% endblock %}
+
+{% block theme-toggle %}
+    {% include "amruloapp/backend/includes/color_theme_toggle.html" %}
+{% endblock %}
+

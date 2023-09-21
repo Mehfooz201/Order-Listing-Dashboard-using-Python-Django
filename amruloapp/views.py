@@ -4,6 +4,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.db.models import Q
 from .models import  User, Order, FrameworkAgreement, CompanyInformation, FrameworkInformation
+from products.models import (
+    OriginalData,DesignPrinting,ProductType,ProductSubType,
+    ProductMaterial,UnitOfMeasurement,DeliveryTiming,
+    Product12HrsPrice,Product6HrsPrice,Product2HrsPrice,Product
+    )
 from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm, RemakeRequestForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
@@ -13,7 +18,7 @@ from .decorators import allowed_users
 
 from django.core.mail import send_mail
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from io import BytesIO
@@ -21,9 +26,18 @@ from io import BytesIO
 from django.contrib.auth.models import Group
 from datetime import datetime
 from dateutil.parser import parse
-
+from notifications.models import Notification
+from notifications.signals import notify
+from django.core import serializers
+import json
 
 # Create your views here.
+
+
+def notifications(request, notification_pk):
+    notifcation = Notification.objects.get(id = notification_pk, recipient = request.user)
+    notifcation.mark_as_read()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 # --------------------- Home and Login Page ----------------------------
 def home(request):
@@ -50,10 +64,7 @@ def home(request):
 
 
 
-
-
-
-#----------------------- Staff Manege----------------------------------------#
+#----------------------- Staff Manage----------------------------------------#
 
 
 @login_required(login_url='login')
@@ -110,8 +121,23 @@ def frameworkManagement(request):
     frameinfo = FrameworkInformation.objects.all()
 
     orders = Order.objects.filter(user=user, framework_agreement__in=agreements)
+
+    product_sub_type = ProductSubType.objects.all()
+    product_material = ProductMaterial.objects.all()
+    delivery_timing = DeliveryTiming.objects.all()
+    products = Product.objects.all()
+
     company = CompanyInformation.objects.all()
-    context = {'active_item': 'framemanage-order', 'agreements': agreements, 'orders': orders, 'company':company, 'frameinfo':frameinfo, 'current_date': date.today(),}
+    context = {'active_item': 'framemanage-order',
+     'agreements': agreements, 
+     'orders': orders, 
+     'company':company, 
+     'frameinfo':frameinfo, 
+     'current_date': date.today(),
+     'product_sub_type':product_sub_type,
+     'product_material':product_material,
+     'delivery_timing':delivery_timing,
+     'products':products,}
 
     return render(request, 'amruloapp/dashboard/framework-manage.html', context)
 
@@ -200,7 +226,9 @@ def changePassword(request):
 #---------------------------------------------------------------------#
 #                           Dashboard 
 #---------------------------------------------------------------------#
-login_required(login_url='login')
+
+
+@login_required(login_url='login')
 def createOrder(request):
     if request.method == 'POST':
         form = OrderForm(request.POST, request.FILES)
@@ -210,6 +238,7 @@ def createOrder(request):
             order.user = request.user  # Set the user field to the currently logged-in user
             order.price = order.calculate_price()
             order.save()
+            notify.send(request.user, recipient=request.user, verb='order created successfully !')
             return redirect('order-list')
         else:
             messages.error(request, "These fields are required")
@@ -218,22 +247,68 @@ def createOrder(request):
         form = OrderForm()   
     
     # Fetch the actual exchange rate for INR
-    try:
-        c = CurrencyRates()
-        inr_rate = c.get_rate('USD', 'INR')
-    except RatesNotAvailableError:
+    #try:
+        #c = CurrencyRates()
+        #inr_rate = c.get_rate('USD', 'INR')
+    #except RatesNotAvailableError:
         # Handle the error gracefully, e.g., use a default exchange rate
-        inr_rate = 82.0  # You can use a default value here or handle the error as per your requirement
+    #    pass
+    inr_rate = 82.0  # You can use a default value here or handle the error as per your requirement
     
     company = CompanyInformation.objects.all()
+    original_data = OriginalData.objects.all()
+    design_printing = DesignPrinting.objects.all()
+    product_type = ProductType.objects.all()
+    product_sub_type = ProductSubType.objects.all()
 
-    context = {'active_item': 'create-order', 'form': form, 
-                'inr_rate': inr_rate, 'company': company}
+    product_material = ProductMaterial.objects.all()
+    data_material = []
+    for i in product_material:
+        data_material.append({'name':i.name})
+    data_filtered = [dict(value) for value in {tuple(material.items()) for material in data_material}]
+
+    unit_of_measurement = UnitOfMeasurement.objects.all()
+
+    product_12hrs_price = Product12HrsPrice.objects.all()
+    product_6hrs_price = Product6HrsPrice.objects.all()
+    product_2hrs_price = Product2HrsPrice.objects.all()
+
+    delivery_timing = DeliveryTiming.objects.all()
+    products = Product.objects.all()
+    data_product_price = []
+    for j in delivery_timing:
+        data_product_price.append({str(j.name):{str(i.product_sub_type.name).replace("\xa0"," "):i.product_12hrs_price.delivery_timing.name == j.name and float(i.product_12hrs_price.price) or i.product_6hrs_price.delivery_timing.name == j.name and float(i.product_6hrs_price.price) or i.product_2hrs_price.delivery_timing.name == j.name and float(i.product_2hrs_price.price) for i in products }})
+
+    format_data1 = str(data_product_price).replace('[','')
+    format_data2 = format_data1.replace(']','')
+    format_data3 = format_data2.replace("}}, {","}, ")
+    format_data4 = format_data3.replace("}}, {","}, ")
+    format_data5 = format_data4.replace("'","\"")
+    format_data6 = str(format_data5).replace("\'"," ")
+
+    context = {
+        'active_item': 'create-order',
+        'form': form,
+        'inr_rate': inr_rate,
+        'company': company,
+        'company' : company,
+        'original_data' : original_data,
+        'design_printing' : design_printing,
+        'product_type' : product_type,
+        'product_sub_type' : product_sub_type,
+        'product_material' : data_filtered,
+        'unit_of_measurement' : unit_of_measurement,
+        'delivery_timing' : delivery_timing,
+        'product_12hrs_price' : product_12hrs_price,
+        'product_6hrs_price' : product_6hrs_price,
+        'product_2hrs_price' : product_2hrs_price,
+        'product_price' : format_data6,
+        }
     
     return render(request, 'amruloapp/dashboard/create-order.html', context)
 
 
-login_required(login_url='login')
+@login_required(login_url='login')
 def orderList(request):
     user = request.user
     order_number = request.GET.get('order_number')
@@ -294,7 +369,7 @@ def orderList(request):
 
 
 
-login_required(login_url='login')
+@login_required(login_url='login')
 def remakeOrder(request):
     user = request.user  # Get the logged-in user
     order_number = request.GET.get('order_number')
@@ -376,7 +451,7 @@ def monthlyStatement(request):
 
 
 
-login_required(login_url='login')
+@login_required(login_url='login')
 def cadResult(request):
     user = request.user  # Get the logged-in user
     order_number = request.GET.get('order_number')
@@ -421,7 +496,7 @@ def cadResult(request):
 
 
 #----------------------- Dental Statistics ------------------------------------#
-login_required(login_url='login')
+@login_required(login_url='login')
 def orderDocuments(request):
     user = request.user  # Get the logged-in user
     order_number = request.GET.get('order_number')

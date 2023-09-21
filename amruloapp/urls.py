@@ -1,9 +1,9 @@
 from django.urls import path
 from . import views
+from payments.views import order_payments, order_complete, payments
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from .forms import MyPasswordResetForm, MySetPasswordForm
-
 
 urlpatterns = [
     # path('', TemplateView.as_view(template_name='baseapp/homepage.html')),
@@ -22,6 +22,9 @@ urlpatterns = [
     path('create-order/', views.createOrder, name='create-order'),
 
     path('order-list/', views.orderList, name='order-list'),
+    path('payments/', payments, name='payments'),
+    path('order_payments/<int:order_num>/', order_payments, name='order_payments'),
+    path('order_complete/', order_complete, name='order_complete'),
 
 
     path('framework-manage/', views.frameworkManagement, name='framework-manage'),

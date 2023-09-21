@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY_2')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'localhost','10.0.0.6']
 
 
 # Application definition
@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    'payments',
+    'notifications',
+    'products',
     'amruloapp',
 ]
 

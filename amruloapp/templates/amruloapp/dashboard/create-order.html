@@ -8,6 +8,110 @@
 
 {% block custom_style %}
 {% comment %} Custom css here {% endcomment %}
+<style>
+    /* Plugin Style Start */
+.kwt-file {
+	max-width: 380px;
+	margin: 0 auto;
+}
+.kwt-file__drop-area {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 25px;
+	background-color: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+	transition: 0.3s;
+}
+.kwt-file__drop-area.is-active {
+	background-color: #d1def0;
+}
+.kwt-file__choose-file {
+	flex-shrink: 0;
+	background-color: #1d3557;
+	border-radius: 100%;
+	margin-right: 10px;
+	color: #ffffff;
+	width: 48px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.kwt-file__choose-file.kwt-file_btn-text {
+	border-radius: 4px;
+	width: auto;
+	height: auto;
+	padding: 10px 20px;
+	font-size: 14px;
+}
+.kwt-file__choose-file svg {
+	width: 24px;
+	height: 24px;
+	display: block;
+}
+.kwt-file__msg {
+	color: #1d3557;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.4;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.kwt-file__input {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
+	opacity: 0;
+}
+.kwt-file__input:focus {
+	outline: none;
+}
+.kwt-file__delete {
+	display: none;
+	position: absolute;
+	right: 10px;
+	width: 18px;
+	height: 18px;
+	cursor: pointer;
+}
+.kwt-file__delete:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	transition: 0.3s;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%231d3557' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 438.5 438.5'%3e%3cpath d='M417.7 75.7A8.9 8.9 0 00411 73H323l-20-47.7c-2.8-7-8-13-15.4-18S272.5 0 264.9 0h-91.3C166 0 158.5 2.5 151 7.4c-7.4 5-12.5 11-15.4 18l-20 47.7H27.4a9 9 0 00-6.6 2.6 9 9 0 00-2.5 6.5v18.3c0 2.7.8 4.8 2.5 6.6a8.9 8.9 0 006.6 2.5h27.4v271.8c0 15.8 4.5 29.3 13.4 40.4a40.2 40.2 0 0032.3 16.7H338c12.6 0 23.4-5.7 32.3-17.2a64.8 64.8 0 0013.4-41V109.6h27.4c2.7 0 4.9-.8 6.6-2.5a8.9 8.9 0 002.6-6.6V82.2a9 9 0 00-2.6-6.5zm-248.4-36a8 8 0 014.9-3.2h90.5a8 8 0 014.8 3.2L283.2 73H155.3l14-33.4zm177.9 340.6a32.4 32.4 0 01-6.2 19.3c-1.4 1.6-2.4 2.4-3 2.4H100.5c-.6 0-1.6-.8-3-2.4a32.5 32.5 0 01-6.1-19.3V109.6h255.8v270.7z'/%3e%3cpath d='M137 347.2h18.3c2.7 0 4.9-.9 6.6-2.6a9 9 0 002.5-6.6V173.6a9 9 0 00-2.5-6.6 8.9 8.9 0 00-6.6-2.6H137c-2.6 0-4.8.9-6.5 2.6a8.9 8.9 0 00-2.6 6.6V338c0 2.7.9 4.9 2.6 6.6a8.9 8.9 0 006.5 2.6zM210.1 347.2h18.3a8.9 8.9 0 009.1-9.1V173.5c0-2.7-.8-4.9-2.5-6.6a8.9 8.9 0 00-6.6-2.6h-18.3a8.9 8.9 0 00-9.1 9.1V338a8.9 8.9 0 009.1 9.1zM283.2 347.2h18.3c2.7 0 4.8-.9 6.6-2.6a8.9 8.9 0 002.5-6.6V173.6c0-2.7-.8-4.9-2.5-6.6a8.9 8.9 0 00-6.6-2.6h-18.3a9 9 0 00-6.6 2.6 8.9 8.9 0 00-2.5 6.6V338a9 9 0 002.5 6.6 9 9 0 006.6 2.6z'/%3e%3c/svg%3e");
+}
+.kwt-file__delete:after {
+	content: "";
+	position: absolute;
+	opacity: 0;
+	left: 50%;
+	top: 50%;
+	width: 100%;
+	height: 100%;
+	transform: translate(-50%, -50%) scale(0);
+	background-color: #1d3557;
+	border-radius: 50%;
+	transition: 0.3s;
+}
+.kwt-file__delete:hover:after {
+	transform: translate(-50%, -50%) scale(2.2);
+	opacity: 0.1;
+}
+/* Plugin Style End */
+</style>
 {% endblock custom_style %}
 
 
@@ -258,8 +362,8 @@
                                 <div class="form-group form-group-row">
                                 <label for="original_data">Original Data</label>
                                 <select id="original_data" class="form-control" name='original_data'>
-                                    {% for value, label in form.original_data.field.choices %}
-                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% for value in original_data %}
+                                        <option value="{{ value.name }}">{{ value.name }}</option> 
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -273,8 +377,8 @@
                                     id="design_printing"
                                     class="form-control"
                                     name='design_printing'>
-                                    {% for value, label in form.design_printing.field.choices %}
-                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% for value in design_printing %}
+                                        <option value="{{ value.name }}">{{ value.name }}</option> 
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -283,8 +387,8 @@
                                 <div class="form-group form-group-row">
                                 <label for="product_type">Product Type</label><span class="text-danger pr-1">* </span>
                                 <select id="id_product_type" class="form-control" name='product_type'>
-                                    {% for value, label in form.product_type.field.choices %}
-                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% for value in product_type %}
+                                        <option value="{{ value.name }}">{{ value.name }}</option> 
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -296,8 +400,8 @@
                                 <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
                                 <label for="product_type_type">Product Sub-Type</label>
                                 <select id="id_product_sub_type" class="form-control" name='product_sub_type'>
-                                    {% for value, label in form.product_sub_type.field.choices %}
-                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% for value in product_sub_type %}
+                                        <option value="{{ value.name }}">{{ value.name }}</option> 
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -306,8 +410,10 @@
                                 <div class="form-group form-group-row">
                                 <label for="product_material">Product Material</label>
                                 <select id="product_material" class="form-control" name='product_material'>
-                                    {% for value, label in form.product_material.field.choices %}
-                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% for value in product_material %}
+                                    {% if value.name %}
+                                        <option value="{{ value.name }}">{{ value.name }}</option>
+                                    {% endif %}
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -318,8 +424,8 @@
                                     >Unit of Measurment</label
                                 >
                                 <select id="unit_of_measurment" class="form-control" name='unit_of_measurement'>
-                                    {% for value, label in form.unit_of_measurement.field.choices %}
-                                        <option value="{{ value }}">{{ label }}</option> 
+                                    {% for value in unit_of_measurement %}
+                                        <option value="{{ value.name }}">{{ value.name }}</option> 
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -332,10 +438,8 @@
                                         <span class="text-danger pr-1">* </span>
                                         <label for="delivery_timing">Delivery Timing</label>
                                         <select id="id_delivery_timing" class="form-control" name="delivery_timing">
-                                            {% for value, label in form.delivery_timing.field.choices %}
-                                                {% if value != '2HRS' or form.price.value != 0 %}
-                                                    <option value="{{ value }}">{{ label }}</option>
-                                                {% endif %}
+                                            {% for value in delivery_timing %}
+                                                    <option value="{{ value.name }}">{{ value.name }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -388,60 +492,42 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div
-                                      class="form-group form-group-row align-items-start"
-                                    ><span class="text-danger pr-1">* </span>
+                                    <div class="form-group form-group-row align-items-start d-flex flex-row flex-wrap" >
+                                        <span class="text-danger pr-1">* </span>
                                       <label for="design_requirement"
                                         >Design <br />
                                         Requirement
                                       </label>
-                                      <div class="file-upload-wrapper">
-                                        <input
-                                          type="file"
-                                          accept=".jpeg,.jpg,.png,.gif,.pdf"
-                                          id="design_requirement"
-                                          name="design_requirement"
-                                        />
-                                        <div class="file-upload-icon">
-                                          <i class="fas fa-cloud-upload-alt"></i>
+                                      
+                                        <div id="file-upload-wrapper1" class="file-upload-wrapper text-center">
+                                            <input type="file" accept=".jpeg,.jpg,.png,.gif" id="design_requirement" name="design_requirement" />
+                                            <div id="file-upload-icon1" class="file-upload-icon"> <i class="fas fa-cloud-upload-alt"></i> </div>
+                                            <div id="dragtext">Drag & Drop to Upload File or click to browse file</div>
+                                            <div id="file-upload-info1" class="file-upload-info text-danger">
+                                                Only upload (.jpeg, .jpg, .png, .gif) standard format
+                                            </div>
                                         </div>
-                                        <div class="file-upload-info">
-                                          Drag files here, or
-                                          <span class="ml-1 font-weight-bold text-primary"
-                                            >Click upload</span
-                                          >
-                                        </div>
-                                        <div class="file-upload-info text-danger">
-                                          Only pictures can be uploaded. <br />
-                                          .jpeg, .jpg, .png, .pdf, .gif stand file format
-                                        </div>
-                                      </div>
+                                        <div id="preview"> </div>
+
                                     </div>
                                   </div>
 
                                 <div class="col-md-6">
-                                    <div  class="form-group form-group-row align-items-start" ><span class="text-danger pr-1">* </span>
+                                    <div  class="form-group form-group-row align-items-start d-flex flex-row flex-wrap" >
+                                        <span class="text-danger pr-1">* </span>
                                     <label for="upload_file">Upload file</label>
-                                    <div class="file-upload-wrapper">
-                                        <input
-                                        type="file"
-                                        accept=".stl,.dcm,.html"
-                                        id="upload_file"
-                                        name="file_upload_required"
-                                        />
-                                        <div class="file-upload-icon">
-                                        <i class="fas fa-cloud-upload-alt"></i>
+
+                                    <div id="file-upload-wrapper2" class="file-upload-wrapper text-center">
+                                        <input type="file" accept=".pdf,.stl,.dcm,.html" id="upload_file" name="file_upload_required" />
+                                        <div id="file-upload-icon2" class="file-upload-icon"> <i class="fas fa-cloud-upload-alt"></i> </div>
+                                        <div id="dragtext2">Drag & Drop to Upload File or click to browse file</div>
+                                        <div id="file-upload-info2" class="file-upload-info text-danger">
+                                            Only upload (.pdf, .stl, .dcm, .html) standard format
                                         </div>
-                                        <div class="file-upload-info">
-                                        Drag files here, or
-                                        <span class="ml-1 font-weight-bold text-primary"
-                                            >Click upload</span
-                                        >
-                                        </div>
-                                        <div class="file-upload-info text-danger">
-                                            Only upload ( .stl, .dcm, .html )  standard format
-                                        </div>
+
                                     </div>
+                                    <div id="preview2"> </div>
+
                                     </div>
                                 </div>
                             
@@ -484,125 +570,267 @@
 
 
 {% block scripts  %}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Your new JavaScript code -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 <script>
+    //Image Upload
+    const dropArea = document.querySelector("#file-upload-wrapper1"),
+    icon = dropArea.querySelector("#file-upload-icon1"),
+    info = dropArea.querySelector("#file-upload-info1"),
+    dragText = dropArea.querySelector("#dragtext"),
+    preview = document.querySelector("#preview"),
+    input = dropArea.querySelector("#design_requirement");
+    let file; //this is a global variable and we'll use it inside multiple functions
+
+    input.addEventListener("change", function(){
+    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
+    file = this.files[0];
+    dropArea.classList.add("active");
+    icon.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+    dragText.innerHTML = file.name;
+    showFile(); //calling function
+    });
+
+    //If user Drag File Over DropArea
+    dropArea.addEventListener("dragover", (event)=>{
+    event.preventDefault(); //preventing from default behaviour
+    dropArea.classList.add("active");
+    icon.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+    dragText.innerHTML = "Release to Upload File";
+    });
+
+    //If user leave dragged File from DropArea
+    dropArea.addEventListener("dragleave", ()=>{
+    dropArea.classList.remove("active");
+    icon.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
+    dragText.innerHTML = "Drag & Drop to Upload File or click to browse file";
+    });
+
+    //If user drop File on DropArea
+    dropArea.addEventListener("drop", (event)=>{
+    event.preventDefault(); //preventing from default behaviour
+    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
+    file = event.dataTransfer.files[0];
+    icon.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+    dragText.innerHTML = file.name;
+    showFile(); //calling function
+    });
+
+    function getFileExtension(filename){
+        // get file extension
+        const extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length);
+        return extension;
+    }
+
+    function remove_upload(){
+        let icon = document.getElementById('file-upload-icon1');
+        icon.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
+        let preview = document.getElementById('preview');
+        preview.innerHTML = '';
+        let input = document.getElementById('design_requirement');
+        input.value='';
+        let dragText = document.getElementById("dragtext");
+        dragText.innerHTML = "Drag & Drop to Upload File or click to browse file";
+    }
+
+    function showFile(){
+    let fileType = getFileExtension(file.name);; //getting selected file type
+    let validExtensions = ["jpeg", "jpg", "png", "gif"]; //adding some valid image extensions in array
+
+    if(validExtensions.includes(fileType)){ //if user selected file is an image file
+        let fileReader = new FileReader(); //creating new FileReader object
+        fileReader.onload = ()=>{
+        let fileURL = fileReader.result; //passing user file source in fileURL variable
+        let imgTag = `
+                        <div class="container" style="z-index:10">
+                            <div class="row">
+                                <div class="col-lg-3"></div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center justify-content-around p-2">
+                                        <div class="imageTag" >
+                                            <img style="border-radius:20%;border:3px solid #333;padding:2px" width="80px"
+                                                height="80px" src="${fileURL}" alt="image">
+                                        </div>
+                                        <div class="deleteBtn">
+                                            <p>
+                                            <span onclick="remove_upload();"
+                                                class="btn btn-small btn-danger rounded-circle text-center">
+                                                <i class="fas fa-times"></i>
+                                            </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3"></div>
+                            </div>
+                        </div>
+            
+            `; //creating an img tag and passing user selected file source inside src attribute
+
+        preview.innerHTML = imgTag; //adding that created img tag inside dropArea container
+        }
+        fileReader.readAsDataURL(file);
+    }else{
+        alert("This is not an Image File!");
+        dropArea.classList.remove("active");
+        icon.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
+        dragText.innerHTML = "Drag & Drop to Upload File or click to browse file";
+    }
+    }
     
-    // Function to update the amount field
-    function updateAmount() {
-        var subProductType = $('#id_product_sub_type').val();
-        var quantity = $('#id_quantity').val();
-        var currency = $('#currency').val();
-        var deliveryTiming = $('#id_delivery_timing').val();
-        var price = 0;
-        var currencySymbol = '';
+</script>
 
-        // Price data for the selected delivery timing
-        var deliveryTimingPrices = {
-            '12HRS': {
-                'Anatomic Full Crown': 6.0,
-                'Veneer ( Emax, Ivoclar)': 6.0,
-                'Inlay/Onlay': 6.0,
-                'Smile Creator': 6.0,
-                'Acrylic Temporary Crowns': 6.0,
-                'Custom Implant Abutment': 7.0,
+<script>
+    //Other File Upload
+    const dropArea2 = document.querySelector("#file-upload-wrapper2"),
+    icon2 = dropArea2.querySelector("#file-upload-icon2"),
+    info2 = dropArea2.querySelector("#file-upload-info2"),
+    dragText2 = dropArea2.querySelector("#dragtext2"),
+    preview2 = document.querySelector("#preview2"),
+    input2 = dropArea2.querySelector("#upload_file");
+    let file2; //this is a global variable and we'll use it inside multiple functions
 
-                'Cast Partial Denture Framework (upto 3 unit single arch)' : 18.0,
-                'Cast Partial Denture Framework (upto 6 unit single arch)' : 18.0,
-                'Cast Partial Denture Framework (upto 13 unit single arch)' : 20.0,
-                'Screw retained crown' : 7.0,
-                'All on 4/6 implants' : 9.0,
-                'Implant SLM malo bridge' : 9.0,
-                'Implant Hybrid Denture' : 9.0,
-                'Cast Partial Obturator' : 9.0,
-                'Bridge Framework' : 7.0,
-                'Bite Splint' : 7.0,
-                'Full Mouth Rehabilitation' : 9.0,
-                'Wax-up for smile correction' : 9.0, 
+    input2.addEventListener("change", function(){
+    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
+    file2 = this.files[0];
+    dropArea2.classList.add("active");
+    icon2.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+    dragText2.innerHTML = file2.name;
+    showFile2(); //calling function
+    });
 
-                'CO-CR framework' : 9.0,
-                'Zirconia Framework' : 9.0, 
+    //If user Drag File Over DropArea2
+    dropArea2.addEventListener("dragover", (event)=>{
+    event.preventDefault(); //preventing from default behaviour
+    dropArea2.classList.add("active");
+    icon2.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+    dragText2.innerHTML = "Release to Upload File";
+    });
 
-                'Contact Model ( each quadrant )' : 3.0,
-                'Contact Model with extra die  ( each quadrant )': 3.0,
-                'Models with articulation (uppr/lower)': 3.0,
-                'Study Model (Full Mouth)': 3.0,
-                'Surgical guide' : 40.0,
+    //If user leave dragged File from DropArea2
+    dropArea2.addEventListener("dragleave", ()=>{
+    dropArea2.classList.remove("active");
+    icon2.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
+    dragText2.innerHTML = "Drag & Drop to Upload File or click to browse file";
+    });
 
-                // Add more products and their prices for 12HRS delivery
-            },
+    //If user drop File on DropArea2
+    dropArea2.addEventListener("drop", (event)=>{
+    event.preventDefault(); //preventing from default behaviour
+    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
+    file2 = event.dataTransfer.files[0];
+    icon2.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+    dragText2.innerHTML = file2.name;
+    showFile2(); //calling function
+    });
 
-            '6HRS': {
-                'Anatomic Full Crown': 7.0,
-                'Veneer ( Emax, Ivoclar)': 7.0,
-                'Inlay/Onlay': 7.0,
-                'Smile Creator': 7.0,
-                'Acrylic Temporary Crowns': 7.0,
-                'Custom Implant Abutment': 9.0,
+    //function to get file extension
+    function getFileExtension(filename){
+        // get file extension
+        const extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length);
+        return extension;
+    }
 
-                'Cast Partial Denture Framework (upto 3 unit single arch)' : 20.0,
-                'Cast Partial Denture Framework (upto 6 unit single arch)' : 20.0,
-                'Cast Partial Denture Framework (upto 13 unit single arch)' : 25.0,
-                'Screw retained crown' : 9.0,
-                'All on 4/6 implants' : 11.0,
-                'Implant SLM malo bridge' : 11.0,
-                'Implant Hybrid Denture' : 11.0,
-                'Cast Partial Obturator' : 11.0,
-                'Bridge Framework' : 9.0,
-                'Bite Splint' : 9.0,
-                'Full Mouth Rehabilitation' : 11.0,
-                'Wax-up for smile correction' : 11.0, 
+    //function to remove file uploaded
+    function remove_upload2(){
+        let icon2 = document.getElementById('file-upload-icon2');
+        icon2.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
+        let preview2 = document.getElementById('preview2');
+        preview2.innerHTML = '';
+        let input2 = document.getElementById('upload_file');
+        input2.value='';
+        let dragText2 = document.getElementById("dragtext2");
+        dragText2.innerHTML = "Drag & Drop to Upload File or click to browse file";
+    }
 
-                'CO-CR framework' : 11.0,
-                'Zirconia Framework' : 11.0, 
+    //function to upload file
+    function showFile2(){
+    let fileType2 = getFileExtension(file2.name); //getting selected file type .pdf,.stl,.dcm,.html
 
-                'Contact Model ( each quadrant )' : 5.0,
-                'Contact Model with extra die  ( each quadrant )': 5.0,
-                'Models with articulation (uppr/lower)': 5.0,
-                'Study Model (Full Mouth)': 5.0,
-                'Surgical guide' : 36.0,
+    let pdf_icon="{% static 'amruloapp/assets/images/pdf-file.png' %}";
+    let stl_icon="{% static 'amruloapp/assets/images/stl-file.png' %}";
+    let dcm_icon="{% static 'amruloapp/assets/images/dcm-file.png' %}";
+    let html_icon="{% static 'amruloapp/assets/images/html-file.png' %}";
+    let img_url = "";
+    
+    let validExtensions = ["stl", "dcm", "pdf", "html"]; //adding some valid file extensions in array
+    
+    if(validExtensions.includes(fileType2)){
+        
+        let fileReader2 = new FileReader(); //creating new FileReader object
+        fileReader2.onload = ()=>{
+        let fileURL2 = fileReader2.result; //passing user file source in fileURL variable
+        if(fileType2==='pdf'){
+            img_url = pdf_icon;
+        }else if(fileType2==='stl'){
+            img_url = stl_icon;
+        }else if(fileType2==='dcm'){
+            img_url = dcm_icon;
+        }else if(fileType2==='html'){
+            img_url = html_icon;
+        }
+        let imgTag2 = `
+                        <div class="container" style="z-index:10">
+                            <div class="row">
+                                <div class="col-lg-3"></div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center justify-content-around p-2">
+                                        <div class="imageTag" >
+                                            <img style="border-radius:20%;border:3px solid #333;padding:2px" width="80px"
+                                                height="80px" src="${img_url}" alt="image">
+                                        </div>
+                                        <div class="deleteBtn">
+                                            <p>
+                                            <span onclick="remove_upload2();"
+                                                class="btn btn-small btn-danger rounded-circle text-center">
+                                                <i class="fas fa-times"></i>
+                                            </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3"></div>
+                            </div>
+                        </div>
+            
+            `; //creating an img tag and passing user selected file source inside src attribute
 
-                    // Add more products and their prices for 6HRS delivery
-            },
-            '2HRS': {
-                'Anatomic Full Crown': 9.0,
-                'Veneer ( Emax, Ivoclar)': 9.0,
-                'Inlay/Onlay': 9.0,
-                'Smile Creator': 9.0,
-                'Acrylic Temporary Crowns': 9.0,
-                'Custom Implant Abutment': 11.0,
+        preview2.innerHTML = imgTag2;
+        }
+        fileReader2.readAsDataURL(file2);
+    }else{
+        alert("This is not a valid file!");
+        dropArea2.classList.remove("active");
+        icon2.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
+        dragText2.innerHTML = "Drag & Drop to Upload File or click to browse file";
+    }
+    }
+</script>
+ 
+<!-- Your new JavaScript code -->
 
-                'Cast Partial Denture Framework (upto 3 unit single arch)' : 0.0,
-                'Cast Partial Denture Framework (upto 6 unit single arch)' : 0.0,
-                'Cast Partial Denture Framework (upto 13 unit single arch)' : 0.0,
-                'Screw retained crown' : 11.0,
-                'All on 4/6 implants' : 15.0,
-                'Implant SLM malo bridge' : 15.0,
-                'Implant Hybrid Denture' : 15.0,
-                'Cast Partial Obturator' : 15.0,
-                'Bridge Framework' : 11.0,
-                'Bite Splint' : 11.0,
-                'Full Mouth Rehabilitation' : 15.0,
-                'Wax-up for smile correction' : 15.0, 
+<script defer data-price="{{product_price}}">
+var data = document.currentScript.dataset;
 
-                
-                'CO-CR framework' : 15.0,
-                'Zirconia Framework' : 15.0, 
+// Function to update the amount field
+function update_productPrice() {
+    var subProductType = $('#id_product_sub_type').val();
+    var quantity = $('#id_quantity').val();
+    var currency = $('#currency').val();
+    var deliveryTiming = $('#id_delivery_timing').val();
+    var price = 0;
+    var currencySymbol = '';
 
-                'Contact Model ( each quadrant )' : 7.0,
-                'Contact Model with extra die  ( each quadrant )': 7.0,
-                'Models with articulation (uppr/lower)': 7.0,
-                'Study Model (Full Mouth)': 7.0,
-                'Surgical guide' : 0.0,
-                // Add more products and their prices for 2HRS delivery
-            },
-        };
-
-        // Get the base price for the selected product and delivery timing
+    // Price data for the selected delivery timing
+    
+    var data_price = JSON.parse(data.price);
+    var deliveryTimingPrices = data_price;
+    
     // Get the base price for the selected product and delivery timing
     var basePrice = deliveryTimingPrices[deliveryTiming][subProductType];
+    console.log(deliveryTimingPrices);
+    console.log(deliveryTimingPrices[deliveryTiming]);
+    console.log(basePrice);
 
     if (basePrice !== undefined) {
         // Calculate the total price
@@ -642,11 +870,11 @@
 
     // Event listeners for input fields
     $('#id_product_sub_type, #id_quantity, #currency, #id_delivery_timing').on('change keyup', function () {
-        updateAmount();
+        update_productPrice();
     });
 
     // Call the updateAmount function on page load
-    updateAmount();
+    update_productPrice();
 
 
 </script>

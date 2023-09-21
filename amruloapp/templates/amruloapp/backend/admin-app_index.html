@@ -1,0 +1,30 @@
+{% extends "amruloapp/backend/admin-index.html" %}
+{% load i18n %}
+
+{% block bodyclass %}{{ block.super }} app-{{ app_label }}{% endblock %}
+
+{% if not is_popup %}
+{% block nav-breadcrumbs %}
+  <nav aria-label="{% translate 'Breadcrumbs' %}">
+    <div class="breadcrumbs bg-danger">
+      <a href="{% url 'admin:index' %}"><u>{% translate 'Home' %}</u></a>
+      &rsaquo;
+      {% for app in app_list %}
+        {{ app.name }}
+      {% endfor %}
+    </div>
+  </nav>
+{% endblock %}
+{% endif %}
+
+
+{% block content %}
+<br/><br/><br/>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      {% include "amruloapp/backend/includes/admin-app_list.html" with app_list=app_list show_changelinks=True %}
+    </div>
+  </div>
+</div>
+{% endblock %}

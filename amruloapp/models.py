@@ -7,7 +7,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-
 #Models here
 class CompanyInformation(models.Model):
     company_name = models.CharField(max_length=200)
@@ -248,7 +247,7 @@ class Order(models.Model):
 
         super(Order, self).save(*args, **kwargs)
 
-
+    
     def calculate_price(self):
         price_dict  = {
         '12HRS': {
