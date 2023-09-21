@@ -86,73 +86,58 @@
             </ul>
 
             <ul class="navbar-nav ml-auto">
-            <li style="list-style-type:none" class="nav-item">
-                <div class="btn-group">
-                    <button
-                        type="button"
-                        class="btn dropdown-toggle user-profile-dropdown"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                    >
-                        <div class="user-panel d-flex">
-                        <div class="image">
-                        <i class="fas fa-bell">
-                            <span style="position:absolute;left:0;top:0;font-size:12px" class="badge badge-danger">
-                            {% notifications_unread %}
-                            </span>
-                        </i>
-                        </div>
-                        <div class="info">
-                            <a href="#" class="d-block"></a>
-                        </div>
-                        </div>
-                    </button>
-                    {% notifications_unread as unread_count %}
-                    {% if unread_count %}
-                    <div class="dropdown-menu">
-                        <div class="info bg-danger" style="font-size:13px">
-                            {% if unread_count == 1 %}
-                            You have <strong>{{ unread_count }}</strong> unread notification.
-                            {% else %}
-                            You have <strong>{{ unread_count }}</strong> unread notifications.
-                            {% endif %}
-                        </div>
-                        
-                        {% for notification in  user.notifications.unread %}
-                        <div>
-                            <a href="{% url 'notif' notification.id %}" class="dropdown-item text-center">
-                                {{ notification.verb }}
-                                <span style="font-size:12px" class="badge badge-light text-danger">
-                                    *unread
-                                    </span>	
-                            </a>
+                <li style="list-style-type:none" class="nav-item">
+                    <div class="btn-group">
+                        <button
+                            type="button"
+                            class="btn dropdown-toggle user-profile-dropdown"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
+                            <div class="user-panel d-flex">
+                            <div class="image">
+                            <i class="fas fa-bell">
+                                <span style="position:absolute;left:0;top:0;font-size:12px" class="badge badge-danger">
+                                {% notifications_unread %}
+                                </span>
+                            </i>
+                            </div>
+                            <div class="info">
+                                <a href="#" class="d-block"></a>
+                            </div>
+                            </div>
+                        </button>
+                        {% notifications_unread as unread_count %}
+                        {% if unread_count %}
+                        <div class="dropdown-menu">
+                            <div class="info bg-danger" style="font-size:13px">
+                                {% if unread_count == 1 %}
+                                You have <strong>{{ unread_count }}</strong> unread notification.
+                                {% else %}
+                                You have <strong>{{ unread_count }}</strong> unread notifications.
+                                {% endif %}
+                            </div>
                             
+                            {% for notification in  user.notifications.unread %}
+                            <div>
+                                <a id="not-{{notification.id}}" href="{% url 'notif' notification.id %}" class="not_btn dropdown-item text-center">
+                                    {{ notification.verb }}
+                                    <span style="font-size:12px" class="badge badge-light text-danger"> *unread </span>	
+                                </a>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            {% endfor %}
                         </div>
-                        <div class="dropdown-divider"></div>
-                        {% endfor %}
-                        {% for notification in  user.notifications.read %}
-                        <div>
-                            <button class="dropdown-item text-center" type="button">{{ notification.verb }}</button>	
+                        {% else %}
+                        <div class="dropdown-menu">
+                        <div class="info bg-danger text-center" style="font-size:12px">
+                            You have <strong>0</strong> unread notification.
                         </div>
-                        <div class="dropdown-divider"></div>
-                        {% endfor %}
                     </div>
-                    {% else %}
-                    <div class="dropdown-menu">
-                    <div class="info bg-danger text-center" style="font-size:12px">
-                        You have <strong>0</strong> unread notification.
+                        {% endif %}
                     </div>
-                    {% for notification in  user.notifications.read %}
-                        <div>
-                            <button class="dropdown-item text-center" type="button">{{ notification.verb }}</button>	
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        {% endfor %}
-                </div>
-                    {% endif %}
-                </div>
-            </li>
+                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
@@ -274,12 +259,34 @@
     <!-- Summernote -->
     <script src="{% static 'amruloapp/dashboard/plugins/summernote/summernote-bs4.min.js' %}"></script>
     <!-- overlayScrollbars -->
-    <script
-        src="{% static 'amruloapp/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
     <script src="{% static 'amruloapp/dashboard/dist/js/main.js' %}"></script>
     <script src="{% static 'amruloapp/dashboard/dist/js/demo.js' %}"></script>
-    <script src="{% static 'amruloapp/dashboard/dist/js/global.js' %}"></script
+    <script src="{% static 'amruloapp/dashboard/dist/js/global.js' %}"></script>
 
+    <!-- Mark notification as read -->
+    <script>
+        var not_id = "1";
+        var url_notification = "{% url 'notif' '1' %}";
+        var notif_view = 'mark_as_read/';
+        
+
+        $(".not_btn").click(function (e) {
+            not_id = e.currentTarget.id;
+            url_base = url_notification.split('notif')[0];
+            url = url_base + notif_view + not_id + "/";
+        });
+
+        $(document).on('submit', `#not-${not_id}`, function (e) {
+            e.preventDefault();
+            /* AJAX SECTION */
+            $.ajax({
+                type: 'GET',
+                url: url
+            });
+        });
+    </script>
+    <!-- Mark notification as read -->
     
     {% block scripts %}
 

@@ -18,7 +18,6 @@ class ProductSubType(models.Model):
     def __str__(self):
         return self.name
 class ProductMaterial(models.Model):
-    product_sub_type = models.ForeignKey(ProductSubType, on_delete=models.CASCADE)
     name = models.CharField(max_length=500)
     def __str__(self):
         return self.name

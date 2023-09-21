@@ -27,8 +27,8 @@ class ProductSubTypeAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 admin.site.register(ProductSubType,ProductSubTypeAdmin)
 class ProductMaterialAdmin(admin.ModelAdmin):
-    list_display = ('id','product_sub_type','name',)
-    list_display_links=('product_sub_type','name',)
+    list_display = ('id','name',)
+    list_display_links=('name',)
     search_fields = ('name',)
 admin.site.register(ProductMaterial,ProductMaterialAdmin)
 class UnitOfMeasurementAdmin(admin.ModelAdmin):

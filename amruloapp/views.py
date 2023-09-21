@@ -18,7 +18,7 @@ from .decorators import allowed_users
 
 from django.core.mail import send_mail
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from io import BytesIO
@@ -27,16 +27,18 @@ from django.contrib.auth.models import Group
 from datetime import datetime
 from dateutil.parser import parse
 from notifications.models import Notification
-from notifications.signals import notify
-from django.core import serializers
-import json
+
+from rest_framework import status
+
 
 # Create your views here.
 
 
 def notifications(request, notification_pk):
+    context = {}
     notifcation = Notification.objects.get(id = notification_pk, recipient = request.user)
-    notifcation.mark_as_read()
+    if notifcation:
+        notifcation.mark_as_read()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 # --------------------- Home and Login Page ----------------------------
@@ -76,7 +78,9 @@ def addStaffUser(request):
     if request.method == 'POST':
         staff_user_form = StaffUserCreationForm(request.POST)
         if staff_user_form.is_valid():
+            fullname = staff_user_form.cleaned_data['name']
             email = staff_user_form.cleaned_data['email']
+            username = staff_user_form.cleaned_data['username']
             password1 = staff_user_form.cleaned_data['password1']
             password2 = staff_user_form.cleaned_data['password2']
             
@@ -85,7 +89,10 @@ def addStaffUser(request):
             elif password1 != password2:
                 messages.error(request, 'Passwords do not match. Please re-enter your password.')
             else:
-                user = staff_user_form.save(commit=False)
+                user = User.objects.create_user(name = fullname, username = username,  email = email, password = password1)
+                user.save()
+                user.is_active = True
+                user.is_admin = True
                 user.is_staff = True
                 user.save()
                 
@@ -236,9 +243,8 @@ def createOrder(request):
             order = form.save(commit=False)
             order.order_status = form.fields['order_status'].initial  # Set the default value
             order.user = request.user  # Set the user field to the currently logged-in user
-            order.price = order.calculate_price()
+            order.price = order.calculate_price
             order.save()
-            notify.send(request.user, recipient=request.user, verb='order created successfully !')
             return redirect('order-list')
         else:
             messages.error(request, "These fields are required")
@@ -247,13 +253,13 @@ def createOrder(request):
         form = OrderForm()   
     
     # Fetch the actual exchange rate for INR
-    #try:
-        #c = CurrencyRates()
-        #inr_rate = c.get_rate('USD', 'INR')
-    #except RatesNotAvailableError:
+    try:
+        c = CurrencyRates()
+        inr_rate = c.get_rate('USA', 'INR')
+    except RatesNotAvailableError:
         # Handle the error gracefully, e.g., use a default exchange rate
-    #    pass
-    inr_rate = 82.0  # You can use a default value here or handle the error as per your requirement
+       pass
+    inr_rate = 83.12  # You can use a default value here or handle the error as per your requirement
     
     company = CompanyInformation.objects.all()
     original_data = OriginalData.objects.all()
@@ -262,10 +268,10 @@ def createOrder(request):
     product_sub_type = ProductSubType.objects.all()
 
     product_material = ProductMaterial.objects.all()
-    data_material = []
-    for i in product_material:
-        data_material.append({'name':i.name})
-    data_filtered = [dict(value) for value in {tuple(material.items()) for material in data_material}]
+    #data_material = []
+    #for i in product_material:
+    #    data_material.append({'name':i.name})
+    #data_filtered = [dict(value) for value in {tuple(material.items()) for material in data_material}]
 
     unit_of_measurement = UnitOfMeasurement.objects.all()
 
@@ -277,7 +283,7 @@ def createOrder(request):
     products = Product.objects.all()
     data_product_price = []
     for j in delivery_timing:
-        data_product_price.append({str(j.name):{str(i.product_sub_type.name).replace("\xa0"," "):i.product_12hrs_price.delivery_timing.name == j.name and float(i.product_12hrs_price.price) or i.product_6hrs_price.delivery_timing.name == j.name and float(i.product_6hrs_price.price) or i.product_2hrs_price.delivery_timing.name == j.name and float(i.product_2hrs_price.price) for i in products }})
+        data_product_price.append({str(j.id):{str(i.product_sub_type.id):i.product_12hrs_price.delivery_timing.name == j.name and float(i.product_12hrs_price.price) or i.product_6hrs_price.delivery_timing.name == j.name and float(i.product_6hrs_price.price) or i.product_2hrs_price.delivery_timing.name == j.name and float(i.product_2hrs_price.price) for i in products }})
 
     format_data1 = str(data_product_price).replace('[','')
     format_data2 = format_data1.replace(']','')
@@ -296,7 +302,7 @@ def createOrder(request):
         'design_printing' : design_printing,
         'product_type' : product_type,
         'product_sub_type' : product_sub_type,
-        'product_material' : data_filtered,
+        'product_material' : product_material,
         'unit_of_measurement' : unit_of_measurement,
         'delivery_timing' : delivery_timing,
         'product_12hrs_price' : product_12hrs_price,
@@ -315,7 +321,7 @@ def orderList(request):
     date_range = request.GET.get('date_range')
 
     # order_data = Order.objects.filter(user=user)
-    order_data = Order.objects.all().order_by('-order_number')
+    order_data = Order.objects.filter(user=user).order_by('-order_number')
 
     
 

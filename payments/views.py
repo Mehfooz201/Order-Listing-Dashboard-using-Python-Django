@@ -40,21 +40,26 @@ def order_payments(request ,order_num, price=0):
         c = CurrencyRates()
         inr_rate = c.get_rate('USD', 'INR')
     except RatesNotAvailableError:
-        inr_rate = 82.0
+        pass
+    inr_rate = 83.12
     
     order = Order.objects.get(user=request.user, order_number=order_num)
     additional_price = order.remake_price
+    additional_price_inr = order.remake_price
+    order_currency = order.currency
 
     if order.currency == 'INR':
-        if additional_price > 0:
-            additional_price = '%.2f'%float(float(additional_price)/float(inr_rate))
+        if additional_price_inr > 0:
+            additional_price_inr = '%.2f'%float(float(additional_price)/float(inr_rate))
     else:
-        additional_price = order.remake_price
+        additional_price_inr = order.remake_price
 
     context = {
         'inr_rate': inr_rate,
         'order': order,
-        'additional_price': additional_price,
+        'order_currency': order_currency,
+        'additional_price': float(additional_price),
+        'additional_price_inr': float(additional_price_inr),
     }
 
     return render(request, 'amruloapp/dashboard/payment.html', context)

@@ -361,9 +361,9 @@
                             <div class="col-md-4">
                                 <div class="form-group form-group-row">
                                 <label for="original_data">Original Data</label>
-                                <select id="original_data" class="form-control" name='original_data'>
+                                <select id="original_data" class="form-control" name='original_data' required>
                                     {% for value in original_data %}
-                                        <option value="{{ value.name }}">{{ value.name }}</option> 
+                                        <option value="{{ value.id }}">{{ value.name }}</option> 
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -376,9 +376,9 @@
                                 <select
                                     id="design_printing"
                                     class="form-control"
-                                    name='design_printing'>
+                                    name='design_printing' required>
                                     {% for value in design_printing %}
-                                        <option value="{{ value.name }}">{{ value.name }}</option> 
+                                        <option value="{{ value.id }}">{{ value.name }}</option> 
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -386,9 +386,9 @@
                             <div class="col-md-4">
                                 <div class="form-group form-group-row">
                                 <label for="product_type">Product Type</label><span class="text-danger pr-1">* </span>
-                                <select id="id_product_type" class="form-control" name='product_type'>
+                                <select id="id_product_type" class="form-control" name='product_type' required>
                                     {% for value in product_type %}
-                                        <option value="{{ value.name }}">{{ value.name }}</option> 
+                                        <option value="{{ value.id }}">{{ value.name }}</option> 
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -399,9 +399,9 @@
                             <div class="col-md-4">
                                 <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
                                 <label for="product_type_type">Product Sub-Type</label>
-                                <select id="id_product_sub_type" class="form-control" name='product_sub_type'>
+                                <select id="id_product_sub_type" class="form-control" name='product_sub_type' required>
                                     {% for value in product_sub_type %}
-                                        <option value="{{ value.name }}">{{ value.name }}</option> 
+                                        <option value="{{ value.id }}">{{ value.name }}</option> 
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -409,11 +409,9 @@
                             <div class="col-md-4">
                                 <div class="form-group form-group-row">
                                 <label for="product_material">Product Material</label>
-                                <select id="product_material" class="form-control" name='product_material'>
+                                <select id="product_material" class="form-control" name='product_material' required>
                                     {% for value in product_material %}
-                                    {% if value.name %}
-                                        <option value="{{ value.name }}">{{ value.name }}</option>
-                                    {% endif %}
+                                        <option value="{{ value.id }}">{{ value.name }}</option>
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -423,9 +421,9 @@
                                 <label for="unit_of_measurment"
                                     >Unit of Measurment</label
                                 >
-                                <select id="unit_of_measurment" class="form-control" name='unit_of_measurement'>
+                                <select id="unit_of_measurment" class="form-control" name='unit_of_measurement' required>
                                     {% for value in unit_of_measurement %}
-                                        <option value="{{ value.name }}">{{ value.name }}</option> 
+                                        <option value="{{ value.id }}">{{ value.name }}</option> 
                                     {% endfor %}
                                 </select>
                                 </div>
@@ -437,9 +435,9 @@
                                     <div class="form-group form-group-row">
                                         <span class="text-danger pr-1">* </span>
                                         <label for="delivery_timing">Delivery Timing</label>
-                                        <select id="id_delivery_timing" class="form-control" name="delivery_timing">
+                                        <select id="id_delivery_timing" class="form-control" name="delivery_timing" required>
                                             {% for value in delivery_timing %}
-                                                    <option value="{{ value.name }}">{{ value.name }}</option>
+                                                    <option value="{{ value.id }}">{{ value.name }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -553,10 +551,12 @@
                             <i class="fas fa-recycle"></i>
                             <div>Empty</div>
                         </button>
-                        <button type='submit' class="btn btn-primary has-icon">
+
+                        <button type='submit' class="btn btn-primary has-icon" >
                             <i class="fas fa-check"></i>
                             <div>Place Order</div>
                         </button>
+                        
                     </div>
 
                     </form>
@@ -828,9 +828,6 @@ function update_productPrice() {
     
     // Get the base price for the selected product and delivery timing
     var basePrice = deliveryTimingPrices[deliveryTiming][subProductType];
-    console.log(deliveryTimingPrices);
-    console.log(deliveryTimingPrices[deliveryTiming]);
-    console.log(basePrice);
 
     if (basePrice !== undefined) {
         // Calculate the total price

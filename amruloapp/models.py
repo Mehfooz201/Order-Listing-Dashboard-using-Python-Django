@@ -5,9 +5,41 @@ from django.utils import timezone
 from forex_python.converter import CurrencyRates
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from products.models import (
+    OriginalData,DesignPrinting,ProductType,ProductSubType,
+    ProductMaterial,UnitOfMeasurement,DeliveryTiming,Product
+    )
+
+from django.contrib.auth.models import AbstractBaseUser , BaseUserManager, PermissionsMixin
+from amruloapp.storage import OverwriteStorage
+custom_store = OverwriteStorage()
+
+# Create your models here.
+class MyAccountManager(BaseUserManager):
+    def create_user(self,username,name,email,password=None):
+        user=self.model(
+            email=self.normalize_email(email),
+            username=username,
+            name=name,
+        )   
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+    def create_superuser(self,name,username,email,password): 
+        user=self.create_user(
+            email=self.normalize_email(email),
+            username=username,
+            name=name,
+            password=password,
+        )   
+        user.is_admin = True
+        user.is_staff = True
+        user.is_active = True
+        user.is_superadmin = True
+        user.save(using=self._db)
+        return user
 
 
-#Models here
 class CompanyInformation(models.Model):
     company_name = models.CharField(max_length=200)
     company_phone = models.CharField(max_length=15)
@@ -17,13 +49,14 @@ class CompanyInformation(models.Model):
 
     def __str__(self):
         return self.company_name
-    
 
-class User(AbstractUser):
-    
+class User(AbstractBaseUser,PermissionsMixin):
+    first_name = models.CharField(max_length=100,blank=True, null=True,)
+    last_name = models.CharField(max_length=100,blank=True, null=True,)
     name = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True, null=True)
-    avatar = models.ImageField(null=True, default='avatar.svg')
+    username = models.CharField(max_length=150,unique=True, null=True)
+    avatar = models.ImageField(storage=custom_store,null=True, default='avatar.svg')
     phone = models.CharField(max_length=15, blank=True, null=True, default='')
 
     approval_status = models.BooleanField(default=True)
@@ -31,10 +64,29 @@ class User(AbstractUser):
     company_information = models.ForeignKey(CompanyInformation, on_delete=models.SET_NULL, null=True, blank=True)
 
     country = models.CharField(max_length=50, null=True, blank=True)
-    user_address = models.TextField(default='')
+    user_address = models.TextField(default='', null=True, blank=True)
 
+    user_password = models.CharField(max_length=50, blank=True, null=True, default='')
+    confirm_password = models.CharField(max_length=50, blank=True, null=True, default='')
+    
+    # Required
+    date_joined = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now_add=True)
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+    is_superadmin = models.BooleanField(default=False)
+    
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['name','username']
+    
+    objects = MyAccountManager()
+    
+    def __str__(self):
+        return str(self.username)
+
+    def has_module_perms(self, app_label):
+        return self.is_admin
 
 
 class FrameworkInformation(models.Model):
@@ -88,7 +140,6 @@ class Order(models.Model):
         ('approved', 'Approved'),
         ('completed', 'Completed'),
         ('cancelled', 'Cancelled'),
-        
     ]
     order_status = models.CharField(
         max_length=12, choices=ORDER_STATUS_CHOICES, null=True, blank=True, default='review')
@@ -115,84 +166,16 @@ class Order(models.Model):
     def formatted_order_date(self):
         return self.order_date.strftime('%Y-%m-%d 00:00')
     
-    
-    ORIGINAL_DATA_CHOICES = [
-        ('Raw Scanned Data', 'Raw Scanned Data'),
-    ]
-    original_data = models.CharField(max_length=20, choices=ORIGINAL_DATA_CHOICES, default='Raw Scanned Data')
-    
-    DESIGN_PRINTING_CHOICES = [
-        ('Design', 'Design'),
-    ]
-    design_printing = models.CharField(max_length=50, choices=DESIGN_PRINTING_CHOICES, default='Design')
+    original_data = models.ForeignKey(OriginalData, on_delete=models.CASCADE)
+    design_printing = models.ForeignKey(DesignPrinting, on_delete=models.CASCADE)
+    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
+    product_sub_type = models.ForeignKey(ProductSubType, on_delete=models.CASCADE)
+    product_material = models.ForeignKey(ProductMaterial, on_delete=models.CASCADE)
+    unit_of_measurement = models.ForeignKey(UnitOfMeasurement, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    delivery_timing = models.ForeignKey(DeliveryTiming, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
 
-    PRODUCT_TYPE_CHOICES = [
-        ('Cobalt-chrome framework - Design Fee', 'Cobalt-chrome framework - Design Fee'),
-    ]
-
-    product_type = models.CharField(max_length=100, choices=PRODUCT_TYPE_CHOICES, default='Cobalt-chrome framework - Design Fee')
-
-
-    PRODUCT_SUB_TYPE_CHOICES = [
-        ('Anatomic Full Crown', 'Anatomic Full Crown '),
-        ('Veneer ( Emax, Ivoclar)', 'Veneer ( Emax, Ivoclar)'),
-        ('Inlay/Onlay', 'Inlay/Onlay'),
-        ('Smile Creator', 'Smile Creator'),
-        ('Acrylic Temporary Crowns', 'Acrylic Temporary Crowns'),
-        ('Custom Implant Abutment', 'Custom Implant Abutment'),
-
-        #Product others
-        ('Cast Partial Denture Framework (upto 3 unit single arch)', 'Cast Partial Denture Framework (upto 3 unit single arch)'),
-        ('Cast Partial Denture Framework (upto 6 unit single arch)', 'Cast Partial Denture Framework (upto 6 unit single arch)'),
-        ('Cast Partial Denture Framework (upto 13 unit single arch)', 'Cast Partial Denture Framework (upto 13 unit single arch)'),
-
-        ('Screw retained crown', 'Screw Retained Crown'),
-        ('CO-CR framework', 'CO-CR framework'),
-        ('Zirconia Framework', 'Zirconia Framework'),
-        ('All on 4/6 implants', 'All on 4/6 implants'),
-        ('Implant SLM malo bridge' ,'Implant SLM Malo Bridge '),
-        ('Implant Hybrid Denture' ,'Implant Hybrid Denture'),
-        ('Cast Partial Obturator' ,'Cast Partial Obturator'),
-        ('Bridge Framework' ,'Bridge Framework'),
-        ('Bite Splint' ,'Bite Splint'),
-        ('Full Mouth Rehabilitation' ,'Full Mouth Rehabilitation'),
-        ('Wax-up for smile correction' ,'Wax-up for smile correction '),
-
-        #Product Materials
-        ('Contact Model ( each quadrant )', 'Contact Model ( each quadrant )'),
-        ('Contact Model with extra die  ( each quadrant )', 'Contact Model with extra die  ( each quadrant )'),
-        ('Models with articulation (uppr/lower)', 'Models with articulation (uppr/lower)'),
-        ('Study Model (Full Mouth)', 'Study Model (Full Mouth)'),
-        ('Surgical guide', 'Surgical Guide'),
-        
-        # Add more options as needed
-    ]
-
-    
-    product_sub_type = models.CharField(max_length=100, choices=PRODUCT_SUB_TYPE_CHOICES, default='Anatomic Full Crown')
-
-  
-    PRODUCT_MATERIAL= [
-        ('OCOR', 'OCOR'),
-        ('Metal ', 'Metal'),
-        ('Resin', 'Resin'),
-        ('Zirconia / Metal / PMMA ', 'Zirconia / Metal / PMMA '),
-        ('Zirconia / Emax', 'Zirconia / Emax'),
-        ('Wax' , 'Wax'),
-        ('PMMA', 'PMMA'),
-        ('Zirconia / Metal', 'Zirconia / Metal ')
-    ]
-
-    product_material = models.CharField(max_length=50, choices=PRODUCT_MATERIAL, default='OCOR')
-
-    UNIT_CHOICES = [
-        ('PCS', 'PCS'),
-        # Add more options as needed
-    ]
-
-    
-
-    unit_of_measurement = models.CharField(max_length=10, choices=UNIT_CHOICES, default='PCS')
     CURRENCY_CHOICES = [
         ('USA', 'USD (Dollar)'),
         ('INR', 'INR (Indian Rupees)'),
@@ -200,22 +183,8 @@ class Order(models.Model):
     ]
     
     currency = models.CharField(max_length=10, choices=CURRENCY_CHOICES, default='USA')
-    quantity = models.IntegerField()
-
-    DELIVERY_TIMING_CHOICES = [
-        ('12HRS', '12 HRS'),
-        ('6HRS', '6 HRS'),
-        ('2HRS', '2 HRS'),
-    ]
-    delivery_timing = models.CharField(max_length=10, choices=DELIVERY_TIMING_CHOICES, default='12HRS')
-
-
     design_requirement = models.FileField(upload_to='uploads/files/otherfiles', default='')
     file_upload_required = models.FileField(upload_to='uploads/files/stl-dcm-html')
-    
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-
-
 
     #Remake Order Field
     # New fields for remaking
@@ -247,108 +216,23 @@ class Order(models.Model):
 
         super(Order, self).save(*args, **kwargs)
 
-    
+    @property
     def calculate_price(self):
-        price_dict  = {
-        '12HRS': {
-                    'Anatomic Full Crown': 6.0, 
-                    'Veneer ( Emax, Ivoclar)': 6.0, 
-                    'Inlay/Onlay': 6.0, 
-                    'Smile Creator': 6.0,
-                    'Acrylic Temporary Crowns': 6.0, 
-                    'Custom Implant Abutment': 7.0,
+        delivery_timing = DeliveryTiming.objects.all()
+        products = Product.objects.all()
+        data_product_price = []
+        for j in delivery_timing:
+            data_product_price.append({str(j.id):{str(i.product_sub_type.id):i.product_12hrs_price.delivery_timing.name == j.name and float(i.product_12hrs_price.price) or i.product_6hrs_price.delivery_timing.name == j.name and float(i.product_6hrs_price.price) or i.product_2hrs_price.delivery_timing.name == j.name and float(i.product_2hrs_price.price) for i in products }})
 
-                    'Cast Partial Denture Framework (upto 3 unit single arch)' : 18.0,
-                    'Cast Partial Denture Framework (upto 6 unit single arch)' : 18.0,
-                    'Cast Partial Denture Framework (upto 13 unit single arch)' : 20.0,
-                    'Screw retained crown' : 7.0,
-                    'All on 4/6 implants' : 9.0,
-                    'Implant SLM malo bridge' : 9.0,
-                    'Implant Hybrid Denture' : 9.0,
-                    'Cast Partial Obturator' : 9.0,
-                    'Bridge Framework' : 7.0,
-                    'Bite Splint' : 7.0,
-                    'Full Mouth Rehabilitation' : 9.0,
-                    'Wax-up for smile correction' : 9.0, 
-
-                    'CO-CR framework' : 9.0,
-                    'Zirconia Framework' : 9.0, 
-
-                    'Contact Model ( each quadrant )' : 3.0,
-                    'Contact Model with extra die  ( each quadrant )': 3.0,
-                    'Models with articulation (uppr/lower)': 3.0,
-                    'Study Model (Full Mouth)': 3.0,
-                    'Surgical guide' : 40.0,
-           
-                  },
-
-        '6HRS': {
-                    'Anatomic Full Crown': 7.0,
-                    'Veneer ( Emax, Ivoclar)': 7.0,
-                    'Inlay/Onlay': 7.0,
-                    'Smile Creator': 7.0,
-                    'Acrylic Temporary Crowns': 7.0,
-                    'Custom Implant Abutment': 9.0,
-
-                    'Cast Partial Denture Framework (upto 3 unit single arch)' : 20.0,
-                    'Cast Partial Denture Framework (upto 6 unit single arch)' : 20.0,
-                    'Cast Partial Denture Framework (upto 13 unit single arch)' : 25.0,
-                    'Screw retained crown' : 9.0,
-                    'All on 4/6 implants' : 11.0,
-                    'Implant SLM malo bridge' : 11.0,
-                    'Implant Hybrid Denture' : 11.0,
-                    'Cast Partial Obturator' : 11.0,
-                    'Bridge Framework' : 9.0,
-                    'Bite Splint' : 9.0,
-                    'Full Mouth Rehabilitation' : 11.0,
-                    'Wax-up for smile correction' : 11.0, 
-
-                    'CO-CR framework' : 11.0,
-                    'Zirconia Framework' : 11.0, 
-
-                    'Contact Model ( each quadrant )' : 5.0,
-                    'Contact Model with extra die  ( each quadrant )': 5.0,
-                    'Models with articulation (uppr/lower)': 5.0,
-                    'Study Model (Full Mouth)': 5.0,
-                    'Surgical guide' : 36.0,
-                 
-                 },
-
-        '2HRS': {
-                    'Anatomic Full Crown': 9.0,
-                    'Veneer ( Emax, Ivoclar)': 9.0,
-                    'Inlay/Onlay': 9.0,
-                    'Smile Creator': 9.0,
-                    'Acrylic Temporary Crowns': 9.0,
-                    'Custom Implant Abutment': 11.0,
-
-                    'Cast Partial Denture Framework (upto 3 unit single arch)' : 0.0,
-                    'Cast Partial Denture Framework (upto 6 unit single arch)' : 0.0,
-                    'Cast Partial Denture Framework (upto 13 unit single arch)' : 0.0,
-                    'Screw retained crown' : 11.0,
-                    'All on 4/6 implants' : 15.0,
-                    'Implant SLM malo bridge' : 15.0,
-                    'Implant Hybrid Denture' : 15.0,
-                    'Cast Partial Obturator' : 15.0,
-                    'Bridge Framework' : 11.0,
-                    'Bite Splint' : 11.0,
-                    'Full Mouth Rehabilitation' : 15.0,
-                    'Wax-up for smile correction' : 15.0, 
-
-                    'CO-CR framework' : 15.0,
-                    'Zirconia Framework' : 15.0, 
-
-                    'Contact Model ( each quadrant )' : 7.0,
-                    'Contact Model with extra die  ( each quadrant )': 7.0,
-                    'Models with articulation (uppr/lower)': 7.0,
-                    'Study Model (Full Mouth)': 7.0,
-                    'Surgical guide' : 0.0,
-                 }
-    
-    }
-
+        format_data1 = str(data_product_price).replace('[','')
+        format_data2 = format_data1.replace(']','')
+        format_data3 = format_data2.replace("}}, {","}, ")
+        format_data4 = format_data3.replace("}}, {","}, ")
+        format_data5 = format_data4.replace("'","\"")
+        format_data6 = str(format_data5).replace("\'"," ")
+        price_dict  = eval(format_data6)
         # Get the base price for the selected product type and delivery timing from the price dictionary
-        base_price = price_dict.get(self.delivery_timing, {}).get(self.product_sub_type)
+        base_price = price_dict.get(str(self.delivery_timing.id), {}).get(str(self.product_sub_type.id))
 
         if base_price is None:
             # Set a default price (0 in this case) when the combination is not found in the dictionary

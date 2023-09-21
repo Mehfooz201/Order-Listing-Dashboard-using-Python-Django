@@ -12,8 +12,6 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 
 #Staff User
 class StaffUserCreationForm(UserCreationForm):
-
-
     class Meta:
         model = User
         fields = ['username', 'name', 'email', 'phone', 'password1', 'password2']
@@ -27,10 +25,14 @@ class UserProfileUpdateForm(ModelForm):
         fields = ['avatar', 'name', 'phone', 'country',  'user_address']
 
 
-class MyUserCreationForm(UserCreationForm):
+class MyUserCreationForm(forms.ModelForm):
+    
+    user_password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
+
     class Meta:
         model = User
-        fields = ['name', 'username', 'email',  'password1', 'password2']
+        fields = ["user_password","confirm_password"]
 
 
 class UserForm(ModelForm):

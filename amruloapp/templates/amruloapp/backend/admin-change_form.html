@@ -56,7 +56,7 @@
 
             {% block field_sets %}
             {% for fieldset in adminform %}
-            {% include "admin/includes/fieldset.html" %}
+            {% include "amruloapp/backend/includes/fields_set.html" %}
             {% endfor %}
             {% endblock %}
 
@@ -92,3 +92,8 @@
 </div>
 </div>
 {% endblock %}
+
+{% block scripts %}
+  <script id='data_prices' defer data-prices="{{prod_price}}"></script>
+{% endblock scripts %}
+

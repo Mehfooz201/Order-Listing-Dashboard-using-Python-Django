@@ -17,7 +17,6 @@
 
         <div class="content">
 
-            {% if additional_price > 0 %}
             <section class="section-content padding-y bg-light">
                 <div class="container">
 
@@ -39,8 +38,8 @@
                                     <p class="card-text mb-0">Product_sub_type : {{order.product_sub_type}}</p><br>
                                     <p class="card-text mb-0">Customer_name : {{order.customer_name}}</p><br>
                                     <p class="card-text mb-0">Purchaser : {{order.purchaser}}</p><br>
-                                    <p class="card-text mb-0">Email : {{order.email}}</p><br>
-                                    <p class="card-text mb-0">Phone : {{order.phone}}</p><br>
+                                    <p class="card-text mb-0">Email : {{order.user.email}}</p><br>
+                                    <p class="card-text mb-0">Phone : {{order.user.phone}}</p><br>
                                     {% if order.note %}
                                     <b>Order Note : </b> {{order.note}}
                                     {% endif %}
@@ -65,8 +64,20 @@
 
                                     <div class="container text-center">
                                         <span class="mtext-101 cl2">
-                                            <strong>Additional Price:</strong>  {% if order.currency == 'USA' %}{{additional_price}}&nbsp;USD{% else %} {{additional_price}}&nbsp;INR{% endif %}
+                                            <strong>Currency :</strong>&nbsp;&nbsp;{{order_currency}}&nbsp;
                                         </span><br/>
+                                        {% if order.currency == 'USA' %}
+                                        <span class="mtext-101 cl2">
+                                            <strong>Additional Price :</strong>&nbsp;&nbsp;{{additional_price}}&nbsp;
+                                        </span><br/>
+                                        {% else %}
+                                        <span class="mtext-101 cl2">
+                                            <strong>Additional Price :</strong>&nbsp;₹&nbsp;{{additional_price}}&nbsp;
+                                        </span><br/>
+                                        <span class="mtext-101 cl2">
+                                            <strong>In USD :</strong>&nbsp;$&nbsp;{{additional_price_inr}}&nbsp;
+                                        </span><br/>
+                                        {% endif %}
                                     </div>
 
                                     <hr>
@@ -117,7 +128,6 @@
             </section>
             <!-- ========================= SECTION CONTENT END// ========================= -->
 
-            {% else%}
             <div class="container pt-5">
             <div class="pt-5 text-center"><h2>Oops! No additional price to pay.</h2></div>
                 <div class="row text-center">
@@ -135,7 +145,6 @@
 
                 </div>
             </div><br>
-            {% endif %}
 
           
         </div>
@@ -165,12 +174,21 @@
     }
 
     var amount = "{{additional_price}}";
+    var amount_usd = "{{additional_price}}";
+    var amount_inr = "{{additional_price_inr}}";
     var currency = "{{order.currency}}";
     var csrftoken = getCookie('csrftoken');
     var orderID = "{{order.order_number}}";
     var url = "{% url 'payments' %}";
     var payment_method = 'PayPal';
     var redirect_url = "{% url 'order_complete' %}";
+
+    if (currency=="USD"){
+        amount=amount_usd
+    }
+    else{
+        amount=amount_inr
+    }
 
     function initPayPalButton() {
         // Render the PayPal button into #paypal-button-container

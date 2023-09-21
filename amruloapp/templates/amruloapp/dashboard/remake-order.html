@@ -134,7 +134,10 @@
                                 <td>{{forloop.counter}}</td>
                                 <td>{{data.order_number}}</td>
                                 <td>{{data.customer_name}}</td>
+
                                 <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
+
+                                
                                 <td class='text-center'>
 
                                   {% if data.order_status == 'pending' %}

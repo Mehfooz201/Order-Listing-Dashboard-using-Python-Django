@@ -115,28 +115,12 @@
                   <div class="dropdown-divider"></div>
                   {% endif %}
                   {% endfor %}
-                  {% for notification in  user.notifications.read %}
-                  {% if notification.recipient.username == user.username %}
-                  <div>
-                        <button class="dropdown-item text-center" type="button">{{ notification.verb }}</button>	
-                    </div>
-                  <div class="dropdown-divider"></div>
-                  {% endif %}
-                  {% endfor %}
               </div>
               {% else %}
               <div class="dropdown-menu">
                 <div class="info bg-danger text-center" style="font-size:12px">
                     You have <strong>0</strong> unread notification.
                 </div>
-                {% for notification in  user.notifications.read %}
-                {% if notification.recipient.username == user.username %}
-                  <div>
-                        <button class="dropdown-item text-center" type="button">{{ notification.verb }}</button>	
-                      </div>
-                  <div class="dropdown-divider"></div>
-                {% endif %}
-                {% endfor %}
             </div>
               {% endif %}
             </div>
