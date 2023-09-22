@@ -67,3 +67,5 @@ def order_payments(request ,order_num, price=0):
 @login_required(login_url='login')
 def order_complete(request):
     return render(request, 'amruloapp/dashboard/payment_complete.html')
+
+
