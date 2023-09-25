@@ -1,7 +1,7 @@
 #Admin
 #=> admin (lab)
-#=> karachi12 (password)
-#=> graphicx.mehfooz201@gmail.com (email)
+#=> project12 (password)
+#=> amrulo@gmail.com (email)
 
 from django.contrib.auth.admin import UserAdmin
 from django.contrib import admin

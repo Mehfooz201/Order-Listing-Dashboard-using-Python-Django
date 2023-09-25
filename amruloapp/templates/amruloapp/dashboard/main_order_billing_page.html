@@ -31,17 +31,15 @@
                             <div class="card">
                                 <h5 class="card-header bg-danger text-light">Informations</h5>
                                 <div class="card-body  text-dark">
-                                    <p class="card-text mb-0">Order N° : {{order.order_number}}</p><br>
-                                    <p class="card-text mb-0">Company_information : {{order.company_information}}</p><br>
-                                    <p class="card-text mb-0">Manufacturer : {{order.manufacturer}}</p><br>
-                                    <p class="card-text mb-0">Product_type : {{order.product_type}}</p><br>
-                                    <p class="card-text mb-0">Product_sub_type : {{order.product_sub_type}}</p><br>
-                                    <p class="card-text mb-0">Customer_name : {{order.customer_name}}</p><br>
-                                    <p class="card-text mb-0">Purchaser : {{order.purchaser}}</p><br>
-                                    <p class="card-text mb-0">Email : {{order.user.email}}</p><br>
-                                    <p class="card-text mb-0">Phone : {{order.user.phone}}</p><br>
-                                    {% if order.note %}
-                                    <b>Order Note : </b> {{order.note}}
+                                    <p class="card-text mb-0">Manufacturer : {{manufacturer}}</p><br>
+                                    <p class="card-text mb-0">Product_type : {{product_type_}}</p><br>
+                                    <p class="card-text mb-0">Product_sub_type : {{product_sub_type_}}</p><br>
+                                    <p class="card-text mb-0">Customer_name : {{customer_name}}</p><br>
+                                    <p class="card-text mb-0">Purchaser : {{purchaser}}</p><br>
+                                    <p class="card-text mb-0">Email : {{user.email}}</p><br>
+                                    <p class="card-text mb-0">Phone : {{user.phone}}</p><br>
+                                    {% if note %}
+                                    <b>Order Note : </b> {{note}}
                                     {% endif %}
 
 
@@ -64,9 +62,9 @@
 
                                     <div class="container text-center">
                                         <span class="mtext-101 cl2">
-                                            <strong>Currency :</strong>&nbsp;&nbsp;{{order_currency}}&nbsp;
+                                            <strong>Currency :</strong>&nbsp;&nbsp;{{currency}}&nbsp;
                                         </span><br/>
-                                        {% if order.currency == 'USA' %}
+                                        {% if currency == 'USA' %}
                                         <span class="mtext-101 cl2">
                                             <strong>Price :</strong>&nbsp;$&nbsp;{{price}}&nbsp;
                                         </span><br/>
@@ -75,7 +73,7 @@
                                             <strong>Price :</strong>&nbsp;₹&nbsp;{{price}}&nbsp;
                                         </span><br/>
                                         <span class="mtext-101 cl2">
-                                            <strong>In USD :</strong>&nbsp;$&nbsp;{{price_inr}}&nbsp;
+                                            <strong>In USD :</strong>&nbsp;$&nbsp;{{price_usd}}&nbsp;
                                         </span><br/>
                                         {% endif %}
                                     </div>
@@ -102,14 +100,14 @@
                             <div class="container">
                                 <div class="row text-center">
                                     <div class="col-6">
-                                        <form action="{% url 'order-list' %}" method="get">
-                                            <button class="btn btn-dark">Order list</button>
+                                        <form action="{% url 'create-order' %}" method="get">
+                                            <button class="btn btn-danger">Cancel</button>
                                         </form>
                                     </div>
 
                                     <div class="col-6">
                                         <form action="{% url 'home' %}" method="get">
-                                            <button class="btn btn-danger">Home</button>
+                                            <button class="btn btn-dark">Home</button>
                                         </form>
                                     </div>
 
@@ -174,21 +172,37 @@
         return cookieValue;
     }
 
+    var customer_name = "{{customer_name}}";
+    var manufacturer = "{{manufacturer}}";
+    var order_type = "{{order_type}}";
+    var purchaser = "{{purchaser}}";
+    var salesman = "{{salesman}}";
+    var requirements_remarks = "{{requirements_remarks}}";
+    var original_data = "{{original_data}}";
+    var design_printing = "{{design_printing}}";
+    var product_type = "{{product_type}}";
+    var product_sub_type = "{{product_sub_type}}";
+    var product_material = "{{product_material}}";
+    var unit_of_measurement = "{{unit_of_measurement}}";
+    var delivery_timing = "{{delivery_timing}}";
+    var quantity = "{{quantity}}";
+    var design_requirement = "{{design_requirement}}";
+    var file_upload_required = "{{file_upload_required}}";
+
     var amount = "{{price}}";
-    var amount_usd = "{{price}}";
-    var amount_inr = "{{price_inr}}";
-    var currency = "{{order.currency}}";
+    var amount_usd = "{{price_usd}}";
+    var amount_to_charge = "{{price}}";
+    var currency_ = "{{currency}}";
     var csrftoken = getCookie('csrftoken');
-    var orderID = "{{order.order_number}}";
+    var orderID = "None";
     var url = "{% url 'main_order_payment_request' %}";
     var payment_method = 'PayPal';
     var redirect_url = "{% url 'main_order_payment_complete' %}";
 
-    if (currency=="USD"){
-        amount=amount_usd
-    }
-    else{
-        amount=amount_inr
+    if (currency_ === "INR"){
+        amount_to_charge = amount_usd
+    }else{
+        amount_to_charge = amount
     }
 
     function initPayPalButton() {
@@ -208,7 +222,7 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: amount,
+                            value: amount_to_charge,
                         }
                     }]
                 });
@@ -229,12 +243,29 @@
                                     "X-CSRFToken": csrftoken,
                                 },
                                 body: JSON.stringify({
-                                    orderID: orderID,
+                                    order_number: orderID,
                                     transID: details.id,
                                     payment_method: payment_method,
-                                    currency: currency,
-                                    amount_paid: amount,
                                     status: details.status,
+
+                                    customer_name: customer_name,
+                                    manufacturer: manufacturer,
+                                    order_type: order_type,
+                                    purchaser: purchaser,
+                                    salesman: salesman,
+                                    requirements_remarks: requirements_remarks,
+                                    original_data: parseInt(original_data),
+                                    design_printing: parseInt(design_printing),
+                                    product_type: parseInt(product_type),
+                                    product_sub_type: parseInt(product_sub_type),
+                                    product_material: parseInt(product_material),
+                                    unit_of_measurement: parseInt(unit_of_measurement),
+                                    delivery_timing: parseInt(delivery_timing),
+                                    currency: currency_,
+                                    quantity: quantity,
+                                    amount: amount,
+                                    design_requirement: design_requirement,
+                                    file_upload_required: file_upload_required
                                 }),
                             })
                             .then((response) => response.json())

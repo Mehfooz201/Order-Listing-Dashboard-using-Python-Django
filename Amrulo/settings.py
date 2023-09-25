@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'notifications',
     'products',
     'amruloapp',
-    'mathfilters',
 ]
 
 

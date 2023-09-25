@@ -32,7 +32,7 @@ urlpatterns = [
     path('additional_price_billing_page/<int:order_num>/', additional_price_billing_page, name='additional_price_billing_page'),
     path('additional_price_payment_complete/', additional_price_payment_complete, name='additional_price_payment_complete'),
     path('main_order_payment_request/', main_order_payment_request, name='main_order_payment_request'),
-    path('main_order_billing_page/<int:order_num>/', main_order_billing_page, name='main_order_billing_page'),
+    path('main_order_billing_page/', main_order_billing_page, name='main_order_billing_page'),
     path('main_order_payment_complete/', main_order_payment_complete, name='main_order_payment_complete'),
 
 

@@ -1,7 +1,7 @@
 
 {% extends 'amruloapp/dashboard/base.html' %}
 {% load static %}
-{% load mathfilters %}
+
 {% block title %}
     Remake Order
 {% endblock title %}
@@ -156,13 +156,9 @@
                                 
                                 <td>{{data.currency}}</td>
                                 <td>
-                                    {% if data.currency == 'USA' and data.remake_price > 0 %}
+                                    {% if data.currency == 'USA' %}
                                         ${{ data.price|floatformat:2 }}
-                                    {% elif data.currency == 'USA' and data.remake_price <= 0 %}
-                                        ${{ data.price|floatformat:2 }}
-                                    {% elif data.currency == 'INR' and data.remake_price > 0 %}
-                                        ₹{{ data.price|floatformat:2 }}
-                                    {% elif data.currency == 'INR' and data.remake_price <= 0 %}
+                                    {% elif data.currency == 'INR' %}
                                         ₹{{ data.price|floatformat:2 }}
                                     {% else %}
                                         {{ data.price|floatformat:2 }}

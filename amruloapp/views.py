@@ -9,7 +9,7 @@ from products.models import (
     ProductMaterial,UnitOfMeasurement,DeliveryTiming,
     Product12HrsPrice,Product6HrsPrice,Product2HrsPrice,Product
     )
-from payments.models import Payment
+from payments.models import orderPayment, additionalPricePayment
 from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm, RemakeRequestForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
@@ -245,8 +245,8 @@ def createOrder(request):
             order.order_status = form.fields['order_status'].initial  # Set the default value
             order.user = request.user  # Set the user field to the currently logged-in user
             order.price = order.calculate_price
-            order.save()
-            return redirect('main_order_billing_page',order_num=order.order_number)
+            #order.save()
+            return redirect('main_order_billing_page')
         else:
             messages.error(request, "These fields are required")
             print('Form validation error:', form.errors)
