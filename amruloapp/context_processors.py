@@ -1,6 +1,15 @@
 from products.models import (DeliveryTiming,Product)
+from forex_python.converter import CurrencyRates, RatesNotAvailableError
 
 def amruloapp_context(request):
+    inr_rate = 0
+    # Fetch the actual exchange rate for INR
+    try:
+        c = CurrencyRates()
+        inr_rate = c.get_rate('USA', 'INR')
+    except:
+        # Handle the error gracefully, e.g., use a default exchange rate
+        inr_rate = 83.12  # You can use a default value here or handle the error as per your requirement
 
     delivery_timing = DeliveryTiming.objects.all()
     products = Product.objects.all()
@@ -15,4 +24,4 @@ def amruloapp_context(request):
     format_data5 = format_data4.replace("'","\"")
     format_data6 = str(format_data5).replace("\'"," ")
 
-    return dict(prod_price = format_data6)
+    return dict(prod_price = format_data6, inrRate = inr_rate)

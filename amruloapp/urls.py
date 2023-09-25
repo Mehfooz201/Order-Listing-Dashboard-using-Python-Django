@@ -1,6 +1,12 @@
 from django.urls import path
-from . import views
-from payments.views import order_payments, order_complete, payments
+from amruloapp import views
+from payments.views import (
+    additional_price_payment_request,
+    additional_price_billing_page,
+    additional_price_payment_complete,
+    main_order_payment_request,
+    main_order_billing_page,
+    main_order_payment_complete)
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from .forms import MyPasswordResetForm, MySetPasswordForm
@@ -22,9 +28,12 @@ urlpatterns = [
     path('create-order/', views.createOrder, name='create-order'),
 
     path('order-list/', views.orderList, name='order-list'),
-    path('payments/', payments, name='payments'),
-    path('order_payments/<int:order_num>/', order_payments, name='order_payments'),
-    path('order_complete/', order_complete, name='order_complete'),
+    path('additional_price_payment_request/', additional_price_payment_request, name='additional_price_payment_request'),
+    path('additional_price_billing_page/<int:order_num>/', additional_price_billing_page, name='additional_price_billing_page'),
+    path('additional_price_payment_complete/', additional_price_payment_complete, name='additional_price_payment_complete'),
+    path('main_order_payment_request/', main_order_payment_request, name='main_order_payment_request'),
+    path('main_order_billing_page/<int:order_num>/', main_order_billing_page, name='main_order_billing_page'),
+    path('main_order_payment_complete/', main_order_payment_complete, name='main_order_payment_complete'),
 
 
     path('framework-manage/', views.frameworkManagement, name='framework-manage'),

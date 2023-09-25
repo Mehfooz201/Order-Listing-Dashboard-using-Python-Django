@@ -552,11 +552,10 @@
                             <div>Empty</div>
                         </button>
 
-
-                        <a type='submit' class="btn btn-primary has-icon" >
+                        <button type='submit' class="btn btn-primary has-icon" >
                             <i class="fas fa-check"></i>
-                            Place Order
-                        </a>
+                            <div>Place Order</div>
+                        </button>
                         
                     </div>
 
@@ -810,7 +809,7 @@
  
 <!-- Your new JavaScript code -->
 
-<script defer data-price="{{product_price}}">
+<script defer data-currency="{{inrRate}}" data-price="{{product_price}}">
 var data = document.currentScript.dataset;
 
 // Function to update the amount field
@@ -823,7 +822,7 @@ function update_productPrice() {
     var currencySymbol = '';
 
     // Price data for the selected delivery timing
-    
+    var curr = parseFloat(data.currency);
     var data_price = JSON.parse(data.price);
     var deliveryTimingPrices = data_price;
     
@@ -832,7 +831,7 @@ function update_productPrice() {
 
     if (basePrice !== undefined) {
         // Calculate the total price
-        price = basePrice * quantity;
+        price = parseFloat(basePrice * quantity);
 
         // Get the currency symbol based on the selected currency
         if (currency === 'USA') {
@@ -840,8 +839,8 @@ function update_productPrice() {
         } else if (currency === 'INR') {
             currencySymbol = '₹'; // Indian Rupee symbol
             // Fetch the actual exchange rate for INR from your Django code
-            var inrRate = {{ inr_rate }}; // Replace this with the actual exchange rate
-            price *= inrRate;
+            var inrRate = curr; // Replace this with the actual exchange rate
+            price *= parseFloat(inrRate);
         }
     }
 

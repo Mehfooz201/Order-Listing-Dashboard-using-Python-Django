@@ -175,6 +175,7 @@ class Order(models.Model):
     quantity = models.IntegerField()
     delivery_timing = models.ForeignKey(DeliveryTiming, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    
 
     CURRENCY_CHOICES = [
         ('USA', 'USD (Dollar)'),
@@ -199,9 +200,6 @@ class Order(models.Model):
     att_file_name = models.CharField(max_length=100, null=True, blank=True)
     
 
-
-    
-
     def save(self, *args, **kwargs):
         if not self.framework_agreement_id:
             recent_agreement = FrameworkAgreement.objects.filter(customer=self.user).order_by('-id').first()
@@ -213,7 +211,6 @@ class Order(models.Model):
 
         # Calculate total amount including original price and remake charges
         self.price = self.price + self.remake_price
-
         super(Order, self).save(*args, **kwargs)
 
     @property
@@ -240,10 +237,17 @@ class Order(models.Model):
 
         total_price = base_price * self.quantity
 
+        inr_rate = 0
+        # Fetch the actual exchange rate for INR
+        try:
+            c = CurrencyRates()
+            inr_rate = c.get_rate('USA', 'INR')
+        except:
+            # Handle the error gracefully, e.g., use a default exchange rate
+            inr_rate = 83.12  # You can use a default value here or handle the error as per your requirement
+
         # Convert price to INR if currency is INR
         if self.currency == 'INR':
-            c = CurrencyRates()
-            inr_rate = c.get_rate('USD', 'INR')
             total_price *= inr_rate
 
         return total_price

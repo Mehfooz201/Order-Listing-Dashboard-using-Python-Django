@@ -94,6 +94,6 @@
 {% endblock %}
 
 {% block scripts %}
-  <script id='data_prices' defer data-prices="{{prod_price}}"></script>
+  <script id='data_prices' defer data-currency="{{inrRate}}" data-prices="{{prod_price}}"></script>
 {% endblock scripts %}
 

@@ -7,6 +7,7 @@ class Payment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     payment_id = models.CharField(max_length=100)
     payment_method = models.CharField(max_length=100)
+    payment_type = models.CharField(max_length=100)
     CURRENCY_CHOICES = [
         ('USA', 'USD (Dollar)'),
         ('INR', 'INR (Indian Rupees)'),

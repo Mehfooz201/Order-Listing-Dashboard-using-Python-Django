@@ -1,7 +1,7 @@
 
 {% extends 'amruloapp/dashboard/base.html' %}
 {% load static %}
-
+{% load mathfilters %}
 {% block title %}
     Remake Order
 {% endblock title %}
@@ -156,12 +156,16 @@
                                 
                                 <td>{{data.currency}}</td>
                                 <td>
-                                    {% if data.currency == 'USA' %}
+                                    {% if data.currency == 'USA' and data.remake_price > 0 %}
                                         ${{ data.price|floatformat:2 }}
-                                    {% elif data.currency == 'INR' %}
+                                    {% elif data.currency == 'USA' and data.remake_price <= 0 %}
+                                        ${{ data.price|floatformat:2 }}
+                                    {% elif data.currency == 'INR' and data.remake_price > 0 %}
+                                        ₹{{ data.price|floatformat:2 }}
+                                    {% elif data.currency == 'INR' and data.remake_price <= 0 %}
                                         ₹{{ data.price|floatformat:2 }}
                                     {% else %}
-                                        {{ data.price|floatformat:2 }} <!-- Default case if no currency symbol is available -->
+                                        {{ data.price|floatformat:2 }}
                                     {% endif %}
                                 </td>
 
@@ -176,24 +180,16 @@
                               </td>
 
                                 <td class="text-center bg-light">
-                                  <div class="datatable-actions-container">
-                                                                    
-                                      
-                                      {% if data.remake_price > 0 %}
-                                        <button type="button" class="btn-action" data-toggle="modal" data-target="#paymentModal{{ data.order_number }}">
+                                    <div class="datatable-actions-container text-center">
+                                      {% if data.remake_price > 0  %}
+                                        <button type="button" class="btn-action text-center" data-toggle="modal" data-target="#paymentModal{{ data.order_number }}">
                                           <i class="fas fa-dollar-sign pr-2"></i> Pay Now
                                         </button>
-
                                       {% else %}
-                                        {% comment %} <p>-</p> {% endcomment %}
-
+                                      <p class="text-center">---</p>
                                       {% endif %}
-                                        
- 
-                                  </div>
-                              </td>
-                              
-
+                                    </div>
+                                </td>
         
                             </tr>
                           {% endfor %}
@@ -405,7 +401,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <a href="{% url 'order_payments' data.order_number %}" class="btn btn-primary" id="confirmPaymentBtn">Confirm Payment</a>
+          <a href="{% url 'additional_price_billing_page' data.order_number %}" class="btn btn-primary" id="confirmPaymentBtn">Confirm Payment</a>
         </div>
       </div>
     </div>

@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\USER\Downloads\Amrulo_fixed (1)\Amrulo\myenv"
+VIRTUAL_ENV="C:\Users\USER\Downloads\02 Amrulo final task + paypal tutorial\Amrulo2\myenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

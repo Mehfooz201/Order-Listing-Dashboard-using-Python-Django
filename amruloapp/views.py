@@ -9,6 +9,7 @@ from products.models import (
     ProductMaterial,UnitOfMeasurement,DeliveryTiming,
     Product12HrsPrice,Product6HrsPrice,Product2HrsPrice,Product
     )
+from payments.models import Payment
 from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm, RemakeRequestForm
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
@@ -245,22 +246,13 @@ def createOrder(request):
             order.user = request.user  # Set the user field to the currently logged-in user
             order.price = order.calculate_price
             order.save()
-            return redirect('order-list')
+            return redirect('main_order_billing_page',order_num=order.order_number)
         else:
             messages.error(request, "These fields are required")
             print('Form validation error:', form.errors)
     else:
-        form = OrderForm()   
-    
-    # Fetch the actual exchange rate for INR
-    try:
-        c = CurrencyRates()
-        inr_rate = c.get_rate('USA', 'INR')
-    except RatesNotAvailableError:
-        # Handle the error gracefully, e.g., use a default exchange rate
-       pass
-    inr_rate = 83.12  # You can use a default value here or handle the error as per your requirement
-    
+        form = OrderForm()
+
     company = CompanyInformation.objects.all()
     original_data = OriginalData.objects.all()
     design_printing = DesignPrinting.objects.all()
@@ -295,7 +287,6 @@ def createOrder(request):
     context = {
         'active_item': 'create-order',
         'form': form,
-        'inr_rate': inr_rate,
         'company': company,
         'company' : company,
         'original_data' : original_data,

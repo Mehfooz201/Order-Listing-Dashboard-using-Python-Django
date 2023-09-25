@@ -24,10 +24,12 @@ def cache_previous_mode(sender, instance, *args, **kwargs):
     global original_num_crowns
     global original_num_brackets
     global original_order_status
+    global original_price
     original_remake_notes = None
     original_num_crowns = None
     original_num_brackets = None
     original_order_status = None
+    original_price = 0
     if instance.pk:
         #-------Remake_notes value before save
         original_remake_notes = Order.objects.get(pk=instance.pk).remake_notes
@@ -37,6 +39,8 @@ def cache_previous_mode(sender, instance, *args, **kwargs):
         original_num_brackets = Order.objects.get(pk=instance.pk).num_brackets
         #-------Order_status value before save
         original_order_status = Order.objects.get(pk=instance.pk).order_status
+        #-------Order_price value before save
+        original_price = Order.objects.get(pk=instance.pk).price
         
 
 @receiver(post_save, sender=Order)
@@ -48,7 +52,7 @@ def post_save_mode_handler(sender, instance, created, **kwargs):
         if (instance.order_status != original_order_status and original_order_status !='approved' and instance.order_status == 'approved' or
             instance.order_status != original_order_status and original_order_status !='cancelled' and instance.order_status == 'cancelled' or
             instance.order_status != original_order_status and original_order_status !='completed' and instance.order_status == 'completed' ):
-            notify.send(instance.user, recipient=instance.user, verb='Order '+ str(instance.order_status))
+            notify.send(instance.user, recipient=instance.user, verb=+ 'Order N°'+str(instance.pk)+' '+ str(instance.order_status))
         else:
             pass
         #-------If original (Remake_notes, Num_crowns and Remake_notes ) values change
