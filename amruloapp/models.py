@@ -184,8 +184,9 @@ class Order(models.Model):
     ]
     
     currency = models.CharField(max_length=10, choices=CURRENCY_CHOICES, default='USA')
-    design_requirement = models.FileField(upload_to='uploads/files/otherfiles', default='')
-    file_upload_required = models.FileField(upload_to='uploads/files/stl-dcm-html')
+
+    design_requirement = models.FileField(upload_to='uploads/jpeg-png-files/', default='')
+    file_upload_required = models.FileField(upload_to='uploads/stl-dcm-html/')
 
     #Remake Order Field
     # New fields for remaking
@@ -196,7 +197,7 @@ class Order(models.Model):
 
 
     #CAD Design Result
-    attachment_zip_rar = models.FileField(upload_to='uploads/files/zip-rar-attch/', null=True, blank=True)
+    attachment_zip_rar = models.FileField(upload_to='uploads/zip-rar-attch/', null=True, blank=True)
     att_file_name = models.CharField(max_length=100, null=True, blank=True)
     
 
