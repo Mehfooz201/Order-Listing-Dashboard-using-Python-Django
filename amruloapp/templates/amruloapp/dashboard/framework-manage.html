@@ -1,0 +1,380 @@
+{% extends 'amruloapp/dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+    Framework Management
+{% endblock title %}
+
+{% block custom_style %}
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'amruloapp/dashboard/dist/css/framework-agreement.css' %}" />
+{% endblock custom_style %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">The Framework Agreement</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center mb-2">
+                    <a class="btn btn-sm btn-primary" href="{% url 'generate-pdf' %}" >
+                        {% comment %} target="_blank" {% endcomment %}
+                        Export PDF
+                    </a>
+                </div>
+                <div class="card" id="framework-agreement-card">
+                    <div class="card-body pb-0">
+                        <div class="agreement-title">
+                            <h5>Annual Framework Agreement for Processing Services</h5>
+                        </div>
+                    {% for agreement in agreements %}
+                            <div class="agreement-detail-container">
+                                <div class="agreement-detail">
+                                    <div class="agreement-detail-title">Agreement No: </div>
+                                    <div class="agreement-detail-value">{{agreement.agreement_number}}</div>
+                                </div>
+                                <div class="agreement-detail ml-5">
+                                    <div class="agreement-detail-title">ID</div>
+                                    <div class="agreement-detail-value">{{agreement.customer.email}}</div>
+                                </div>
+                            </div>
+
+                            <div class='row mt-4'>
+                                <div class="text-left col-6">
+                                    <h6>Party-A: {{agreement.customer.name}}</h6>
+                                </div>
+                                {% endfor %}
+
+                                {% for data in company %}
+                                    <div class="text-right col-6">
+                                        <h6 class=''>Party-B: <span>{{data.company_name}}</span> </h6> 
+                                    </div>
+                                {% endfor %} 
+
+                            </div>
+                    </div>
+
+                    
+
+                    
+                    
+                    <div class="card-body">
+                            {% for info in frameinfo %}
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">cooperation mode</span>
+                                        </th>
+                                        <td>
+                                            {{info.cooperation_mode_content}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">Payment method</span>
+                                        </th>
+                                        <td>
+                                            {{info.payment_method_content}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">Processing quantity</span>
+                                        </th>
+                                        <td>
+                                            {{info.processing_quantity_content}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">price adjustment</span>
+                                        </th>
+                                        <td>
+                                            {{info.price_adjustment_content}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">shipping method</span>
+                                        </th>
+                                        <td>
+                                            {{info.shipping_method_content}}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">Product acceptance</span>
+                                        </th>
+                                        <td>
+                                            {{info.product_acceptance_content}}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">ID number management</span>
+                                        </th>
+                                        <td>
+                                            {{info.number_management_content}}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">Liability for breach of contract</span>
+                                        </th>
+                                        <td>
+                                            {{info.breach_contract_content}}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">force majeure</span>
+                                        </th>
+                                        <td>
+                                            {{info.force_majeure_content}}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">Order takes effect</span>
+                                        </th>
+                                        <td>
+                                            {{info.order_effect_content}}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="text-center bg-light">
+                                            <span class="text-muted">Signature Confirmation</span>
+                                        </th>
+                                        <td>
+                                            {{info.sign_confirmation_content}}
+                                        </td>
+                                    </tr>
+
+
+
+
+
+
+
+
+
+
+                                    {% comment %} Another Column Start {% endcomment %}
+                                    <tr>
+                                        <th class="text-center bg-light" colspan="2">
+                                            <span class="text-muted">Product List (Designing price per unit 			
+                                                )</span>
+                                        </th>
+                                    </tr>
+                                </table>
+                            {% endfor %}
+
+                            
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left bg-light">
+                                            <span class="text-muted">Sr No.</span>
+                                        </th>
+                                        <th class="text-left bg-light">
+                                            <span class="text-muted">Product Name</span>
+                                        </th>
+                                        <th class="text-left bg-light">
+                                            <span class="text-muted">12 Hours</span>
+                                        </th>
+                                        <th class="text-left bg-light">
+                                            <span class="text-muted">06 Hours</span>
+                                        </th>
+                                        <th class="text-left bg-light">
+                                            <span class="text-muted">02 Hours</span>
+                                        </th>
+                                        <th class="text-left bg-light">
+                                            <span class="text-muted">Product Material</span>
+                                        </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                        {% for product in products %}
+                                        {% if product.group1 == True %}
+                                        <tr>
+                                            <td>{{product.id}}</td>
+                                            <td>{{product.product_sub_type}}</td>
+                                            <td>{% if product.product_12hrs_price.price > 0 %}{{product.product_12hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_6hrs_price.price > 0 %}{{product.product_6hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_2hrs_price.price > 0 %}{{product.product_2hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{{product.product_material}}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+
+                                        
+                                        <th class="text-center bg-light" colspan="2">
+                                            <span class="text-muted">Clinics with Lab Support for Milling and Printing Facility </span>
+                                        </th>
+                                        
+
+                                        {% for product in products %}
+                                        {% if product.group2 == True %}
+                                        <tr>
+                                            <td>{{product.id}}</td>
+                                            <td>{{product.product_sub_type}}</td>
+                                            <td>{% if product.product_12hrs_price.price > 0 %}{{product.product_12hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_6hrs_price.price > 0 %}{{product.product_6hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_2hrs_price.price > 0 %}{{product.product_2hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{{product.product_material}}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+
+                                        <th class="text-center bg-light" colspan="2">
+                                            <span class="text-muted">MODEL DESIGN</span>
+                                        </th>
+                                        
+
+                                        {% for product in products %}
+                                        {% if product.group3 == True %}
+                                        <tr>
+                                            <td>{{product.id}}</td>
+                                            <td>{{product.product_sub_type}}</td>
+                                            <td>{% if product.product_12hrs_price.price > 0 %}{{product.product_12hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_6hrs_price.price > 0 %}{{product.product_6hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{% if product.product_2hrs_price.price > 0 %}{{product.product_2hrs_price.price|floatformat:"0"}}${% else %}-{% endif %}</td>
+                                            <td>{{product.product_material}}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+
+
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                    
+                                </tbody>
+                            </table>
+
+                            <table class="table table-bordered">
+
+                                <tr>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">
+                                            <div>Signature of</div>
+                                            <div>authorized representative:</div>
+                                            <div>Party A</div>
+                                            <div>(signature and seal)</div>
+                                        </span>
+                                    </th>
+                                    {% for agreement in agreements %}
+                                        <td class=''>{{agreement.customer.name}}</td>
+                                    {% endfor %}
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">
+                                            <div>Signature of</div>
+                                            <div>authorized representative:</div>
+                                            <div>Party B</div>
+                                            <div>(signature and seal)</div>
+                                        </span>
+                                    </th>
+                                    {% for data in company %}
+                                    <td>{{data.company_name}}</td>
+                                {% endfor %}
+                                </tr>
+                                <tr>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">Address</span>
+                                    </th>
+                                    {% for agreement in agreements %}
+                                        <td>{{agreement.customer.user_address}}</td>
+                                    {% endfor %}
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">Address</span>
+                                    </th>
+
+                                    {% for data in company %}
+                                        <td>{{data.company_address}}</td>
+                                    {% endfor %}
+                                    
+                                    
+                                </tr>
+                                <tr>
+                                    {% comment %} <th class="text-left bg-light">
+                                        <span class="text-muted">
+                                            Bank of <br />
+                                            deposit
+                                        </span>
+                                    </th>
+                                    <td></td> {% endcomment %}
+                                    {% comment %} <th class="text-left bg-light">
+                                        <span class="text-muted">
+                                            Bank of <br />
+                                            deposit
+                                        </span>
+                                    </th>
+                                    
+                                    <td></td> {% endcomment %}
+                                    
+                                </tr>
+                                <tr>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">
+                                            <br />
+                                            
+                                        </span>
+                                    </th>
+                                    <td></td>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">
+                                            <br />
+                                            
+                                        </span>
+                                    </th>
+                                    
+                                        <td></td>
+                                    
+                                </tr>
+
+                                {% comment %} Date {% endcomment %}
+                                <tr>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">
+                                            Date
+                                        </span>
+                                    </th>
+                                    <td>{{ current_date }}</td>
+                                    <th class="text-left bg-light">
+                                        <span class="text-muted">
+                                            Date
+                                        </span>
+                                    </th>
+                                    <td>{{ current_date }}</td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    
+
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+{% endblock scripts %}

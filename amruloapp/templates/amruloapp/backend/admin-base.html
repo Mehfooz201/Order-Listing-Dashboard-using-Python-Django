@@ -1,0 +1,305 @@
+{% load i18n static %}
+{% load notifications_tags %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>
+        {% block title %} {% endblock title %}
+    </title>
+
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'amruloapp/dashboard/dist/img/cdl-web.png' %}" />
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'amruloapp/dashboard/plugins/fontawesome-free/css/all.min.css' %}" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet"
+        href="{% static 'amruloapp/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}" />
+    <!-- iCheck -->
+    <link rel="stylesheet"
+        href="{% static 'amruloapp/dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'amruloapp/dashboard/dist/css/main.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'amruloapp/dashboard/dist/css/overrides.css' %}" />
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet"
+        href="{% static 'amruloapp/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}" />
+    <!-- Daterange picker -->
+    <!-- summernote -->
+    <link rel="stylesheet" href="{% static 'amruloapp/dashboard/plugins/summernote/summernote-bs4.min.css' %}" />
+
+
+    <link rel="stylesheet" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+
+    {% block dark-mode-vars %}
+    <link rel="stylesheet" href="{% static "admin/css/dark_mode.css" %}">
+    <script src="{% static "admin/js/theme.js" %}" defer></script>
+    {% endblock %}
+    {% if not is_popup and is_nav_sidebar_enabled %}
+    <link rel="stylesheet" href="{% static "admin/css/nav_sidebar.css" %}">
+    <script src="{% static 'admin/js/nav_sidebar.js' %}" defer></script>
+    {% endif %}
+    {% block extrastyle %}{% endblock %}
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">{% endif %}
+    {% block extrahead %}{% endblock %}
+    {% block responsive %}
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="{% static "admin/css/responsive.css" %}">
+        {% if LANGUAGE_BIDI %}<link rel="stylesheet" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}
+    {% endblock %}
+    {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+
+
+    {% block custom_style %}
+    {% endblock custom_style %}
+
+
+</head>
+
+<body class="hold-transition layout-fixed">
+    <div class="wrapper">
+        <!-- NAV HEADER -->
+        <nav style="list-style-type:none" class="main-header navbar navbar-expand navbar-white navbar-light">
+
+            <ul class="navbar-nav">
+                <li style="list-style-type:none" class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#">
+                        <i style="transform:scale(1.5)" class="fas fa-bars"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li style="list-style-type:none" class="nav-item">
+                    {% block theme-toggle %}{% endblock %}
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li style="list-style-type:none" class="nav-item">
+                    <div class="btn-group">
+                        <button
+                            type="button"
+                            class="btn dropdown-toggle user-profile-dropdown"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
+                            <div class="user-panel d-flex">
+                            <div class="image">
+                            <i class="fas fa-bell">
+                                <span style="position:absolute;left:0;top:0;font-size:12px" class="badge badge-danger">
+                                {% notifications_unread %}
+                                </span>
+                            </i>
+                            </div>
+                            <div class="info">
+                                <a href="#" class="d-block"></a>
+                            </div>
+                            </div>
+                        </button>
+                        {% notifications_unread as unread_count %}
+                        {% if unread_count %}
+                        <div class="dropdown-menu">
+                            <div class="info bg-danger" style="font-size:13px">
+                                {% if unread_count == 1 %}
+                                You have <strong>{{ unread_count }}</strong> unread notification.
+                                {% else %}
+                                You have <strong>{{ unread_count }}</strong> unread notifications.
+                                {% endif %}
+                            </div>
+                            
+                            {% for notification in  user.notifications.unread %}
+                            <div>
+                                <a id="not-{{notification.id}}" href="{% url 'notif' notification.id %}" class="not_btn dropdown-item text-center">
+                                    {{ notification.verb }}
+                                    <span style="font-size:12px" class="badge badge-light text-danger"> *unread </span>	
+                                </a>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="dropdown-menu">
+                        <div class="info bg-danger text-center" style="font-size:12px">
+                            You have <strong>0</strong> unread notification.
+                        </div>
+                    </div>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+
+                <li style="list-style-type:none" class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+
+                {% block usertools %}
+                {% if has_permission %}
+                <li style="list-style-type:none" class="nav-item">
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle user-profile-dropdown" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <div class="user-panel d-flex">
+                                <div class="image">
+                                    <img src="{{request.user.avatar.url}}" class="img-circle elevation-2"
+                                        alt="User Image" />
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="d-block">{{request.user.username}}</a>
+                                </div>
+                            </div>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">
+                                {% block welcome-msg %} {% endblock %}
+                            </div>
+                            <!-- item-->
+                            {% block userlinks %}
+                            {% if site_url %}
+                            <a class="dropdown-item" href="{{ site_url }}"><i class="mdi mdi-account-circle font-size-17 align-middle me-1"></i> {% translate 'View site' %}</a>
+                            {% endif %}
+                            {% if user.is_active and user.is_staff %}
+                                {% url 'django-admindocs-docroot' as docsroot %}
+                                {% if docsroot %}
+                            <a class="dropdown-item d-flex align-items-center" href="{{ docsroot }}"><i class="mdi mdi-cog font-size-17 align-middle me-1"></i> {% translate 'Documentation' %}</a>
+                                {% endif %}
+                            {% endif %}
+                            {% if user.has_usable_password %}
+                            <a class="dropdown-item" href="{% url 'admin:password_change' %}"><i class="mdi mdi-lock-open-outline font-size-17 align-middle me-1"></i> {% translate 'Change password' %}</a>
+                            {% endif %}
+                            <div class="dropdown-divider"></div>
+    
+                            <span class="dropdown-item text-center">
+                            
+                                <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+                                    {% csrf_token %}
+                                    <input class="bg-danger text-light" type="submit" value="{% translate 'Log out' %}"/>
+                                </form>
+                            </span>
+                            {% endblock %}
+                        </div>
+                    </div>
+                </li>
+                {% endif %}
+                {% endblock %}
+            </ul>
+        </nav>
+        <!-- END NAV HEADER -->
+
+        {% block nav-sidebar %} {% endblock %}
+        
+            <div class="main-header pt-3 pb-3">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                        <!-- Success Message (Top of the Page) -->
+                        {% if messages %}
+                            <div class="messages">
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <div class="m-0 alert alert-light border border-success ">{{ message }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <h1 class="m-0">{% block header-title %} {% endblock %}</h1>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="m-0">{% block breadcrumbs %}{%endblock%}</h3>
+                    </div>
+                </div>
+                <section class="content">
+                    <div class="container-fluid">
+                        {% block content %} {% endblock content %}
+                    </div>
+                </section>
+                
+            </div>
+            {% block footer%} {%endblock%}
+        
+
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <script src="{% static 'amruloapp/dashboard/plugins/jquery/jquery.min.js' %}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{% static 'amruloapp/dashboard/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge("uibutton", $.ui.button);
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'amruloapp/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+
+    <!-- daterangepicker -->
+    <script src="{% static 'amruloapp/dashboard/plugins/moment/moment.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/plugins/daterangepicker/daterangepicker.js' %}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script
+        src="{% static 'amruloapp/dashboard/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+    <!-- Summernote -->
+    <script src="{% static 'amruloapp/dashboard/plugins/summernote/summernote-bs4.min.js' %}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{% static 'amruloapp/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/dist/js/main.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/dist/js/demo.js' %}"></script>
+    <script src="{% static 'amruloapp/dashboard/dist/js/global.js' %}"></script>
+
+    <!-- Mark notification as read -->
+    <script>
+        var not_id = "1";
+        var url_notification = "{% url 'notif' '1' %}";
+        var notif_view = 'mark_as_read/';
+        
+
+        $(".not_btn").click(function (e) {
+            not_id = e.currentTarget.id;
+            url_base = url_notification.split('notif')[0];
+            url = url_base + notif_view + not_id + "/";
+        });
+
+        $(document).on('submit', `#not-${not_id}`, function (e) {
+            e.preventDefault();
+            /* AJAX SECTION */
+            $.ajax({
+                type: 'GET',
+                url: url
+            });
+        });
+    </script>
+    <!-- Mark notification as read -->
+    
+    {% block scripts %}
+
+    {% endblock scripts %}
+
+    <!-- SVGs -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="base-svgs">
+        <symbol viewBox="0 0 24 24" width="1rem" height="1rem" id="icon-auto"><path d="M0 0h24v24H0z" fill="#f00"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2V4a8 8 0 1 0 0 16z"/></symbol>
+        <symbol viewBox="0 0 24 24" width="1rem" height="1rem" id="icon-moon"><path d="M0 0h24v24H0z" fill="#f00"/><path d="M10 7a7 7 0 0 0 12 4.9v.1c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2h.1A6.979 6.979 0 0 0 10 7zm-6 5a8 8 0 0 0 15.062 3.762A9 9 0 0 1 8.238 4.938 7.999 7.999 0 0 0 4 12z"/></symbol>
+        <symbol viewBox="0 0 24 24" width="1rem" height="1rem" id="icon-sun"><path d="M0 0h24v24H0z" fill="#f00"/><path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"/></symbol>
+    </svg>
+    <!-- END SVGs -->
+    
+
+  </body>
+</html>

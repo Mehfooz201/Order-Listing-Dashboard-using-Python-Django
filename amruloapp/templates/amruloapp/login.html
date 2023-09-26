@@ -1,0 +1,81 @@
+{% extends 'amruloapp/baselogin.html' %}
+{% load static %}
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block custom_css %}
+  
+{% endblock custom_css %}
+
+
+{% block content %}
+
+      <div class="login-container">
+        <div class="login-card">
+            
+          <div class="login-card-header">
+            <div class="container">
+              <div style="margin:12px;display:flex;dlex-direction:row;justify-content:space-between">
+                <div class="logo">
+                <a href="{% url 'home' %}"><img style="width:50px;height:50px" src="{% static 'amruloapp/dashboard/dist/img/cdl-web.png' %}" alt="img"/></a>
+                </div>
+                <div class="header-title">
+                  <div class="login-card-title">Welcome back</div>
+                  <div class="login-card-subtitle">Login to your account</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form class="form" action="" method="POST">
+            {% csrf_token %}
+
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Enter your email address"
+                />
+              </div>
+
+              
+
+              <div class="form-group">
+                <label for="email">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  placeholder="Enter your password"
+                />
+
+                
+
+                <a href="{% url 'password_reset' %}" class="forgot-pass-link">Forgot password?</a>
+
+                {% if messages %}
+                  <ul class="messages text-danger">
+                      {% for message in messages %}
+                      <li>{{ message }}</li>
+                      {% endfor %}
+                  </ul>
+                {% endif %}
+
+              </div>
+              
+
+              
+
+              <button class="btn btn-primary btn-block login-button">Login</button>
+
+            </form>
+          
+        </div>
+      </div>
+
+    {% endblock content %}
+
