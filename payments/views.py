@@ -6,13 +6,14 @@ from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from amruloapp.forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm, RemakeRequestForm
 import json
 from django.http import JsonResponse
+import os
+from django.conf import settings
+from django.core.files.storage import default_storage
 # Create your views here.
-
 
 @login_required(login_url='login')
 def main_order_payment_request(request):
     body = json.loads(request.body)
-
     order = Order.objects.create(user=request.user,
                     customer_name = body['customer_name'],
                     manufacturer = body['manufacturer'],
@@ -30,8 +31,8 @@ def main_order_payment_request(request):
                     currency = body['currency'],
                     quantity = body['quantity'],
                     price = body['amount'],
-                    design_requirement = "uploads/files/otherfiles/"+body['design_requirement'],
-                    file_upload_required = "uploads/files/stl-dcm-html/"+body['file_upload_required'])
+                    design_requirement = body['design_requirement'],
+                    file_upload_required = body['file_upload_required'])
     order.save()
 
 
@@ -56,7 +57,7 @@ def main_order_payment_request(request):
 
 @login_required(login_url='login')
 def main_order_billing_page(request , price=0, price_inr=0,
-            manufacturer=None, product_type=None, product_sub_type=None,
+            manufacturer=None, product_type=None, product_sub_type=None, product_type_=None, product_sub_type_=None,
              customer_name=None, purchaser=None,order_type=None, salesman=None,
              requirements_remarks=None, original_data=None,design_printing=None, product_material=None,
              unit_of_measurement=None, delivery_timing=None,currency=None, quantity=None,
@@ -91,8 +92,13 @@ def main_order_billing_page(request , price=0, price_inr=0,
             price = form.cleaned_data['price']
             price_usd = form.cleaned_data['price']
 
-            design_requirement = form.cleaned_data['design_requirement']
-            file_upload_required = form.cleaned_data['file_upload_required']
+            save_img_path = os.path.join(settings.MEDIA_ROOT, 'uploads/files/otherfiles', str(request.FILES['design_requirement']))
+            img_path = default_storage.save(save_img_path, request.FILES['design_requirement'])
+            save_file_path = os.path.join(settings.MEDIA_ROOT, 'uploads/files/stl-dcm-html', str(request.FILES['file_upload_required']))
+            file_path = default_storage.save(save_file_path, request.FILES['file_upload_required'])
+
+            design_requirement = str(img_path)
+            file_upload_required = str(file_path)
 
             #order_price = form.save(commit=False)
             #order.order_status = form.fields['order_status'].initial  # Set the default value
