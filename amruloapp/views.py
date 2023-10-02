@@ -52,7 +52,7 @@ def home(request):
         message = request.POST.get('message')
 
         # Compose and send the email
-        subject = f"New Contact Form Submission from {name}"
+        subject = f"Contact Form Submission from {name}"
         from_email = 'cdllabs38@gmail.com'  # Replace with your email
         recipient_list = ['cdllabs38@gmail.com']  # Replace with recipient email(s)
         message = f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}"

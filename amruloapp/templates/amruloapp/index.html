@@ -926,7 +926,7 @@
             <div class="form-1" data-form-type="formoid">
 
               <!---Formbuilder Form--->
-              <form  action=""  method="POST" class="mbr-form form-with-styler"
+            <form  action=""  method="POST" class="mbr-form form-with-styler"
                   data-form-title="My Mobirise Form" >
               {% csrf_token %}
                   <input
@@ -1006,7 +1006,13 @@
                       </button>
                     </div>
                   </div>
-              </form>
+            </form>
+
+            <!-- Add this <div> for the "Thank you" message after the form -->
+            <div id="thank-you-message" class="alert alert-danger col-12" style="display: none;">
+              Thank You! Our team will get back to you soon.
+            </div>
+
 
               <!---Formbuilder Form--->
             </div>
@@ -1038,5 +1044,31 @@
         slidesToScroll: 3,
       });
     </script>
+
+    <!-- Add this script to handle form submission and show the "Thank you" message -->
+    <script>
+      $(document).ready(function() {
+          $("form").submit(function(e) {
+              e.preventDefault();
+              var form = $(this);
+
+              // Your AJAX form submission logic here
+              $.ajax({
+                  type: "POST",
+                  url: form.attr("action"),
+                  data: form.serialize(),
+                  success: function(response) {
+                      // Show the "Thank you" message and hide the form
+                      $("#thank-you-message").show();
+                      form.hide();
+                  },
+                  error: function(xhr, status, error) {
+                      // Handle errors if needed
+                  }
+              });
+          });
+      });
+    </script>
+
   </body>
 </html>

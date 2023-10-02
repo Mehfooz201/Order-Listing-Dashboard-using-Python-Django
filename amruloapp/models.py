@@ -5,6 +5,8 @@ from django.utils import timezone
 from forex_python.converter import CurrencyRates
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.mail import send_mail
+
 from products.models import (
     OriginalData,DesignPrinting,ProductType,ProductSubType,
     ProductMaterial,UnitOfMeasurement,DeliveryTiming,Product
@@ -285,3 +287,29 @@ def create_user_related_records(sender, instance, created, **kwargs):
 post_save.connect(create_user_related_records, sender=User)
 
 
+
+
+#Email Sending to users
+@receiver(post_save, sender=User)
+def send_user_registration_email(sender, instance, created, **kwargs):
+    if created:
+        subject = "Welcome to Confident Dental Laboratory (Pvt.) Ltd"
+        
+        # Get the absolute URL for the homepage
+        homepage_url = "https://cdllab.pythonanywhere.com"  # Replace with your actual website URL
+        
+        message = (
+            f"Hello {instance.username},\n\n"
+            f"Thank you for registering with our Company. Here are your login details:\n\n"
+            f"Customer Username: {instance.username}\n"
+            f"Email: {instance.email}\n"
+            f"Password: {instance.user_password}\n\n"
+            f"You can log in to our website using these credentials.\n"
+            f"Please visit our website at: {homepage_url}\n\n"  # Include the URL here
+            f"Best regards,\nConfident Dental Laboratory (Pvt.) Ltd"
+        )
+        from_email = "cdllabs38@gmail.com"  # Change to your admin's email address
+        recipient_list = [instance.email]
+        send_mail(subject, message, from_email, recipient_list)
+
+post_save.connect(send_user_registration_email, sender=User)
