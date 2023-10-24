@@ -80,7 +80,7 @@ class OrderAdmin(admin.ModelAdmin):
     def thumbnail(self, object):
         return format_html('<img src="{}" width="80" height="80" style="border-radius:20%;">'.format(object.user.avatar.url))
     thumbnail.short_description = 'Avatar'
-    list_display = ('thumbnail','customer_name', 'order_number',  'order_status', 'order_type', 'salesman', 'price', 'order_date')
+    list_display = ('thumbnail','customer_name', 'order_number',  'order_status', 'order_type', 'price', 'order_date', 'is_ordered')
     list_display_links=( 'thumbnail','order_number','customer_name',)
     list_filter = ('customer_name', 'order_status', 'order_date')
     search_fields = ('order_number', 'customer_name', 'order_status', 'order_date')

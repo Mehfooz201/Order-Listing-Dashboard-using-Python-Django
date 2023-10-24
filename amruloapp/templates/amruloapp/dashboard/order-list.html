@@ -190,13 +190,15 @@ Order List
                 </td>
 
                 <td>
-                  {% if data.order_status == 'pending' %}
-                  <p class='text-center'>-</p>
-                  {% else %}
+                  {% if data.is_ordered == 0 %}
+                  <p class='text-center'><a href= {% url 'later_payment_billing_page' data.order_number %}>Pay Now</a></p>
+                  {% elif data.is_ordered == 1 %}
                   <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                     data-target="#remakeModal{{ data.order_number }}">
                     Request for Remake
                   </button>
+                  {% else %}
+                  <p class='text-center'>-</p>
                   {% endif %}
                 </td>
 
@@ -312,9 +314,9 @@ Order List
                   <td class="text-left bg-light">
                     <div class="file-container">
                       <div class="file-name">
-                        {{data.design_requirement.name }}
+                        {{data.design_requirement.name}}
                         <br>
-                        {{data.file_upload_required.name }}
+                        {{data.file_upload_required.name}}
                       </div>
                     </div>
                   </td>
@@ -323,8 +325,7 @@ Order List
                     <div class="file-action">
                       <div class="btn-group">
                         <div>
-                          <a href="#" class="btn btn-link btn-file-view btn-sm"
-                            onclick="openImageModal('{{ data.design_requirement.url }}'); return false;">
+                          <a target="_blank" href="{% url 'show_file' data.order_number %}" class="btn btn-link btn-file-view btn-sm">
                             <i class="fas fa-eye"></i> View
                           </a>
 
@@ -409,14 +410,9 @@ Order List
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      {% comment %} <div class="modal-body">
-        <a  id="fileDownloadLink" href="" download>Download File</a>
-      </div> {% endcomment %}
-
       <div class="modal-body">
-        <a  id="fileDownloadLink" href="" view>Download File</a>
+        <a id="fileDownloadLink" href="" download>Download File</a>
       </div>
-
     </div>
   </div>
 </div>

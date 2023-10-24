@@ -12,6 +12,29 @@ from django.core.files.storage import default_storage
 # Create your views here.
 
 @login_required(login_url='login')
+def later_payment(request,order_num):
+    body = json.loads(request.body)
+
+    # Store transaction details inside Payment model
+    payment = orderPayment(
+        user = request.user,
+        order_number = order_num,
+        payment_id = body['transID'],
+        payment_method = body['payment_method'],
+        amount_paid = body['amount'],
+        currency = body['currency'],
+        status = body['status'],
+    )
+    payment.save()
+
+    # Send order number and transaction id back to sendData method via JsonResponse
+    data = {
+        'order_number': order.order_number,
+        'transID': payment.payment_id,
+    }
+    return JsonResponse(data)
+
+@login_required(login_url='login')
 def main_order_payment_request(request):
     body = json.loads(request.body)
     order = Order.objects.create(user=request.user,
@@ -31,6 +54,7 @@ def main_order_payment_request(request):
                     currency = body['currency'],
                     quantity = body['quantity'],
                     price = body['amount'],
+                    is_ordered = True,
                     design_requirement = body['design_requirement'],
                     file_upload_required = body['file_upload_required'])
     order.save()
@@ -222,3 +246,140 @@ def additional_price_billing_page(request ,order_num, price=0):
 @login_required(login_url='login')
 def additional_price_payment_complete(request):
     return render(request, 'amruloapp/dashboard/additional_price_payment_complete.html')
+
+@login_required(login_url='login')
+def later_payment_request(request):
+    body = json.loads(request.body)
+    order = Order.objects.get(user=request.user, order_number=body['orderID'])
+
+    # Order paid by customer, so is_ordered field will be true
+    order.is_ordered = True
+    order.save()
+
+    # Store transaction details inside Payment model
+    payment = orderPayment(
+        user = request.user,
+        order_number = body['orderID'],
+        payment_id = body['transID'],
+        payment_method = body['payment_method'],
+        amount_paid = body['amount_paid'],
+        currency = body['currency'],
+        status = body['status'],
+    )
+    payment.save()
+
+    # Send order number and transaction id back to sendData method via JsonResponse
+    data = {
+        'order_number': order.order_number,
+        'transID': payment.payment_id,
+    }
+    return JsonResponse(data)
+
+@login_required(login_url='login')
+def later_payment_billing_page(request ,order_num, price=0):
+    current_user = request.user
+    
+    # Fetch the actual exchange rate for INR
+    try:
+        c = CurrencyRates()
+        inr_rate = c.get_rate('USD', 'INR')
+    except RatesNotAvailableError:
+        pass
+    inr_rate = 83.12
+    
+    order = Order.objects.get(user=request.user, order_number=order_num)
+    price = order.price
+    price_inr = order.price
+    order_currency = order.currency
+
+    if order.currency == 'INR':
+        if price_inr > 0:
+            price_inr = '%.2f'%float(float(price)/float(inr_rate))
+    else:
+        price_inr = order.price
+
+    customer_name = order.customer_name
+    manufacturer = order.manufacturer
+    order_type = order.order_type
+    purchaser = order.purchaser
+    salesman = order.salesman
+    requirements_remarks = order.requirements_remarks
+
+    original_data = order.original_data
+    design_printing = order.design_printing
+    product_type = order.product_type
+    product_sub_type = order.product_sub_type
+    product_type_ = order.product_type
+    product_sub_type_ = order.product_sub_type
+    product_material = order.product_material
+
+    unit_of_measurement = order.unit_of_measurement
+    delivery_timing = order.delivery_timing
+    
+    currency = order_currency
+    quantity = order.quantity
+    
+
+    context = {
+        'customer_name': customer_name,
+        'order': order,
+        'manufacturer': manufacturer,
+        'order_type': order_type,
+        'purchaser': purchaser,
+        'salesman': salesman,
+        'requirements_remarks': requirements_remarks,
+
+        'original_data': original_data,
+        'design_printing': design_printing,
+        'product_type': product_type,
+        'product_sub_type': product_sub_type,
+        'product_type_': product_type_,
+        'product_sub_type_': product_sub_type_,
+        'product_material': product_material,
+
+        'unit_of_measurement': unit_of_measurement,
+        'delivery_timing': delivery_timing,
+
+        'currency': currency,
+        'quantity': quantity,
+        
+        'price': float(price),
+        'price_inr': float(price_inr),
+    }
+
+    return render(request, 'amruloapp/dashboard/later_payment_billing_page.html', context)
+
+@login_required(login_url='login')
+def later_payment_complete(request):
+    return render(request, 'amruloapp/dashboard/later_payment_complete.html')
+
+
+@login_required(login_url='login')
+def create_order_request(request):
+    body = json.loads(request.body)
+
+    order = Order.objects.create(user=request.user,
+                customer_name = body['customer_name'],
+                manufacturer = body['manufacturer'],
+                order_type = body['order_type'],
+                purchaser = body['purchaser'],
+                salesman = body['salesman'],
+                requirements_remarks = body['requirements_remarks'],
+                original_data_id = int(body['original_data']),
+                design_printing_id = int(body['design_printing']),
+                product_type_id = int(body['product_type']),
+                product_sub_type_id = int(body['product_sub_type']),
+                product_material_id = int(body['product_material']),
+                unit_of_measurement_id = int(body['unit_of_measurement']),
+                delivery_timing_id = int(body['delivery_timing']),
+                currency = body['currency'],
+                quantity = body['quantity'],
+                price = body['amount'],
+                is_ordered = False,
+                design_requirement = body['design_requirement'],
+                file_upload_required = body['file_upload_required'])
+    order.save()
+    data = {
+        'order_number': order.order_number,
+    }
+    return JsonResponse(data)

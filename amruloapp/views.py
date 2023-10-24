@@ -28,12 +28,18 @@ from django.contrib.auth.models import Group
 from datetime import datetime
 from dateutil.parser import parse
 from notifications.models import Notification
-
-from rest_framework import status
+import os
+from django.conf import settings
 
 
 # Create your views here.
-
+def show_file(request, order_num):
+    order = Order.objects.get(user=request.user, order_number=order_num)
+    context={}
+    file = os.path.join(settings.MEDIA_URL,order.design_requirement.name)
+    context['file_url'] = file
+    
+    return render(request, 'amruloapp/dashboard/image_viewer.html',context)
 
 def notifications(request, notification_pk):
     context = {}
@@ -234,8 +240,6 @@ def changePassword(request):
 #---------------------------------------------------------------------#
 #                           Dashboard 
 #---------------------------------------------------------------------#
-
-
 @login_required(login_url='login')
 def createOrder(request):
     if request.method == 'POST':

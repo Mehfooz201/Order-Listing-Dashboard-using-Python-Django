@@ -83,7 +83,27 @@
                                     <div class="container text-center">
                                         <div id="smart-button-container">
                                             <div style="text-align: center;">
-                                                <div id="paypal-button-container"></div>
+                                                <div id="choice" class="container">
+                                                    <div class="row text-center">
+                                                        <div class="col-lg-12 col-sm-12">
+                                                            <form id="pay-now">
+                                                                <button class="btn btn-danger">Pay Now</button>
+                                                            </form>
+                                                        </div>
+
+                                                        <div class="col-lg-12 col-sm-12">
+                                                            Or
+                                                        </div>
+                    
+                                                        <div class="col-lg-12 col-sm-12">
+                                                            <form id="pay-later">
+                                                                {% csrf_token %}
+                                                                <button class="btn btn-dark">Pay Later</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="display:none" id="paypal-button-container"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -154,6 +174,96 @@
 
 {% block javascripts %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+<!-- CREATE ORDER -->
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    var customer_name = "{{customer_name}}";
+    var manufacturer = "{{manufacturer}}";
+    var order_type = "{{order_type}}";
+    var purchaser = "{{purchaser}}";
+    var salesman = "{{salesman}}";
+    var requirements_remarks = "{{requirements_remarks}}";
+    var original_data = "{{original_data}}";
+    var design_printing = "{{design_printing}}";
+    var product_type = "{{product_type}}";
+    var product_sub_type = "{{product_sub_type}}";
+    var product_material = "{{product_material}}";
+    var unit_of_measurement = "{{unit_of_measurement}}";
+    var delivery_timing = "{{delivery_timing}}";
+    var quantity = "{{quantity}}";
+    var amount = "{{price}}";
+    var design_requirement = "{{design_requirement}}";
+    var file_upload_required = "{{file_upload_required}}";
+    var currency_ = "{{currency}}";
+    var csrftoken = getCookie('csrftoken');
+    var url_ = "{% url 'create_order_request' %}";
+    var redirect_url_ = "{% url 'order-list' %}";
+
+    $(document).on('submit', '#pay-later', function (e) {
+        e.preventDefault();
+
+        fetch(url_, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "X-CSRFToken": csrftoken,
+            },
+            body: JSON.stringify({
+                customer_name: customer_name,
+                manufacturer: manufacturer,
+                order_type: order_type,
+                purchaser: purchaser,
+                salesman: salesman,
+                requirements_remarks: requirements_remarks,
+                original_data: parseInt(original_data),
+                design_printing: parseInt(design_printing),
+                product_type: parseInt(product_type),
+                product_sub_type: parseInt(product_sub_type),
+                product_material: parseInt(product_material),
+                unit_of_measurement: parseInt(unit_of_measurement),
+                delivery_timing: parseInt(delivery_timing),
+                currency: currency_,
+                quantity: quantity,
+                amount: amount,
+                design_requirement: design_requirement,
+                file_upload_required: file_upload_required
+            }),
+        })
+        .then((response) => response.json())
+        .then((data_) => {
+            window.location.href = redirect_url_;
+        });
+
+    });
+</script>
+<!-- CREATE ORDER END-->
+
+<script>
+    $(document).on('submit', '#pay-now', function(e) {
+        e.preventDefault();
+        var paypal_btn = document.getElementById("paypal-button-container");
+        var choice_block = document.getElementById("choice");
+        choice_block.setAttribute("style","display:none");
+        paypal_btn.removeAttribute("style");
+    });
+</script>
 
 <script>
     function getCookie(name) {

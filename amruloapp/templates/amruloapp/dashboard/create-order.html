@@ -111,6 +111,35 @@
 	opacity: 0.1;
 }
 /* Plugin Style End */
+
+.delete-thumbnail{
+    position:relative;
+    left:0;
+    top:0;
+    z-index:10;
+}
+@media screen and (max-width=768px){
+    .delete-thumbnail{
+        position:relative;
+        left:0;
+        top:0;
+        z-index:10;
+    }
+}
+.delete2-thumbnail{
+    position:relative;
+    left:0;
+    top:0;
+    z-index:10;
+}
+@media screen and (max-width=768px){
+    .delete2-thumbnail{
+        position:relative;
+        left:0;
+        top:0;
+        z-index:10;
+    }
+}
 </style>
 {% endblock custom_style %}
 
@@ -498,14 +527,14 @@
                                       </label>
                                       
                                         <div id="file-upload-wrapper1" class="file-upload-wrapper text-center">
-                                            <input type="file" accept=".jpeg,.jpg,.png,.gif" id="design_requirement" name="design_requirement" />
+                                            <input type="file" multiple accept=".jpeg,.jpg,.png,.gif" id="design_requirement" name="design_requirement" />
                                             <div id="file-upload-icon1" class="file-upload-icon"> <i class="fas fa-cloud-upload-alt"></i> </div>
                                             <div id="dragtext">Drag & Drop to Upload File or click to browse file</div>
                                             <div id="file-upload-info1" class="file-upload-info text-danger">
                                                 Only upload (.jpeg, .jpg, .png, .gif) standard format
                                             </div>
                                         </div>
-                                        <div id="preview"> </div>
+                                        <div id="preview" class="d-flex flex-wrap align-items-center justify-content-center"> </div>
 
                                     </div>
                                   </div>
@@ -516,7 +545,7 @@
                                     <label for="upload_file">Upload file</label>
 
                                     <div id="file-upload-wrapper2" class="file-upload-wrapper text-center">
-                                        <input type="file" accept=".pdf,.stl,.dcm,.html" id="upload_file" name="file_upload_required" />
+                                        <input type="file" multiple accept=".pdf,.stl,.dcm,.html" id="upload_file" name="file_upload_required" />
                                         <div id="file-upload-icon2" class="file-upload-icon"> <i class="fas fa-cloud-upload-alt"></i> </div>
                                         <div id="dragtext2">Drag & Drop to Upload File or click to browse file</div>
                                         <div id="file-upload-info2" class="file-upload-info text-danger">
@@ -524,7 +553,7 @@
                                         </div>
 
                                     </div>
-                                    <div id="preview2"> </div>
+                                    <div id="preview2" class="d-flex flex-wrap align-items-center justify-content-center"> </div>
 
                                     </div>
                                 </div>
@@ -581,48 +610,53 @@
     preview = document.querySelector("#preview"),
     input = dropArea.querySelector("#design_requirement");
     let file; //this is a global variable and we'll use it inside multiple functions
+    let list_of_files = new Array();
 
     input.addEventListener("change", function(){
-    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
-    file = this.files[0];
-    dropArea.classList.add("active");
-    icon.innerHTML =`<i class="fas fa-arrow-down"></i>`;
-    dragText.innerHTML = file.name;
-    showFile(); //calling function
+        list_of_files=[]
+        //getting multiple files
+        for(i=0;i<this.files.length;i++)
+            {
+                list_of_files.push(this.files[i]);
+            }
+        file = list_of_files;
+        dropArea.classList.add("active");
+        icon.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+        preview.innerHTML = '';
+        readmultifiles(file); //calling read function
     });
 
     //If user Drag File Over DropArea
     dropArea.addEventListener("dragover", (event)=>{
-    event.preventDefault(); //preventing from default behaviour
-    dropArea.classList.add("active");
-    icon.innerHTML =`<i class="fas fa-arrow-down"></i>`;
-    dragText.innerHTML = "Release to Upload File";
+        event.preventDefault(); //preventing from default behaviour
+        dropArea.classList.add("active");
+        icon.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+        dragText.innerHTML = "Release to Upload File";
     });
 
     //If user leave dragged File from DropArea
     dropArea.addEventListener("dragleave", ()=>{
-    dropArea.classList.remove("active");
-    icon.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
-    dragText.innerHTML = "Drag & Drop to Upload File or click to browse file";
+        dropArea.classList.remove("active");
+        icon.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
+        dragText.innerHTML = "Drag & Drop to Upload File or click to browse file";
     });
 
     //If user drop File on DropArea
     dropArea.addEventListener("drop", (event)=>{
-    event.preventDefault(); //preventing from default behaviour
-    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
-    file = event.dataTransfer.files[0];
-    icon.innerHTML =`<i class="fas fa-arrow-down"></i>`;
-    dragText.innerHTML = file.name;
-    showFile(); //calling function
+        event.preventDefault(); //preventing from default behaviour
+        list_of_files=[]
+        //getting user multiple files
+        for(i=0;i<event.dataTransfer.files.length;i++)
+            {
+                list_of_files.push(event.dataTransfer.files[i]);
+            }
+        file = list_of_files;
+        icon.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+        dragText.innerHTML = file.name;
+        readmultifiles(file); //calling read function
     });
 
-    function getFileExtension(filename){
-        // get file extension
-        const extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length);
-        return extension;
-    }
-
-    function remove_upload(){
+    function reset(){
         let icon = document.getElementById('file-upload-icon1');
         icon.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
         let preview = document.getElementById('preview');
@@ -633,50 +667,102 @@
         dragText.innerHTML = "Drag & Drop to Upload File or click to browse file";
     }
 
-    function showFile(){
-    let fileType = getFileExtension(file.name);; //getting selected file type
-    let validExtensions = ["jpeg", "jpg", "png", "gif"]; //adding some valid image extensions in array
+    $(document).on('click', '.delete-thumbnail', function (event) {
+        event.preventDefault();
+        let dataTransfer = new DataTransfer();
+        
+        for (let i = 0; i < list_of_files.length; i++) {
+            
+            if (list_of_files[i].name.toString()===event.currentTarget.attributes.id.nodeValue){
+                list_of_files.splice(i,1);
 
-    if(validExtensions.includes(fileType)){ //if user selected file is an image file
-        let fileReader = new FileReader(); //creating new FileReader object
-        fileReader.onload = ()=>{
-        let fileURL = fileReader.result; //passing user file source in fileURL variable
-        let imgTag = `
-                        <div class="container" style="z-index:10">
-                            <div class="row">
-                                <div class="col-lg-3"></div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center justify-content-around p-2">
-                                        <div class="imageTag" >
-                                            <img style="border-radius:20%;border:3px solid #333;padding:2px" width="80px"
-                                                height="80px" src="${fileURL}" alt="image">
-                                        </div>
-                                        <div class="deleteBtn">
-                                            <p>
-                                            <span onclick="remove_upload();"
-                                                class="btn btn-small btn-danger rounded-circle text-center">
-                                                <i class="fas fa-times"></i>
-                                            </span>
-                                            </p>
-                                        </div>
+                for (let item = 0; item < list_of_files.length; item++) {
+                    dataTransfer.items.add(list_of_files[item])
+                }
+
+                // Update input fileList after remove
+                let upload = document.getElementById('design_requirement');
+                upload.files = dataTransfer.files;
+
+                preview.innerHTML = '';
+                readmultifiles(list_of_files); //calling read function
+
+                if(!list_of_files.length){
+                    reset();
+                }
+            }
+        }
+        
+    });
+
+    function validate_fileExtension(fileName) {
+        let image_extensions = new Array("bmp", "jpg", "jpeg", "png", "gif");
+        let allowed_extensions = image_extensions;
+        // split function will split the fileName by dot(.), and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the fileName.
+        let file_extension = fileName.split('.').pop().toLowerCase();
+      
+        for (let i = 0; i <= allowed_extensions.length; i++) {
+          if (allowed_extensions[i] == file_extension) {
+            return true; // valid file extension
+          }
+        }
+        return false;
+    }
+
+    function readmultifiles(files) {
+        
+        function setup_reader(file) {
+            
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                let fileURL = e.target.result; //get file content
+                let imgTag = `
+                    <div class="pt-2" style="z-index:9">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="d-flex flex-row align-items-center justify-content-around m-0 p-0">
+                                    <span id="${file.name}" class=" delete-thumbnail btn btn-small btn-danger rounded-circle text-center">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                    <div class="imageTag d-flex justify-content-center align-items-center m-1" >
+                                        <img style="border-radius:20%;border:3px solid #333;padding:2px" width="80px"
+                                            height="80px" src="${fileURL}" class="p-2 mr-3" alt="image">
+                                        <p>${file.name}</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-3"></div>
                             </div>
                         </div>
-            
-            `; //creating an img tag and passing user selected file source inside src attribute
+                    </div>
+        
+                    `; //creating an img tag and passing user selected file source inside src attribute
 
-        preview.innerHTML = imgTag; //adding that created img tag inside dropArea container
+                if(list_of_files.length>1){
+                    dragText.innerHTML = files.length.toString()+" files uploaded";
+                }else if(list_of_files.length===1){
+                    dragText.innerHTML = files.length.toString()+" file uploaded";
+                }else{
+                    reset()
+                }
+
+                var thumbnail = document.createElement("span");
+                thumbnail.innerHTML = imgTag;
+                preview.appendChild(thumbnail);
+                
+            }
+            reader.readAsDataURL(file);
         }
-        fileReader.readAsDataURL(file);
-    }else{
-        alert("This is not an Image File!");
-        dropArea.classList.remove("active");
-        icon.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
-        dragText.innerHTML = "Drag & Drop to Upload File or click to browse file";
-    }
-    }
+    
+        for (let i = 0; i < files.length; i++) {
+
+            if(validate_fileExtension(files[i].name)===true){
+                setup_reader(files[i]);
+            }else{
+                alert(files[i].name.toString()+" is not an image file");
+                reset();
+            }
+            
+        }
+      }
     
 </script>
 
@@ -689,50 +775,54 @@
     preview2 = document.querySelector("#preview2"),
     input2 = dropArea2.querySelector("#upload_file");
     let file2; //this is a global variable and we'll use it inside multiple functions
+    let fileslist2 = new Array();
 
     input2.addEventListener("change", function(){
-    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
-    file2 = this.files[0];
-    dropArea2.classList.add("active");
-    icon2.innerHTML =`<i class="fas fa-arrow-down"></i>`;
-    dragText2.innerHTML = file2.name;
-    showFile2(); //calling function
+        fileslist2=[]
+        //getting multiple files
+        for(i=0;i<this.files.length;i++)
+            {
+                fileslist2.push(this.files[i]);
+            }
+        file2 = fileslist2;
+        //dropArea2.classList.add("active");
+        icon2.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+        dragText2.innerHTML = file2.name;
+        readmultifiles2(file2); //calling read function
     });
 
     //If user Drag File Over DropArea2
     dropArea2.addEventListener("dragover", (event)=>{
-    event.preventDefault(); //preventing from default behaviour
-    dropArea2.classList.add("active");
-    icon2.innerHTML =`<i class="fas fa-arrow-down"></i>`;
-    dragText2.innerHTML = "Release to Upload File";
+        event.preventDefault(); //preventing from default behaviour
+        dropArea2.classList.add("active");
+        icon2.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+        dragText2.innerHTML = "Release to Upload File";
     });
 
     //If user leave dragged File from DropArea2
     dropArea2.addEventListener("dragleave", ()=>{
-    dropArea2.classList.remove("active");
-    icon2.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
-    dragText2.innerHTML = "Drag & Drop to Upload File or click to browse file";
+        dropArea2.classList.remove("active");
+        icon2.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
+        dragText2.innerHTML = "Drag & Drop to Upload File or click to browse file";
     });
 
     //If user drop File on DropArea2
     dropArea2.addEventListener("drop", (event)=>{
-    event.preventDefault(); //preventing from default behaviour
-    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
-    file2 = event.dataTransfer.files[0];
-    icon2.innerHTML =`<i class="fas fa-arrow-down"></i>`;
-    dragText2.innerHTML = file2.name;
-    showFile2(); //calling function
+        event.preventDefault(); //preventing from default behaviourd
+        fileslist2=[]
+        //getting multiple files
+        for(i=0;i<event.dataTransfer.files.length;i++)
+            {
+                fileslist2.push(event.dataTransfer.files[i]);
+            }
+        file2 = fileslist2;
+        icon2.innerHTML =`<i class="fas fa-arrow-down"></i>`;
+        dragText2.innerHTML = file2.name;
+        readmultifiles2(file2); //calling read function
     });
 
-    //function to get file extension
-    function getFileExtension(filename){
-        // get file extension
-        const extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length);
-        return extension;
-    }
-
     //function to remove file uploaded
-    function remove_upload2(){
+    function reset2(){
         let icon2 = document.getElementById('file-upload-icon2');
         icon2.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
         let preview2 = document.getElementById('preview2');
@@ -743,68 +833,119 @@
         dragText2.innerHTML = "Drag & Drop to Upload File or click to browse file";
     }
 
-    //function to upload file
-    function showFile2(){
-    let fileType2 = getFileExtension(file2.name); //getting selected file type .pdf,.stl,.dcm,.html
-
-    let pdf_icon="{% static 'amruloapp/assets/images/pdf-file.png' %}";
-    let stl_icon="{% static 'amruloapp/assets/images/stl-file.png' %}";
-    let dcm_icon="{% static 'amruloapp/assets/images/dcm-file.png' %}";
-    let html_icon="{% static 'amruloapp/assets/images/html-file.png' %}";
-    let img_url = "";
-    
-    let validExtensions = ["stl", "dcm", "pdf", "html"]; //adding some valid file extensions in array
-    
-    if(validExtensions.includes(fileType2)){
+    $(document).on('click', '.delete2-thumbnail', function (e) {
+        e.preventDefault();
+        let dataTransfer2 = new DataTransfer();
         
-        let fileReader2 = new FileReader(); //creating new FileReader object
-        fileReader2.onload = ()=>{
-        let fileURL2 = fileReader2.result; //passing user file source in fileURL variable
-        if(fileType2==='pdf'){
-            img_url = pdf_icon;
-        }else if(fileType2==='stl'){
-            img_url = stl_icon;
-        }else if(fileType2==='dcm'){
-            img_url = dcm_icon;
-        }else if(fileType2==='html'){
-            img_url = html_icon;
+        for (let i = 0; i < fileslist2.length; i++) {
+            
+            if (fileslist2[i].name.toString()===e.currentTarget.attributes.id.nodeValue){
+                fileslist2.splice(i,1);
+
+                for (let item = 0; item < fileslist2.length; item++) {
+                    dataTransfer2.items.add(fileslist2[item])
+                }
+
+                // Update input fileList after remove
+                let upload2 = document.getElementById('upload_file');
+                upload2.files = dataTransfer2.files;
+
+                preview2.innerHTML = '';
+                readmultifiles2(fileslist2); //calling read function
+
+                if(!fileslist2.length){
+                    reset2();
+                }
+            }
         }
-        let imgTag2 = `
-                        <div class="container" style="z-index:10">
-                            <div class="row">
-                                <div class="col-lg-3"></div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center justify-content-around p-2">
-                                        <div class="imageTag" >
-                                            <img style="border-radius:20%;border:3px solid #333;padding:2px" width="80px"
-                                                height="80px" src="${img_url}" alt="image">
-                                        </div>
-                                        <div class="deleteBtn">
-                                            <p>
-                                            <span onclick="remove_upload2();"
-                                                class="btn btn-small btn-danger rounded-circle text-center">
-                                                <i class="fas fa-times"></i>
-                                            </span>
-                                            </p>
-                                        </div>
+
+        
+    });
+
+    //function to get file extension
+    function validate_fileExtension2(fileName) {
+        let others_extensions = new Array("html", "dcm", "stl", "pdf");
+        let allowed_extensions = others_extensions;
+        // split function will split the fileName by dot(.), and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the fileName.
+        let file_extension = fileName.split('.').pop().toLowerCase();
+      
+        for (let i = 0; i <= allowed_extensions.length; i++) {
+          if (allowed_extensions[i] == file_extension) {
+            return true; // valid file extension
+          }
+        }
+        return false;
+    }
+
+    function readmultifiles2(files) {
+        let pdf_icon="{% static 'amruloapp/assets/images/pdf-file.png' %}";
+        let stl_icon="{% static 'amruloapp/assets/images/stl-file.png' %}";
+        let dcm_icon="{% static 'amruloapp/assets/images/dcm-file.png' %}";
+        let html_icon="{% static 'amruloapp/assets/images/html-file.png' %}";
+        let img_url = "";
+        
+        function setup_reader(file) {
+            
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                let fileURL = e.target.result; //get file content
+                if(file.name.split('.')[1].toString()==='pdf'){
+                    img_url = pdf_icon;
+                }else if(file.name.split('.')[1].toString()==='stl'){
+                    img_url = stl_icon;
+                }else if(file.name.split('.')[1].toString()==='dcm'){
+                    img_url = dcm_icon;
+                }else if(file.name.split('.')[1].toString()==='html'){
+                    img_url = html_icon;
+                }
+                let imgTag2 = `
+                    <div class="pt-2" style="z-index:9">
+                        <div class="row text-center">
+                            <div class="col-lg-12">
+                                <div class="d-flex flex-row align-items-center justify-content-around m-0 p-0">
+                                    <span id="${file.name}" class=" delete2-thumbnail btn btn-small btn-danger rounded-circle text-center">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                    <div class="imageTag d-flex justify-content-center align-items-center m-1" >
+                                        <img style="border-radius:20%;border:3px solid #333;padding:2px" width="80px"
+                                            height="80px" src="${img_url}" class="p-2 mr-3" alt="image">
+                                        <p>${file.name}</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-3"></div>
                             </div>
                         </div>
-            
-            `; //creating an img tag and passing user selected file source inside src attribute
+                    </div>
+        
+                    `; //creating an img tag and passing user selected file source inside src attribute
 
-        preview2.innerHTML = imgTag2;
+                if(fileslist2.length>1){
+                    dragText2.innerHTML = files.length.toString()+" files uploaded";
+                }else if(fileslist2.length===1){
+                    dragText2.innerHTML = files.length.toString()+" file uploaded";
+                }else{
+                    reset2()
+                }
+
+                var thumbnail2 = document.createElement("span");
+                thumbnail2.innerHTML = imgTag2;
+                preview2.appendChild(thumbnail2);
+                
+            }
+            reader.readAsDataURL(file);
         }
-        fileReader2.readAsDataURL(file2);
-    }else{
-        alert("This is not a valid file!");
-        dropArea2.classList.remove("active");
-        icon2.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>`;
-        dragText2.innerHTML = "Drag & Drop to Upload File or click to browse file";
-    }
-    }
+    
+        for (let i = 0; i < files.length; i++) {
+
+            if(validate_fileExtension2(files[i].name)===true){
+                setup_reader(files[i]);
+            }else{
+                alert(files[i].name.toString()+" is not a valid file");
+                reset2();
+            }
+            
+        }
+      }
+    
 </script>
  
 <!-- Your new JavaScript code -->

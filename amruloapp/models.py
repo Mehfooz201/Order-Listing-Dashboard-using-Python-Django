@@ -6,7 +6,6 @@ from forex_python.converter import CurrencyRates
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
-
 from products.models import (
     OriginalData,DesignPrinting,ProductType,ProductSubType,
     ProductMaterial,UnitOfMeasurement,DeliveryTiming,Product
@@ -200,6 +199,8 @@ class Order(models.Model):
     #CAD Design Result
     attachment_zip_rar = models.FileField(upload_to='uploads/files/zip-rar-attch/', null=True, blank=True)
     att_file_name = models.CharField(max_length=100, null=True, blank=True)
+
+    is_ordered = models.BooleanField(default=False)
     
 
     def save(self, *args, **kwargs):
@@ -287,8 +288,6 @@ def create_user_related_records(sender, instance, created, **kwargs):
 post_save.connect(create_user_related_records, sender=User)
 
 
-
-
 #Email Sending to users
 @receiver(post_save, sender=User)
 def send_user_registration_email(sender, instance, created, **kwargs):
@@ -313,3 +312,5 @@ def send_user_registration_email(sender, instance, created, **kwargs):
         send_mail(subject, message, from_email, recipient_list)
 
 post_save.connect(send_user_registration_email, sender=User)
+
+

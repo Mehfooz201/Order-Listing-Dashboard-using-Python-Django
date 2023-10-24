@@ -6,7 +6,11 @@ from payments.views import (
     additional_price_payment_complete,
     main_order_payment_request,
     main_order_billing_page,
-    main_order_payment_complete)
+    main_order_payment_complete,
+    later_payment_request,
+    later_payment_billing_page,
+    later_payment_complete,
+    create_order_request)
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from .forms import MyPasswordResetForm, MySetPasswordForm
@@ -34,7 +38,13 @@ urlpatterns = [
     path('main_order_payment_request/', main_order_payment_request, name='main_order_payment_request'),
     path('main_order_billing_page/', main_order_billing_page, name='main_order_billing_page'),
     path('main_order_payment_complete/', main_order_payment_complete, name='main_order_payment_complete'),
+    path('later_payment_request/', later_payment_request, name='later_payment_request'),
+    path('later_payment_billing_page/<int:order_num>/', later_payment_billing_page, name='later_payment_billing_page'),
+    path('later_payment_complete/', later_payment_complete, name='later_payment_complete'),
 
+    path('create_order_request/', create_order_request, name='create_order_request'),
+
+    path('show_file/<int:order_num>/', views.show_file, name='show_file'),
 
     path('framework-manage/', views.frameworkManagement, name='framework-manage'),
     path('generate-pdf/', views.generate_pdf, name='generate-pdf'),
