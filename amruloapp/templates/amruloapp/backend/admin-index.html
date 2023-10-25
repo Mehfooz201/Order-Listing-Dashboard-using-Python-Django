@@ -1,0 +1,46 @@
+{% extends 'amruloapp/backend/admin-base_site.html' %}
+{% load i18n static %}
+
+{% block content %}
+<br/><br/><br/>
+<div class="row">
+<div class="col-lg-12">
+    <div class="container d-flex flex-column">
+            <h3>{% translate 'Recent actions' %}</h3>
+            <h2 class="card-title mb-4">{% translate 'My actions' %}</h2>
+
+            {% load log %}
+            {% get_admin_log 10 as admin_log for_user user %}
+            {% if not admin_log %}
+                <p>{% translate 'None available' %}</p>
+            {% else %}
+                <ol style="list-style-type:none" class="actionlist">
+                    {% for entry in admin_log %}
+                        <li class=" {% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+                            <div class="feed-item-list">
+                                {% if entry.is_deletion or not entry.get_admin_url %}
+                                    {{ entry.object_repr }}
+                                {% else %}
+                                <span class="date"><a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a></span>
+                                {% endif %}
+
+                                <br>
+                                {% if entry.content_type %}
+                                    <span class="mini quiet activity-text">{% filter capfirst %}{{ entry.content_type.name }}{% endfilter %}</span>
+                                {% else %}
+                                    <span class="mini quiet activity-text">{% translate 'Unknown content' %}</span>
+                                {% endif %}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ol>
+            {% endif %}
+    </div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    {% include "amruloapp/backend/includes/admin-footer.html" %}
+{% endblock %}

@@ -1,0 +1,416 @@
+{% extends 'amruloapp/baselogin.html' %}
+{% load static %}
+
+
+{% block title %}
+    Payment|Page
+{% endblock title %}
+
+{% block custom_css %}
+<style>
+</style>
+{% endblock custom_css %}
+
+{% block head_scripts %}  
+
+<script  src="https://www.paypal.com/sdk/js?client-id=AaPCQanNpLoRe_b850vsu_kzvp-770mkZrfE28sCUSL9gOglgFavzHujNIiIGe3O44Iw8H80QCLvPAKA">
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+      <div class="container">
+
+        <div class="content">
+
+            <section class="section-content padding-y bg-light">
+                <div class="container">
+
+                    <!-- ============================ COMPONENT ================================= -->
+
+                    <div class="row align-items-center justify-content-center">
+                        <div class="container  mb-5 pt-5">
+                            <h4 class="text-center ">Make Payment</h4>
+                        </div>
+                        <br>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <h5 class="card-header bg-danger text-light">Informations</h5>
+                                <div class="card-body  text-dark">
+                                    <p class="card-text mb-0">Manufacturer : {{manufacturer}}</p><br>
+                                    <p class="card-text mb-0">Product_type : {{product_type_}}</p><br>
+                                    <p class="card-text mb-0">Product_sub_type : {{product_sub_type_}}</p><br>
+                                    <p class="card-text mb-0">Customer_name : {{customer_name}}</p><br>
+                                    <p class="card-text mb-0">Purchaser : {{purchaser}}</p><br>
+                                    <p class="card-text mb-0">Email : {{user.email}}</p><br>
+                                    <p class="card-text mb-0">Phone : {{user.phone}}</p><br>
+                                    {% if note %}
+                                    <b>Order Note : </b> {{note}}
+                                    {% endif %}
+
+
+                                </div>
+                            </div><br>
+
+                        </div> <!-- col.// -->
+
+
+                        <div class="col-lg-6">
+
+                            <div class="card ">
+                                <div class="card-header bg-dark">
+                                    <h4 class=" text-light">
+                                        Billing
+                                    </h4>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="container text-center">
+                                        <span class="mtext-101 cl2">
+                                            <strong>Currency :</strong>&nbsp;&nbsp;{{currency}}&nbsp;
+                                        </span><br/>
+                                        {% if currency == 'USA' %}
+                                        <span class="mtext-101 cl2">
+                                            <strong>Price :</strong>&nbsp;$&nbsp;{{price}}&nbsp;
+                                        </span><br/>
+                                        {% else %}
+                                        <span class="mtext-101 cl2">
+                                            <strong>Price :</strong>&nbsp;₹&nbsp;{{price}}&nbsp;
+                                        </span><br/>
+                                        <span class="mtext-101 cl2">
+                                            <strong>In USD :</strong>&nbsp;$&nbsp;{{price_usd}}&nbsp;
+                                        </span><br/>
+                                        {% endif %}
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="container text-center">
+                                        <div id="smart-button-container">
+                                            <div style="text-align: center;">
+                                                <div id="choice" class="container">
+                                                    <div class="row text-center">
+                                                        <div class="col-lg-12 col-sm-12">
+                                                            <form id="pay-now">
+                                                                <button class="btn btn-danger">Pay Now</button>
+                                                            </form>
+                                                        </div>
+
+                                                        <div class="col-lg-12 col-sm-12">
+                                                            Or
+                                                        </div>
+                    
+                                                        <div class="col-lg-12 col-sm-12">
+                                                            <form id="pay-later">
+                                                                {% csrf_token %}
+                                                                <button class="btn btn-dark">Pay Later</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="display:none" id="paypal-button-container"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <p class="text-center mb-3">
+                                        <img src="{% static 'amruloapp/assets/images/payments.png' %}" height="26" alt="img">
+                                    </p>
+
+                                </div>
+                            </div><br>
+
+                            <div class="container">
+                                <div class="row text-center">
+                                    <div class="col-6">
+                                        <form action="{% url 'create-order' %}" method="get">
+                                            <button class="btn btn-danger">Cancel</button>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <form action="{% url 'home' %}" method="get">
+                                            <button class="btn btn-dark">Home</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div><br>
+
+                        </aside> <!-- col.// -->
+
+
+
+                    </div> <!-- row.// -->
+
+                    <!-- ============================ COMPONENT END .// ================================= -->
+
+                </div> <!-- container .//  -->
+            </section>
+            <!-- ========================= SECTION CONTENT END// ========================= -->
+
+            <!--
+            <div class="container pt-5">
+                <div class="pt-5 text-center"><h2>Oops! No additional price to pay.</h2></div>
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <form action="{% url 'remake-order' %}" method="get">
+                                <button class="btn btn-dark">Remake Order</button>
+                            </form>
+                        </div>
+
+                        <div class="col-6">
+                            <form action="{% url 'home' %}" method="get">
+                                <button class="btn btn-danger">Home</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            -->
+
+      </div>
+
+{% endblock content %}
+
+
+{% block javascripts %}
+
+<!-- CREATE ORDER -->
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    var customer_name = "{{customer_name}}";
+    var manufacturer = "{{manufacturer}}";
+    var order_type = "{{order_type}}";
+    var purchaser = "{{purchaser}}";
+    var salesman = "{{salesman}}";
+    var requirements_remarks = "{{requirements_remarks}}";
+    var original_data = "{{original_data}}";
+    var design_printing = "{{design_printing}}";
+    var product_type = "{{product_type}}";
+    var product_sub_type = "{{product_sub_type}}";
+    var product_material = "{{product_material}}";
+    var unit_of_measurement = "{{unit_of_measurement}}";
+    var delivery_timing = "{{delivery_timing}}";
+    var quantity = "{{quantity}}";
+    var design_requirement = "{{design_requirement}}";
+    var file_upload_required = "{{file_upload_required}}";
+    var length_input1 = "{{length_input1}}";
+    var length_input2 = "{{length_input2}}";
+
+    var amount = "{{price}}";
+    var amount_usd = "{{price_usd}}";
+    var amount_to_charge = "{{price}}";
+    var currency_ = "{{currency}}";
+    var csrftoken = getCookie('csrftoken');
+    var url_ = "{% url 'create_order_request' %}";
+    var redirect_url_ = "{% url 'order-list' %}";
+
+    if (currency_ === "INR"){
+        amount_to_charge = amount_usd
+    }else{
+        amount_to_charge = amount
+    }
+
+    $(document).on('submit', '#pay-later', function (e) {
+        e.preventDefault();
+
+        fetch(url_, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "X-CSRFToken": csrftoken,
+            },
+            body: JSON.stringify({
+                customer_name: customer_name,
+                manufacturer: manufacturer,
+                order_type: order_type,
+                purchaser: purchaser,
+                salesman: salesman,
+                requirements_remarks: requirements_remarks,
+                original_data: parseInt(original_data),
+                design_printing: parseInt(design_printing),
+                product_type: parseInt(product_type),
+                product_sub_type: parseInt(product_sub_type),
+                product_material: parseInt(product_material),
+                unit_of_measurement: parseInt(unit_of_measurement),
+                delivery_timing: parseInt(delivery_timing),
+                currency: currency_,
+                quantity: quantity,
+                amount: amount,
+                design_requirement: design_requirement,
+                file_upload_required: file_upload_required,
+                length_input1: length_input1,
+                length_input2: length_input2
+            }),
+        })
+        .then((response) => response.json())
+        .then((data_) => {
+            window.location.href = redirect_url_;
+        });
+
+    });
+</script>
+<!-- CREATE ORDER END-->
+
+<script>
+    $(document).on('submit', '#pay-now', function(e) {
+        e.preventDefault();
+        var paypal_btn = document.getElementById("paypal-button-container");
+        var choice_block = document.getElementById("choice");
+        choice_block.setAttribute("style","display:none");
+        paypal_btn.removeAttribute("style");
+    });
+</script>
+
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    var customer_name = "{{customer_name}}";
+    var manufacturer = "{{manufacturer}}";
+    var order_type = "{{order_type}}";
+    var purchaser = "{{purchaser}}";
+    var salesman = "{{salesman}}";
+    var requirements_remarks = "{{requirements_remarks}}";
+    var original_data = "{{original_data}}";
+    var design_printing = "{{design_printing}}";
+    var product_type = "{{product_type}}";
+    var product_sub_type = "{{product_sub_type}}";
+    var product_material = "{{product_material}}";
+    var unit_of_measurement = "{{unit_of_measurement}}";
+    var delivery_timing = "{{delivery_timing}}";
+    var quantity = "{{quantity}}";
+    var design_requirement = "{{design_requirement}}";
+    var file_upload_required = "{{file_upload_required}}";
+    var length_input1 = "{{length_input1}}";
+    var length_input2 = "{{length_input2}}";
+
+    var amount = "{{price}}";
+    var amount_usd = "{{price_usd}}";
+    var amount_to_charge = "{{price}}";
+    var currency_ = "{{currency}}";
+    var csrftoken = getCookie('csrftoken');
+    var orderID = "None";
+    var url = "{% url 'main_order_payment_request' %}";
+    var payment_method = 'PayPal';
+    var redirect_url = "{% url 'main_order_payment_complete' %}";
+
+    if (currency_ === "INR"){
+        amount_to_charge = amount_usd
+    }else{
+        amount_to_charge = amount
+    }
+
+    function initPayPalButton() {
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            style: {
+                color: 'gold',
+                shape: 'pill',
+                label: 'pay',
+                layout: 'horizontal',
+                height: 40
+            },
+
+            // Set up the transaction
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: amount_to_charge,
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    // Show a success message to the buyer
+                    //console.log(details);
+                    sendData();
+
+                    function sendData() {
+                        fetch(url, {
+                                method: "POST",
+                                headers: {
+                                    "Content-type": "application/json",
+                                    "X-CSRFToken": csrftoken,
+                                },
+                                body: JSON.stringify({
+                                    order_number: orderID,
+                                    transID: details.id,
+                                    payment_method: payment_method,
+                                    status: details.status,
+
+                                    customer_name: customer_name,
+                                    manufacturer: manufacturer,
+                                    order_type: order_type,
+                                    purchaser: purchaser,
+                                    salesman: salesman,
+                                    requirements_remarks: requirements_remarks,
+                                    original_data: parseInt(original_data),
+                                    design_printing: parseInt(design_printing),
+                                    product_type: parseInt(product_type),
+                                    product_sub_type: parseInt(product_sub_type),
+                                    product_material: parseInt(product_material),
+                                    unit_of_measurement: parseInt(unit_of_measurement),
+                                    delivery_timing: parseInt(delivery_timing),
+                                    currency: currency_,
+                                    quantity: quantity,
+                                    amount: amount,
+                                    design_requirement: design_requirement,
+                                    file_upload_required: file_upload_required,
+                                    length_input1: length_input1,
+                                    length_input2: length_input2
+                                }),
+                            })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                window.location.href = redirect_url + '?order_number=' + data.order_number + '&payment_id=' + data.transID;
+                            });
+                    }
+                });
+            }
+
+
+        }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+</script>
+{% endblock %}
