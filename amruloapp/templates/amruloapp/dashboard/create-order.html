@@ -914,8 +914,8 @@ function update_productPrice() {
     $('#id_delivery_timing option').each(function () {
         var optionValue = $(this).val();
 
-        if (optionValue === '2HRS') {
-            if (basePrice === undefined || deliveryTimingPrices['2HRS'][subProductType] === 0) {
+        if (optionValue === "3") {
+            if (basePrice === undefined || deliveryTimingPrices["3"][subProductType] === 0) {
                 // Hide the '2HRS' option if it has a zero price for the selected product type
                 $(this).hide();
             } else {
