@@ -99,7 +99,7 @@
                           <th>User Name</th>
                           <th>File Name</th>
                           <th>Attachment (Zip/Rar File)</th>
-                          <th>Product Sub-Type</th>
+                          <th>Product Types</th>
                           <th>Uploaded By</th>
                           <th>Notes</th>
                           <th>Date</th>
@@ -123,7 +123,7 @@
                             
                             <td>{{data.product_sub_type}}</td>
                             <td>{{data.user.email}}</td>
-                            <td>notes</td>
+                            <td>{{data.remake_notes}}</td>
                             <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
 
                             <td class='text-center'>
