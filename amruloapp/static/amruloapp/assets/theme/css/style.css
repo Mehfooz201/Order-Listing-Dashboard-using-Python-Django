@@ -3183,7 +3183,7 @@ html.is-builder .article .lead:not([data-app-remove-it])+div .btn {
     width: 100%;
     z-index: 1;
     /* background-color: rgba(235, 39, 44, 0.75); */
-    background: linear-gradient( 45deg, rgba(235, 39, 44, 0.75), rgba(236, 50, 115, 0.75));
+    background: linear-gradient( 45deg, rgba(59, 59, 59, 0.75), rgba(112, 112, 112, 0.75));
 }
 
 .testimonial___section__inner {
