@@ -52,7 +52,8 @@ def post_save_mode_handler(sender, instance, created, **kwargs):
         if (instance.order_status != original_order_status and original_order_status !='approved' and instance.order_status == 'approved' or
             instance.order_status != original_order_status and original_order_status !='cancelled' and instance.order_status == 'cancelled' or
             instance.order_status != original_order_status and original_order_status !='completed' and instance.order_status == 'completed' ):
-            notify.send(instance.user, recipient=instance.user, verb=+ 'Order N°'+str(instance.pk)+' '+ str(instance.order_status))
+            notify.send(instance.user, recipient=instance.user, verb='Order N°' + str(instance.pk) + ' ' + str(instance.order_status))
+
         else:
             pass
         #-------If original (Remake_notes, Num_crowns and Remake_notes ) values change

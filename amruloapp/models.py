@@ -183,7 +183,7 @@ class Order(models.Model):
         ('INR', 'INR (Indian Rupees)'),
         # Add more options as needed
     ]
-    
+
     currency = models.CharField(max_length=10, choices=CURRENCY_CHOICES, default='USA')
     design_requirement = models.FileField(upload_to='uploads/files/otherfiles', blank=True)
     file_upload_required = models.FileField(upload_to='uploads/files/stl-dcm-html', blank=True)

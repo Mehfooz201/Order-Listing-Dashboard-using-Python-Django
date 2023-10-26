@@ -73,25 +73,29 @@ admin.site.register(FrameworkAgreement)
 admin.site.register(FrameworkInformation)
 
 class OrderAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Order
+        fields = '__all__'
+        # exclude = ['']
     def thumbnail(self, object):
         return format_html('<img src="{}" width="80" height="80" style="border-radius:20%;">'.format(object.user.avatar.url))
     thumbnail.short_description = 'Avatar'
     list_display = ('thumbnail','customer_name', 'order_number',  'order_status', 'order_type', 'price', 'order_date', 'is_ordered')
     list_display_links=( 'thumbnail','order_number','customer_name',)
-    list_filter = ('customer_name', 'order_status', 'order_date')
+    list_filter = ('order_status', 'order_date')
     search_fields = ('order_number', 'customer_name', 'order_status', 'order_date')
-    form = OrderForm
+
+    # form = OrderForm
     class Media:
         js = ('amruloapp/js/order_admin_form.js', )
                
-    def save_related(self, request, form, formsets, change):
-        super().save_related(request, form, formsets, change)
-        form.save_photos(form.instance)
+    # def save_related(self, request, form, formsets, change):
+    #     super().save_related(request, form, formsets, change)
+    #     form.save_photos(form.instance)
 
 class OrderGalleryAdmin(admin.ModelAdmin):
     def thumbnail(self, object):
         try:
-
             if (str(object.image.url).split('.')[-1]=="bmp" or
                 str(object.image.url).split('.')[-1]=="jpg" or
                 str(object.image.url).split('.')[-1]=="jpeg" or
