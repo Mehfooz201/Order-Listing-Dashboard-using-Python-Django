@@ -91,16 +91,31 @@ WSGI_APPLICATION = "Amrulo.wsgi.application"
 #     }
 # }
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cdl_database',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cdl_dabatase',
         'USER': 'postgres',
         'PASSWORD': config('PASSWORD'),
         'HOST': 'localhost',  # Change this if your PostgreSQL server is on a different host
         'PORT': '5432',  # Set the port if not using the default 5432
     }
 }
+
+from django.db import connection
+
+try:
+    connection.ensure_connection()
+    print("Database connection is active.")
+except Exception as e:
+    print("Database connection failed:", str(e))
+
+DATABASE_NAME = DATABASES['default']['NAME']
+DATABASE_USER = DATABASES['default']['USER']
+
+print(f"Database Name: {DATABASE_NAME}")
+print(f"Database User: {DATABASE_USER}")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
