@@ -21,10 +21,7 @@ class ProductMaterial(models.Model):
     name = models.CharField(max_length=500)
     def __str__(self):
         return self.name
-class UnitOfMeasurement(models.Model):
-    name = models.CharField(max_length=500)
-    def __str__(self):
-        return self.name
+    
 class DeliveryTiming(models.Model):
     name = models.CharField(max_length=500)
     def __str__(self):
@@ -54,7 +51,6 @@ class Product(models.Model):
     product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
     product_sub_type = models.ForeignKey(ProductSubType, on_delete=models.CASCADE)
     product_material = models.ForeignKey(ProductMaterial, on_delete=models.CASCADE)
-    unit_of_measurement = models.ForeignKey(UnitOfMeasurement, on_delete=models.CASCADE)
     product_12hrs_price = models.ForeignKey(Product12HrsPrice, on_delete=models.CASCADE)
     product_6hrs_price = models.ForeignKey(Product6HrsPrice, on_delete=models.CASCADE)
     product_2hrs_price = models.ForeignKey(Product2HrsPrice, on_delete=models.CASCADE)

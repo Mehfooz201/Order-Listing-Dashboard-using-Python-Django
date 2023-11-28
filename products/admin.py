@@ -1,7 +1,7 @@
 from django.contrib import admin
 from products.models import (
     OriginalData,DesignPrinting,ProductType,ProductSubType,
-    ProductMaterial,UnitOfMeasurement,DeliveryTiming,
+    ProductMaterial,DeliveryTiming,
     Product12HrsPrice,Product6HrsPrice,Product2HrsPrice,Product
     )
 # Register your models here.
@@ -31,11 +31,9 @@ class ProductMaterialAdmin(admin.ModelAdmin):
     list_display_links=('name',)
     search_fields = ('name',)
 admin.site.register(ProductMaterial,ProductMaterialAdmin)
-class UnitOfMeasurementAdmin(admin.ModelAdmin):
-    list_display = ('id','name',)
-    list_display_links=('name',)
-    search_fields = ('name',)
-admin.site.register(UnitOfMeasurement,UnitOfMeasurementAdmin)
+
+
+
 class DeliveryTimingAdmin(admin.ModelAdmin):
     list_display = ('id','name',)
     list_display_links=( 'name',)

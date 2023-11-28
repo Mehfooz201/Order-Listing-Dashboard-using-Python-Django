@@ -26,7 +26,6 @@ def main_order_payment_request(request):
                     product_type_id = int(body['product_type']),
                     product_sub_type_id = int(body['product_sub_type']),
                     product_material_id = int(body['product_material']),
-                    unit_of_measurement_id = int(body['unit_of_measurement']),
                     delivery_timing_id = int(body['delivery_timing']),
                     currency = body['currency'],
                     quantity = body['quantity'],
@@ -87,7 +86,7 @@ def main_order_billing_page(request , price=0, price_inr=0,
             manufacturer=None, product_type=None, product_sub_type=None, product_type_=None, product_sub_type_=None,
              customer_name=None, purchaser=None,order_type=None, salesman=None,
              requirements_remarks=None, original_data=None,design_printing=None, product_material=None,
-             unit_of_measurement=None, delivery_timing=None,currency=None, quantity=None,
+             delivery_timing=None,currency=None, quantity=None,
              design_requirement=None, file_upload_required=None,
              length_input1=0, length_input2=0):
     current_user = request.user
@@ -110,7 +109,6 @@ def main_order_billing_page(request , price=0, price_inr=0,
             product_sub_type_ = form.cleaned_data['product_sub_type']
             product_material = request.POST.get('product_material')
 
-            unit_of_measurement = request.POST.get('unit_of_measurement')
             delivery_timing = request.POST.get('delivery_timing')
             
             currency = form.cleaned_data['currency']
@@ -173,7 +171,6 @@ def main_order_billing_page(request , price=0, price_inr=0,
         'product_sub_type_': product_sub_type_,
         'product_material': product_material,
 
-        'unit_of_measurement': unit_of_measurement,
         'delivery_timing': delivery_timing,
 
         'currency': currency,
@@ -314,7 +311,6 @@ def later_payment_billing_page(request ,order_num, price=0):
     product_sub_type_ = order.product_sub_type
     product_material = order.product_material
 
-    unit_of_measurement = order.unit_of_measurement
     delivery_timing = order.delivery_timing
     
     currency = order_currency
@@ -338,7 +334,6 @@ def later_payment_billing_page(request ,order_num, price=0):
         'product_sub_type_': product_sub_type_,
         'product_material': product_material,
 
-        'unit_of_measurement': unit_of_measurement,
         'delivery_timing': delivery_timing,
 
         'currency': currency,
@@ -371,7 +366,6 @@ def create_order_request(request):
                     product_type_id = int(body['product_type']),
                     product_sub_type_id = int(body['product_sub_type']),
                     product_material_id = int(body['product_material']),
-                    unit_of_measurement_id = int(body['unit_of_measurement']),
                     delivery_timing_id = int(body['delivery_timing']),
                     currency = body['currency'],
                     quantity = body['quantity'],

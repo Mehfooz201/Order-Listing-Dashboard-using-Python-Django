@@ -8,7 +8,7 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from products.models import (
     OriginalData,DesignPrinting,ProductType,ProductSubType,
-    ProductMaterial,UnitOfMeasurement,DeliveryTiming,Product
+    ProductMaterial,DeliveryTiming,Product
     )
 
 from django.contrib.auth.models import AbstractBaseUser , BaseUserManager, PermissionsMixin
@@ -172,7 +172,6 @@ class Order(models.Model):
     product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
     product_sub_type = models.ForeignKey(ProductSubType, on_delete=models.CASCADE)
     product_material = models.ForeignKey(ProductMaterial, on_delete=models.CASCADE)
-    unit_of_measurement = models.ForeignKey(UnitOfMeasurement, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     delivery_timing = models.ForeignKey(DeliveryTiming, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)

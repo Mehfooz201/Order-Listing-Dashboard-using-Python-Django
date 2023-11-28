@@ -6,7 +6,7 @@ from django.db.models import Q
 from .models import  User, Order, FrameworkAgreement, CompanyInformation, FrameworkInformation
 from products.models import (
     OriginalData,DesignPrinting,ProductType,ProductSubType,
-    ProductMaterial,UnitOfMeasurement,DeliveryTiming,
+    ProductMaterial,DeliveryTiming,
     Product12HrsPrice,Product6HrsPrice,Product2HrsPrice,Product
     )
 from payments.models import orderPayment, additionalPricePayment
@@ -308,8 +308,6 @@ def createOrder(request):
     #    data_material.append({'name':i.name})
     #data_filtered = [dict(value) for value in {tuple(material.items()) for material in data_material}]
 
-    unit_of_measurement = UnitOfMeasurement.objects.all()
-
     product_12hrs_price = Product12HrsPrice.objects.all()
     product_6hrs_price = Product6HrsPrice.objects.all()
     product_2hrs_price = Product2HrsPrice.objects.all()
@@ -337,7 +335,6 @@ def createOrder(request):
         'product_type' : product_type,
         'product_sub_type' : product_sub_type,
         'product_material' : product_material,
-        'unit_of_measurement' : unit_of_measurement,
         'delivery_timing' : delivery_timing,
         'product_12hrs_price' : product_12hrs_price,
         'product_6hrs_price' : product_6hrs_price,
