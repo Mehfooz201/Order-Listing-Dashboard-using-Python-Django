@@ -95,8 +95,8 @@ WSGI_APPLICATION = "Amrulo.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'orderlist',
-        'USER': 'admin',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USERNAME'),
         'PASSWORD': config('PASSWORD'),
         'HOST': 'localhost',  # Change this if your PostgreSQL server is on a different host
         'PORT': '5432',  # Set the port if not using the default 5432
