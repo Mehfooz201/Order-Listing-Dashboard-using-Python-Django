@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY_2')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*', 'localhost','10.0.0.6']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=lambda v: [s.strip() for s in v.split(',')])
 
 
 # Application definition
@@ -95,8 +95,8 @@ WSGI_APPLICATION = "Amrulo.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cdl_dabatase',
-        'USER': 'postgres',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USERNAME'),
         'PASSWORD': config('PASSWORD'),
         'HOST': 'localhost',  # Change this if your PostgreSQL server is on a different host
         'PORT': '5432',  # Set the port if not using the default 5432
