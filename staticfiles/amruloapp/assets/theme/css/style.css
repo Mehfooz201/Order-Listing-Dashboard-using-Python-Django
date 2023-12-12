@@ -92,31 +92,31 @@
 }
 
 .btn-primary {
-    background-color: #eb272c;
-    border-color: #eb272c;
+    background: linear-gradient( 45deg, rgb(21, 19, 58, 0.6), rgb(157, 87, 141, 0.6), rgb(140, 79, 130, 0.6));
+    border-color: purple;
     box-shadow: none;
     color: #fff;
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #eb272c;
-    border-color: #eb272c;
+    background: linear-gradient( 45deg, rgb(21, 19, 58, 0.6), rgb(157, 87, 141, 0.6), rgb(140, 79, 130, 0.6));
+    border-color: purple;
     box-shadow: none;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
     color: #fff;
-    background-color: #eb272c;
-    border-color: #eb272c;
+    background: linear-gradient( 45deg, rgb(21, 19, 58, 0.6), rgb(157, 87, 141, 0.6), rgb(140, 79, 130, 0.6));
+    border-color: purple;
 }
 
 .btn-primary:active,
 .btn-primary.active {
     color: #fff;
-    background-color: #eb272c;
-    border-color: #eb272c;
+    background: linear-gradient( 45deg, rgb(21, 19, 58, 0.6), rgb(157, 87, 141, 0.6), rgb(140, 79, 130, 0.6));
+    border-color: purple;
     background-image: none;
     box-shadow: none;
 }
@@ -124,8 +124,8 @@
 .btn-primary.disabled,
 .btn-primary:disabled {
     color: #fff !important;
-    background-color: #eb272c !important;
-    border-color: #eb272c !important;
+    background: linear-gradient( 45deg, rgb(21, 19, 58, 0.6), rgb(157, 87, 141, 0.6), rgb(140, 79, 130, 0.6)) !important;
+    border-color: purple !important;
     opacity: 0.85;
 }
 
@@ -282,31 +282,30 @@
 }
 
 .btn-danger {
-    background-color: #f28281;
-    border-color: #f28281;
+    background: linear-gradient( 45deg, rgb(21, 19, 58, 0.6), rgb(157, 87, 141, 0.6), rgb(140, 79, 130, 0.6));
+    border-color: purple;
     box-shadow: none;
     color: #fff;
 }
 
 .btn-danger:hover {
     color: #fff;
-    background-color: #eb3d3c;
-    border-color: #eb3d3c;
+    background: linear-gradient( 45deg, rgb(21, 19, 58, 0.6), rgb(157, 87, 141, 0.6), rgb(140, 79, 130, 0.6));
     box-shadow: none;
 }
 
 .btn-danger:focus,
 .btn-danger.focus {
     color: #fff;
-    background-color: #eb3d3c;
-    border-color: #eb3d3c;
+    background: linear-gradient( 45deg, rgb(21, 19, 58, 0.6), rgb(157, 87, 141, 0.6), rgb(140, 79, 130, 0.6));
+    /* border-color: purple; */
 }
 
 .btn-danger:active,
 .btn-danger.active {
     color: #fff;
-    background-color: #eb3d3c;
-    border-color: #eb3d3c;
+    background: linear-gradient( 45deg, rgb(21, 19, 58, 0.6), rgb(157, 87, 141, 0.6), rgb(140, 79, 130, 0.6));
+    border-color: purple;
     background-image: none;
     box-shadow: none;
 }
@@ -314,8 +313,8 @@
 .btn-danger.disabled,
 .btn-danger:disabled {
     color: #fff !important;
-    background-color: #eb3d3c !important;
-    border-color: #eb3d3c !important;
+    background: linear-gradient( 45deg, rgb(21, 19, 58, 0.6), rgb(157, 87, 141, 0.6), rgb(140, 79, 130, 0.6)) !important;
+    border-color: purple !important;
     opacity: 0.85;
 }
 
@@ -542,8 +541,8 @@
 
 .btn-danger-outline {
     background: none;
-    border-color: #e82625;
-    color: #e82625;
+    border-color: purple;
+    color: purple;
 }
 
 .btn-danger-outline:focus,
@@ -551,20 +550,19 @@
 .btn-danger-outline:active,
 .btn-danger-outline.active {
     color: #fff;
-    background-color: #f28281;
-    border-color: #f28281;
+    background-color: purple;
+    border-color: purple;
 }
 
 .btn-danger-outline:hover {
     color: #fff;
-    background-color: #f28281;
-    border-color: #f28281;
+    background-color: rgb(132, 48, 133);
 }
 
 .btn-danger-outline.disabled,
 .btn-danger-outline:disabled {
     color: #fff !important;
-    background-color: #f28281 !important;
+    background-color: #f281d0 !important;
     border-color: #f28281 !important;
     opacity: 0.85;
 }
@@ -3183,7 +3181,7 @@ html.is-builder .article .lead:not([data-app-remove-it])+div .btn {
     width: 100%;
     z-index: 1;
     /* background-color: rgba(235, 39, 44, 0.75); */
-    background: linear-gradient( 45deg, rgba(235, 39, 44, 0.75), rgba(236, 50, 115, 0.75));
+    background: linear-gradient( 45deg, rgba(59, 59, 59, 0.75), rgba(112, 112, 112, 0.75));
 }
 
 .testimonial___section__inner {
