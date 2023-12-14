@@ -67,8 +67,8 @@ class User(AbstractBaseUser,PermissionsMixin):
     country = models.CharField(max_length=50, null=True, blank=True)
     user_address = models.TextField(default='', null=True, blank=True)
 
-    user_password = models.CharField(max_length=50, blank=True, null=True, default='')
-    confirm_password = models.CharField(max_length=50, blank=True, null=True, default='')
+    #user_password = models.CharField(max_length=50, blank=True, null=True, default='')
+    #confirm_password = models.CharField(max_length=50, blank=True, null=True, default='')
     
     # Required
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -323,7 +323,7 @@ def send_user_registration_email(sender, instance, created, **kwargs):
             f"Thank you for registering with our Company. Here are your login details:\n\n"
             f"Customer Username: {instance.username}\n"
             f"Email: {instance.email}\n"
-            f"Password: {instance.user_password}\n\n"
+            #f"Password: {instance.user_password}\n\n"
             f"You can log in to our website using these credentials.\n"
             f"Please visit our website at: {homepage_url}\n\n"  # Include the URL here
             f"Best regards,\nConfident Dental Laboratory (Pvt.) Ltd"

@@ -10,7 +10,13 @@ from products.models import (
     Product12HrsPrice,Product6HrsPrice,Product2HrsPrice,Product
     )
 from payments.models import orderPayment, additionalPricePayment
-from .forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm, RemakeRequestForm
+from .forms import (
+    CustomAuthenticationForm, 
+    OrderForm, 
+    UserProfileUpdateForm, 
+    StaffUserCreationForm, 
+    RemakeRequestForm
+)
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from django.contrib.auth import update_session_auth_hash
 from datetime import datetime, date, timedelta
@@ -223,18 +229,21 @@ def generate_pdf(request):
     return response
     
     
-
 def signin(request):
     if request.user.is_authenticated:
         return redirect('create-order')
     if request.method=='POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
+        print(f"Email: {email}, Password: {password}")
         try:
             user = User.objects.get(email=email)
+            print(f"User: {user}")
         except:
             messages.error(request, "User doest not exist.")
-        user = authenticate(request, email=email, password=password)
+        user = authenticate(request, username=email, password=password)
+        print(f"Authenticated User: {user}")
+        
         if user is not None:
             login(request, user)
             return redirect('create-order')

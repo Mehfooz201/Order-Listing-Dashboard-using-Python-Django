@@ -6,10 +6,10 @@ from amruloapp.models import Order, User
 @receiver(post_save,sender=User)
 def save_user(sender,instance, created,**kwargs):
     if created:
-        pass_ = instance.user_password
-        instance.set_password(pass_)
-        instance.user_password =" "
-        instance.confirm_password=" "
+        #pass_ = instance.user_password
+        #instance.set_password(pass_)
+        #instance.user_password =" "
+        #instance.confirm_password=" "
         instance.save()
 
 @receiver(post_save, sender=Order)
