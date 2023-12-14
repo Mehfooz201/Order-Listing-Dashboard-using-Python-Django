@@ -28,12 +28,12 @@ class UserProfileUpdateForm(ModelForm):
 
 class MyUserCreationForm(forms.ModelForm):
     
-    user_password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
+    #user_password = forms.CharField(widget=forms.PasswordInput())
+    #confirm_password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
-        fields = ["user_password","confirm_password"]
+        fields = []
 
 
 class UserForm(ModelForm):

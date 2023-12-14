@@ -43,7 +43,7 @@ class UserAdminModel(admin.ModelAdmin):
                         ),
                     }
                     )]
-        return [(None, {'fields': ('email', 'username', 'name','phone','user_password','confirm_password',)})]
+        return [(None, {'fields': ('email', 'username', 'name','phone')})]
 
     #def get_form(self, request, obj=None, **kwargs):
     #    if obj:
