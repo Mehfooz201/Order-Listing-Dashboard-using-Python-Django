@@ -70,7 +70,7 @@
             </p>
           {% endif %}
 
-          <form action="{% url 'login' %}" method="POST">
+          <form action="" method="POST">
             {% csrf_token %}
 
             <div class="form-group">
@@ -78,7 +78,7 @@
                 <!--{{ form.username.label_tag }} {{ form.username }}-->
               <label for="id_username">Email address</label>
               <input class="form-control" type="email" placeholder="Enter email"
-											name="username" autofocus autocapitalize="none" autocomplete="username"
+											name="email" autofocus autocapitalize="none" autocomplete="username"
 											required id="id_username">
             </div>
 
