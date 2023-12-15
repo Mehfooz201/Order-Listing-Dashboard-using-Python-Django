@@ -14,12 +14,13 @@ from django.conf import settings
 
 #Registered here
 
-class CustomUserForm(forms.ModelForm):
+"""class CustomUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['password','name','email','username','phone']
-
+"""
 class UserAdminModel(admin.ModelAdmin):
+    form = MyUserCreationForm
     def thumbnail(self, object):
         return format_html('<img src="{}" width="80" height="80" style="border-radius:20%;">'.format(object.avatar.url))
     thumbnail.short_description = 'Avatar'
@@ -33,6 +34,13 @@ class UserAdminModel(admin.ModelAdmin):
     class Media:
         js = ('amruloapp/js/user_admin_form.js', )
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # This is the case when obj is already created i.e. it's an edit
+            return ['last_login', 'date_joined', 'password']
+        else:
+            return ['last_login', 'date_joined']
+
+
     def get_fieldsets(self, request, obj=None):
         if obj:
             return [(
@@ -43,7 +51,7 @@ class UserAdminModel(admin.ModelAdmin):
                         ),
                     }
                     )]
-        return [(None, {'fields': ('email', 'username', 'name','phone')})]
+        return [(None, {'fields': ('email', 'username', 'name','phone', 'password1', 'password2')})]
 
     #def get_form(self, request, obj=None, **kwargs):
     #    if obj:

@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext, gettext_lazy as _
 from django.contrib.auth import password_validation
 from django.core.validators import validate_image_file_extension
-
+from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm, PasswordResetForm, SetPasswordForm
 
 
@@ -27,13 +27,29 @@ class UserProfileUpdateForm(ModelForm):
 
 
 class MyUserCreationForm(forms.ModelForm):
-    
-    #user_password = forms.CharField(widget=forms.PasswordInput())
-    #confirm_password = forms.CharField(widget=forms.PasswordInput())
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = []
+        fields = ['name', 'email', 'username', 'phone']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get('password1')
+        password2 = cleaned_data.get('password2')
+
+        if password1 and password2 and password1 != password2:
+            raise ValidationError("Passwords don't match")
+
+        return cleaned_data
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
 
 
 class UserForm(ModelForm):
