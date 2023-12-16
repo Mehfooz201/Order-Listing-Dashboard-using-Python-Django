@@ -5,7 +5,7 @@
 from django.contrib.auth.admin import UserAdmin
 from django.contrib import admin
 from django import forms
-from amruloapp.forms import MyUserCreationForm, OrderForm
+from amruloapp.forms import MyUserCreationForm, OrderForm, MyUserUpdateForm
 from .models import User, Order, OrderGallery, CompanyInformation, FrameworkAgreement, FrameworkInformation
 from django.utils.html import format_html
 import os
@@ -21,6 +21,7 @@ from django.conf import settings
 """
 class UserAdminModel(admin.ModelAdmin):
     form = MyUserCreationForm
+    change_form = MyUserUpdateForm
     def thumbnail(self, object):
         return format_html('<img src="{}" width="80" height="80" style="border-radius:20%;">'.format(object.avatar.url))
     thumbnail.short_description = 'Avatar'
@@ -40,13 +41,18 @@ class UserAdminModel(admin.ModelAdmin):
         else:
             return ['last_login', 'date_joined']
 
+    def get_form(self, request, obj=None, **kwargs):
+        if obj is None:  # This is the case when obj is being created
+            return self.add_form
+        else:  # This is the case when obj already exists i.e. it's being changed
+            return self.change_form
 
     def get_fieldsets(self, request, obj=None):
         if obj:
             return [(
                 None, {
                     'fields': (
-                        'password', 'avatar', 'email', 'username', 'first_name', 'last_name', 'name', 'approval_status', 'company_information', 'country', 'user_address',
+                        'avatar', 'email', 'username', 'first_name', 'last_name', 'name', 'approval_status', 'company_information', 'country', 'user_address',
                         'is_admin', 'is_staff', 'is_active', 'is_superadmin','groups', 'user_permissions',
                         ),
                     }

@@ -3,9 +3,7 @@ venv/
 mainenv/
 staticfiles/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.pyc
-*.pyo
-*.pyd
+.pyc
+.pyo
+.pyd
+

@@ -26,31 +26,16 @@ class UserProfileUpdateForm(ModelForm):
         fields = ['avatar', 'name', 'phone', 'country',  'user_address']
 
 
-class MyUserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
-
+class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['name', 'email', 'username', 'phone']
+        fields = ['username', 'name', 'email', 'phone', 'password1', 'password2']
 
-    def clean(self):
-        cleaned_data = super().clean()
-        password1 = cleaned_data.get('password1')
-        password2 = cleaned_data.get('password2')
-
-        if password1 and password2 and password1 != password2:
-            raise ValidationError("Passwords don't match")
-
-        return cleaned_data
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
-        if commit:
-            user.save()
-        return user
-
+class MyUserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['avatar', 'email', 'username', 'first_name', 'last_name', 'name', 'approval_status', 'company_information', 'country', 'user_address',
+                        'is_admin', 'is_staff', 'is_active', 'is_superadmin','groups', 'user_permissions']
 
 class UserForm(ModelForm):
     class Meta:
