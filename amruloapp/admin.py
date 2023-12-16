@@ -43,7 +43,7 @@ class UserAdminModel(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         if obj is None:  # This is the case when obj is being created
-            return self.add_form
+            return self.form
         else:  # This is the case when obj already exists i.e. it's being changed
             return self.change_form
 
