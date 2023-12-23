@@ -5,18 +5,33 @@ class OriginalData(models.Model):
     name = models.CharField(max_length=500)
     def __str__(self):
         return self.name
+    
 class DesignPrinting(models.Model):
     name = models.CharField(max_length=500)
+    
     def __str__(self):
         return self.name
+    
 class ProductType(models.Model):
     name = models.CharField(max_length=500)
+
+    class Meta:
+        verbose_name = "Product"
+        verbose_name_plural = "Products"
+
     def __str__(self):
         return self.name
+    
 class ProductSubType(models.Model):
     name = models.CharField(max_length=500)
+
+    class Meta:
+        verbose_name = "Product Type"
+        verbose_name_plural = "Product Type"
+
     def __str__(self):
         return self.name
+    
 class ProductMaterial(models.Model):
     name = models.CharField(max_length=500)
     def __str__(self):
@@ -26,24 +41,36 @@ class DeliveryTiming(models.Model):
     name = models.CharField(max_length=500)
     def __str__(self):
         return self.name
+    
 class Product12HrsPrice(models.Model):
     product_sub_type = models.ForeignKey(ProductSubType, on_delete=models.CASCADE)
     delivery_timing = models.ForeignKey(DeliveryTiming, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     def __str__(self):
         return str(self.price)
+    
+    class Meta:
+        verbose_name = "Product 12 Hours Price"
+    
 class Product6HrsPrice(models.Model):
     product_sub_type = models.ForeignKey(ProductSubType, on_delete=models.CASCADE)
     delivery_timing = models.ForeignKey(DeliveryTiming, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     def __str__(self):
         return str(self.price)
+    
+    class Meta:
+        verbose_name = "Product 06 Hours Price"
+    
 class Product2HrsPrice(models.Model):
     product_sub_type = models.ForeignKey(ProductSubType, on_delete=models.CASCADE)
     delivery_timing = models.ForeignKey(DeliveryTiming, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     def __str__(self):
         return str(self.price)
+    
+    class Meta:
+        verbose_name = "Product 02 Hours Price"
 
 class Product(models.Model):
     original_data = models.ForeignKey(OriginalData, on_delete=models.CASCADE)
@@ -57,5 +84,10 @@ class Product(models.Model):
     group1 = models.BooleanField(default=False)
     group2 = models.BooleanField(default=False)
     group3 = models.BooleanField(default=False)
+    
     def __str__(self):
         return self.product_sub_type.name
+
+
+    class Meta:
+        verbose_name = "All Products Infromation"
