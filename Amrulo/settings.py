@@ -27,10 +27,10 @@ SECRET_KEY = config('SECRET_KEY_2')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=lambda v: [s.strip() for s in v.split(',')])
 
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -94,27 +94,27 @@ WSGI_APPLICATION = "Amrulo.wsgi.application"
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cdl_dabatase',
-        'USER': 'postgres',
-        'PASSWORD': config('PASSWORD'),
-        'HOST': 'localhost',  # Change this if your PostgreSQL server is on a different host
-        'PORT': '5432',  # Set the port if not using the default 5432
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': config('DB_NAME'),
-#         'USER': config('DB_USERNAME'),
+#         'NAME': 'cdl_dabatase',
+#         'USER': 'postgres',
 #         'PASSWORD': config('PASSWORD'),
 #         'HOST': 'localhost',  # Change this if your PostgreSQL server is on a different host
 #         'PORT': '5432',  # Set the port if not using the default 5432
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USERNAME'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': 'localhost',  # Change this if your PostgreSQL server is on a different host
+        'PORT': '5432',  # Set the port if not using the default 5432
+    }
+}
 
 from django.db import connection
 
