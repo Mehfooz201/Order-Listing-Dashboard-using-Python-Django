@@ -191,15 +191,18 @@ Order List
 
                 <td>
                   {% if data.is_ordered == 0 %}
-                  <p class='text-center'><a href= {% url 'later_payment_billing_page' data.order_number %}>Pay Now</a></p>
+                    <p class='text-center'><a href= {% url 'later_payment_billing_page' data.order_number %}>Pay Now</a></p>
+
                   {% elif data.is_ordered == 1 %}
-                  <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                    data-target="#remakeModal{{ data.order_number }}">
-                    Request for Remake
-                  </button>
+                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                      data-target="#remakeModal{{ data.order_number }}">
+                      Request for Remake
+                    </button>
+
                   {% else %}
-                  <p class='text-center'>-</p>
+                    <p class='text-center'>-</p>
                   {% endif %}
+
                 </td>
 
 
@@ -217,239 +220,308 @@ Order List
   </section>
 </div>
 
-{% for data in order_data %}
+
+
+
+
 <!-- View Order Modal -->
-<div class="modal fade" id="viewOrderModal{{ data.order_number }}" tabindex="-1" role="dialog"
-  aria-labelledby="viewOrderModalLabel{{ data.order_number }}" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewOrderModalLabel{{ data.order_number }}">View Order</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
 
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Order Information</h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
+{% for data in order_data %}
+
+    <div class="modal fade" id="viewOrderModal{{ data.order_number }}" tabindex="-1" role="dialog"
+      aria-labelledby="viewOrderModalLabel{{ data.order_number }}" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewOrderModalLabel{{ data.order_number }}">View Order</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Order Information</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <tr>
+                    <th class="bg-light">Customer name</th>
+                    <td>{{data.customer_name}}</td>
+                    <th class="bg-light">Manufactur</th>
+                    <td>{{data.manufacturer}}</td>
+
+                  </tr>
+                  <tr>
+                    <th class="bg-light">Order type</th>
+                    <td>{{data.order_type}}</td>
+                    <th class="bg-light">Order time</th>
+                    <td>{{data.order_date}}</td>
+
+                  </tr>
+
+                </table>
+              </div>
             </div>
-          </div>
-          <div class="card-body">
-            <table class="table table-bordered">
-              <tr>
-                <th class="bg-light">Customer name</th>
-                <td>{{data.customer_name}}</td>
-                <th class="bg-light">Manufactur</th>
-                <td>{{data.manufacturer}}</td>
 
-              </tr>
-              <tr>
-                <th class="bg-light">Order type</th>
-                <td>{{data.order_type}}</td>
-                <th class="bg-light">Order time</th>
-                <td>{{data.order_date}}</td>
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Product Information</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <tr>
+                    <th class="bg-light">Product</th>
+                    <td>{{data.product_type}}</td>
+                    <th class="bg-light">Process</th>
+                    <td>{{data.product_type}}</td>
 
-              </tr>
+                  </tr>
+                  <tr>
+                    <th class="bg-light">Product Types</th>
+                    <td>{{data.product_sub_type}}</td>
+                    <th class="bg-light">Product material</th>
+                    <td colspan="3">{{data.product_material}}</td>
+                  </tr>
+                  <tr>
+                    <th class="bg-light">Quantity</th>
+                    <td colspan="3">{{data.quantity}}</td>
+                    <th class="bg-light">Delivery Time</th>
+                    <td colspan="5">{{data.delivery_timing}}</td>
 
-            </table>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Product Information</h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
+                  </tr>
+                  <tr>
+                    <th class="bg-light">Currency </th>
+                    <td>{{data.currency}}</td>
+                    <th class="bg-light">Amount</th>
+                    <td colspan="3">{{data.price}}</td>
+                  </tr>
+                </table>
+              </div>
             </div>
-          </div>
-          <div class="card-body">
-            <table class="table table-bordered">
-              <tr>
-                <th class="bg-light">Product</th>
-                <td>{{data.product_type}}</td>
-                <th class="bg-light">Process</th>
-                <td>{{data.product_type}}</td>
 
-              </tr>
-              <tr>
-                <th class="bg-light">Product Types</th>
-                <td>{{data.product_sub_type}}</td>
-                <th class="bg-light">Product material</th>
-                <td colspan="3">{{data.product_material}}</td>
-              </tr>
-              <tr>
-                <th class="bg-light">Quantity</th>
-                <td colspan="3">{{data.quantity}}</td>
-                <th class="bg-light">Delivery Time</th>
-                <td colspan="5">{{data.delivery_timing}}</td>
-
-              </tr>
-              <tr>
-                <th class="bg-light">Currency </th>
-                <td>{{data.currency}}</td>
-                <th class="bg-light">Amount</th>
-                <td colspan="3">{{data.price}}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Image Files Uploaded</h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="card-body">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th class="text-center bg-light">Order No.</th>
-                  <th class="text-center bg-light">Customer Name</th>
-                  <th class="text-center bg-light">File Name</th>
-                  <th class="text-center bg-light">File Type</th>
-                  <th class="text-center bg-light">Design requirements</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for i in data.gallery%}
-                  {% if i.extension == 'bmp' or i.extension == 'jpg' or i.extension == 'jpeg' or i.extension == 'png' or i.extension == 'gif' or i.extension == 'BMP' or i.extension == 'JPG' or i.extension == 'JPEG' or i.extension == 'PNG' or i.extension == 'GIF'%}
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Image Files Uploaded</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
                     <tr>
-                      <td class="text-center bg-light">{{data.order_number}}</td>
-                      <td class="text-center bg-light">{{data.customer_name}}</td>
-                      <td class="text-left bg-light">
-                        <div class="file-container">
-                          <div class="file-name">
-                            {{i.title}}
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-left bg-light">
-                        <div class="file-container">
-                          <div class="file-name">
-                            {{i.extension}}
-                          </div>
-                        </div>
-                      </td>
-
-                      <td class="text-center bg-light">
-                        <div class="file-action">
-                          <div class="btn-group">
-                            <div>
-                              <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
-                                >
-                                <i class="fas fa-eye"></i> View
-                              </a>
-                            </div>
-                            <div>
-                              <a href="{{ i.url }}" class="m-2 btn btn-dark btn-small btn-file-download btn-sm"
-                                download>
-                                <i class="fas fa-download"></i> Download
-                              </a>
-                            </div>
-
-                          </div>
-                        </div>
-                      </td>
+                      <th class="text-center bg-light">Order No.</th>
+                      <th class="text-center bg-light">Customer Name</th>
+                      <th class="text-center bg-light">File Name</th>
+                      <th class="text-center bg-light">File Type</th>
+                      <th class="text-center bg-light">Design requirements</th>
                     </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in data.gallery%}
+                      {% if i.extension == 'bmp' or i.extension == 'jpg' or i.extension == 'jpeg' or i.extension == 'png' or i.extension == 'gif' or i.extension == 'BMP' or i.extension == 'JPG' or i.extension == 'JPEG' or i.extension == 'PNG' or i.extension == 'GIF'%}
+                        <tr>
+                          <td class="text-center bg-light">{{data.order_number}}</td>
+                          <td class="text-center bg-light">{{data.customer_name}}</td>
+                          <td class="text-left bg-light">
+                            <div class="file-container">
+                              <div class="file-name">
+                                {{i.title}}
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-left bg-light">
+                            <div class="file-container">
+                              <div class="file-name">
+                                {{i.extension}}
+                              </div>
+                            </div>
+                          </td>
+
+                          <td class="text-center bg-light">
+                            <div class="file-action">
+                              <div class="btn-group">
+
+                                {% if request.user.groups.all.0.name == "Vendor"  or request.user.groups.all.0.name == "User" or request.user.groups.all.0.name == "Admin" %}
+
+                                  {% comment %} is_orderd==1 for paid. ==0 for unpaid {% endcomment %}
+                                  {% if data.is_ordered == 1 %}
+                                    <div>
+                                      <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
+                                        >
+                                        <i class="fas fa-eye"></i> View
+                                      </a>
+                                    </div>
+                                    
+                                    <div>
+                                      <a href="{{ i.url }}" class="m-2 btn btn-dark btn-small btn-file-download btn-sm"
+                                        download>
+                                        <i class="fas fa-download"></i> Download
+                                      </a>
+                                    </div>
+
+                                    {% else %}
+                                      
+                                      <!-- Disabled buttons when the order is unpaid -->
+                                      <div>
+                                        <button class="m-2 btn btn-primary btn-small btn-file-view btn-sm" disabled>
+                                          <i class="fas fa-eye"></i> View
+                                        </button>
+                                      </div>
+                                      
+                                      <div>
+                                        <button class="m-2 btn btn-dark btn-small btn-file-download btn-sm" disabled>
+                                          <i class="fas fa-download"></i> Download
+                                        </button>
+                                      </div>
+
+                                      <div>
+                                        <p>Can't view or download. Pay the order first.</p>
+                                      </div>
+
+                                  {% endif %}
+
+                                {% endif %}
+
+                                  
+
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Others Files Uploaded</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th class="text-center bg-light">Order No.</th>
+                      <th class="text-center bg-light">Customer Name</th>
+                      <th class="text-center bg-light">File Name</th>
+                      <th class="text-center bg-light">File Type</th>
+                      <th class="text-center bg-light">Uploaded Files</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in data.gallery%}
+                      {% if i.extension == 'pdf' or i.extension == 'stl' or i.extension == 'dcm' or i.extension == 'html' or i.extension == 'PDF' or i.extension == 'STL' or i.extension == 'DCM' or i.extension == 'HTML'%}
+                        <tr>
+                          <td class="text-center bg-light">{{data.order_number}}</td>
+                          <td class="text-center bg-light">{{data.customer_name}}</td>
+                          <td class="text-left bg-light">
+                            <div class="file-container">
+                              <div class="file-name">
+                                {{i.title}}
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-left bg-light">
+                            <div class="file-container">
+                              <div class="file-name">
+                                {{i.extension}}
+                              </div>
+                            </div>
+                          </td>
+
+                          <td class="text-center bg-light">
+                            <div class="file-action">
+                              <div class="btn-group">
+                                {% if request.user.groups.all.0.name == "Vendor"  or request.user.groups.all.0.name == "User" or request.user.groups.all.0.name == "Admin" %}
+                                
+                                  {% comment %} is_orderd==1 for paid. ==0 for unpaid {% endcomment %}
+                                  {% if data.is_ordered == 1 %}
+                                  <div>
+                                    <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
+                                    >
+                                      <i class="fas fa-eye"></i> View
+                                    </a>
+                                  </div>
+
+                                  <div>
+                                    <a href="{{ i.url }}" class="m-2 btn btn-dark btn-small btn-file-download btn-sm"
+                                      download>
+                                      <i class="fas fa-download"></i> Download
+                                    </a>
+                                  </div>
+                                
+                                  {% else %}
+                                      
+                                      <!-- Disabled buttons when the order is unpaid -->
+                                      <div>
+                                        <button class="m-2 btn btn-primary btn-small btn-file-view btn-sm" disabled>
+                                          <i class="fas fa-eye"></i> View
+                                        </button>
+                                      </div>
+                                      
+                                      <div>
+                                        <button class="m-2 btn btn-dark btn-small btn-file-download btn-sm" disabled>
+                                          <i class="fas fa-download"></i> Download
+                                        </button>
+                                      </div>
+
+                                      <div>
+                                        <p>Can't view or download. Pay the order first.</p>
+                                      </div>
+
+                                  {% endif %}
+
+                                {% endif %}
+
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
                     {% endif %}
-                {% endfor %}
+                    {% endfor %}
 
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Others Files Uploaded</h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
+                  </tbody>
+                </table>
+              </div>
             </div>
+
           </div>
-          <div class="card-body">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th class="text-center bg-light">Order No.</th>
-                  <th class="text-center bg-light">Customer Name</th>
-                  <th class="text-center bg-light">File Name</th>
-                  <th class="text-center bg-light">File Type</th>
-                  <th class="text-center bg-light">Uploaded Files</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for i in data.gallery%}
-                  {% if i.extension == 'pdf' or i.extension == 'stl' or i.extension == 'dcm' or i.extension == 'html' or i.extension == 'PDF' or i.extension == 'STL' or i.extension == 'DCM' or i.extension == 'HTML'%}
-                    <tr>
-                      <td class="text-center bg-light">{{data.order_number}}</td>
-                      <td class="text-center bg-light">{{data.customer_name}}</td>
-                      <td class="text-left bg-light">
-                        <div class="file-container">
-                          <div class="file-name">
-                            {{i.title}}
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-left bg-light">
-                        <div class="file-container">
-                          <div class="file-name">
-                            {{i.extension}}
-                          </div>
-                        </div>
-                      </td>
-
-                      <td class="text-center bg-light">
-                        <div class="file-action">
-                          <div class="btn-group">
-                            <div>
-                              <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
-                               >
-                                <i class="fas fa-eye"></i> View
-                              </a>
-                            </div>
-                            <div>
-                              <a href="{{ i.url }}" class="m-2 btn btn-dark btn-small btn-file-download btn-sm"
-                                download>
-                                <i class="fas fa-download"></i> Download
-                              </a>
-                            </div>
-
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                {% endif %}
-                {% endfor %}
-
-              </tbody>
-            </table>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
           </div>
         </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
       </div>
     </div>
-  </div>
-</div>
+
 {% endfor %}
+
+
+
 
 
 {% comment %} Image Modal {% endcomment %}

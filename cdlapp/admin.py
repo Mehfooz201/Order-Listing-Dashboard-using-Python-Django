@@ -23,7 +23,7 @@ class UserAdminModel(admin.ModelAdmin):
         return format_html('<img src="{}" width="80" height="80" style="border-radius:20%;">'.format(object.avatar.url))
     thumbnail.short_description = 'Avatar'
     readonly_fields=('last_login','date_joined','password')
-    list_display = ('thumbnail','email', 'name',  'company_information','is_active',)
+    list_display = ('thumbnail','email', 'name',  'company_information','is_active')
     list_display_links=( 'thumbnail','email',)
     filter_horizontal = ('groups', 'user_permissions',)
     list_filter = ('email', 'company_information','name',)
