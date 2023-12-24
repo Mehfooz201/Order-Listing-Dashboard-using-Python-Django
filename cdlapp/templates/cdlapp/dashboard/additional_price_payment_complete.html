@@ -1,0 +1,86 @@
+{% extends 'cdlapp/baselogin.html' %} {% load static %} {% block title %}
+Payment|Completed {% endblock title %} {% block custom_css %}
+<style>
+  .dash-header {
+    margin: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  @media screen and (max-width: 768px) {
+    .dash-header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .dash-title {
+    text-align: center;
+  }
+
+  .dash-body {
+    margin: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  @media screen and (max-width: 768px) {
+    .dash-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+</style>
+{% endblock custom_css %} {% block content %}
+
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-card-header">
+      <div class="container">
+        <div class="dash-header">
+          <div class="dash-logo">
+            <a href="{% url 'home' %}"
+              ><img
+                style="width: 50px; height: 50px"
+                src="{% static 'cdlapp/dashboard/dist/img/cdl-web.png' %}"
+                alt="img"
+            /></a>
+          </div>
+          <div class="dash-title">
+            <div class="login-card-title">Payment Completed Successfully !</div>
+            <div class="login-card-subtitle">Thank you for paying with us.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-body">
+      <div class="login-card-body">
+        <div class="container">
+          <p class="text-black-50"></p>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <div class="col-sm-12 col-lg-12 text-center">
+          <a
+            role="button"
+            href="{% url 'order-list' %}"
+            class="btn btn-primary btn-block login-button"
+            >Order List</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

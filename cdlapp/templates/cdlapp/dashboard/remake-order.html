@@ -1,0 +1,292 @@
+
+{% extends 'cdlapp/dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+    Remake Order
+{% endblock title %}
+
+{% block custom_style %}
+{% comment %} Custom css here {% endcomment %}
+
+
+
+    <!-- DataTables -->
+    <link
+      rel="stylesheet"
+      href="{% static 'cdlapp/dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'cdlapp/dashboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'cdlapp/dashboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'cdlapp/dashboard/plugins/datatables-fixedcolumns/css/fixedColumns.bootstrap4.min.css' %}"
+    />
+    <!-- overlayScrollbars -->
+    <link
+      rel="stylesheet"
+      href="{% static 'cdlapp/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}"
+    />
+
+    <!-- summernote -->
+    <link rel="stylesheet" href="{% static 'cdlapp/dashboard/plugins/summernote/summernote-bs4.min.css' %}" />
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'cdlapp/dashboard/dist/css/remake-orders.css' %}" />
+
+{% endblock custom_style %}
+
+
+{% block content %}
+
+
+    <div class="content-wrapper">
+      
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Apply for Remake</h1>
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+              <!-- Success Message (Top of the Page) -->
+              {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert alert-success">{{ message }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+              {% endif %}
+
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Apply for Remake</h3>
+                  <div class="card-tools">
+                    <button
+                      type="button"
+                      class="btn btn-tool"
+                      data-card-widget="collapse"
+                    >
+                      <i class="fas fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="order-list-filter-area">
+                    <div class="row">
+         
+                    
+                          <form method="GET" action="">
+                              <div class="col-md-12 ">
+                                <div class="form-group form-group-row ">
+                                  <label for="order_number">Order number</label>
+                                  <input type="number" class="form-control" id="order_number" name='order_number' placeholder="Order number"/>
+          
+                                  <div class="col-md-3 text-right">
+                                    <button class="btn btn-primary">Search</button>
+                                  </div>
+                                </div>
+                              </div>
+                          </form>
+
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table
+                      class="table nowrap table-bordered"
+                      id="orderListTable"
+                    >
+                      <thead>
+                        <tr>
+                          <th>Sr. No</th>
+                          <th>Order Number</th>
+                          <th>User Name</th>
+                          <th>Order Date</th>
+                          <th>Order Status</th>
+                          <th>Notes on Remaking order</th>
+                          <th>Product Types</th>
+                          <th>Remake Notes </th>
+                          <th>Number of Crowns </th>
+                          <th>Number of Brackets</th>
+                          <th>Currency</th>
+                          <th>Total Amount</th>
+                          <th>Additional Price</th>
+                          <th>Pay Now</th>
+                        </tr>
+                      </thead>
+                      <tbody >
+                
+                        {% for data in order_data %}
+                            {% comment %} <tr class="odd"> {% endcomment %}
+                                <td>{{forloop.counter}}</td>
+                                <td>{{data.order_number}}</td>
+                                <td>{{data.customer_name}}</td>
+
+                                <td class="order-row" data-order-date="{{ data.formatted_order_date }}">{{ data.order_date|date:"Y-m-d" }}</td>
+
+                                
+                                <td class='text-center'>
+
+                                  {% if data.order_status == 'pending' %}
+                                      <span class="badge badge-warning">{{ data.order_status }}</span>
+                                      
+                                  {% endif %}
+
+                                </td>
+                                <td>Some Description</td>
+        
+                                <td>{{data.product_sub_type}}</td>
+
+                                <td>{{data.remake_notes}}</td>
+                                <td>{{data.num_crowns}}</td>
+                                <td>{{data.num_brackets}}</td>
+                                
+                                <td>{{data.currency}}</td>
+                                <td>
+                                    {% if data.currency == 'USA' %}
+                                        ${{ data.price|floatformat:2 }}
+                                    {% elif data.currency == 'INR' %}
+                                        ₹{{ data.price|floatformat:2 }}
+                                    {% else %}
+                                        {{ data.price|floatformat:2 }}
+                                    {% endif %}
+                                </td>
+
+                                <td>
+                                  {% if data.currency == 'USA' %}
+                                      ${{ data.remake_price|floatformat:2 }}
+                                  {% elif data.currency == 'INR' %}
+                                      ₹{{ data.remake_price|floatformat:2 }}
+                                  {% else %}
+                                      {{ data.remake_price|floatformat:2 }} <!-- Default case if no currency symbol is available -->
+                                  {% endif %}
+                                </td>
+
+                                <td class="text-center bg-light">
+                                    <div class="datatable-actions-container text-center">
+                                      {% if data.remake_price > 0  %}
+                                        <button type="button" class="btn-action text-center" data-toggle="modal" data-target="#paymentModal{{ data.order_number }}">
+                                          <i class="fas fa-dollar-sign pr-2"></i> Pay Now
+                                        </button>
+                                      {% else %}
+                                      <p class="text-center">---</p>
+                                      {% endif %}
+                                    </div>
+                                </td>
+        
+                            </tr>
+                          {% endfor %}
+        
+        
+        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+        
+    </div>
+
+
+
+ 
+
+
+<!-- View Order Modal -->
+
+
+<!-- Modal for payment confirmation -->
+{% for data in order_data %}
+  <div class="modal fade" id="paymentModal{{ data.order_number }}" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel{{ data.order_number }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="paymentModalLabel{{ data.order_number }}">Confirm Payment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+
+            <p>Confirm your payment for the Order No : <strong>{{data.order_number}}</strong> </p>
+
+            <p>Currency: {{data.currency}}</p>
+            {% comment %} <p> $100</strong></p> {% endcomment %}
+              <p><strong>Additional Amount: </strong>
+                  {% if data.currency == 'USA' %}
+                      ${{ data.remake_price|floatformat:2 }}
+                  {% elif data.currency == 'INR' %}
+                      ₹{{ data.remake_price|floatformat:2 }}
+                  {% else %}
+                      {{ data.remake_price|floatformat:2 }} <!-- Default case if no currency symbol is available -->
+                  {% endif %}
+              </p>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a href="{% url 'additional_price_billing_page' data.order_number %}" class="btn btn-primary" id="confirmPaymentBtn">Confirm Payment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+
+    <!-- DataTables  & Plugins -->
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables-fixedcolumns/js/dataTables.fixedColumns.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables-fixedcolumns/js/fixedColumns.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/jszip/jszip.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/pdfmake/pdfmake.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/pdfmake/vfs_fonts.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'cdlapp/dashboard/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+    <script src="{% static 'cdlapp/dashboard/dist/js/remake-orders.js' %}"></script>
+
+    <script>
+      function openImageModal(imageUrl) {
+          const viewImageModal = $('#viewImageModal');
+          const viewImage = viewImageModal.find('.modal-body img');
+  
+          viewImage.attr('src', imageUrl);
+          viewImageModal.modal('show');
+      }
+    </script>
+
+
+{% endblock scripts %}
+
+
+
+
+

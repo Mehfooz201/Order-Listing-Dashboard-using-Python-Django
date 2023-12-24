@@ -1,0 +1,212 @@
+{% extends 'cdlapp/dashboard/base.html' %} {% load static %} {% comment %} 
+{% load user_tags %} {% endcomment %} 
+{% block title %} Add Staff User {% endblock title %} 
+{% block custom_style %} {% comment %} Custom css here {% endcomment %}
+{% endblock custom_style %} {% block content %}
+
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <!-- Success Message (Top of the Page) -->
+      {% if messages %}
+      <div class="messages">
+        {% for message in messages %} {% if message.tags == 'success' %}
+        <div class="alert alert-success">{{ message }}</div>
+        {% endif %} {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- Error Message (Password Area) -->
+      {% if messages %}
+      <div class="messages my-2">
+        {% for message in messages %} {% if message.tags == 'error' %}
+        <div class="alert text-danger">{{ message }}</div>
+        {% endif %} {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Add Staff User</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Add Staff User -->
+          <div class="card">
+            <div class="card-body">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#addUserModal"
+              >
+                Add User
+              </button>
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Email</th>
+                  <th>Username</th>
+                  <th>Name</th>
+                  <th>Phone Number</th>
+                  <th>Approval Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Loop through staff users -->
+                {% for user in users %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.phone }}</td>
+                  <td>
+                    {% if user.approval_status %}Approved{% else %}Not
+                    Approved{% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div
+  class="modal fade"
+  id="addUserModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addUserModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{% url 'staff-user' %}">
+          {% csrf_token %}
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone"
+                  name="phone"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="password1">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password1"
+                  name="password1"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password2"
+                  name="password2"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="groups">User Group</label>
+                <select class="form-control" id="groups" name="groups">
+                  {% for group in groups %}
+                  <option value="{{ group.id }}">{{ group.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add User</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block scripts %} {% endblock scripts %}

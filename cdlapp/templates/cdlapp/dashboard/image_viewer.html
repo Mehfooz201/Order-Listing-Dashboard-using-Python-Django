@@ -1,0 +1,73 @@
+{% extends 'cdlapp/baselogin.html' %} {% load static %} {% block title %}
+IMAGE|Viewer {% endblock title %} {% block custom_css %}
+<style>
+  body {
+    background-color: #fff;
+  }
+  .view-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #img-view {
+    width: 100%;
+    height: 80vh;
+    border-radius: 15px;
+  }
+  @media screen and (max-width: 768px) {
+    #img-view {
+      top: 50px;
+      width: 100%;
+      height: auto;
+      transform: scale(1.2);
+      border-radius: 15px;
+    }
+
+    .img-container {
+      width: 100%;
+      height: 60vh;
+    }
+  }
+</style>
+{% endblock custom_css %} {% block content %}
+
+<div style="background-color: #fff" class="view-container">
+  <div style="z-index: 10; width: auto; border-radius: 15px">
+    <div class="login-card-header m-0 p-0">
+      <div
+        style="
+          margin: 12px;
+          display: flex;
+          dlex-direction: row;
+          justify-content: space-between;
+        "
+      >
+        <div class="logo">
+          <a href="{% url 'order-list' %}"
+            ><img
+              style="width: 50px; height: 50px"
+              src="{% static 'cdlapp/dashboard/dist/img/cdl-web.png' %}"
+              alt="img"
+          /></a>
+        </div>
+        <div class="header-title">
+          <div class="login-card-title">IMAGE VIEWER</div>
+          <div class="login-card-subtitle">File:&nbsp;{{file_name}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      style="
+        background-color: #222;
+        border-radius: 15px;
+        border: 1px solid #000;
+      "
+      class="img-container"
+    >
+      <img id="img-view" src="{{file_url}}" alt="img" />
+    </div>
+  </div>
+</div>
+
+{% endblock %}

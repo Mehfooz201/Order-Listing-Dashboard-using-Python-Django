@@ -20,12 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 import notifications.urls
-from amruloapp import views
+from cdlapp import views
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include('amruloapp.urls')),
+    path('', include('cdlapp.urls')),
     path('mark_as_read/<int:notification_pk>', views.notifications, name='notif'),
     re_path('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
 ]
@@ -43,17 +43,17 @@ admin.site.site_header = 'CDL Administration'
 #                                        * ** *
 #                                          **
 # Admin custom login
-admin.site.login_template = 'amruloapp/backend/admin-login.html'
+admin.site.login_template = 'cdlapp/backend/admin-login.html'
 # Admin custom logout
-admin.site.logout_template = 'amruloapp/backend/admin-logged-out.html'
+admin.site.logout_template = 'cdlapp/backend/admin-logged-out.html'
 # Admin custom index
-admin.site.index_template = 'amruloapp/backend/admin-index.html'
+admin.site.index_template = 'cdlapp/backend/admin-index.html'
 # Admin custom app_index
-admin.site.app_index_template = 'amruloapp/backend/admin-app_index.html'
+admin.site.app_index_template = 'cdlapp/backend/admin-app_index.html'
 # Admin custom password_change_form
-admin.site.password_change_template = 'amruloapp/backend/admin-password_change_form.html'
+admin.site.password_change_template = 'cdlapp/backend/admin-password_change_form.html'
 # Admin custom password_change_done
-admin.site.password_change_done_template = 'amruloapp/backend/admin-password_change_done.html'
+admin.site.password_change_done_template = 'cdlapp/backend/admin-password_change_done.html'
 
 
 
@@ -65,16 +65,16 @@ admin.site.password_change_done_template = 'amruloapp/backend/admin-password_cha
 #                                        * ** *
 #                                          **
 # Admin custom change_list
-admin.ModelAdmin.change_list_template = 'amruloapp/backend/admin-change_list.html'
+admin.ModelAdmin.change_list_template = 'cdlapp/backend/admin-change_list.html'
 # Admin custom change_form
-admin.ModelAdmin.change_form_template = 'amruloapp/backend/admin-change_form.html'
+admin.ModelAdmin.change_form_template = 'cdlapp/backend/admin-change_form.html'
 # Admin custom add_form
-admin.ModelAdmin.add_form_template = 'amruloapp/backend/admin-add_form.html'
+admin.ModelAdmin.add_form_template = 'cdlapp/backend/admin-add_form.html'
 # Admin custom delete_selected_confirmation
-admin.ModelAdmin.delete_selected_confirmation_template = 'amruloapp/backend/admin-delete_selected_confirmation.html'
+admin.ModelAdmin.delete_selected_confirmation_template = 'cdlapp/backend/admin-delete_selected_confirmation.html'
 # Admin custom delete_confirmation
-admin.ModelAdmin.delete_confirmation_template = 'amruloapp/backend/admin-delete_confirmation.html'
+admin.ModelAdmin.delete_confirmation_template = 'cdlapp/backend/admin-delete_confirmation.html'
 # Admin custom object_history
-admin.ModelAdmin.object_history_template = 'amruloapp/backend/admin-object_history.html'
+admin.ModelAdmin.object_history_template = 'cdlapp/backend/admin-object_history.html'
 # Admin custom popup_response
-admin.ModelAdmin.popup_response_template = 'amruloapp/backend/admin-popup_response.html'
+admin.ModelAdmin.popup_response_template = 'cdlapp/backend/admin-popup_response.html'

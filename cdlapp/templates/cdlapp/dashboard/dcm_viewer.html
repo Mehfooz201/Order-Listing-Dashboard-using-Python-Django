@@ -1,0 +1,328 @@
+{% extends 'cdlapp/baselogin.html' %} {% load static %} {% block title %}
+DCM|Viewer {% endblock title %} {% block custom_css %}
+<style>
+  body {
+    background-color: #fff;
+  }
+  .view-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+{% endblock custom_css %} {% block content %}
+
+<div style="background-color: #fff" class="view-container">
+  <div style="z-index: 10; width: 90vw; border-radius: 15px">
+    <div class="login-card-header m-0 p-0">
+      <div
+        style="
+          margin: 12px;
+          display: flex;
+          dlex-direction: row;
+          justify-content: space-between;
+        "
+      >
+        <div class="logo">
+          <a href="{% url 'order-list' %}"
+            ><img
+              style="width: 50px; height: 50px"
+              src="{% static 'cdlapp/dashboard/dist/img/cdl-web.png' %}"
+              alt="img"
+          /></a>
+        </div>
+        <div class="header-title">
+          <div class="login-card-title">DCM VIEWER</div>
+          <div class="login-card-subtitle">File:&nbsp;{{file_name}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <h4>CANVAS</h4>
+
+          <div
+            id="dicomImageWebGL"
+            style="
+              width: 100%;
+              height: 60vh;
+              border: 1px solid #f00;
+              background-color: #111;
+              border-radius: 15px;
+            "
+            oncontextmenu="return false"
+            onmousedown="return false"
+          >
+            <canvas
+              class="cornerstone-canvas"
+              style="display: block; border-radius: 15px"
+            >
+            </canvas>
+          </div>
+
+          <div class="wwwc">WW/WL:0/0</div>
+          <div class="renderTime">Render Time:0 ms</div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12" style="background-color: #222">
+          <span style="color: #fff; text-decoration: underline"
+            >Transfer Syntax: </span
+          ><span style="color: #f0f" id="transferSyntax">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >SOP Class: </span
+          ><span style="color: #f0f" id="sopClass">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Samples Per Pixel: </span
+          ><span style="color: #f0f" id="samplesPerPixel">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Photometric Interpretation: </span
+          ><span style="color: #f0f" id="photometricInterpretation">-</span
+          ><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Number Of Frames: </span
+          ><span style="color: #f0f" id="numberOfFrames">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Planar Configuration: </span
+          ><span style="color: #f0f" id="planarConfiguration">-</span><br />
+          <span style="color: #fff; text-decoration: underline">Rows: </span
+          ><span style="color: #f0f" id="rows">-</span><br />
+          <span style="color: #fff; text-decoration: underline">Columns: </span
+          ><span style="color: #f0f" id="columns">-</span><br />
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12" style="background-color: #222">
+          <span style="color: #fff; text-decoration: underline"
+            >Pixel Spacing: </span
+          ><span style="color: #f0f" id="pixelSpacing">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Bits Allocated: </span
+          ><span style="color: #f0f" id="bitsAllocated">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Bits Stored: </span
+          ><span style="color: #f0f" id="bitsStored">-</span><br />
+          <span style="color: #fff; text-decoration: underline">High Bit: </span
+          ><span style="color: #f0f" id="highBit">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Pixel Representation: </span
+          ><span style="color: #f0f" id="pixelRepresentation">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >WindowCenter: </span
+          ><span style="color: #f0f" id="windowCenter">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >WindowWidth: </span
+          ><span style="color: #f0f" id="windowWidth">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >RescaleIntercept: </span
+          ><span style="color: #f0f" id="rescaleIntercept">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >RescaleSlope: </span
+          ><span style="color: #f0f" id="rescaleSlope">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Basic Offset Table Entries: </span
+          ><span style="color: #f0f" id="basicOffsetTable">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Fragments: </span
+          ><span style="color: #f0f" id="fragments">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Min Stored Pixel Value: </span
+          ><span style="color: #f0f" id="minStoredPixelValue">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Max Stored Pixel Value: </span
+          ><span style="color: #f0f" id="maxStoredPixelValue">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Total Time: </span
+          ><span style="color: #f0f" id="totalTime">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Load Time: </span
+          ><span style="color: #f0f" id="loadTime">-</span><br />
+          <span style="color: #fff; text-decoration: underline"
+            >Decode Time: </span
+          ><span style="color: #f0f" id="decodeTime">-</span><br />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block javascripts %}
+<!-- include cornerstone libraries & required libraries-->
+<script src="{% static 'cdlapp/js/cornerstone.min.js' %}"></script>
+<script src="{% static 'cdlapp/js/cornerstoneMath.min.js' %}"></script>
+<script src="{% static 'cdlapp/js/cornerstoneTools.min.js' %}"></script>
+<script src="{% static 'cdlapp/js/dicomParser.min.js' %}"></script>
+<script src="{% static 'cdlapp/js/cornerstoneWADOImageLoader.bundle.min.js' %}"></script>
+<script src="{% static 'cdlapp/js/uids.js' %}"></script>
+
+<!-- File data encoded -->
+<script id="file-encoded" data-file-encoded="{{file_encoded}}"></script>
+
+<script>
+  cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+
+  var data_encoded = document.getElementById("file-encoded");
+  var data = data_encoded.dataset;
+  var image_Base64 = data.fileEncoded.toString();
+
+  const elementWebGL = document.getElementById("dicomImageWebGL");
+
+  // setup handlers before we display the image
+  function onImageRendered(e) {
+    const eventData = e.detail;
+
+    // set the canvas context to the image coordinate system
+    cornerstone.setToPixelCoordinateSystem(
+      eventData.enabledElement,
+      eventData.canvasContext
+    );
+
+    const parent = eventData.element.parentNode;
+    parent.querySelector(".renderTime").innerHTML =
+      "Render Time:" + eventData.renderTimeInMs + " ms";
+    parent.querySelector(".wwwc").innerHTML =
+      "WW/WL:" +
+      Math.round(eventData.viewport.voi.windowWidth) +
+      "/" +
+      Math.round(eventData.viewport.voi.windowCenter);
+  }
+
+  elementWebGL.addEventListener("cornerstoneimagerendered", onImageRendered);
+
+  let loaded = false;
+
+  function loadAndViewImage(imageId) {
+    const start = new Date().getTime();
+
+    const options = {
+      renderer: "webgl",
+      desynchronized: true,
+      preserveDrawingBuffer: true,
+    };
+
+    cornerstone.enable(elementWebGL, options);
+
+    cornerstone.loadImage(imageId).then(
+      function (image) {
+        cornerstone.displayImage(elementWebGL, image);
+
+        if (loaded === false) {
+          cornerstoneTools.mouseInput.enable(elementWebGL);
+          cornerstoneTools.mouseWheelInput.enable(elementWebGL);
+          cornerstoneTools.wwwc.activate(elementWebGL, 1); // ww/wc tool for left mouse button
+          cornerstoneTools.pan.activate(elementWebGL, 4); // pan tool for middle mouse button
+          cornerstoneTools.zoomWheel.activate(elementWebGL); // zoom tool for middle mouse wheel
+
+          //cornerstoneTools.imageStats.enable(elementWebGL);
+          loaded = true;
+        }
+
+        function getTransferSyntax() {
+          const value = image.data.string("x00020010");
+          return value + " [" + uids[value] + "]";
+        }
+
+        function getSopClass() {
+          const value = image.data.string("x00080016");
+          return value + " [" + uids[value] + "]";
+        }
+
+        function getPixelRepresentation() {
+          const value = image.data.uint16("x00280103");
+          if (value === undefined) {
+            return;
+          }
+          return value + (value === 0 ? " (unsigned)" : " (signed)");
+        }
+
+        function getPlanarConfiguration() {
+          const value = image.data.uint16("x00280006");
+          if (value === undefined) {
+            return;
+          }
+          return value + (value === 0 ? " (pixel)" : " (plane)");
+        }
+
+        document.getElementById("transferSyntax").innerHTML =
+          getTransferSyntax();
+        document.getElementById("sopClass").innerHTML = getSopClass();
+        document.getElementById("samplesPerPixel").innerHTML =
+          image.data.uint16("x00280002");
+        document.getElementById("photometricInterpretation").innerHTML =
+          image.data.string("x00280004");
+        document.getElementById("numberOfFrames").innerHTML =
+          image.data.string("x00280008");
+        document.getElementById("planarConfiguration").innerHTML =
+          getPlanarConfiguration();
+        document.getElementById("rows").innerHTML =
+          image.data.uint16("x00280010");
+        document.getElementById("columns").innerHTML =
+          image.data.uint16("x00280011");
+        document.getElementById("pixelSpacing").innerHTML =
+          image.data.string("x00280030");
+        document.getElementById("bitsAllocated").innerHTML =
+          image.data.uint16("x00280100");
+        document.getElementById("bitsStored").innerHTML =
+          image.data.uint16("x00280101");
+        document.getElementById("highBit").innerHTML =
+          image.data.uint16("x00280102");
+        document.getElementById("pixelRepresentation").innerHTML =
+          getPixelRepresentation();
+        document.getElementById("windowCenter").innerHTML =
+          image.data.string("x00281050");
+        document.getElementById("windowWidth").innerHTML =
+          image.data.string("x00281051");
+        document.getElementById("rescaleIntercept").innerHTML =
+          image.data.string("x00281052");
+        document.getElementById("rescaleSlope").innerHTML =
+          image.data.string("x00281053");
+        document.getElementById("basicOffsetTable").innerHTML =
+          image.data.elements.x7fe00010 &&
+          image.data.elements.x7fe00010.basicOffsetTable
+            ? image.data.elements.x7fe00010.basicOffsetTable.length
+            : "";
+        document.getElementById("fragments").innerHTML =
+          image.data.elements.x7fe00010 &&
+          image.data.elements.x7fe00010.fragments
+            ? image.data.elements.x7fe00010.fragments.length
+            : "";
+        document.getElementById("minStoredPixelValue").innerHTML =
+          image.minPixelValue;
+        document.getElementById("maxStoredPixelValue").innerHTML =
+          image.maxPixelValue;
+        const end = new Date().getTime();
+        const time = end - start;
+        document.getElementById("totalTime").innerHTML = time + "ms";
+        document.getElementById("loadTime").innerHTML =
+          image.loadTimeInMS + "ms";
+        document.getElementById("decodeTime").innerHTML =
+          image.decodeTimeInMS + "ms";
+      },
+      function (err) {
+        alert(err);
+      }
+    );
+  }
+
+  function base64ToArrayBuffer(base64) {
+    var binaryString = window.atob(base64);
+    var len = binaryString.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+
+  //Convert Image file base64 to Array buffer
+  var arraybuffer = base64ToArrayBuffer(image_Base64);
+  //Create file instance with type "application/dicom"
+  var file_instance = new File([arraybuffer], "{{file_name}}", {
+    type: "application/dicom",
+  });
+  //Get imageId
+  const imageId =
+    cornerstoneWADOImageLoader.wadouri.fileManager.add(file_instance);
+  //load & view dicom file
+  loadAndViewImage(imageId);
+</script>
+{% endblock %}

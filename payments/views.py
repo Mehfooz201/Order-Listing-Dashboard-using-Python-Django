@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from amruloapp.models import Order, OrderGallery
+from cdlapp.models import Order, OrderGallery
 from payments.models import orderPayment, additionalPricePayment
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
-from amruloapp.forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm, RemakeRequestForm
+from cdlapp.forms import OrderForm, UserProfileUpdateForm, StaffUserCreationForm, RemakeRequestForm
 import json
 from django.http import JsonResponse
 import os
@@ -185,11 +185,11 @@ def main_order_billing_page(request , price=0, price_inr=0,
         
     }
 
-    return render(request, 'amruloapp/dashboard/main_order_billing_page.html', context)
+    return render(request, 'cdlapp/dashboard/main_order_billing_page.html', context)
 
 @login_required(login_url='login')
 def main_order_payment_complete(request):
-    return render(request, 'amruloapp/dashboard/main_order_payment_complete.html')
+    return render(request, 'cdlapp/dashboard/main_order_payment_complete.html')
 
 @login_required(login_url='login')
 def additional_price_payment_request(request):
@@ -245,11 +245,11 @@ def additional_price_billing_page(request ,order_num, price=0):
         'additional_price_inr': float(additional_price_inr),
     }
 
-    return render(request, 'amruloapp/dashboard/additional_price_billing_page.html', context)
+    return render(request, 'cdlapp/dashboard/additional_price_billing_page.html', context)
 
 @login_required(login_url='login')
 def additional_price_payment_complete(request):
-    return render(request, 'amruloapp/dashboard/additional_price_payment_complete.html')
+    return render(request, 'cdlapp/dashboard/additional_price_payment_complete.html')
 
 @login_required(login_url='login')
 def later_payment_request(request):
@@ -343,11 +343,11 @@ def later_payment_billing_page(request ,order_num, price=0):
         'price_inr': float(price_inr),
     }
 
-    return render(request, 'amruloapp/dashboard/later_payment_billing_page.html', context)
+    return render(request, 'cdlapp/dashboard/later_payment_billing_page.html', context)
 
 @login_required(login_url='login')
 def later_payment_complete(request):
-    return render(request, 'amruloapp/dashboard/later_payment_complete.html')
+    return render(request, 'cdlapp/dashboard/later_payment_complete.html')
 
 
 @login_required(login_url='login')

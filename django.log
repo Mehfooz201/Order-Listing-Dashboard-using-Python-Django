@@ -3,12 +3,12 @@ Waiting for apps ready_event.
 Apps ready_event triggered. Sending autoreload_started signal.
 Watching dir C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\templates with glob **/*.
 Watching dir C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\lib\site-packages\notifications\templates with glob **/*.
-Watching dir C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates with glob **/*.
+Watching dir C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates with glob **/*.
 Watching dir C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\locale with glob **/*.mo.
 Watching dir C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\payments\locale with glob **/*.mo.
 Watching dir C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\lib\site-packages\notifications\locale with glob **/*.mo.
 Watching dir C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\products\locale with glob **/*.mo.
-Watching dir C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\locale with glob **/*.mo.
+Watching dir C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\locale with glob **/*.mo.
 (0.016) 
             SELECT name, type FROM sqlite_master
             WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
@@ -37,7 +37,7 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\asn1crypto\ocsp.py first seen with mtime 1694557481.3979268
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\email\utils.py first seen with mtime 1624889218.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\setuptools\_vendor\packaging\tags.py first seen with mtime 1698161813.511861
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\decorators.py first seen with mtime 1693392656.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\decorators.py first seen with mtime 1693392656.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\utils\timesince.py first seen with mtime 1694557601.4738717
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\reportlab\lib\pagesizes.py first seen with mtime 1694557544.2793984
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\setuptools\_vendor\packaging\_musllinux.py first seen with mtime 1698161813.4618595
@@ -154,7 +154,7 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\oscrypto\_win\trust_list.py first seen with mtime 1694557510.360901
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\io.py first seen with mtime 1624889218.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\tzlocal\__init__.py first seen with mtime 1694557541.5773938
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\apps.py first seen with mtime 1694941228.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\apps.py first seen with mtime 1694941228.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\setuptools\_vendor\importlib_metadata\_collections.py first seen with mtime 1698161813.3008597
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\reportlab\graphics\charts\piecharts.py first seen with mtime 1694557543.9393964
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\idna\intranges.py first seen with mtime 1694557518.0098991
@@ -617,7 +617,7 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\admin\templatetags\base.py first seen with mtime 1694557578.5248733
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\core\files\__init__.py first seen with mtime 1694557598.400869
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\model_utils\__init__.py first seen with mtime 1694934073.6545877
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\storage.py first seen with mtime 1695191452.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\storage.py first seen with mtime 1695191452.0
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\http\server.py first seen with mtime 1624889218.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\core\checks\__init__.py first seen with mtime 1694557598.2958639
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\xml\etree\__init__.py first seen with mtime 1624889220.0
@@ -889,7 +889,7 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\db\models\sql\where.py first seen with mtime 1694557599.9248662
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\utils\numberformat.py first seen with mtime 1694557601.4468713
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\db\models\fields\related.py first seen with mtime 1694557599.8008668
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\urls.py first seen with mtime 1698147955.4026396
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\urls.py first seen with mtime 1698147955.4026396
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\cryptography\x509\oid.py first seen with mtime 1694557662.0478673
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\reportlab\lib\validators.py first seen with mtime 1694557544.392397
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\asgiref\local.py first seen with mtime 1694557568.9588702
@@ -1013,7 +1013,7 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\reportlab\pdfbase\_fontdata_enc_zapfdingbats.py first seen with mtime 1694557544.478399
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\reportlab\graphics\widgets\signsandsymbols.py first seen with mtime 1694557544.133399
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\models.py first seen with mtime 1694557580.4578645
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\forms.py first seen with mtime 1696115534.139755
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\forms.py first seen with mtime 1696115534.139755
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\html5lib\_trie\_base.py first seen with mtime 1694557563.7548668
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\setuptools\_path.py first seen with mtime 1698161812.7628589
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\notifications\admin.py first seen with mtime 1694934074.5215888
@@ -1032,7 +1032,7 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\cryptography\hazmat\primitives\asymmetric\padding.py first seen with mtime 1694557661.8588753
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\oscrypto\_errors.py first seen with mtime 1694557510.0239027
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\urllib3\poolmanager.py first seen with mtime 1694557486.4099262
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\views.py first seen with mtime 1696412221.539887
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\views.py first seen with mtime 1696412221.539887
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\concurrent\futures\__init__.py first seen with mtime 1624889218.0
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\ctypes\wintypes.py first seen with mtime 1624889218.0
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\weakref.py first seen with mtime 1624889220.0
@@ -1240,7 +1240,7 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\urls\resolvers.py first seen with mtime 1694557601.1188738
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\asn1crypto\pem.py first seen with mtime 1694557481.4149253
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\db\migrations\__init__.py first seen with mtime 1694557599.4528675
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\admin.py first seen with mtime 1698154000.3279822
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\admin.py first seen with mtime 1698154000.3279822
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\core\cache\backends\filebased.py first seen with mtime 1694557598.273868
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\notifications\urls.py first seen with mtime 1694934074.5595894
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\pycparser\plyparser.py first seen with mtime 1694557501.878925
@@ -1255,7 +1255,7 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\selectors.py first seen with mtime 1624889218.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\PIL\__init__.py first seen with mtime 1694557504.113898
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\reportlab\graphics\barcode\usps.py first seen with mtime 1694557543.8433962
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\signals.py first seen with mtime 1695590218.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\signals.py first seen with mtime 1695590218.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\reportlab\graphics\barcode\code128.py first seen with mtime 1694557543.7773976
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\utils\dates.py first seen with mtime 1694557601.2318723
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\unittest\signals.py first seen with mtime 1624889220.0
@@ -1295,7 +1295,7 @@ File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\asyncio\subproc
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\pypdf\_codecs\__init__.py first seen with mtime 1694557559.7718742
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\template\autoreload.py first seen with mtime 1694557600.7158635
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\fontTools\misc\roundTools.py first seen with mtime 1694557519.7118945
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\__init__.py first seen with mtime 1694941138.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\__init__.py first seen with mtime 1694941138.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\sqlparse\filters\tokens.py first seen with mtime 1694557495.1779163
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\db\models\fields\related_descriptors.py first seen with mtime 1694557599.8108711
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\setuptools\_vendor\__init__.py first seen with mtime 1698161813.2588582
@@ -1322,7 +1322,7 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\pyhanko\pdf_utils\crypt\_legacy.py first seen with mtime 1694557670.0888693
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\reportlab\graphics\barcode\widgets.py first seen with mtime 1694557543.853398
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\dispatch\dispatcher.py first seen with mtime 1694557599.9348636
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\models.py first seen with mtime 1698147613.127422
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\models.py first seen with mtime 1698147613.127422
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\admin\helpers.py first seen with mtime 1694557574.1928654
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\reportlab\pdfbase\_fontdata_enc_standard.py first seen with mtime 1694557544.4633918
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\keyword.py first seen with mtime 1624889218.0
@@ -1347,61 +1347,61 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\lib\site-packages\notifications\templates\notifications\list.html first seen with mtime 1694934074.7365868
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\lib\site-packages\notifications\templates\notifications\notice.html first seen with mtime 1694934074.741589
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\lib\site-packages\notifications\templates\notifications\test_tags.html first seen with mtime 1694934074.7845864
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp first seen with mtime 1695760540.9690077
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend first seen with mtime 1695760540.9161494
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\baselogin.html first seen with mtime 1698164836.016765
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard first seen with mtime 1698147191.314307
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\index.html first seen with mtime 1694220652.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\login.html first seen with mtime 1694527302.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\password_reset_complete.html first seen with mtime 1693468156.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\password_reset_confirm.html first seen with mtime 1693468130.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\password_reset_done.html first seen with mtime 1693390636.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\password_reset_email.html first seen with mtime 1693390632.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\password_reset_form.html first seen with mtime 1693390768.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-add_form.html first seen with mtime 1695298532.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-app_index.html first seen with mtime 1694593068.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-base.html first seen with mtime 1695176546.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-base_site.html first seen with mtime 1695135320.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-change_form.html first seen with mtime 1696101486.1998918
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-change_list.html first seen with mtime 1694593496.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-delete_confirmation.html first seen with mtime 1694593488.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-delete_selected_confirmation.html first seen with mtime 1694593476.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-index.html first seen with mtime 1695194642.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-logged-out.html first seen with mtime 1694662350.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-login.html first seen with mtime 1694596916.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-object_history.html first seen with mtime 1694593462.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-password_change_done.html first seen with mtime 1694593298.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-password_change_form.html first seen with mtime 1694593282.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\admin-popup_response.html first seen with mtime 1694447088.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\base-auth.html first seen with mtime 1694584798.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\includes first seen with mtime 1695760540.9573853
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\includes\admin-app_list.html first seen with mtime 1694837290.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\includes\admin-footer.html first seen with mtime 1694544476.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\includes\admin-nav_sidebar.html first seen with mtime 1694837386.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\includes\color_theme_toggle.html first seen with mtime 1694542470.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\backend\includes\fields_set.html first seen with mtime 1695214818.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\additional_price_billing_page.html first seen with mtime 1698164770.1232486
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\additional_price_payment_complete.html first seen with mtime 1695550032.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\base.html first seen with mtime 1695201194.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\cad-result.html first seen with mtime 1694376516.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\create-order.html first seen with mtime 1697983661.561783
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\dcm_viewer.html first seen with mtime 1698161506.9653137
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\framework-agreement-pdf.html first seen with mtime 1692923628.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\framework-manage.html first seen with mtime 1695045690.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\image_viewer.html first seen with mtime 1698158705.7730167
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\later_payment_billing_page.html first seen with mtime 1698164740.4675379
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\later_payment_complete.html first seen with mtime 1697992855.6788223
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\main_order_billing_page.html first seen with mtime 1698164756.1178868
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\main_order_payment_complete.html first seen with mtime 1695490534.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\monthly-statement.html first seen with mtime 1693089554.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\order-documents.html first seen with mtime 1693095796.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\order-list.html first seen with mtime 1698147553.8667073
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\remake-order.html first seen with mtime 1695620816.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\staff-user.html first seen with mtime 1693393474.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\stl_viewer.html first seen with mtime 1698161556.7475011
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\templates\amruloapp\dashboard\user_profile.html first seen with mtime 1693393472.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp first seen with mtime 1695760540.9690077
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend first seen with mtime 1695760540.9161494
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\baselogin.html first seen with mtime 1698164836.016765
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard first seen with mtime 1698147191.314307
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\index.html first seen with mtime 1694220652.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\login.html first seen with mtime 1694527302.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\password_reset_complete.html first seen with mtime 1693468156.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\password_reset_confirm.html first seen with mtime 1693468130.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\password_reset_done.html first seen with mtime 1693390636.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\password_reset_email.html first seen with mtime 1693390632.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\password_reset_form.html first seen with mtime 1693390768.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-add_form.html first seen with mtime 1695298532.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-app_index.html first seen with mtime 1694593068.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-base.html first seen with mtime 1695176546.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-base_site.html first seen with mtime 1695135320.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-change_form.html first seen with mtime 1696101486.1998918
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-change_list.html first seen with mtime 1694593496.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-delete_confirmation.html first seen with mtime 1694593488.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-delete_selected_confirmation.html first seen with mtime 1694593476.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-index.html first seen with mtime 1695194642.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-logged-out.html first seen with mtime 1694662350.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-login.html first seen with mtime 1694596916.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-object_history.html first seen with mtime 1694593462.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-password_change_done.html first seen with mtime 1694593298.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-password_change_form.html first seen with mtime 1694593282.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\admin-popup_response.html first seen with mtime 1694447088.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\base-auth.html first seen with mtime 1694584798.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\includes first seen with mtime 1695760540.9573853
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\includes\admin-app_list.html first seen with mtime 1694837290.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\includes\admin-footer.html first seen with mtime 1694544476.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\includes\admin-nav_sidebar.html first seen with mtime 1694837386.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\includes\color_theme_toggle.html first seen with mtime 1694542470.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\backend\includes\fields_set.html first seen with mtime 1695214818.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\additional_price_billing_page.html first seen with mtime 1698164770.1232486
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\additional_price_payment_complete.html first seen with mtime 1695550032.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\base.html first seen with mtime 1695201194.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\cad-result.html first seen with mtime 1694376516.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\create-order.html first seen with mtime 1697983661.561783
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\dcm_viewer.html first seen with mtime 1698161506.9653137
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\framework-agreement-pdf.html first seen with mtime 1692923628.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\framework-manage.html first seen with mtime 1695045690.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\image_viewer.html first seen with mtime 1698158705.7730167
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\later_payment_billing_page.html first seen with mtime 1698164740.4675379
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\later_payment_complete.html first seen with mtime 1697992855.6788223
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\main_order_billing_page.html first seen with mtime 1698164756.1178868
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\main_order_payment_complete.html first seen with mtime 1695490534.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\monthly-statement.html first seen with mtime 1693089554.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\order-documents.html first seen with mtime 1693095796.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\order-list.html first seen with mtime 1698147553.8667073
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\remake-order.html first seen with mtime 1695620816.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\staff-user.html first seen with mtime 1693393474.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\stl_viewer.html first seen with mtime 1698161556.7475011
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\templates\cdlapp\dashboard\user_profile.html first seen with mtime 1693393472.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\0002_alter_permission_name_max_length.py first seen with mtime 1694557582.108868
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0009_rename_is_paid_order_add_price_is_paid_and_more.py first seen with mtime 1695468018.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0009_rename_is_paid_order_add_price_is_paid_and_more.py first seen with mtime 1695468018.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\payments\migrations\0001_initial.py first seen with mtime 1695192698.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\middleware\clickjacking.py first seen with mtime 1694557600.6158733
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\notifications\migrations\0005_auto_20160504_1520.py first seen with mtime 1694934074.6645908
@@ -1410,11 +1410,11 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\0009_alter_user_last_name_max_length.py first seen with mtime 1694557582.1458726
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\payments\migrations\0002_payment_payment_type.py first seen with mtime 1695405880.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\0008_alter_user_username_max_length.py first seen with mtime 1694557582.1418724
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0012_alter_order_design_requirement_and_more.py first seen with mtime 1696095472.077968
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0003_remove_user_is_staff.py first seen with mtime 1695203606.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0012_alter_order_design_requirement_and_more.py first seen with mtime 1696095472.077968
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0003_remove_user_is_staff.py first seen with mtime 1695203606.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\admin\migrations\0002_logentry_remove_auto_add.py first seen with mtime 1694557577.3998704
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0006_user_user_password_alter_user_confirm_password.py first seen with mtime 1695236224.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0008_rename_is_ordered_order_is_paid.py first seen with mtime 1695407780.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0006_user_user_password_alter_user_confirm_password.py first seen with mtime 1695236224.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0008_rename_is_ordered_order_is_paid.py first seen with mtime 1695407780.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\0010_alter_group_name_max_length.py first seen with mtime 1694557582.150867
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\0011_update_proxy_permissions.py first seen with mtime 1694557582.1578715
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\products\migrations\0001_initial.py first seen with mtime 1695192698.0
@@ -1425,23 +1425,23 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\sessions\migrations\0001_initial.py first seen with mtime 1694557595.982871
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\notifications\migrations\0008_index_together_recipient_unread.py first seen with mtime 1694934074.6795852
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\0003_alter_user_email_max_length.py first seen with mtime 1694557582.115873
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0010_remove_order_add_price_is_paid_and_more.py first seen with mtime 1695599928.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0004_user_is_staff.py first seen with mtime 1695203636.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0011_alter_order_options_ordergallery.py first seen with mtime 1696094988.8892555
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0010_remove_order_add_price_is_paid_and_more.py first seen with mtime 1695599928.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0004_user_is_staff.py first seen with mtime 1695203636.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0011_alter_order_options_ordergallery.py first seen with mtime 1696094988.8892555
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\0012_alter_user_first_name_max_length.py first seen with mtime 1694557582.1628733
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\notifications\migrations\__init__.py first seen with mtime 1694934074.7125895
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\payments\migrations\0003_additionalpricepayment_orderpayment_delete_payment.py first seen with mtime 1695624108.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0002_user_groups_user_is_superuser_user_user_permissions.py first seen with mtime 1695195670.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0002_user_groups_user_is_superuser_user_user_permissions.py first seen with mtime 1695195670.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\0007_alter_validators_add_error_messages.py first seen with mtime 1694557582.1368718
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\products\migrations\__init__.py first seen with mtime 1694872578.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\notifications\migrations\0001_initial.py first seen with mtime 1694934074.6195908
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\db\models\sql\compiler.py first seen with mtime 1694557599.8838718
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0014_order_is_ordered.py first seen with mtime 1698147988.0671275
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0014_order_is_ordered.py first seen with mtime 1698147988.0671275
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\contenttypes\migrations\0002_remove_content_type_name.py first seen with mtime 1694557583.594863
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\notifications\migrations\0006_indexes.py first seen with mtime 1694934074.66959
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0007_order_is_ordered_alter_user_user_address.py first seen with mtime 1695405880.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0007_order_is_ordered_alter_user_user_address.py first seen with mtime 1695405880.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\contenttypes\migrations\0001_initial.py first seen with mtime 1694557583.5798717
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0001_initial.py first seen with mtime 1695192698.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0001_initial.py first seen with mtime 1695192698.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\sessions\backends\db.py first seen with mtime 1694557594.1928656
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\0005_alter_user_last_login_null.py first seen with mtime 1694557582.1258633
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\notifications\migrations\0009_alter_notification_options_and_more.py first seen with mtime 1694934074.6865888
@@ -1450,15 +1450,15 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\notifications\migrations\0007_add_timestamp_index.py first seen with mtime 1694934074.67459
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\notifications\migrations\0004_auto_20150826_1508.py first seen with mtime 1694934074.657585
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\payments\migrations\0004_rename_order_id_orderpayment_order_number.py first seen with mtime 1695638128.0
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0013_ordergallery_extension.py first seen with mtime 1696114721.1402218
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0013_ordergallery_extension.py first seen with mtime 1696114721.1402218
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\0004_alter_user_username_opts.py first seen with mtime 1694557582.1208715
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\contenttypes\migrations\__init__.py first seen with mtime 1694557583.599863
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\0005_user_confirm_password.py first seen with mtime 1695236054.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\0005_user_confirm_password.py first seen with mtime 1695236054.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\migrations\__init__.py first seen with mtime 1694557582.166863
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\migrations\__init__.py first seen with mtime 1690180732.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\migrations\__init__.py first seen with mtime 1690180732.0
 Starting new HTTPS connection (1): theforexapi.com:443
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\messages\storage\fallback.py first seen with mtime 1694557590.178871
-File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\amruloapp\context_processors.py first seen with mtime 1695583196.0
+File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo3\cdlapp\context_processors.py first seen with mtime 1695583196.0
 File C:\Users\user\AppData\Local\Programs\Python\Python39-32\Lib\netrc.py first seen with mtime 1624889218.0
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\template\context_processors.py first seen with mtime 1694557600.731869
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\sessions\serializers.py first seen with mtime 1694557594.167872
@@ -1467,7 +1467,7 @@ File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\messages\storage\cookie.py first seen with mtime 1694557590.1708705
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\auth\context_processors.py first seen with mtime 1694557580.423866
 (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2023-10-24 20:15:16.937788' AND "django_session"."session_key" = 'ph299riw3gl83zzcu3cknlx4ssdbks9o') LIMIT 21; args=('2023-10-24 20:15:16.937788', 'ph299riw3gl83zzcu3cknlx4ssdbks9o'); alias=default
-(0.000) SELECT "amruloapp_user"."id", "amruloapp_user"."password", "amruloapp_user"."is_superuser", "amruloapp_user"."first_name", "amruloapp_user"."last_name", "amruloapp_user"."name", "amruloapp_user"."email", "amruloapp_user"."username", "amruloapp_user"."avatar", "amruloapp_user"."phone", "amruloapp_user"."approval_status", "amruloapp_user"."company_information_id", "amruloapp_user"."country", "amruloapp_user"."user_address", "amruloapp_user"."user_password", "amruloapp_user"."confirm_password", "amruloapp_user"."date_joined", "amruloapp_user"."last_login", "amruloapp_user"."is_admin", "amruloapp_user"."is_staff", "amruloapp_user"."is_active", "amruloapp_user"."is_superadmin" FROM "amruloapp_user" WHERE "amruloapp_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+(0.000) SELECT "cdlapp_user"."id", "cdlapp_user"."password", "cdlapp_user"."is_superuser", "cdlapp_user"."first_name", "cdlapp_user"."last_name", "cdlapp_user"."name", "cdlapp_user"."email", "cdlapp_user"."username", "cdlapp_user"."avatar", "cdlapp_user"."phone", "cdlapp_user"."approval_status", "cdlapp_user"."company_information_id", "cdlapp_user"."country", "cdlapp_user"."user_address", "cdlapp_user"."user_password", "cdlapp_user"."confirm_password", "cdlapp_user"."date_joined", "cdlapp_user"."last_login", "cdlapp_user"."is_admin", "cdlapp_user"."is_staff", "cdlapp_user"."is_active", "cdlapp_user"."is_superadmin" FROM "cdlapp_user" WHERE "cdlapp_user"."id" = 3 LIMIT 21; args=(3,); alias=default
 (0.000) SELECT "products_deliverytiming"."id", "products_deliverytiming"."name" FROM "products_deliverytiming"; args=(); alias=default
 (0.000) SELECT "products_product"."id", "products_product"."original_data_id", "products_product"."design_printing_id", "products_product"."product_type_id", "products_product"."product_sub_type_id", "products_product"."product_material_id", "products_product"."unit_of_measurement_id", "products_product"."product_12hrs_price_id", "products_product"."product_6hrs_price_id", "products_product"."product_2hrs_price_id", "products_product"."group1", "products_product"."group2", "products_product"."group3" FROM "products_product"; args=(); alias=default
 (0.000) SELECT "products_productsubtype"."id", "products_productsubtype"."name" FROM "products_productsubtype" WHERE "products_productsubtype"."id" = 1 LIMIT 21; args=(1,); alias=default
@@ -1825,7 +1825,7 @@ https://theforexapi.com:443 "GET /api/latest?base=USA&symbols=INR&rtype=fpy HTTP
 (0.000) SELECT "products_product2hrsprice"."id", "products_product2hrsprice"."product_sub_type_id", "products_product2hrsprice"."delivery_timing_id", "products_product2hrsprice"."price" FROM "products_product2hrsprice" WHERE "products_product2hrsprice"."id" = 25 LIMIT 21; args=(25,); alias=default
 (0.000) SELECT "products_deliverytiming"."id", "products_deliverytiming"."name" FROM "products_deliverytiming" WHERE "products_deliverytiming"."id" = 3 LIMIT 21; args=(3,); alias=default
 (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2023-10-24 20:16:02.320815' AND "django_session"."session_key" = 'ph299riw3gl83zzcu3cknlx4ssdbks9o') LIMIT 21; args=('2023-10-24 20:16:02.320815', 'ph299riw3gl83zzcu3cknlx4ssdbks9o'); alias=default
-(0.016) SELECT "amruloapp_user"."id", "amruloapp_user"."password", "amruloapp_user"."is_superuser", "amruloapp_user"."first_name", "amruloapp_user"."last_name", "amruloapp_user"."name", "amruloapp_user"."email", "amruloapp_user"."username", "amruloapp_user"."avatar", "amruloapp_user"."phone", "amruloapp_user"."approval_status", "amruloapp_user"."company_information_id", "amruloapp_user"."country", "amruloapp_user"."user_address", "amruloapp_user"."user_password", "amruloapp_user"."confirm_password", "amruloapp_user"."date_joined", "amruloapp_user"."last_login", "amruloapp_user"."is_admin", "amruloapp_user"."is_staff", "amruloapp_user"."is_active", "amruloapp_user"."is_superadmin" FROM "amruloapp_user" WHERE "amruloapp_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+(0.016) SELECT "cdlapp_user"."id", "cdlapp_user"."password", "cdlapp_user"."is_superuser", "cdlapp_user"."first_name", "cdlapp_user"."last_name", "cdlapp_user"."name", "cdlapp_user"."email", "cdlapp_user"."username", "cdlapp_user"."avatar", "cdlapp_user"."phone", "cdlapp_user"."approval_status", "cdlapp_user"."company_information_id", "cdlapp_user"."country", "cdlapp_user"."user_address", "cdlapp_user"."user_password", "cdlapp_user"."confirm_password", "cdlapp_user"."date_joined", "cdlapp_user"."last_login", "cdlapp_user"."is_admin", "cdlapp_user"."is_staff", "cdlapp_user"."is_active", "cdlapp_user"."is_superadmin" FROM "cdlapp_user" WHERE "cdlapp_user"."id" = 3 LIMIT 21; args=(3,); alias=default
 - Broken pipe from ('127.0.0.1', 60535)
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\contrib\staticfiles\storage.py first seen with mtime 1694557598.066867
 https://theforexapi.com:443 "GET /api/latest?base=USA&symbols=INR&rtype=fpy HTTP/1.1" 504 160
@@ -2008,8 +2008,8 @@ https://theforexapi.com:443 "GET /api/latest?base=USA&symbols=INR&rtype=fpy HTTP
 (0.000) SELECT "products_deliverytiming"."id", "products_deliverytiming"."name" FROM "products_deliverytiming" WHERE "products_deliverytiming"."id" = 3 LIMIT 21; args=(3,); alias=default
 (0.016) SELECT COUNT(*) AS "__count" FROM "notifications_notification" WHERE ("notifications_notification"."recipient_id" = 3 AND "notifications_notification"."unread"); args=(3,); alias=default
 (0.000) SELECT "notifications_notification"."id", "notifications_notification"."level", "notifications_notification"."recipient_id", "notifications_notification"."unread", "notifications_notification"."actor_content_type_id", "notifications_notification"."actor_object_id", "notifications_notification"."verb", "notifications_notification"."description", "notifications_notification"."target_content_type_id", "notifications_notification"."target_object_id", "notifications_notification"."action_object_content_type_id", "notifications_notification"."action_object_object_id", "notifications_notification"."timestamp", "notifications_notification"."public", "notifications_notification"."deleted", "notifications_notification"."emailed", "notifications_notification"."data" FROM "notifications_notification" WHERE ("notifications_notification"."recipient_id" = 3 AND "notifications_notification"."unread") ORDER BY "notifications_notification"."timestamp" DESC; args=(3,); alias=default
-(0.000) SELECT "auth_group"."id", "auth_group"."name" FROM "auth_group" INNER JOIN "amruloapp_user_groups" ON ("auth_group"."id" = "amruloapp_user_groups"."group_id") WHERE "amruloapp_user_groups"."user_id" = 3 LIMIT 1; args=(3,); alias=default
-(0.000) SELECT "amruloapp_companyinformation"."id", "amruloapp_companyinformation"."company_name", "amruloapp_companyinformation"."company_phone", "amruloapp_companyinformation"."company_address", "amruloapp_companyinformation"."company_bank_name", "amruloapp_companyinformation"."company_bank_account_number" FROM "amruloapp_companyinformation"; args=(); alias=default
+(0.000) SELECT "auth_group"."id", "auth_group"."name" FROM "auth_group" INNER JOIN "cdlapp_user_groups" ON ("auth_group"."id" = "cdlapp_user_groups"."group_id") WHERE "cdlapp_user_groups"."user_id" = 3 LIMIT 1; args=(3,); alias=default
+(0.000) SELECT "cdlapp_companyinformation"."id", "cdlapp_companyinformation"."company_name", "cdlapp_companyinformation"."company_phone", "cdlapp_companyinformation"."company_address", "cdlapp_companyinformation"."company_bank_name", "cdlapp_companyinformation"."company_bank_account_number" FROM "cdlapp_companyinformation"; args=(); alias=default
 (0.000) SELECT "products_originaldata"."id", "products_originaldata"."name" FROM "products_originaldata"; args=(); alias=default
 (0.000) SELECT "products_designprinting"."id", "products_designprinting"."name" FROM "products_designprinting"; args=(); alias=default
 (0.000) SELECT "products_producttype"."id", "products_producttype"."name" FROM "products_producttype"; args=(); alias=default
@@ -2020,7 +2020,7 @@ https://theforexapi.com:443 "GET /api/latest?base=USA&symbols=INR&rtype=fpy HTTP
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\conf\locale\en\formats.py first seen with mtime 1694557571.373869
 File C:\Users\user\Documents\Software\Freelance Job\Web Developing\Web Projects\Amrulo\myenv\Lib\site-packages\django\conf\locale\en\__init__.py first seen with mtime 1694557571.3678694
 (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2023-10-24 20:16:45.659129' AND "django_session"."session_key" = 'ph299riw3gl83zzcu3cknlx4ssdbks9o') LIMIT 21; args=('2023-10-24 20:16:45.659129', 'ph299riw3gl83zzcu3cknlx4ssdbks9o'); alias=default
-(0.000) SELECT "amruloapp_user"."id", "amruloapp_user"."password", "amruloapp_user"."is_superuser", "amruloapp_user"."first_name", "amruloapp_user"."last_name", "amruloapp_user"."name", "amruloapp_user"."email", "amruloapp_user"."username", "amruloapp_user"."avatar", "amruloapp_user"."phone", "amruloapp_user"."approval_status", "amruloapp_user"."company_information_id", "amruloapp_user"."country", "amruloapp_user"."user_address", "amruloapp_user"."user_password", "amruloapp_user"."confirm_password", "amruloapp_user"."date_joined", "amruloapp_user"."last_login", "amruloapp_user"."is_admin", "amruloapp_user"."is_staff", "amruloapp_user"."is_active", "amruloapp_user"."is_superadmin" FROM "amruloapp_user" WHERE "amruloapp_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+(0.000) SELECT "cdlapp_user"."id", "cdlapp_user"."password", "cdlapp_user"."is_superuser", "cdlapp_user"."first_name", "cdlapp_user"."last_name", "cdlapp_user"."name", "cdlapp_user"."email", "cdlapp_user"."username", "cdlapp_user"."avatar", "cdlapp_user"."phone", "cdlapp_user"."approval_status", "cdlapp_user"."company_information_id", "cdlapp_user"."country", "cdlapp_user"."user_address", "cdlapp_user"."user_password", "cdlapp_user"."confirm_password", "cdlapp_user"."date_joined", "cdlapp_user"."last_login", "cdlapp_user"."is_admin", "cdlapp_user"."is_staff", "cdlapp_user"."is_active", "cdlapp_user"."is_superadmin" FROM "cdlapp_user" WHERE "cdlapp_user"."id" = 3 LIMIT 21; args=(3,); alias=default
 (0.000) SELECT "products_deliverytiming"."id", "products_deliverytiming"."name" FROM "products_deliverytiming"; args=(); alias=default
 (0.016) SELECT "products_product"."id", "products_product"."original_data_id", "products_product"."design_printing_id", "products_product"."product_type_id", "products_product"."product_sub_type_id", "products_product"."product_material_id", "products_product"."unit_of_measurement_id", "products_product"."product_12hrs_price_id", "products_product"."product_6hrs_price_id", "products_product"."product_2hrs_price_id", "products_product"."group1", "products_product"."group2", "products_product"."group3" FROM "products_product"; args=(); alias=default
 (0.000) SELECT "products_productsubtype"."id", "products_productsubtype"."name" FROM "products_productsubtype" WHERE "products_productsubtype"."id" = 1 LIMIT 21; args=(1,); alias=default

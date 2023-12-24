@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'payments',
     'notifications',
     'products',
-    'amruloapp',
+    'cdlapp',
 ]
 
 
-AUTH_USER_MODEL = 'amruloapp.User'
+AUTH_USER_MODEL = 'cdlapp.User'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -75,7 +75,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "amruloapp.context_processors.amruloapp_context",
+                "cdlapp.context_processors.cdlapp_context",
             ],
         },
     },
@@ -148,8 +148,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+PASSWORD_HASHERS = [
+    "cdlapp.hashers.PlainTextPasswordHasher",
+]
+
 AUTHENTICATION_BACKENDS = [
-    'amruloapp.backends.EmailBackend',
+    'cdlapp.backends.EmailBackend',
     #'django.contrib.auth.backends.ModelBackend',
 ]
 
@@ -169,7 +173,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'amruloapp', 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'cdlapp', 'static')]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

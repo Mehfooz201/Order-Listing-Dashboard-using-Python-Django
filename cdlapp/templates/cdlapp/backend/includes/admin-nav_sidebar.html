@@ -1,0 +1,37 @@
+{% load i18n static %}
+
+<!-- SIDEBAR -->
+<aside
+  style="overflow-y: scroll"
+  class="main-sidebar sidebar-dark-primary elevation-4"
+>
+  <a href="{% url 'admin:index' %}" class="brand-link">
+    <div class="text-center">
+      <img
+        width="120px"
+        height="100px"
+        src="{% static 'cdlapp/dashboard/dist/img/CDL Logo1.png' %}"
+      />
+      {% comment %}
+      <h3 class="brand-text font-weight-medium">CDL Lab</h3>
+      {% endcomment %}
+    </div>
+  </a>
+
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <li class="nav-item">
+          {% include 'cdlapp/backend/includes/admin-app_list.html' with app_list=available_apps show_changelinks=False %}
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+
+<!-- SIDEBAR -->
