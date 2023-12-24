@@ -1,4 +1,4 @@
- {% extends 'amruloapp/dashboard/base.html' %} {% load static %} {% block title %} Create the order {% endblock title %} {% block custom_style %} {% comment %} Custom css here {% endcomment %}
+ {% extends 'cdlapp/dashboard/base.html' %} {% load static %} {% block title %} Create the order {% endblock title %} {% block custom_style %} {% comment %} Custom css here {% endcomment %}
 <style>
     /* Plugin Style Start */
     
@@ -781,10 +781,10 @@
         }
 
         function readmultifiles2(files) {
-            let pdf_icon = "{% static 'amruloapp/assets/images/pdf-file.png' %}";
-            let stl_icon = "{% static 'amruloapp/assets/images/stl-file.png' %}";
-            let dcm_icon = "{% static 'amruloapp/assets/images/dcm-file.png' %}";
-            let html_icon = "{% static 'amruloapp/assets/images/html-file.png' %}";
+            let pdf_icon = "{% static 'cdlapp/assets/images/pdf-file.png' %}";
+            let stl_icon = "{% static 'cdlapp/assets/images/stl-file.png' %}";
+            let dcm_icon = "{% static 'cdlapp/assets/images/dcm-file.png' %}";
+            let html_icon = "{% static 'cdlapp/assets/images/html-file.png' %}";
             let img_url = "";
 
             function setup_reader(file) {
