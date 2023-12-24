@@ -148,10 +148,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-PASSWORD_HASHERS = [
-    "cdlapp.hashers.PlainTextPasswordHasher",
-]
-
 AUTHENTICATION_BACKENDS = [
     'cdlapp.backends.EmailBackend',
     #'django.contrib.auth.backends.ModelBackend',
