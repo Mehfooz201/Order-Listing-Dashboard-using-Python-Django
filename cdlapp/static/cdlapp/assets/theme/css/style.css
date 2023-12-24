@@ -3293,3 +3293,55 @@ html.is-builder .article .lead:not([data-app-remove-it])+div .btn {
         right: 10px;
     }
 }
+
+.banner-image {
+    position: relative;
+    width: 600px;
+    object-fit: cover;
+}
+
+@media(max-width: 600px) {
+    .banner-image {
+        width: 100%;
+    }
+}
+
+.steps-list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.steps-list::before {
+    content: '';
+    width: 3px;
+    height: calc(100% - 34px);
+    position: absolute;
+    background-color: #000;
+    top: 17px;
+    left: 16px;
+}
+
+.steps-list li {
+    position: relative;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.steps-list li>div:nth-child(1) {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    padding: 17px;
+    border-radius: 50%;
+    background-color: #000;
+    color: #fff;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
