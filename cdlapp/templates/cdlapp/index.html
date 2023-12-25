@@ -400,21 +400,12 @@
 
                         <div class="span-title">
 
-                            {% comment %} <span class="mbr-section-title display-2 text-center pad-r">Intagli &nbsp;<br />
-                </span>
-
-                            <span class="mbr-section display-2 text-center pad-r" style="font-size: larger">
-                  3D CAD CAM DESIGN Platform &nbsp;<br />
-                  <a style="font-size: larger"
-                    >By confidential Laboratory Pvt Ltd &nbsp;</a
-                  ><br />
-                </span> {% endcomment %}
                             <img src="{% static 'cdlapp/assets/images/cdl logo ok (1).png' %}" alt="" class="banner-image" />
 
                         </div>
 
                         <div class="span-title">
-                            <span class="mbr-section-title display-2 text-center pad-r">Technology for Today &nbsp;<br
+                            <span class="mbr-section-title display-2 text-center ">Technology for Today &nbsp;<br
                 /></span>
                             <span class="mbr-section-title display-2 element typedextHeader11-v" adress="typedextHeader11-v" firstel="and Tomorrow " secondel="" thirdel="" typespeed="40">
                 </span>
@@ -497,7 +488,8 @@
                         <h4 class="mbr-section-title display-3">
                             Get Set With Four Simple Steps
                         </h4>
-                        <ul class="steps-list">
+
+                        {% comment %} <ul class="steps-list">
                             <li style="font-size: x-large">
                                 <div>1</div>
                                 <div>Login</div>
@@ -514,7 +506,28 @@
                                 <div>4</div>
                                 <div>Get Quote & Make a Payment</div>
                             </li>
-                        </ul>
+                        </ul> {% endcomment %}
+
+                        <div class="horizontal-steps">
+                            <div class="step">
+                                <div class="number">1</div>
+                                <div class="text">Login</div>
+                            </div>
+                            <div class="step">
+                                <div class="number">2</div>
+                                <div class="text">Create an Order</div>
+                            </div>
+                            <div class="step">
+                                <div class="number">3</div>
+                                <div class="text">Upload STL File</div>
+                            </div>
+                            <div class="step">
+                                <div class="number">4</div>
+                                <div class="text">Get Quote & Make a Payment</div>
+                            </div>
+                        </div>
+                        
+
                     </div>
                 </div>
                 <div class="advantages____section">
