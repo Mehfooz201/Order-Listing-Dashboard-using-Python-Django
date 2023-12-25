@@ -324,7 +324,7 @@ def send_user_registration_email(sender, instance, created, **kwargs):
             f"Thank you for registering with our Company. Here are your login details:\n\n"
             f"Customer Username: {instance.username}\n"
             f"Email: {instance.email}\n"
-            #f"Password: {instance.password}\n\n"
+            f"Password: {instance.password}\n\n"
             f"You can log in to our website using these credentials.\n"
             f"Please visit our website at: {homepage_url}\n\n"  # Include the URL here
             f"Best regards,\nConfident Dental Laboratory (Pvt.) Ltd"

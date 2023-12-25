@@ -3296,7 +3296,7 @@ html.is-builder .article .lead:not([data-app-remove-it])+div .btn {
 
 .banner-image {
     position: relative;
-    width: 600px;
+    width: 700px;
     object-fit: cover;
 }
 
@@ -3306,7 +3306,8 @@ html.is-builder .article .lead:not([data-app-remove-it])+div .btn {
     }
 }
 
-.steps-list {
+
+/* .steps-list {
     position: relative;
     margin: 0;
     padding: 0;
@@ -3344,4 +3345,49 @@ html.is-builder .article .lead:not([data-app-remove-it])+div .btn {
     align-items: center;
     justify-content: center;
     z-index: 2;
+} */
+
+.horizontal-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.number {
+    width: 34px;
+    height: 34px;
+    padding: 17px;
+    border-radius: 50%;
+    background-color: #000;
+    color: #fff;
+    margin-right: 10px;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    font-size: x-large;
+    margin-right: 20px;
+}
+
+
+/* Media Query for Mobile */
+
+@media screen and (max-width: 768px) {
+    .number {
+        font-size: large;
+        /* Decrease the font size for numbers on smaller screens */
+    }
+    .text {
+        font-size: medium;
+        /* Decrease the font size for text on smaller screens */
+    }
 }
