@@ -9,6 +9,7 @@ from products.models import (
     ProductMaterial,DeliveryTiming,
     Product12HrsPrice,Product6HrsPrice,Product2HrsPrice,Product
     )
+from django.contrib.auth.hashers import check_password
 from payments.models import orderPayment, additionalPricePayment
 from .forms import (
     CustomAuthenticationForm, 
@@ -133,13 +134,17 @@ def addStaffUser(request):
             username = staff_user_form.cleaned_data['username']
             password1 = staff_user_form.cleaned_data['password1']
             password2 = staff_user_form.cleaned_data['password2']
+            user_password = staff_user_form.cleaned_data['user_password']
             
             if User.objects.filter(email=email).exists():
                 messages.error(request, 'Email already exists. Please use a different email.')
             elif password1 != password2:
                 messages.error(request, 'Passwords do not match. Please re-enter your password.')
+            elif not check_password(user_password, user.password1):
+                raise ValueError("The plain text password does not match the hashed password")
+
             else:
-                user = User.objects.create_user(name = fullname, username = username,  email = email, password = password1)
+                user = User.objects.create_user(name = fullname, username = username,  email = email, password = password1, user_password = user_password)
                 user.save()
                 user.is_active = True
                 user.is_admin = True
@@ -564,7 +569,4 @@ def orderDocuments(request):
 
     context = {'active_item': 'order-docs', 'order_data':order_data}
     return render(request, 'cdlapp/dashboard/order-documents.html', context)
-
-
-
 

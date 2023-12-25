@@ -15,7 +15,14 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 class StaffUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'name', 'email', 'phone', 'password1', 'password2']
+        fields = ['username', 'name', 'email', 'phone', 'password1', 'password2', 'user_password']
+        def clean(self):
+            cleaned_data = super().clean()
+            password1 = cleaned_data.get('password1')
+            user_password = cleaned_data.get('user_password')
+            if password1 != user_password:
+                raise forms.ValidationError('Passwords do not match')
+            return cleaned_data
 
    
 
@@ -29,7 +36,15 @@ class UserProfileUpdateForm(ModelForm):
 class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'name', 'email', 'phone', 'password1', 'password2']
+        fields = ['username', 'name', 'email', 'phone', 'password1', 'password2', 'user_password']
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get('password1')
+        user_password = cleaned_data.get('user_password')
+        if password1 != user_password:
+            raise forms.ValidationError('Passwords do not match')
+        return cleaned_data
 
 class MyUserUpdateForm(forms.ModelForm):
     class Meta:
@@ -40,7 +55,7 @@ class MyUserUpdateForm(forms.ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['avatar', 'name', 'username', 'email']
+        fields = ['avatar', 'name', 'username', 'email', 'user_password']
 
 
 class RemakeRequestForm(forms.ModelForm):

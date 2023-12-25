@@ -10,34 +10,41 @@ from products.models import (
     OriginalData,DesignPrinting,ProductType,ProductSubType,
     ProductMaterial,DeliveryTiming,Product
     )
-
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import AbstractBaseUser , BaseUserManager, PermissionsMixin
 from cdlapp.storage import OverwriteStorage
 custom_store = OverwriteStorage()
 
 # Create your models here.
 class MyAccountManager(BaseUserManager):
-    def create_user(self,username,name,email,password=None):
+    def create_user(self,username,name,email,password=None, user_password=None):
         user=self.model(
             email=self.normalize_email(email),
             username=username,
             name=name,
+            user_password=user_password
         )   
         user.set_password(password)
         user.save(using=self._db)
+        if not check_password(user_password, user.password):
+            raise ValueError("The plain text password does not match the hashed password")
         return user
-    def create_superuser(self,name,username,email,password): 
+    
+    def create_superuser(self,name,username,email,password,user_password): 
         user=self.create_user(
             email=self.normalize_email(email),
             username=username,
             name=name,
             password=password,
+            user_password=user_password
         )   
         user.is_admin = True
         user.is_staff = True
         user.is_active = True
         user.is_superadmin = True
         user.save(using=self._db)
+        if not check_password(user_password, user.password):
+            raise ValueError("The plain text password does not match the hashed password")
         return user
 
 
@@ -67,7 +74,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     country = models.CharField(max_length=50, null=True, blank=True)
     user_address = models.TextField(default='', null=True, blank=True)
 
-    #user_password = models.CharField(max_length=50, blank=True, null=True, default='')
+    user_password = models.CharField(max_length=50, blank=True, null=True, default='')
     #confirm_password = models.CharField(max_length=50, blank=True, null=True, default='')
     
     # Required
@@ -79,7 +86,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     is_superadmin = models.BooleanField(default=False)
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name','username']
+    REQUIRED_FIELDS = ['name','username', 'user_password']
     
     objects = MyAccountManager()
 
@@ -324,7 +331,7 @@ def send_user_registration_email(sender, instance, created, **kwargs):
             f"Thank you for registering with our Company. Here are your login details:\n\n"
             f"Customer Username: {instance.username}\n"
             f"Email: {instance.email}\n"
-            f"Password: {instance.password}\n\n"
+            f"Password: {instance.user_password}\n\n"
             f"You can log in to our website using these credentials.\n"
             f"Please visit our website at: {homepage_url}\n\n"  # Include the URL here
             f"Best regards,\nConfident Dental Laboratory (Pvt.) Ltd"
