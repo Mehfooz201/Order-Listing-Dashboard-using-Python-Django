@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import  User, Order, FrameworkAgreement, CompanyInformation, FrameworkInformation
 from products.models import (
-    OriginalData,DesignPrinting,ProductType,ProductSubType,
+    OriginalData,DesignPrinting, ProductSubType,
     ProductMaterial,DeliveryTiming,
     Product12HrsPrice,Product6HrsPrice,Product2HrsPrice,Product
     )
@@ -313,7 +313,6 @@ def createOrder(request):
     company = CompanyInformation.objects.all()
     original_data = OriginalData.objects.all()
     design_printing = DesignPrinting.objects.all()
-    product_type = ProductType.objects.all()
     product_sub_type = ProductSubType.objects.all()
 
     product_material = ProductMaterial.objects.all()
@@ -346,7 +345,6 @@ def createOrder(request):
         'company' : company,
         'original_data' : original_data,
         'design_printing' : design_printing,
-        'product_type' : product_type,
         'product_sub_type' : product_sub_type,
         'product_material' : product_material,
         'delivery_timing' : delivery_timing,

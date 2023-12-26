@@ -1,5 +1,5 @@
 from django.db import models
-from cdlapp.models import User,Order
+from cdlapp.models import User, Order
 # Create your models here.
 
 class orderPayment(models.Model):

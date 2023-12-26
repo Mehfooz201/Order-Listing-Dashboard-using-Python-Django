@@ -23,7 +23,6 @@ def main_order_payment_request(request):
                     requirements_remarks = body['requirements_remarks'],
                     original_data_id = int(body['original_data']),
                     design_printing_id = int(body['design_printing']),
-                    product_type_id = int(body['product_type']),
                     product_sub_type_id = int(body['product_sub_type']),
                     product_material_id = int(body['product_material']),
                     delivery_timing_id = int(body['delivery_timing']),
@@ -83,7 +82,7 @@ def main_order_payment_request(request):
 
 @login_required(login_url='login')
 def main_order_billing_page(request , price=0, price_inr=0,
-            manufacturer=None, product_type=None, product_sub_type=None, product_type_=None, product_sub_type_=None,
+            manufacturer=None, product_sub_type=None,  product_sub_type_=None,
              customer_name=None, purchaser=None,order_type=None, salesman=None,
              requirements_remarks=None, original_data=None,design_printing=None, product_material=None,
              delivery_timing=None,currency=None, quantity=None,
@@ -103,9 +102,7 @@ def main_order_billing_page(request , price=0, price_inr=0,
 
             original_data = request.POST.get('original_data')
             design_printing = request.POST.get('design_printing')
-            product_type = request.POST.get('product_type')
             product_sub_type = request.POST.get('product_sub_type')
-            product_type_ = form.cleaned_data['product_type']
             product_sub_type_ = form.cleaned_data['product_sub_type']
             product_material = request.POST.get('product_material')
 
@@ -165,9 +162,7 @@ def main_order_billing_page(request , price=0, price_inr=0,
 
         'original_data': original_data,
         'design_printing': design_printing,
-        'product_type': product_type,
         'product_sub_type': product_sub_type,
-        'product_type_': product_type_,
         'product_sub_type_': product_sub_type_,
         'product_material': product_material,
 
@@ -305,9 +300,7 @@ def later_payment_billing_page(request ,order_num, price=0):
 
     original_data = order.original_data
     design_printing = order.design_printing
-    product_type = order.product_type
     product_sub_type = order.product_sub_type
-    product_type_ = order.product_type
     product_sub_type_ = order.product_sub_type
     product_material = order.product_material
 
@@ -328,9 +321,7 @@ def later_payment_billing_page(request ,order_num, price=0):
 
         'original_data': original_data,
         'design_printing': design_printing,
-        'product_type': product_type,
         'product_sub_type': product_sub_type,
-        'product_type_': product_type_,
         'product_sub_type_': product_sub_type_,
         'product_material': product_material,
 
@@ -363,7 +354,6 @@ def create_order_request(request):
                     requirements_remarks = body['requirements_remarks'],
                     original_data_id = int(body['original_data']),
                     design_printing_id = int(body['design_printing']),
-                    product_type_id = int(body['product_type']),
                     product_sub_type_id = int(body['product_sub_type']),
                     product_material_id = int(body['product_material']),
                     delivery_timing_id = int(body['delivery_timing']),

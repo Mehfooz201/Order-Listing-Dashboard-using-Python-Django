@@ -115,7 +115,7 @@ Custom css here {% endcomment %}
                   <th>Sr. No</th>
                   <th>Order Number</th>
                   <th>User Name</th>
-                  <th>Product Types</th>
+                  <th>Product</th>
                   <th>Product Quantity</th>
                   <th>Delivery Hours</th>
                   <th>Currency</th>
@@ -133,13 +133,13 @@ Custom css here {% endcomment %}
                   <td>{{data.quantity}}</td>
                   <td>{{data.delivery_timing}}</td>
                   <td>{{data.currency}}</td>
-
                   <td>
-                    {% if data.currency == 'USA' %} ${{ data.price|floatformat:2
-                    }} {% elif data.currency == 'INR' %} ₹{{
-                    data.price|floatformat:2 }} {% else %} {{
-                    data.price|floatformat:2 }}
-                    <!-- Default case if no currency symbol is available -->
+                    {% if data.currency == 'USA' %}
+                    ${{ data.price|floatformat:2 }}
+                    {% elif data.currency == 'INR' %}
+                    ₹{{ data.price|floatformat:2 }}
+                    {% else %}
+                    {{ data.price|floatformat:2 }} <!-- Default case if no currency symbol is available -->
                     {% endif %}
                   </td>
 

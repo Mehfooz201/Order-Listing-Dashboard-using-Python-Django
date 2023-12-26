@@ -12,22 +12,22 @@ class DesignPrinting(models.Model):
     def __str__(self):
         return self.name
     
-class ProductType(models.Model):
-    name = models.CharField(max_length=500)
+# class ProductType(models.Model):
+#     name = models.CharField(max_length=500)
 
-    class Meta:
-        verbose_name = "Product"
-        verbose_name_plural = "Products"
+#     class Meta:
+#         verbose_name = "Product"
+#         verbose_name_plural = "Products"
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
     
 class ProductSubType(models.Model):
     name = models.CharField(max_length=500)
 
     class Meta:
-        verbose_name = "Product Type"
-        verbose_name_plural = "Product Type"
+        verbose_name = "All Products"
+        verbose_name_plural = "All Products"
 
     def __str__(self):
         return self.name
@@ -75,7 +75,6 @@ class Product2HrsPrice(models.Model):
 class Product(models.Model):
     original_data = models.ForeignKey(OriginalData, on_delete=models.CASCADE)
     design_printing = models.ForeignKey(DesignPrinting, on_delete=models.CASCADE)
-    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
     product_sub_type = models.ForeignKey(ProductSubType, on_delete=models.CASCADE)
     product_material = models.ForeignKey(ProductMaterial, on_delete=models.CASCADE)
     product_12hrs_price = models.ForeignKey(Product12HrsPrice, on_delete=models.CASCADE)
@@ -90,4 +89,4 @@ class Product(models.Model):
 
 
     class Meta:
-        verbose_name = "All Products Infromation"
+        verbose_name = "Products Infromation"

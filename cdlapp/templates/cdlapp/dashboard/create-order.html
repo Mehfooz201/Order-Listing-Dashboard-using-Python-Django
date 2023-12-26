@@ -193,11 +193,12 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group form-group-row"> <span class="text-danger pr-1">* </span>
+                                        <div class="form-group form-group-row"> <span class="text-danger1 pr-1">* </span>
                                             <label for="customer_name">Customer Name (Clinic/ Lab Name):</label>
                                             <input type="text" class="form-control" id="customer_name" name='customer_name' placeholder="Customer name" value="{{request.user.name}}" required />
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group form-group-row">
                                             <label for="manufacturer">Manufacturer</label> {% comment %} update <i class="fas fa-heart-rate    "></i> {% endcomment %} {% for data in company %}
@@ -208,7 +209,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
+                                        <div class="form-group form-group-row"><span class="text-danger1 pr-1">* </span>
                                             <label for="order_type">Order Type</label>
                                             <select name="order_type" id="order_type" class="form-control" placeholder="Select any choices" required>
                                                 {% for value, label in form.order_type.field.choices %}
@@ -247,61 +248,6 @@
                         </div>
 
 
-                        {% comment %}
-                        <div class="card card-default">
-                            <div class="card-header">
-                                <h3 class="card-title d-flex align-items-center">
-                                    <div class="mr-2">Shipping Address</div>
-                                    <a href="{% url 'address-management' %}" class="badge bg-primary">Change address</a>
-                                </h3>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
-                                            <label for="customer_contacts">Contacts</label>
-                                            <input type="text" class="form-control" id="customer_contacts" placeholder="customer Contact" name='contacts' required />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
-                                            <label for="email">Email</label>
-                                            <input type="email" class="form-control" id="email" placeholder="Email" name='email' required />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
-                                            <label for="country">Country</label>
-                                            <select name="country" id="country" class="form-control" required>
-                                        {% for value, label in form.country.field.choices %}
-                                            <option value="{{ value }}">{{ label }}</option> 
-                                        {% endfor %}
-                                    </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
-                                            <label for="rec_address">
-                                        Receiving Address                             
-                                    </label>
-                                            <textarea class="form-control" name='receiving_address' id="rec_address" placeholder="Enter Recieving Address" required></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> {% endcomment %}
-
-
                         <div class="card card-default">
                             <div class="card-header">
                                 <h3 class="card-title">Product information</h3>
@@ -313,100 +259,84 @@
                             </div>
 
                             <div class="card-body">
+
                                 <div class="row">
-                                    <div class="col-md-4">
+
+                                    <div class="col-md-6">
                                         <div class="form-group form-group-row">
                                             <label for="original_data">Original Data</label>
                                             <select id="original_data" class="form-control" name='original_data' required>
-                                    {% for value in original_data %}
-                                        <option value="{{ value.id }}">{{ value.name }}</option> 
-                                    {% endfor %}
-                                </select>
+                                                {% for value in original_data %}
+                                                    <option value="{{ value.id }}">{{ value.name }}</option> 
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
-                                            <label for="typesetting_printing">Design Printing</label
-                                >
-                                <select
-                                    id="design_printing"
-                                    class="form-control"
-                                    name='design_printing' required>
-                                    {% for value in design_printing %}
-                                        <option value="{{ value.id }}">{{ value.name }}</option> 
-                                    {% endfor %}
-                                </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-group-row">
-                                <label for="product_type">Product</label><span class="text-danger pr-1">* </span>
-                                            <select id="id_product_type" class="form-control" name='product_type' required>
-                                    {% for value in product_type %}
-                                        <option value="{{ value.id }}">{{ value.name }}</option> 
-                                    {% endfor %}
-                                </select>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group form-group-row"><span class="text-danger pr-1">* </span>
-                                            <label for="product_type_type">Product Types</label>
+                                        <div class="form-group form-group-row"><span class="text-danger1 pr-1">* </span>
+                                            <label for="typesetting_printing">Design Printing</label>
+                                            <select
+                                                id="design_printing"
+                                                class="form-control"
+                                                name='design_printing' required>
+                                                {% for value in design_printing %}
+                                                    <option value="{{ value.id }}">{{ value.name }}</option> 
+                                                {% endfor %}
+                                            </select>
+                                            </div>
+                                    </div>
+
+                                </div>
+                                         
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="form-group form-group-row"><span class="text-danger1 pr-1">* </span>
+                                            <label for="product_type_type">Product</label>
                                             <select id="id_product_sub_type" class="form-control" name='product_sub_type' required>
-                                    {% for value in product_sub_type %}
-                                        <option value="{{ value.id }}">{{ value.name }}</option>
-                                    {% endfor %}
-                                </select>
+                                                {% for value in product_sub_type %}
+                                                    <option value="{{ value.id }}">{{ value.name }}</option>
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+
+                                    <div class="col-md-4">
                                         <div class="form-group form-group-row">
                                             <label for="product_material">Product Material</label>
                                             <select id="product_material" class="form-control" name='product_material' required>
-                                    {% for value in product_material %}
-                                        <option value="{{ value.id }}">{{ value.name }}</option>
-                                    {% endfor %}
-                                </select>
+                                            {% for value in product_material %}
+                                                <option value="{{ value.id }}">{{ value.name }}</option>
+                                            {% endfor %}
+                                        </select>
                                         </div>
                                     </div>
 
-                                    {% comment %} <div class="col-md-4">
+                                    <div class="col-md-4">
                                         <div class="form-group form-group-row">
-                                            <label for="unit_of_measurment">Unit of Measurment</label
-                                        >
-                                        <select id="unit_of_measurment" class="form-control" name='unit_of_measurement' required>
-                                            {% for value in unit_of_measurement %}
-                                                <option value="{{ value.id }}">{{ value.name }}</option> 
-                                            {% endfor %}
-                                        </select>
-                                        </div>
-                                    </div> {% endcomment %}
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group form-group-row">
-                                        <span class="text-danger pr-1">* </span>
-                                        <label for="delivery_timing">Delivery Timing</label>
-                                            <select id="id_delivery_timing" class="form-control" name="delivery_timing" required>
-                                            {% for value in delivery_timing %}
-                                                    <option value="{{ value.id }}">{{ value.name }}</option>
-                                            {% endfor %}
-                                        </select>
-                                        </div>
+                                            <span class="text-danger1 pr-1">* </span>
+                                            <label for="delivery_timing">Delivery Timing</label>
+                                                <select id="id_delivery_timing" class="form-control" name="delivery_timing" required>
+                                                    {% for value in delivery_timing %}
+                                                        <option value="{{ value.id }}">{{ value.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                         </div>
                                     </div>
 
+                                </div>
 
+                                <div class="row">
+                                        
                                     <div class="col-md-4">
                                         <div class="form-group form-group-row">
                                             <label for="currency">Currency</label>
                                             <select id="currency" class="form-control" name='currency'>
-                                        {% for value, label in form.currency.field.choices %}
-                                            <option value="{{ value }}">{{ label }}</option> 
-                                        {% endfor %}
-                                    </select>
+                                                {% for value, label in form.currency.field.choices %}
+                                                    <option value="{{ value }}">{{ label }}</option> 
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
 
@@ -417,14 +347,6 @@
                                         </div>
                                     </div>
 
-
-                                </div>
-
-                                {% comment %} New Adding {% endcomment %}
-                                <div class="row">
-
-
-
                                     <div class="col-md-4">
                                         <div class="form-group form-group-row">
                                             <label for="customer_contacts">Amount (<span id="currency-symbol"></span>) : </label>
@@ -433,15 +355,17 @@
                                         </div>
                                     </div>
 
+
                                 </div>
 
+                                   
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group form-group-row align-items-start d-flex flex-row flex-wrap">
-                                            <span class="text-danger pr-1">* </span>
+                                            <span class="text-danger1 pr-1">* </span>
                                             <label for="design_requirement">Design <br />
-                                        Requirement
-                                      </label>
+                                                Requirement
+                                            </label>
 
                                             <div id="file-upload-wrapper1" class="file-upload-wrapper text-center">
                                                 <input type="file" multiple accept=".jpeg,.jpg,.png,.gif" id="design_requirement" name="design_requirement" />
@@ -458,7 +382,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group form-group-row align-items-start d-flex flex-row flex-wrap">
-                                            <span class="text-danger pr-1">* </span>
+                                            <span class="text-danger1 pr-1">* </span>
                                             <label for="upload_file">Upload file</label>
 
                                             <div id="file-upload-wrapper2" class="file-upload-wrapper text-center">
@@ -478,11 +402,9 @@
                                 </div>
 
 
+                                </div>
+
                             </div>
-
-
-
-                        </div>
 
                         {% if messages %}
                         <ul class="messages text-danger">

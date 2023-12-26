@@ -1,6 +1,6 @@
 from django.contrib import admin
 from products.models import (
-    OriginalData,DesignPrinting,ProductType,ProductSubType,
+    OriginalData,DesignPrinting,ProductSubType,
     ProductMaterial,DeliveryTiming,
     Product12HrsPrice,Product6HrsPrice,Product2HrsPrice,Product
     )
@@ -18,11 +18,11 @@ class DesignPrintingAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 admin.site.register(DesignPrinting,OriginalDataAdmin)
 
-class ProductTypeAdmin(admin.ModelAdmin):
-    list_display = ('id','name',)
-    list_display_links=( 'name',)
-    search_fields = ('name',)
-admin.site.register(ProductType,OriginalDataAdmin)
+# class ProductTypeAdmin(admin.ModelAdmin):
+#     list_display = ('id','name',)
+#     list_display_links=( 'name',)
+#     search_fields = ('name',)
+# admin.site.register(ProductType,OriginalDataAdmin)
 
 class ProductSubTypeAdmin(admin.ModelAdmin):
     list_display = ('id','name',)

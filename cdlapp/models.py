@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
 from products.models import (
-    OriginalData,DesignPrinting,ProductType,ProductSubType,
+    OriginalData,DesignPrinting,ProductSubType,
     ProductMaterial,DeliveryTiming,Product
     )
 from django.contrib.auth.hashers import check_password
@@ -177,8 +177,9 @@ class Order(models.Model):
     
     original_data = models.ForeignKey(OriginalData, on_delete=models.CASCADE)
     design_printing = models.ForeignKey(DesignPrinting, on_delete=models.CASCADE)
-    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
-    product_sub_type = models.ForeignKey(ProductSubType, on_delete=models.CASCADE)
+
+    product_sub_type = models.ForeignKey(ProductSubType, on_delete=models.CASCADE, verbose_name = "products")
+
     product_material = models.ForeignKey(ProductMaterial, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     delivery_timing = models.ForeignKey(DeliveryTiming, on_delete=models.CASCADE)
