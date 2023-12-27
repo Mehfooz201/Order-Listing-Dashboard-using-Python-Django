@@ -305,8 +305,6 @@ class OrderGallery(models.Model):
         verbose_name_plural = "Orders Gallery"
 
 
-
-
 # Signal handler for creating related records when a new user is added
 @receiver(post_save, sender=User)
 def create_user_related_records(sender, instance, created, **kwargs):
