@@ -9,6 +9,7 @@ from products.models import (
     ProductMaterial,DeliveryTiming,
     Product12HrsPrice,Product6HrsPrice,Product2HrsPrice,Product
     )
+from decouple import config
 from django.contrib.auth.hashers import check_password
 from payments.models import orderPayment, additionalPricePayment
 from .forms import (
@@ -103,8 +104,8 @@ def home(request):
 
         # Compose and send the email
         subject = f"Contact Form Submission from {name}"
-        from_email = 'cdllabs38@gmail.com'  # Replace with your email
-        recipient_list = ['cdllabs38@gmail.com']  # Replace with recipient email(s)
+        from_email = config('EMAIL_HOST_USER_OK') # Replace with your email
+        recipient_list = ['cmpsbangalore@gmail.com', 'info@userumbrella.com']  # Replace with recipient email(s)
         message = f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}"
 
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
