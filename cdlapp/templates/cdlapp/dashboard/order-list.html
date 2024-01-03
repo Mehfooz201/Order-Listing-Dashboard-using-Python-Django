@@ -354,13 +354,12 @@ Order List
 
                                 {% if request.user.groups.all.0.name == "Vendor"  or request.user.groups.all.0.name == "User" or request.user.groups.all.0.name == "Admin" %}
 
-                                  {% comment %} is_orderd==1 for paid. ==0 for unpaid {% endcomment %}
+                                  {% comment %} is_orderd==1 for paid...... is_ordered==0 for unpaid {% endcomment %}
                                   {% if data.is_ordered == 1 %}
-                                    <div>
-                                      <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
-                                        >
-                                        <i class="fas fa-eye"></i> View
-                                      </a>
+                                    <div>                                      
+                                        <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm">
+                                          <i class="fas fa-eye"></i> View
+                                        </a>
                                     </div>
                                     
                                     <div>
@@ -369,6 +368,24 @@ Order List
                                         <i class="fas fa-download"></i> Download
                                       </a>
                                     </div>
+
+                                    {% elif data.is_ordered == 0 and request.user.groups.all.0.name == "Vendor"  %}
+                                    
+                                        <div>
+                                          <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm">
+                                            <i class="fas fa-eye"></i> View
+                                          </a>
+                                        </div>
+                                        
+                                        <div>
+                                          <button class="m-2 btn btn-dark btn-small btn-file-download btn-sm" disabled>
+                                            <i class="fas fa-download"></i> Download
+                                          </button>
+                                        </div>
+
+                                        <div>
+                                          <p>Can't download. Pay the order first.</p>
+                                        </div>
 
                                     {% else %}
                                       
@@ -455,19 +472,38 @@ Order List
                                 
                                   {% comment %} is_orderd==1 for paid. ==0 for unpaid {% endcomment %}
                                   {% if data.is_ordered == 1 %}
-                                  <div>
-                                    <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
-                                    >
-                                      <i class="fas fa-eye"></i> View
-                                    </a>
-                                  </div>
+                                    <div>
+                                      <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
+                                      >
+                                        <i class="fas fa-eye"></i> View
+                                      </a>
+                                    </div>
 
-                                  <div>
-                                    <a href="{{ i.url }}" class="m-2 btn btn-dark btn-small btn-file-download btn-sm"
-                                      download>
-                                      <i class="fas fa-download"></i> Download
-                                    </a>
-                                  </div>
+                                    <div>
+                                      <a href="{{ i.url }}" class="m-2 btn btn-dark btn-small btn-file-download btn-sm"
+                                        download>
+                                        <i class="fas fa-download"></i> Download
+                                      </a>
+                                    </div>
+                                  
+                                  {% elif data.is_ordered == 0 and request.user.groups.all.0.name == "Vendor"  %}
+                                    
+                                    <div>
+                                      <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
+                                      >
+                                        <i class="fas fa-eye"></i> View
+                                      </a>
+                                    </div>
+                                    
+                                    <div>
+                                      <button class="m-2 btn btn-dark btn-small btn-file-download btn-sm" disabled>
+                                        <i class="fas fa-download"></i> Download
+                                      </button>
+                                    </div>
+
+                                    <div>
+                                      <p>Can't download. Pay the order first.</p>
+                                    </div>
                                 
                                   {% else %}
                                       

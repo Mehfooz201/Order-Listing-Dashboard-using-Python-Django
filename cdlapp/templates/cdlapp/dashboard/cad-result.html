@@ -112,13 +112,16 @@ CAD Design {% endblock title %} {% block custom_style %}
                   <td>{{data.att_file_name }}</td>
 
                   <td>
-                    <a
-                      href="{{ data.attachment_zip_rar.url}}"
-                      class="btn btn-link btn-file-download"
-                      download
-                    >
-                      <i class="fas fa-download"></i> Download
-                    </a>
+                  
+                    {% if data.attachment_zip_rar %}
+                      <a href="{{ data.attachment_zip_rar.url }}" class="btn btn-link btn-file-download" download>
+                        <i class="fas fa-download"></i> Download
+                      </a>
+                    {% else %}
+                      <p>Design Files upload soon.</p>
+                    {% endif %}
+
+                  
                   </td>
 
                   <td>{{data.product_sub_type}}</td>
