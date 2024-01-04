@@ -104,47 +104,89 @@ class OrderAdmin(admin.ModelAdmin):
     #     super().save_related(request, form, formsets, change)
     #     form.save_photos(form.instance)
 
-class OrderGalleryAdmin(admin.ModelAdmin):
-    def thumbnail(self, object):
-        try:
-            if (str(object.image.url).split('.')[-1]=="bmp" or
-                str(object.image.url).split('.')[-1]=="jpg" or
-                str(object.image.url).split('.')[-1]=="jpeg" or
-                str(object.image.url).split('.')[-1]=="png" or
-                str(object.image.url).split('.')[-1]=="gif" or
-                str(object.image.url).split('.')[-1]=="BMP" or
-                str(object.image.url).split('.')[-1]=="JPG" or
-                str(object.image.url).split('.')[-1]=="JPEG" or
-                str(object.image.url).split('.')[-1]=="PNG" or
-                str(object.image.url).split('.')[-1]=="GIF"):
-                return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(object.image.url))
-            else:
-                pdf_icon = os.path.join(settings.STATIC_URL,"cdlapp/assets/images/pdf-file.png")
-                stl_icon = os.path.join(settings.STATIC_URL,"cdlapp/assets/images/stl-file.png")
-                dcm_icon = os.path.join(settings.STATIC_URL,"cdlapp/assets/images/dcm-file.png")
-                html_icon = os.path.join(settings.STATIC_URL,"cdlapp/assets/images/html-file.png")
 
-                if (str(object.image.url).split('.')[-1]=="pdf" or str(object.image.url).split('.')[-1]=="PDF"):
-                    return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(pdf_icon))
-                elif (str(object.image.url).split('.')[-1]=="stl" or str(object.image.url).split('.')[-1]=="STL"):
-                    return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(stl_icon))
-                elif (str(object.image.url).split('.')[-1]=="dcm" or str(object.image.url).split('.')[-1]=="DCM"):
-                    return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(dcm_icon))
-                elif (str(object.image.url).split('.')[-1]=="html" or str(object.image.url).split('.')[-1]=="HTML"):
-                    return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(html_icon))
+class OrderGalleryAdmin(admin.ModelAdmin):
+    def thumbnail(self, obj):
+        try:
+            file_extension = str(obj.image.url).split('.')[-1].lower()
+
+            supported_image_formats = ["bmp", "jpg", "jpeg", "png", "gif"]
+            supported_document_formats = ["pdf", "stl", "dcm", "html"]
+
+            if file_extension in supported_image_formats:
+                return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(obj.image.url))
+            else:
+                file_icons = {
+                    "pdf": "pdf-file.png",
+                    "stl": "stl-file.png",
+                    "dcm": "dcm-file.png",
+                    "html": "html-file.png"
+                }
+
+                file_icon = file_icons.get(file_extension, "default-file.png")
+                file_icon_path = os.path.join(settings.STATIC_URL, f"cdlapp/assets/images/{file_icon}")
+
+                return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(file_icon_path))
         except:
             pass
 
+    def download_file(self, obj):
+        return format_html('<a href="{}" download>Download File</a>'.format(obj.image.url))
+
     thumbnail.short_description = 'File Uploaded'
-    list_display = ("thumbnail", "order", "image",)
+    download_file.short_description = 'Download'
+
+    list_display = ("thumbnail", "order", "image", "download_file")
     list_display_links = ("thumbnail", "order", "image",)
     list_filter = ('order',)
     search_fields = ('order', 'title',)
-    filter_horizontal=()
-    fieldsets=()
+    filter_horizontal = ()
+    fieldsets = ()
 
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderGallery, OrderGalleryAdmin)
+
+# class OrderGalleryAdmin(admin.ModelAdmin):
+#     def thumbnail(self, object):
+#         try:
+#             if (str(object.image.url).split('.')[-1]=="bmp" or
+#                 str(object.image.url).split('.')[-1]=="jpg" or
+#                 str(object.image.url).split('.')[-1]=="jpeg" or
+#                 str(object.image.url).split('.')[-1]=="png" or
+#                 str(object.image.url).split('.')[-1]=="gif" or
+#                 str(object.image.url).split('.')[-1]=="BMP" or
+#                 str(object.image.url).split('.')[-1]=="JPG" or
+#                 str(object.image.url).split('.')[-1]=="JPEG" or
+#                 str(object.image.url).split('.')[-1]=="PNG" or
+#                 str(object.image.url).split('.')[-1]=="GIF"):
+#                 return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(object.image.url))
+#             else:
+#                 pdf_icon = os.path.join(settings.STATIC_URL,"cdlapp/assets/images/pdf-file.png")
+#                 stl_icon = os.path.join(settings.STATIC_URL,"cdlapp/assets/images/stl-file.png")
+#                 dcm_icon = os.path.join(settings.STATIC_URL,"cdlapp/assets/images/dcm-file.png")
+#                 html_icon = os.path.join(settings.STATIC_URL,"cdlapp/assets/images/html-file.png")
+
+#                 if (str(object.image.url).split('.')[-1]=="pdf" or str(object.image.url).split('.')[-1]=="PDF"):
+#                     return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(pdf_icon))
+#                 elif (str(object.image.url).split('.')[-1]=="stl" or str(object.image.url).split('.')[-1]=="STL"):
+#                     return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(stl_icon))
+#                 elif (str(object.image.url).split('.')[-1]=="dcm" or str(object.image.url).split('.')[-1]=="DCM"):
+#                     return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(dcm_icon))
+#                 elif (str(object.image.url).split('.')[-1]=="html" or str(object.image.url).split('.')[-1]=="HTML"):
+#                     return format_html('<img src="{}" width="80" style="border-radius:10%;border:1px solid #000">'.format(html_icon))
+#         except:
+#             pass
+
+#     thumbnail.short_description = 'File Uploaded'
+#     list_display = ("thumbnail", "order", "image",)
+#     list_display_links = ("thumbnail", "order", "image",)
+#     list_filter = ('order',)
+#     search_fields = ('order', 'title',)
+#     filter_horizontal=()
+#     fieldsets=()
+
+# admin.site.register(Order, OrderAdmin)
+# admin.site.register(OrderGallery, OrderGalleryAdmin)
 
 
 class CompanyAdmin(admin.ModelAdmin):
