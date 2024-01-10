@@ -85,7 +85,7 @@ class OrderForm(forms.ModelForm):
     )
 
     file_upload_required = forms.FileField(
-        widget=forms.ClearableFileInput(attrs={"accept":".pdf,.stl,.dcm,.html"}),
+        widget=forms.ClearableFileInput(attrs={"accept":".pdf,.stl,.dcm,.html,.ply,.obj"}),
         required=False,
         label=("Add multiple file_upload_required"),
     )
@@ -102,6 +102,7 @@ class OrderForm(forms.ModelForm):
             photo.save()
         for file in self.files.getlist("file_upload_required"):
             required_files = OrderGallery(order=order, image=file, extension=file.name.split('.')[1], title=file.name)
+            print(required_files.title)
             required_files.save()
 
 

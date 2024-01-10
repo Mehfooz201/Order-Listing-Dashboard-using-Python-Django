@@ -298,12 +298,14 @@ def changePassword(request):
 def createOrder(request):
     if request.method == 'POST':
         form = OrderForm(request.POST, request.FILES)
+
         if form.is_valid():
             order = form.save(commit=False)
             order.order_status = form.fields['order_status'].initial  # Set the default value
             order.user = request.user  # Set the user field to the currently logged-in user
             order.price = order.calculate_price
-            #order.save()
+            order.save()
+            form.save_photos(order)
             return redirect('main_order_billing_page')
         else:
             messages.error(request, "These fields are required")
@@ -368,7 +370,6 @@ def orderList(request):
     order_data = Order.objects.filter(user=user).order_by('-order_number')
 
     
-
     if order_number:
         try:
             order_data = order_data.filter(order_number=int(order_number))

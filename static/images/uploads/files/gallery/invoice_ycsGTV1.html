@@ -1,0 +1,604 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="#">
+                                <img src="assets/images/logo.png" alt="img" class="img-fluid logo" />
+                            </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse ps-xl-5" id="navbarSupportedContent">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Home</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Accounting</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Assets</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Planning</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Admin</a>
+                                    </li>
+
+                                </ul>
+                                <form class="d-flex" role="search">
+                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-secondary" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="mb-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bg-white shadow1 content1">
+                        <h4 class="pt-1">
+                            Generate Invoice
+                        </h4>
+
+                        <div class="pt-2">
+                            <div class="row">
+                                <div class="col-md-4 pt-3">
+                                    <label class="custom-label-frm">Date</label>
+                                    <input type="date" class="form-control custom-inputs">
+                                </div>
+                         
+                                <div class="col-md-4 pt-3">
+                                    <label class="custom-label-frm">Customer</label>
+                                    <select class="form-select custom-inputs">
+                                        <option value="0">Select</option>
+                                        <option value="4">customer 1</option>
+                                        <option value="2">customer 2</option>
+
+                                    </select>
+                                </div>
+
+                              
+                            </div>
+                            <div class="row pt-4">
+                                <div class="col-md-12">
+                                    <label class="custom-label-frm pb-2">Action to carry out:</label>
+
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">email</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">server</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                            <label class="form-check-label" for="inlineRadio3">both</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+
+                                    <div class="pt-4">
+                                        <span class="switch">
+                                            <label>User customer details &nbsp; </label>
+                                            <input type="checkbox" class="switch" id="switch-id">
+                                            <label for="switch-id"></label>
+                                        </span>
+
+                                        <span class="switch sm-5">
+                                            <label>User all assets &nbsp; </label>
+                                            <input type="checkbox" class="switch" id="switch-id2">
+                                            <label for="switch-id2"></label>
+                                        </span>
+
+                                        <span class="switch sm-5">
+                                            <label>Scheduling &nbsp; </label>
+                                            <input type="checkbox" class="switch" id="switch-id3">
+                                            <label for="switch-id3"></label>
+                                        </span>
+
+                                       
+                                        <div class="contentB" style="display:none">
+
+                                            <h5 class="pt-5">Other or Customer Details</h5>
+                                            <form class="pt-2">
+                                                <div class="row">
+                                                    <div class="col-md-4 pt-3">
+                                                        <label class="custom-label-frm">Company</label>
+                                                        <input type="text" class="form-control custom-inputs">
+                                                    </div>
+                                                    <div class="col-md-4 pt-3">
+                                                        <label class="custom-label-frm">Address	</label>
+                                                        <input type="text" class="form-control custom-inputs">
+                                                    </div>
+                                                    <div class="col-md-4 pt-3">
+                                                        <label class="custom-label-frm">Email	</label>
+                                                        <input type="text" class="form-control custom-inputs">
+                                                    </div>
+                                                    <div class="col-md-4 pt-3">
+                                                        <label class="custom-label-frm">Town/City	</label>
+                                                        <input type="text" class="form-control custom-inputs">
+                                                    </div>
+                                                    <div class="col-md-4 pt-3">
+                                                        <label class="custom-label-frm">City	</label>
+                                                        <input type="text" class="form-control custom-inputs">
+                                                    </div>
+                                                    <div class="col-md-4 pt-3">
+                                                        <label class="custom-label-frm">Postcode	</label>
+                                                        <input type="text" class="form-control custom-inputs">
+                                                    </div>
+
+                                                    
+                                                    <div class="col-md-12">
+                                                        <input type="button" class="btn btn-main mt-4 ps-4 pe-4" value="Submit">
+                                                    </div>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+
+                                        <div class="contentC" style="display:none">
+
+                                            <ul class="nav nav-tabs nav-tabs1 mt-5" id="myTab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                                                      Existing  Assets
+                                                    </button>
+                                                </li>
+                                             
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" id="documents-tab" data-bs-toggle="tab" data-bs-target="#documents-tab-pane" type="button" role="tab" aria-controls="documents-tab-pane" aria-selected="false">
+                                                        Fitting
+                                                    </button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" id="assets-tab" data-bs-toggle="tab" data-bs-target="#assets-tab-pane" type="button" role="tab" aria-controls="assets-tab-pane" aria-selected="false">
+                                                        Work
+                                                    </button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" id="pictures-tab" data-bs-toggle="tab" data-bs-target="#pictures-tab-pane" type="button" role="tab" aria-controls="pictures-tab-pane" aria-selected="false">
+                                                        New  Assets
+                                                    </button>
+                                                </li>
+
+
+
+                                            </ul>
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h5 class="pt-5">
+                                                                Assets
+                                                            </h5>
+                                                        </div>
+                                                      
+                                                    </div>
+
+
+                                                    <div class="table-responsive mt-4">
+                                                        <table id="example" class="table table-striped table-bordered datatable w-100">
+
+                                                            <thead class="bg-secondary text-white">
+                                                                <tr>
+                                                                    <th>Select</th>
+                                                                    <th>Asset</th>
+                                                                    <th>Code</th>
+                                                                    <th>MAM charge yearly</th>
+                                                                    <th>MAP charge yearly</th>
+
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                                            <label class="form-check-label" for="flexCheckChecked">
+
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>u12 gas meter</td>
+                                                                    <td>G23</td>
+                                                                    <td>31.44</td>
+                                                                    <td>Sequoia</td>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked>
+                                                                            <label class="form-check-label" for="flexCheckChecked2">
+
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>u72 gas meter</td>
+                                                                    <td>h33</td>
+                                                                    <td>12.31</td>
+                                                                    <td>Sequoia</td>
+
+                                                                </tr>
+                                                            </tbody>
+
+
+                                                        </table>
+
+
+
+
+
+                                                    </div>
+
+                                                    
+
+                                                </div>
+                                                <div class="tab-pane fade" id="assets-tab-pane" role="tabpanel" aria-labelledby="assets-tab" tabindex="0">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h5 class="pt-5">
+                                                                Work
+                                                            </h5>
+                                                        </div>
+                                                       
+                                                    </div>
+
+
+                                                    <div class="table-responsive mt-4">
+                                                        <table id="example" class="table table-striped table-bordered datatable w-100">
+
+                                                            <thead class="bg-secondary text-white">
+                                                                <tr>
+                                                                    <th>Select</th>
+                                                                    <th>Asset/Meter</th>
+                                                                    <th>Type of work</th>
+                                                                    <th>Price</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3">
+                                                                            <label class="form-check-label" for="flexCheckChecked3">
+
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>g16</td>
+                                                                    <td>install</td>
+                                                                    <td>£200</td>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4">
+                                                                            <label class="form-check-label" for="flexCheckChecked4">
+
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>g16</td>
+                                                                    <td>install</td>
+                                                                    <td>£200</td>
+
+                                                                </tr>
+                                                            </tbody>
+
+
+                                                        </table>
+
+
+
+
+
+                                                    </div>
+
+                                                    
+
+
+                                                </div>
+                                                <div class="tab-pane fade" id="documents-tab-pane" role="tabpanel" aria-labelledby="documents-tab" tabindex="0">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h5 class="pt-5">
+                                                                Fitting
+                                                            </h5>
+                                                        </div>
+                                                       
+                                                    </div>
+
+
+                                                    <div class="table-responsive mt-4">
+                                                        <table id="example" class="table table-striped table-bordered datatable w-100">
+
+                                                            <thead class="bg-secondary text-white">
+                                                                <tr>
+                                                                    <th>Select</th>
+                                                                    <th>Asset/Meter</th>
+                                                                    <th>Type</th>
+                                                                    <th>Price</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5">
+                                                                            <label class="form-check-label" for="flexCheckChecked3">
+
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>g16</td>
+                                                                    <td>install</td>
+                                                                    <td>£200</td>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked6">
+                                                                            <label class="form-check-label" for="flexCheckChecked4">
+
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>g16</td>
+                                                                    <td>install</td>
+                                                                    <td>£200</td>
+
+                                                                </tr>
+                                                            </tbody>
+
+
+                                                        </table>
+
+
+
+
+
+                                                    </div>
+
+                                                    
+                                                </div>
+
+
+                                                <div class="tab-pane fade" id="pictures-tab-pane" role="tabpanel" aria-labelledby="pictures-tab" tabindex="0">
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h5 class="pt-5">
+                                                               New Assets
+                                                            </h5>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="table-responsive mt-4">
+                                                        <table id="example" class="table table-striped table-bordered datatable w-100">
+
+                                                            <thead class="bg-secondary text-white">
+                                                                <tr>
+                                                                    <th>Select</th>
+                                                                    <th>Asset</th>
+                                                                    <th>Code</th>
+                                                                    <th>MAM charge yearly</th>
+                                                                    <th>MAP charge yearly</th>
+
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                                            <label class="form-check-label" for="flexCheckChecked">
+
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>u12 gas meter</td>
+                                                                    <td>G23</td>
+                                                                    <td>31.44</td>
+                                                                    <td>Sequoia</td>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked>
+                                                                            <label class="form-check-label" for="flexCheckChecked2">
+
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>u72 gas meter</td>
+                                                                    <td>h33</td>
+                                                                    <td>12.31</td>
+                                                                    <td>Sequoia</td>
+
+                                                                </tr>
+                                                            </tbody>
+
+
+                                                        </table>
+
+
+
+
+
+                                                    </div>
+
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="contentD" style="display:none">
+
+                                            <h5 class="pt-5">Scheduling</h5>
+                                            
+
+                                            <div class="pt-3">
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" checked name="inlineRadioOptions" id="inlineRadio4" value="option4">
+                                                            <label class="form-check-label" for="inlineRadio4">Select date</label>
+                                                        </div>
+                                                        <br />
+                                                        <label class="custom-label-frm pt-2">Date</label>
+                                                        <select class="form-select custom-inputs">
+                                                            <option value="0">Select</option>
+                                                            <option value="4">12/11/12</option>
+                                                        </select>
+
+                                                    </div>
+                                                    <div class="col-md-4 pt-md-0 pt-5">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
+                                                            <label class="form-check-label" for="inlineRadio5">Day and Week</label>
+                                                        </div>
+
+                                                        <br />
+                                                        <label class="custom-label-frm pt-2">Weekday</label>
+                                                        <select class="form-select custom-inputs">
+                                                            <option value="0">Select</option>
+                                                            <option value="4">Monday</option>
+                                                        </select>
+                                                        <label class="custom-label-frm pt-4">Week</label>
+                                                        <select class="form-select custom-inputs">
+                                                            <option value="0">Select</option>
+                                                            <option value="4">may</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                               
+                                               
+                                                
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="row pt-5">
+
+                                <div class="col-md-12">
+                                    <input type="button" class="btn btn-secondary mt-4 ps-4 pe-4" value="Discard">
+                                    <input type="button" class="btn btn-main mt-4 ps-4 pe-4" value="Save">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        $(function () {
+            $("#switch-id").change(function () {
+                if ($(this).is(":checked")) {
+                  
+                    $(".contentB").show();
+                } else {
+                   
+                    $(".contentB").hide();
+                }
+            });
+
+
+
+            $("#switch-id2").change(function () {
+                if ($(this).is(":checked")) {
+
+                    $(".contentC").show();
+                } else {
+
+                    $(".contentC").hide();
+                }
+            });
+
+            $("#switch-id3").change(function () {
+                if ($(this).is(":checked")) {
+
+                    $(".contentD").show();
+                } else {
+
+                    $(".contentD").hide();
+                }
+            });
+
+        });
+    </script>
+
+
+</body>
+</html>

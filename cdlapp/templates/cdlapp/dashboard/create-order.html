@@ -386,11 +386,11 @@
                                             <label for="upload_file">Upload file</label>
 
                                             <div id="file-upload-wrapper2" class="file-upload-wrapper text-center">
-                                                <input type="file" multiple accept=".pdf,.stl,.dcm,.html" id="upload_file" name="file_upload_required" />
+                                                <input type="file" multiple accept=".pdf,.stl,.dcm,.ply,.obj,.html" id="upload_file" name="file_upload_required" />
                                                 <div id="file-upload-icon2" class="file-upload-icon"> <i class="fas fa-cloud-upload-alt"></i> </div>
                                                 <div id="dragtext2">Drag & Drop to Upload File or click to browse file</div>
                                                 <div id="file-upload-info2" class="file-upload-info text-danger">
-                                                    Only upload (.pdf, .stl, .dcm, .html) standard format
+                                                    Only upload (.pdf, .stl, .dcm, .ply, .obj, .html) standard format
                                                 </div>
 
                                             </div>
@@ -609,18 +609,22 @@
             input2 = dropArea2.querySelector("#upload_file");
         let file2; //this is a global variable and we'll use it inside multiple functions
         let fileslist2 = new Array();
-
+        fileslist2 = [];
         input2.addEventListener("change", function() {
-            fileslist2 = []
+            console.log("Change event triggered");
+            //let fileslist2 = [];
                 //getting multiple files
             for (i = 0; i < this.files.length; i++) {
                 fileslist2.push(this.files[i]);
             }
+            console.log("List of files:", fileslist2);
             file2 = fileslist2;
+            preview2.innerHTML = '';
             //dropArea2.classList.add("active");
             icon2.innerHTML = `<i class="fas fa-arrow-down"></i>`;
-            dragText2.innerHTML = file2.name;
+            dragText2.innerHTML = file2[0].name;
             readmultifiles2(file2); //calling read function
+            console.log("Number of files to process:", file2.length);
         });
 
         //If user Drag File Over DropArea2
@@ -695,7 +699,14 @@
 
         //function to get file extension
         function validate_fileExtension2(fileName) {
-            let others_extensions = new Array("html", "dcm", "stl", "pdf", "HTML", "DCM", "STL", "PDF");
+            let others_extensions = new Array(
+                "html", "dcm",
+                "stl", "pdf",
+                "ply", "obj",
+                "HTML", "PLY",
+                "DCM", "STL", 
+                "PDF", "OBJ"
+            );
             let allowed_extensions = others_extensions;
             // split function will split the fileName by dot(.), and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the fileName.
             let file_extension = fileName.split('.').pop().toLowerCase();
@@ -716,7 +727,7 @@
             let img_url = "";
 
             function setup_reader(file) {
-
+                console.log("Reading file:", file.name);
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     let fileURL = e.target.result; //get file content
