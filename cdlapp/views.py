@@ -43,8 +43,28 @@ from rest_framework import status
 
 
 # Create your views here.
+def get_obj_file_content(file_path):
+    try:
+        with open(file_path, 'r') as obj_file:
+            content = obj_file.read()
+        return content
+    except Exception as e:
+        print(f"Error reading OBJ file: {e}")
+        return None
+    
+def get_ply_file_content(file_path):
+            try:
+                with open(file_path, 'r') as ply_file:
+                    # Read the content of the PLY file
+                    content = ply_file.read()
+                return content
+            except Exception as e:
+                # Handle exceptions, such as file not found or unable to read the file
+                print(f"Error reading PLY file: {e}")
+                return None
 
 def show_file(request, path):
+    file_extension = str(path).split('.')[-1].lower()
     ###### Other FILES ######
     if (str(path).split('.')[-1]=='pdf' or str(path).split('.')[-1]=='PDF'):
         pdf = open(os.path.join(settings.MEDIA_ROOT,"uploads/files/gallery",path), 'rb')
@@ -69,6 +89,23 @@ def show_file(request, path):
         context['file_name'] = path
         context['file_encoded'] = encoded_string
         return render(request, 'cdlapp/dashboard/dcm_viewer.html',context)
+    
+    elif file_extension == 'ply':
+        # You can open the file, read its content, and handle it accordingly
+        # For example, you can render a specific template for PLY files
+        context = {
+            'file_name': path,
+            'file_content': get_ply_file_content(os.path.join(settings.MEDIA_ROOT, "uploads/files/gallery", path)),
+        }
+        return render(request, 'cdlapp/dashboard/ply_viewer.html', context)
+
+    elif file_extension == 'obj':
+        # Handle OBJ files
+        context = {
+            'file_name': path,
+            'file_content': get_obj_file_content(os.path.join(settings.MEDIA_ROOT, "uploads/files/gallery", path)),
+        }
+        return render(request, 'cdlapp/dashboard/obj_viewer.html', context)
     ###### IMAGE FILES ######
     elif (str(path).split('.')[-1]=='bmp' or
             str(path).split('.')[-1]=='jpg' or

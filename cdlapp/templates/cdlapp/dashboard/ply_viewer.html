@@ -1,0 +1,65 @@
+{% extends 'cdlapp/baselogin.html' %}
+
+{% block title %}
+PLY Viewer - {{ file_name }}
+{% endblock title %}
+
+{% block custom_css %}
+<style>
+  body {
+    background-color: #fff;
+  }
+  .view-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+{% endblock custom_css %}
+
+{% block content %}
+<div style="background-color: #fff" class="view-container">
+  <div style="z-index: 10; width: 90vw; border-radius: 15px">
+    <div class="login-card-header m-0 p-0">
+      <div
+        style="
+          margin: 12px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        "
+      >
+        <div class="logo">
+          <a href="{% url 'order-list' %}"
+            ><img
+              style="width: 50px; height: 50px"
+              src="{% static 'cdlapp/dashboard/dist/img/cdl-web.png' %}"
+              alt="img"
+          /></a>
+        </div>
+        <div class="header-title">
+          <div class="login-card-title">PLY VIEWER</div>
+          <div class="login-card-subtitle">File:&nbsp;{{ file_name }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      style="
+        width: 100%;
+        height: 80vh;
+        border: 1px solid #f00;
+        background-color: #111;
+        border-radius: 15px;
+        text-align: center;
+        padding-top: 30px;
+        color: #fff;
+      "
+    >
+      <h2>{{ file_name }}</h2>
+      <pre>{{ file_content|default:"No content available" }}</pre>
+      <!-- Add more HTML structure as needed to present the content -->
+    </div>
+  </div>
+</div>
+{% endblock %}

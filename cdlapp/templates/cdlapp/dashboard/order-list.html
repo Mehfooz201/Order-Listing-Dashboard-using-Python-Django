@@ -336,7 +336,7 @@ Order List
                           <td class="text-left bg-light">
                             <div class="file-container">
                               <div class="file-name">
-                                {{i.title}}
+                                <a href="{% url 'show_file' path=i.title|urlencode %}" target="_blank">{{ i.title }}</a>
                               </div>
                             </div>
                           </td>
@@ -453,7 +453,7 @@ Order List
                           <td class="text-left bg-light">
                             <div class="file-container">
                               <div class="file-name">
-                                {{i.title}}
+                                <a href="{% url 'show_file' path=i.title|urlencode %}" target="_blank">{{ i.title }}</a>
                               </div>
                             </div>
                           </td>
