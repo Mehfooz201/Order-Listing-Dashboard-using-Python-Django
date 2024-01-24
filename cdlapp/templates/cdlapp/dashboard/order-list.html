@@ -446,7 +446,7 @@ Order List
                   </thead>
                   <tbody>
                     {% for i in data.gallery%}
-                      {% if i.extension == 'pdf' or i.extension == 'stl' or i.extension == 'dcm' or i.extension == 'html' or i.extension == 'PDF' or i.extension == 'STL' or i.extension == 'DCM' or i.extension == 'HTML'%}
+                      {% if i.extension == 'pdf' or i.extension == 'stl' or i.extension == 'ply' or i.extension == 'obj' or i.extension == 'dcm' or i.extension == 'html' or i.extension == 'PDF' or i.extension == 'STL' or i.extension == 'DCM' or i.extension == 'HTML' or i.extension == 'PLY' or i.extension == 'OBJ'%}
                         <tr>
                           <td class="text-center bg-light">{{data.order_number}}</td>
                           <td class="text-center bg-light">{{data.customer_name}}</td>
