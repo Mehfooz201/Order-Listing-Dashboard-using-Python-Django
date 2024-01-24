@@ -357,7 +357,7 @@ Order List
                                   {% comment %} is_orderd==1 for paid...... is_ordered==0 for unpaid {% endcomment %}
                                   {% if data.is_ordered == 1 %}
                                     <div>                                      
-                                        <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm">
+                                        <a target="_blank" href="{% url 'show_file' path=i.title|urlencode %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm">
                                           <i class="fas fa-eye"></i> View
                                         </a>
                                     </div>
@@ -372,7 +372,7 @@ Order List
                                     {% elif data.is_ordered == 0 and request.user.groups.all.0.name == "Vendor"  %}
                                     
                                         <div>
-                                          <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm">
+                                          <a target="_blank" href="{% url 'show_file' path=i.title|urlencode %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm">
                                             <i class="fas fa-eye"></i> View
                                           </a>
                                         </div>
@@ -473,7 +473,7 @@ Order List
                                   {% comment %} is_orderd==1 for paid. ==0 for unpaid {% endcomment %}
                                   {% if data.is_ordered == 1 %}
                                     <div>
-                                      <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
+                                      <a target="_blank" href="{% url 'show_file' path=i.title|urlencode %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
                                       >
                                         <i class="fas fa-eye"></i> View
                                       </a>
@@ -489,7 +489,7 @@ Order List
                                   {% elif data.is_ordered == 0 and request.user.groups.all.0.name == "Vendor"  %}
                                     
                                     <div>
-                                      <a target="_blank" href="{% url 'show_file' i.title %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
+                                      <a target="_blank" href="{% url 'show_file' path=i.title|urlencode %}" class="m-2 btn btn-primary btn-small btn-file-view btn-sm"
                                       >
                                         <i class="fas fa-eye"></i> View
                                       </a>
