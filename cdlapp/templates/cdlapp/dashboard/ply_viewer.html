@@ -1,4 +1,6 @@
 {% extends 'cdlapp/baselogin.html' %}
+{% load static %}
+
 
 {% block title %}
 PLY Viewer - {{ file_name }}
@@ -54,11 +56,17 @@ PLY Viewer - {{ file_name }}
         text-align: center;
         padding-top: 30px;
         color: #fff;
+
+        
       "
+
+      class="stlviewer"
+        data-src="{{file_url}}"
+        data-rotate="x"
+        data-zdistance="2"
+
     >
-      <h2>{{ file_name }}</h2>
-      <pre>{{ file_content|default:"No content available" }}</pre>
-      <!-- Add more HTML structure as needed to present the content -->
+
     </div>
   </div>
 </div>
