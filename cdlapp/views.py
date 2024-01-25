@@ -571,6 +571,7 @@ def cadResult(request):
     # Get orders with 'completed' or 'approved' status
     order_data = Order.objects.filter(
         Q(user=user, order_status='completed') | Q(user=user, order_status='approved')
+        
     )
     
     if order_number:
