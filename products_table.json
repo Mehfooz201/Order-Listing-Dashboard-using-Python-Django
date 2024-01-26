@@ -34,13 +34,6 @@
         }
     },
     {
-        "model": "products.producttype",
-        "pk": 1,
-        "fields": {
-            "name": "Cobalt-chrome framework - Design Fee"
-        }
-    },
-    {
         "model": "products.productmaterial",
         "pk": 1,
         "fields": {
@@ -945,7 +938,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 1,
             "product_material": 7,
             "product_12hrs_price": 1,
@@ -962,7 +954,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 2,
             "product_material": 5,
             "product_12hrs_price": 2,
@@ -979,7 +970,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 3,
             "product_material": 5,
             "product_12hrs_price": 3,
@@ -996,7 +986,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 4,
             "product_material": 6,
             "product_12hrs_price": 4,
@@ -1013,7 +1002,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 5,
             "product_material": 4,
             "product_12hrs_price": 5,
@@ -1030,7 +1018,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 6,
             "product_material": 3,
             "product_12hrs_price": 6,
@@ -1047,7 +1034,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 7,
             "product_material": 1,
             "product_12hrs_price": 7,
@@ -1064,7 +1050,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 8,
             "product_material": 1,
             "product_12hrs_price": 8,
@@ -1081,7 +1066,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 9,
             "product_material": 1,
             "product_12hrs_price": 9,
@@ -1098,7 +1082,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 10,
             "product_material": 1,
             "product_12hrs_price": 10,
@@ -1115,7 +1098,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 11,
             "product_material": 1,
             "product_12hrs_price": 11,
@@ -1132,7 +1114,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 12,
             "product_material": 1,
             "product_12hrs_price": 12,
@@ -1149,7 +1130,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 13,
             "product_material": 1,
             "product_12hrs_price": 13,
@@ -1166,7 +1146,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 14,
             "product_material": 1,
             "product_12hrs_price": 14,
@@ -1183,7 +1162,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 15,
             "product_material": 1,
             "product_12hrs_price": 15,
@@ -1200,7 +1178,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 16,
             "product_material": 2,
             "product_12hrs_price": 16,
@@ -1217,7 +1194,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 17,
             "product_material": 1,
             "product_12hrs_price": 17,
@@ -1234,7 +1210,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 18,
             "product_material": 2,
             "product_12hrs_price": 18,
@@ -1251,7 +1226,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 19,
             "product_material": 2,
             "product_12hrs_price": 19,
@@ -1268,7 +1242,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 20,
             "product_material": 2,
             "product_12hrs_price": 20,
@@ -1285,7 +1258,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 21,
             "product_material": 2,
             "product_12hrs_price": 21,
@@ -1302,7 +1274,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 22,
             "product_material": 2,
             "product_12hrs_price": 22,
@@ -1319,7 +1290,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 23,
             "product_material": 2,
             "product_12hrs_price": 23,
@@ -1336,7 +1306,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 24,
             "product_material": 2,
             "product_12hrs_price": 24,
@@ -1353,7 +1322,6 @@
         "fields": {
             "original_data": 1,
             "design_printing": 1,
-            "product_type": 1,
             "product_sub_type": 25,
             "product_material": 2,
             "product_12hrs_price": 25,
