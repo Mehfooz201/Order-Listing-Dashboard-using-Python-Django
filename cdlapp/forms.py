@@ -61,7 +61,7 @@ class UserForm(ModelForm):
 class RemakeRequestForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['remake_notes', 'num_crowns', 'num_brackets']
+        fields = ['remake_notes', 'num_crowns', 'num_brackets', 'upper_arch', 'lower_arch']
 
 
 

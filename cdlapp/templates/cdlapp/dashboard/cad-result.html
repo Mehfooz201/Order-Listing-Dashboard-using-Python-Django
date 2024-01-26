@@ -97,7 +97,7 @@ CAD Design {% endblock title %} {% block custom_style %}
                   <th>Attachment (Zip/Rar File)</th>
                   <th>Product</th>
                   <th>Uploaded By</th>
-                  <th>Notes</th>
+                  <th>Remarks / Comments</th>
                   <th>Date</th>
                   <th>Status</th>
                   <th>Apply for Remake</th>
@@ -129,7 +129,7 @@ CAD Design {% endblock title %} {% block custom_style %}
 
                   <td>{{data.product_sub_type}}</td>
                   <td>{{data.user.email}}</td>
-                  <td>{{data.remake_notes}}</td>
+                  <td>{{data.commentOrRemarks}}</td>
                   <td
                     class="order-row"
                     data-order-date="{{ data.formatted_order_date }}"

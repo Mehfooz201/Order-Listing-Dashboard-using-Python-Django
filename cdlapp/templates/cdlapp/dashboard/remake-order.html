@@ -121,6 +121,7 @@
                           <th>Remake Notes </th>
                           <th>Number of Crowns </th>
                           <th>Number of Brackets</th>
+                          <th>Comments / Remarks </th>
                           <th>Currency</th>
                           <th>Total Amount</th>
                           <th>Additional Price</th>
@@ -142,6 +143,9 @@
 
                                   {% if data.order_status == 'pending' %}
                                       <span class="badge badge-warning">{{ data.order_status }}</span>
+
+                                  {% comment %} {% elif data.order_status == 'RX-Report' %}
+                                      <span class="badge badge-dark">{{ data.order_status }}</span> {% endcomment %}
                                       
                                   {% endif %}
 
@@ -153,6 +157,8 @@
                                 <td>{{data.remake_notes}}</td>
                                 <td>{{data.num_crowns}}</td>
                                 <td>{{data.num_brackets}}</td>
+
+                                <td>{{data.commentOrRemarks}}</td>
                                 
                                 <td>{{data.currency}}</td>
                                 <td>

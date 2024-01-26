@@ -459,6 +459,10 @@ def orderList(request):
             order.remake_notes = remake_form.cleaned_data['remake_notes']
             order.num_crowns = remake_form.cleaned_data['num_crowns']
             order.num_brackets = remake_form.cleaned_data['num_brackets']
+
+            order.upper_arch = remake_form.cleaned_data['upper_arch']
+            order.lower_arch = remake_form.cleaned_data['lower_arch']
+
             order.order_status = 'pending'  # Set the order status to pending
 
             order.save()  # Save the order with updated fields

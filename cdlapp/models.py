@@ -82,7 +82,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     last_login = models.DateTimeField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_superadmin = models.BooleanField(default=False)
     
     USERNAME_FIELD = 'email'
@@ -146,6 +146,7 @@ class Order(models.Model):
     ORDER_STATUS_CHOICES = [
         ('review', 'Review'),
         ('pending', 'Pending'),
+        ('RX-Report', 'RX Report'),
         ('approved', 'Approved'),
         ('completed', 'Completed'),
         ('cancelled', 'Cancelled'),
@@ -201,7 +202,12 @@ class Order(models.Model):
     remake_notes = models.TextField(blank=True)
     num_crowns = models.PositiveIntegerField(default=0)
     num_brackets = models.PositiveIntegerField(default=0)
+
+    upper_arch = models.PositiveIntegerField(default=0, verbose_name = "upper alligner")
+    lower_arch = models.PositiveIntegerField(default=0, verbose_name = "lower alligner")
+
     remake_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    commentOrRemarks = models.TextField(blank=True)
 
 
     #CAD Design Result

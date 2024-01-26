@@ -140,6 +140,9 @@ Order List
                   {% elif data.order_status == 'pending' %}
                   <span class="badge badge-warning">{{ data.order_status }}</span>
 
+                  {% elif data.order_status == 'RX-Report' %}
+                  <span class="badge badge-dark">{{ data.order_status }}</span>
+
                   {% elif data.order_status == 'approved' %}
                   <span class="badge badge-info">{{ data.order_status }}</span>
 
@@ -614,18 +617,32 @@ Order List
         {% csrf_token %}
         <input type="hidden" name="order_number" value="{{ data.order_number }}">
         <div class="modal-body">
+
           <div class="form-group">
             <label for="crownsInput">Number of Crowns</label>
             <input type="number" class="form-control" id="crownsInput" name="num_crowns" required>
           </div>
+
           <div class="form-group">
             <label for="bracketsInput">Number of Brackets</label>
             <input type="number" class="form-control" id="bracketsInput" name="num_brackets" required>
           </div>
+
+          <div class="form-group">
+            <label for="bracketsInput">Number of Alligner (Upper Aligner)</label>
+            <input type="number" class="form-control" id="bracketsInput" name="upper_arch" required>
+          </div>
+
+          <div class="form-group">
+            <label for="bracketsInput">Number of Alligner (Lower Aligner)</label>
+            <input type="number" class="form-control" id="bracketsInput" name="lower_arch" required>
+          </div>
+
           <div class="form-group">
             <label for="notesInput">Notes</label>
             <textarea class="form-control" id="notesInput" name="remake_notes" rows="3"></textarea>
           </div>
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
