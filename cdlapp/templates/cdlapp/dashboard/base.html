@@ -106,41 +106,41 @@
                   </div>
                 </div>
               </button>
-              {% notifications_unread as unread_count %} {% if unread_count %}
-              <div class="dropdown-menu">
-                <div class="info bg-danger" style="font-size: 13px">
-                  {% if unread_count == 1 %} You have
-                  <strong>{{ unread_count }}</strong> unread notification. 
-                  {% else %} You have <strong>{{ unread_count }}</strong> unread
-                  notifications. {% endif %}
-                </div>
 
-                {% for notification in user.notifications.unread %} 
-                {% if notification.recipient.username == user.username %}
-                <div>
-                  <a
-                    href="{% url 'notif' notification.id %}"
-                    class="dropdown-item text-center"
-                  >
-                    {{ notification.verb }}
-                    <span
-                      style="font-size: 12px"
-                      class="badge badge-light text-danger"
-                    >
-                      *unread
-                    </span>
-                  </a>
+              {% notifications_unread as unread_count %} {% if unread_count %}
+                <div class="dropdown-menu">
+                  <div class="info bg-danger" style="font-size: 13px">
+                    {% if unread_count == 1 %} You have
+                    <strong>{{ unread_count }}</strong> unread notification. 
+                    {% else %} You have <strong>{{ unread_count }}</strong> unread
+                    notifications. {% endif %}
+                  </div>
+
+                  {% for notification in user.notifications.unread %} 
+                  {% if notification.recipient.username == user.username %}
+                  <div>
+                    <a
+                      href="{% url 'order-detail' notification.id %}"
+                      class="dropdown-item text-center">
+                      {{ notification.verb }}
+                      <span
+                        style="font-size: 12px"
+                        class="badge badge-light text-danger">
+                        *unread
+                      </span>
+                    </a>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                  {% endif %} {% endfor %}
                 </div>
-                <div class="dropdown-divider"></div>
-                {% endif %} {% endfor %}
-              </div>
-              {% else %}
-              <div class="dropdown-menu">
-                <div class="info bg-danger text-center" style="font-size: 12px">
-                  You have <strong>0</strong> unread notification.
+                {% else %}
+                <div class="dropdown-menu">
+                  <div class="info bg-danger text-center" style="font-size: 12px">
+                    You have <strong>0</strong> unread notification.
+                  </div>
                 </div>
-              </div>
               {% endif %}
+
             </div>
           </li>
         </ul>
