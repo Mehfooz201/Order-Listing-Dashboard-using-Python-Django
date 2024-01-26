@@ -545,7 +545,9 @@ Order List
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <a href="{% url 'order-detail' data.order_number %}" class='btn btn-secondary'>View Order Details</a>
+
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
               Close
             </button>
           </div>

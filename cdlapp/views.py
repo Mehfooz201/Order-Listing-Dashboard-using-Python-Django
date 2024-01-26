@@ -482,6 +482,20 @@ def orderList(request):
 
 
 @login_required(login_url='login')
+def orderDetailView(request, order_number):
+
+    data = Order.objects.get(user=request.user, order_number=order_number)
+
+    # order_data = get_object_or_404(Order, order_number=order_number, user=request.user)
+
+    context = {'data': data}
+    print('Order Details : ', context)
+
+    return render(request, 'cdlapp/dashboard/order-details.html', context)
+
+
+
+@login_required(login_url='login')
 def remakeOrder(request):
     user = request.user  # Get the logged-in user
     order_number = request.GET.get('order_number')

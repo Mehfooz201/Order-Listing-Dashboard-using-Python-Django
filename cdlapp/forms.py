@@ -74,7 +74,7 @@ class OrderForm(forms.ModelForm):
 
     class Meta:
         model = Order
-        exclude = ['user', 'remake_notes', 'num_crowns', 'num_brackets', 'remake_price']  # Exclude the 'user' field from the form
+        exclude = ['user', 'remake_notes', 'num_crowns', 'num_brackets', 'remake_price', 'upper_arch', 'lower_arch', 'commentOrRemarks']  # Exclude the 'user' field from the form
         fields = '__all__'  # Include all fields from the model
         # exclude = ['price']  # Exclude the 'price' field from the form, as it will be calculated in the view
 

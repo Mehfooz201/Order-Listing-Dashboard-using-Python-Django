@@ -122,6 +122,7 @@
                             
                             {% for notification in  user.notifications.unread %}
                             <div>
+
                                 <a id="not-{{notification.id}}" href="{% url 'notif' notification.id %}" class="not_btn dropdown-item text-center">
                                     {{ notification.verb }}
                                     <span style="font-size:12px" class="badge badge-light text-danger"> *unread </span>	
