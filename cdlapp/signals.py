@@ -19,7 +19,7 @@ def save_user(sender,instance, created,**kwargs):
 def order_create( sender, instance, created, **kwargs):
     if created:
         notify.send(instance.user, recipient=instance.user,
-        verb='New order created by ' + str(instance.user)) + 'Order No. ' + str(instance.pk)
+        verb='New order created by ' + str(instance.user) + 'Order No. ' + str(instance.pk))
 
 
         subject = "Order has been created"
