@@ -36,6 +36,7 @@ from django.contrib.auth.models import Group
 from datetime import datetime
 from dateutil.parser import parse
 from notifications.models import Notification
+from notifications.signals import notify
 import os
 from django.conf import settings
 import base64
@@ -143,12 +144,7 @@ def show_file(request, path):
         context['file_url'] = file
         return render(request, 'cdlapp/dashboard/image_viewer.html',context)
 
-def notifications(request, notification_pk):
-    context = {}
-    notifcation = Notification.objects.get(id = notification_pk, recipient = request.user)
-    if notifcation:
-        notifcation.mark_as_read()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 # --------------------- Home and Login Page ----------------------------
 def home(request):
@@ -481,32 +477,14 @@ def orderList(request):
 
 
 
-# def notifications(request, notification_pk):
-#     context = {}
-#     notifcation = Notification.objects.get(id = notification_pk, recipient = request.user)
-#     if notifcation:
-#         notifcation.mark_as_read()
-#         print('notification read : ', notifcation)
-#         # return redirect('order-detail')
-#     return redirect('order-detail')
-
 def notifications(request, notification_pk):
-    try:
-        notification = Notification.objects.get(id=notification_pk)
-        if request.user == notification.recipient or request.user.is_staff:
-            notification.mark_as_read()
-            # Optionally, you can print a message or log that the notification was marked as read
-            print('Notification marked as read:', notification)
-        else:
-            # Handle the case where the user is not authorized to view the notification
-            return redirect('some_error_page')  # Redirect to an error page or handle it accordingly
-    except Notification.DoesNotExist:
-        # Handle the case where the notification does not exist
-        print('Notification does not exist')
-        pass  # You might want to handle this differently, such as displaying an error message to the user
-    
-    # Redirect the user to the 'order-detail' page or any other page you want
-    return redirect('order-detail', order_number=notification.data.get('order_number'))
+    context = {}
+    notifcation = Notification.objects.get(id = notification_pk, recipient = request.user)
+
+    if notifcation:
+        notifcation.mark_as_read()
+    # return redirect('order-detail')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required(login_url='login')

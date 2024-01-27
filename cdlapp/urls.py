@@ -32,7 +32,10 @@ urlpatterns = [
     path('create-order/', views.createOrder, name='create-order'),
 
     path('order-list/', views.orderList, name='order-list'),
+
     path('order-details/<int:order_number>/', views.orderDetailView, name='order-detail'),
+
+
 
     path('additional_price_payment_request/', additional_price_payment_request, name='additional_price_payment_request'),
     path('additional_price_billing_page/<int:order_num>/', additional_price_billing_page, name='additional_price_billing_page'),

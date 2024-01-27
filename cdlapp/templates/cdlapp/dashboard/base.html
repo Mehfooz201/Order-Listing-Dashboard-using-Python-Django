@@ -117,21 +117,19 @@
                   </div>
 
                   {% for notification in user.notifications.unread %} 
-                  {% if notification.recipient.username == user.username %}
-                  <div>
-                    <a
-                      href="{% url 'order-detail' notification.id %}"
-                      class="dropdown-item text-center">
-                      {{ notification.verb }}
-                      <span
-                        style="font-size: 12px"
-                        class="badge badge-light text-danger">
-                        *unread
-                      </span>
-                    </a>
-                  </div>
-                  <div class="dropdown-divider"></div>
-                  {% endif %} {% endfor %}
+                      {% if notification.recipient.username == user.username %}
+                      <div>
+
+                        <a id="not-{{notification.id}}" href="{% url 'notif' notification.id %}" class="not_btn dropdown-item text-center">
+                            {{ notification.verb }}
+                            <span style="font-size:12px" class="badge badge-light text-danger"> *unread </span>	
+                        </a>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                      {% endif %} 
+                  {% endfor %}
+
+
                 </div>
                 {% else %}
                 <div class="dropdown-menu">

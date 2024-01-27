@@ -18,14 +18,18 @@ def save_user(sender,instance, created,**kwargs):
 @receiver(post_save, sender=Order)
 def order_create( sender, instance, created, **kwargs):
     if created:
-        notify.send(instance.user, recipient=instance.user,
-        verb='New order created by ' + str(instance.user) + 'Order No. ' + str(instance.pk))
+        # notify.send(instance.user, recipient=instance.user, verb='New order created by ' + str(instance.user) + 'Order No. ' + str(instance.pk))
+
+        notify.send(instance.user, recipient=instance.user, verb=f'New order created by {instance.user}. Order No. {instance.pk}', order_number=instance.pk)
+
+        
+
 
 
         subject = "Order has been created"
         
         # Get the absolute URL for the homepage
-        homepage_url = "http://127.0.0.1:8000"  # Replace with your actual website URL
+        homepage_url = "https://design.confidentlab.com"  # Replace with your actual website URL
         order_details_url = reverse('order-detail', kwargs={'order_number': instance.pk})
         order_details_full_url = f"{homepage_url}{order_details_url}"
 
@@ -79,13 +83,13 @@ def post_save_mode_handler(sender, instance, created, **kwargs):
         if (instance.order_status != original_order_status and original_order_status !='approved' and instance.order_status == 'approved' or
             instance.order_status != original_order_status and original_order_status !='cancelled' and instance.order_status == 'cancelled' or
             instance.order_status != original_order_status and original_order_status !='completed' and instance.order_status == 'completed' ):
-            notify.send(instance.user, recipient=instance.user, verb='Order No. ' + str(instance.pk) + ' ' + str(instance.order_status))
+            notify.send(instance.user, recipient=instance.user, verb='Order No. ' + str(instance.pk) + ' ' + str(instance.order_status, order_number=instance.pk))
             
 
             subject = "Update on Order"
 
             # Get the absolute URL for the homepage
-            homepage_url = "http://127.0.0.1:8000"  # Replace with your actual website URL
+            homepage_url = "https://design.confidentlab.com"  # Replace with your actual website URL
             order_details_url = reverse('order-detail', kwargs={'order_number': instance.pk})
             order_details_full_url = f"{homepage_url}{order_details_url}"
             print('order_details_full_url', order_details_full_url)
@@ -109,12 +113,13 @@ def post_save_mode_handler(sender, instance, created, **kwargs):
         if (instance.remake_notes != original_remake_notes or
             instance.num_crowns != original_num_crowns or
             instance.num_brackets != original_num_brackets ):
-            notify.send(instance.user, recipient=instance.user, verb='Order remake requested by '+ str(instance.user.username)+ ' for Order No. '+str(instance.pk))
+            
+            notify.send(instance.user, recipient=instance.user, verb='Order remake requested by '+ str(instance.user.username)+ ' for Order No. '+str(instance.pk), order_number=instance.pk)
 
             subject = "Update on Order"
 
             # Get the absolute URL for the homepage
-            homepage_url = "http://127.0.0.1:8000"  # Replace with your actual website URL
+            homepage_url = "https://design.confidentlab.com"  # Replace with your actual website URL
             order_details_url = reverse('order-detail', kwargs={'order_number': instance.pk})
             order_details_full_url = f"{homepage_url}{order_details_url}"
             
