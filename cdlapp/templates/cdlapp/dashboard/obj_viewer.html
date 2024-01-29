@@ -1,72 +1,130 @@
-{% extends 'cdlapp/baselogin.html' %}
-{% load static %}
-
-{% block title %}
-  OBJ Viewer - {{ file_name }}
-{% endblock title %}
-
-{% block custom_css %}
-  <style>
-    body {
-      background-color: #fff;
+{% extends 'cdlapp/baselogin.html' %} {% load static %} {% block title %}
+OBJ|Viewer {% endblock title %} {% block custom_css %}
+<style>
+  body {
+    background-color: #fff;
+  }
+  .view-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #obj-view {
+    width: 100%;
+    height: 80vh;
+    border-radius: 15px;
+  }
+  @media screen and (max-width: 768px) {
+    #obj-view {
+      top: 50px;
+      width: 100%;
+      height: auto;
+      transform: scale(1.2);
+      border-radius: 15px;
     }
-    .view-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+    .obj-container {
+      width: 100%;
+      height: 60vh;
     }
-  </style>
-{% endblock custom_css %}
+  }
+</style>
+{% endblock custom_css %} {% block content %}
 
-{% block content %}
-
-  <div style="background-color: #fff" class="view-container">
-    <div style="z-index: 10; width: 90vw; border-radius: 15px">
-      <div class="login-card-header m-0 p-0">
-        <div
-          style="
-            margin: 12px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-          "
-        >
-          <div class="logo">
-            <a href="{% url 'order-list' %}"
-              ><img
-                style="width: 50px; height: 50px"
-                src="{% static 'cdlapp/dashboard/dist/img/cdl-web.png' %}"
-                alt="img"
-            /></a>
-          </div>
-          <div class="header-title">
-            <div class="login-card-title">OBJ VIEWER</div>
-            <div class="login-card-subtitle">File:&nbsp;{{ file_name }}</div>
-          </div>
-        </div>
-      </div>
-
+<div style="background-color: #fff" class="view-container">
+  <div style="z-index: 10; width: auto; border-radius: 15px">
+    <div class="login-card-header m-0 p-0">
       <div
         style="
-          width: 100%;
-          height: 80vh;
-          border: 1px solid #f00;
-          background-color: #111;
-          border-radius: 15px;
-          text-align: center;
-          padding-top: 30px;
-          color: #fff;
+          margin: 12px;
+          display: flex;
+          dlex-direction: row;
+          justify-content: space-between;
         "
-        class="stlviewer"
-        data-src="{{file_url}}"
-        data-rotate="x"
-        data-zdistance="2"
-        >
-        {% comment %} <h2>{{ file_name }}</h2>
-        <pre>{{ file_content|default:"No content available" }}</pre> {% endcomment %}
-        <!-- Add more HTML structure as needed to present the content -->
+      >
+        <div class="logo">
+          <a href="{% url 'order-list' %}"
+            ><img
+              style="width: 50px; height: 50px"
+              src="{% static 'cdlapp/dashboard/dist/img/cdl-web.png' %}"
+              alt="img"
+          /></a>
+        </div>
+        <div class="header-title">
+          <div class="login-card-title">OBJ VIEWER</div>
+          <div class="login-card-subtitle">File: {{file_name}}</div>
+        </div>
       </div>
     </div>
-  </div>
 
+    <div style="background-color: #222; border-radius: 15px; border: 1px solid #000;" class="obj-container">
+      <div id="obj-view" style="width: 100%; height: 100%"></div>
+    </div>
+  </div>
+</div>
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://threejs.org/build/three.module.js",
+      "three/examples/jsm/loaders/OBJLoader": "https://threejs.org/examples/jsm/loaders/OBJLoader.js",
+      "three/examples/jsm/controls/OrbitControls": "https://threejs.org/examples/jsm/controls/OrbitControls.js"
+    }
+  }
+  </script>
+  
+  <script type="module">
+    import * as THREE from 'three';
+    import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+  
+    var scene = new THREE.Scene();
+  
+    // Add ambient light
+    var ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+  
+    // Add point light
+    var pointLight = new THREE.PointLight(0xffffff, 1, 1000);
+    pointLight.position.set(50, 50, 50);
+    scene.add(pointLight);
+  
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 100; // Adjust camera position
+  
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('obj-view').appendChild(renderer.domElement);
+  
+    // Add OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.screenSpacePanning = false;
+    controls.minDistance = 100;
+    controls.maxDistance = 500;
+    controls.maxPolarAngle = Math.PI / 2;
+  
+    var loader = new OBJLoader();
+    loader.load(
+      '{{file_url}}',
+      function (object) {
+    scene.add(object);
+      },
+      function (xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+      },
+      function (error) {
+        console.log('An error happened');
+      }
+    );
+  
+    var animate = function () {
+      requestAnimationFrame(animate);
+      controls.update(); // Required for damping
+      renderer.render(scene, camera);
+    };
+  
+    animate();
+  </script>
+  
 {% endblock %}

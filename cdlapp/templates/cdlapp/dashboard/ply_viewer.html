@@ -1,12 +1,6 @@
-{% extends 'cdlapp/baselogin.html' %}
-{% load static %}
 
-
-{% block title %}
-PLY Viewer - {{ file_name }}
-{% endblock title %}
-
-{% block custom_css %}
+{% extends 'cdlapp/baselogin.html' %} {% load static %} {% block title %}
+PLY|Viewer {% endblock title %} {% block custom_css %}
 <style>
   body {
     background-color: #fff;
@@ -16,18 +10,36 @@ PLY Viewer - {{ file_name }}
     align-items: center;
     justify-content: center;
   }
-</style>
-{% endblock custom_css %}
+  #ply-view {
+    width: 100%;
+    height: 80vh;
+    border-radius: 15px;
+  }
+  @media screen and (max-width: 768px) {
+    #ply-view {
+      top: 50px;
+      width: 100%;
+      height: auto;
+      transform: scale(1.2);
+      border-radius: 15px;
+    }
 
-{% block content %}
+    .ply-container {
+      width: 100%;
+      height: 60vh;
+    }
+  }
+</style>
+{% endblock custom_css %} {% block content %}
+
 <div style="background-color: #fff" class="view-container">
-  <div style="z-index: 10; width: 90vw; border-radius: 15px">
+  <div style="z-index: 10; width: auto; border-radius: 15px">
     <div class="login-card-header m-0 p-0">
       <div
         style="
           margin: 12px;
           display: flex;
-          flex-direction: row;
+          dlex-direction: row;
           justify-content: space-between;
         "
       >
@@ -41,33 +53,84 @@ PLY Viewer - {{ file_name }}
         </div>
         <div class="header-title">
           <div class="login-card-title">PLY VIEWER</div>
-          <div class="login-card-subtitle">File:&nbsp;{{ file_name }}</div>
+          <div class="login-card-subtitle">File: {{file_name}}</div>
         </div>
       </div>
     </div>
 
-    <div
-      style="
-        width: 100%;
-        height: 80vh;
-        border: 1px solid #f00;
-        background-color: #111;
-        border-radius: 15px;
-        text-align: center;
-        padding-top: 30px;
-        color: #fff;
-
-        
-      "
-
-      class="stlviewer"
-        data-src="{{file_url}}"
-        data-rotate="x"
-        data-zdistance="2"
-
-    >
-
+    <div style="background-color: #222; border-radius: 15px; border: 1px solid #000;" class="ply-container">
+      <div id="ply-view" style="width: 100%; height: 100%"></div>
     </div>
   </div>
 </div>
+
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://threejs.org/build/three.module.js",
+      "three/examples/jsm/loaders/PLYLoader": "https://threejs.org/examples/jsm/loaders/PLYLoader.js",
+      "three/examples/jsm/controls/OrbitControls": "https://threejs.org/examples/jsm/controls/OrbitControls.js"
+    }
+  }
+  </script>
+  
+  <script type="module">
+    import * as THREE from 'three';
+    import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
+    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+  
+    var scene = new THREE.Scene();
+  
+    // Add ambient light
+    var ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+  
+    // Add point light
+    var pointLight = new THREE.PointLight(0xffffff, 1, 1000);
+    pointLight.position.set(50, 50, 50);
+    scene.add(pointLight);
+  
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 100; // Adjust camera position
+  
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('ply-view').appendChild(renderer.domElement);
+  
+    // Add OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.screenSpacePanning = false;
+    controls.minDistance = 100;
+    controls.maxDistance = 500;
+    controls.maxPolarAngle = Math.PI / 2;
+  
+    var loader = new PLYLoader();
+    loader.load(
+      '{{file_url}}', // This is the path to your .ply file
+      function (geometry) {
+        geometry.computeVertexNormals(); // Compute vertex normals for better rendering
+        var material = new THREE.MeshBasicMaterial({ vertexColors: true });
+        var mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+      },
+      function (xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+      },
+      function (error) {
+        console.log('An error happened');
+      }
+    );
+  
+    var animate = function () {
+      requestAnimationFrame(animate);
+      controls.update(); // Required for damping
+      renderer.render(scene, camera);
+    };
+  
+    animate();
+  </script>
+  
+  
 {% endblock %}

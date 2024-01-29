@@ -10567,7 +10567,12 @@ a.text-warning:hover {
 }
 
 .text-danger {
-    color: black !important;
+    color: #080808 !important;
+}
+
+.text-danger1 {
+    color: #d61400 !important;
+    font-size: 20px;
 }
 
 a.text-danger:focus,

@@ -142,6 +142,7 @@ def show_file(request, path):
         file = os.path.join(settings.MEDIA_URL,"uploads/files/gallery",path)
         context['file_name'] = path
         context['file_url'] = file
+        print("okay", context)
         return render(request, 'cdlapp/dashboard/image_viewer.html',context)
 
 
