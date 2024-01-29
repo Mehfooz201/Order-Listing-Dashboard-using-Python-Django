@@ -9,24 +9,17 @@ OBJ|Viewer {% endblock title %} {% block custom_css %}
     align-items: center;
     justify-content: center;
   }
+  .obj-container {
+    width: 90vw; /* Adjust width as needed */
+    height: 80vh; /* Adjust height as needed */
+    border: 1px solid #f00; /* Border color */
+    background-color: #fff; /* Background color */
+    border-radius: 15px; /* Border radius */
+    overflow: hidden; /* Ensure overflow doesn't affect layout */
+  }
   #obj-view {
     width: 100%;
-    height: 80vh;
-    border-radius: 15px;
-  }
-  @media screen and (max-width: 768px) {
-    #obj-view {
-      top: 50px;
-      width: 100%;
-      height: auto;
-      transform: scale(1.2);
-      border-radius: 15px;
-    }
-
-    .obj-container {
-      width: 100%;
-      height: 60vh;
-    }
+    height: 100%;
   }
 </style>
 {% endblock custom_css %} {% block content %}
