@@ -595,13 +595,13 @@ def cadResult(request):
     #Multi order Status query
     # Get orders with 'completed' or 'approved' status
     order_data = Order.objects.filter(
-        Q(user=user, order_status='completed') | Q(user=user, order_status='approved')
+        Q(user=user, order_status='completed') | Q(user=user, order_status='RX-Report') | Q(user=user, order_status='approved')
         
     )
     
     if order_number:
         try:
-            order_data = order_data.filter(order_number=int(order_number))
+            order_data = order_data.filter(order_number=int(order_number)).order_by('-order_number')
         except ValueError:
             # Handle invalid order number input
             pass

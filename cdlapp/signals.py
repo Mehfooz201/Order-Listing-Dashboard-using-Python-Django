@@ -81,9 +81,14 @@ def post_save_mode_handler(sender, instance, created, **kwargs):
     else:
         #-------If order approved,cancelled or completed
         if (instance.order_status != original_order_status and original_order_status !='approved' and instance.order_status == 'approved' or
+            
             instance.order_status != original_order_status and original_order_status !='cancelled' and instance.order_status == 'cancelled' or
-            instance.order_status != original_order_status and original_order_status !='completed' and instance.order_status == 'completed' ):
-            notify.send(instance.user, recipient=instance.user, verb='Order No. ' + str(instance.pk) + ' ' + str(instance.order_status, order_number=instance.pk))
+            
+            instance.order_status != original_order_status and original_order_status !='RX-Report' and instance.order_status == 'RX-Report'  or
+
+            instance.order_status != original_order_status and original_order_status !='completed' and instance.order_status == 'completed' ) :
+
+            notify.send(instance.user, recipient=instance.user, verb='Order No. ' + str(instance.pk) + ' ' + str(instance.order_status))
             
 
             subject = "Update on Order"
@@ -114,7 +119,7 @@ def post_save_mode_handler(sender, instance, created, **kwargs):
             instance.num_crowns != original_num_crowns or
             instance.num_brackets != original_num_brackets ):
             
-            notify.send(instance.user, recipient=instance.user, verb='Order remake requested by '+ str(instance.user.username)+ ' for Order No. '+str(instance.pk), order_number=instance.pk)
+            notify.send(instance.user, recipient=instance.user, verb='Order remake requested by '+ str(instance.user.username)+ ' for Order No. '+str(instance.pk))
 
             subject = "Update on Order"
 
