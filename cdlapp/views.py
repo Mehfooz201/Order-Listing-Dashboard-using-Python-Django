@@ -595,7 +595,7 @@ def cadResult(request):
     #Multi order Status query
     # Get orders with 'completed' or 'approved' status
     order_data = Order.objects.filter(
-        Q(user=user, order_status='completed') | Q(user=user, order_status='RX-Report') | Q(user=user, order_status='approved')
+        Q(user=user, order_status='completed') | Q(user=user, order_status='approved')
         
     )
     
