@@ -341,7 +341,7 @@ def send_user_registration_email(sender, instance, created, **kwargs):
             f"Please visit our website at: {homepage_url}\n\n"  # Include the URL here
             f"Best regards,\nConfident Dental Laboratory (Pvt.) Ltd"
         )
-        from_email = "admin@design.confidentlab.com"  # Change to your admin's email address
+        from_email = "Intagli 3D CAD CAM Design <admin@design.confidentlab.com>"  # Change to your admin's email address
         recipient_list = [instance.email]
         send_mail(subject, message, from_email, recipient_list)
 
