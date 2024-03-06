@@ -13,7 +13,7 @@
 
 {% block head_scripts %}  
 
-<script  src="https://www.paypal.com/sdk/js?client-id=AaPCQanNpLoRe_b850vsu_kzvp-770mkZrfE28sCUSL9gOglgFavzHujNIiIGe3O44Iw8H80QCLvPAKA">
+<script  src="https://www.paypal.com/sdk/js?client-id={{ PAYPAL_CLIENT_ID }}">
 </script>
 
 {% endblock %}
@@ -328,6 +328,8 @@
         amount_to_charge = amount
     }
 
+    
+
     function initPayPalButton() {
         // Render the PayPal button into #paypal-button-container
         paypal.Buttons({
@@ -403,5 +405,7 @@
         }).render('#paypal-button-container');
     }
     initPayPalButton();
+
 </script>
+
 {% endblock %}

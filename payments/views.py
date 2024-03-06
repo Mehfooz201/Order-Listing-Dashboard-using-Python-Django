@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from Amrulo.settings import PAYPAL_CLIENT_ID
 from cdlapp.models import Order, OrderGallery
 from payments.models import orderPayment, additionalPricePayment
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
@@ -177,8 +178,10 @@ def main_order_billing_page(request , price=0, price_inr=0,
         'file_upload_required': file_upload_required,
         'length_input1': length_input1,
         'length_input2': length_input2,
+        'PAYPAL_CLIENT_ID': PAYPAL_CLIENT_ID
         
     }
+
 
     return render(request, 'cdlapp/dashboard/main_order_billing_page.html', context)
 
@@ -238,6 +241,7 @@ def additional_price_billing_page(request ,order_num, price=0):
         'order_currency': order_currency,
         'additional_price': float(additional_price),
         'additional_price_inr': float(additional_price_inr),
+        'PAYPAL_CLIENT_ID': PAYPAL_CLIENT_ID
     }
 
     return render(request, 'cdlapp/dashboard/additional_price_billing_page.html', context)
@@ -332,6 +336,8 @@ def later_payment_billing_page(request ,order_num, price=0):
         
         'price': float(price),
         'price_inr': float(price_inr),
+
+        'PAYPAL_CLIENT_ID': PAYPAL_CLIENT_ID
     }
 
     return render(request, 'cdlapp/dashboard/later_payment_billing_page.html', context)
