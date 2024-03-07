@@ -182,7 +182,6 @@ def main_order_billing_page(request , price=0, price_inr=0,
         
     }
 
-
     return render(request, 'cdlapp/dashboard/main_order_billing_page.html', context)
 
 @login_required(login_url='login')

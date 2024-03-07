@@ -132,6 +132,7 @@ venv.bak/
 
 cdl-env/
 myenv2/
+venv/
 
 # Spyder project settings
 .spyderproject
